@@ -12,5 +12,6 @@ class LinkId extends Controller
         $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '0b0aadd7b81ec25d7d861c28846e4048']);
 
         $response = $bot->replyText('<reply token>', 'hello!');
+        return $response ;
     }
 }
