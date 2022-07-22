@@ -62,3 +62,13 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## LINEbot
+
+//.envに追加
+LINE_BOT_CHANNEL_ACCESS_TOKEN
+LINE_BOT_CHANNEL_SECRET
+
+
+//使用出来るlinebotファサード
+$profile = \LINEBot::getProfile($userId);
