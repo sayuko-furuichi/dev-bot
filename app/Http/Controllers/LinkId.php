@@ -9,9 +9,9 @@ class LinkId extends Controller
     public function index(Request $request)
     {
 
-         $obj=   json_decode($request);
+         $obj=json_decode($request);
          
-         $userId= $obj -> source->userId;
+         $userId= $obj -> events->source->userId;
          $reply= $obj -> events->replyToken;
 
       /*  $channelSecret = '0b0aadd7b81ec25d7d861c28846e4048'; // Channel secret string
