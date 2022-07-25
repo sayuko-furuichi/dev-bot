@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class Callback extends Controller
 {
     //
-    public function index(){
+    public function index(Request $request){
 
         $bot = app('line-bot');
         // LINE シグネチャのチェック
@@ -21,6 +21,7 @@ class Callback extends Controller
     
         // JSONでステータスコード=200のレスポンスを返す
         response()->json(['return-data' => 'data'], 200);
+        return $bot;
         
     }
 }
