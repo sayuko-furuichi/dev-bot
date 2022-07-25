@@ -15,6 +15,7 @@ class Callback extends Controller
         if (!LINEBot\SignatureValidator::validateSignature($request->getContent(), config('line-bot.channel_secret'), $signature)) {
             abort(400);
         }
+        $reply_token = $event->getReplyToken();
     
         // ここに自動応答処理を書く
         $bot->replyText($reply_token, 'Hello');
