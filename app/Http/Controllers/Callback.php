@@ -12,6 +12,7 @@ use LINE\LINEBot\Event\Parser;
 use LINE\LINEBot\Event\MessageEvent;
 use LINE\LINEBot\MessageBuilder;
 
+
 class Callback extends Controller
 {
     //
@@ -138,4 +139,7 @@ $signature = $_SERVER['HTTP_'.LINEBot\Constant\HTTPHeader::LINE_SIGNATURE];
 
         $bot->replyText($reply_token, 'muri');
     }
+
+    
+
 }
