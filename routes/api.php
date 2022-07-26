@@ -24,7 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 $httpClient = new CurlHTTPClient($_ENV['LINE_CHANNEL_ACCESS_TOKEN']);
 $bot = new LINEBot($httpClient, ['channelSecret' => $_ENV['LINE_CHANNEL_SECRET']]);
 
-Route::post('/webhook', function (Request $request) use ($bot) {
+Route::post('/', function (Request $request) use ($bot) {
     $request->collect('events')->each(function ($event) use ($bot) {
         $bot->replyText($event['replyToken'], $event['message']['text']);
     });
