@@ -51,5 +51,7 @@ class Callback extends Controller
         curl_setopt($curl_handle, CURLOPT_HTTPHEADER, $headers);
         // curl_exec()の結果を文字列にする
         curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, true);
+
+        curl_close($curl_handle);
     }
 }
