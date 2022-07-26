@@ -15,8 +15,11 @@ use App\Models\UserProf;
  //Controllerから回された仕事をこなす。
  //もらった情報から、ほしいのを抜き出してＤＢに登録する。(登録いるかな？)
 
- class Event{
+ class RecieveTextService{
 // FollowEvent $event　のおかげで、GETprofile　とが使えるらしい
+
+
+
 public function execute(FollowEvent $event)
 {
     try {
