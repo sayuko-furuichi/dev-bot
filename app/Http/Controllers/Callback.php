@@ -26,6 +26,10 @@ class Callback extends Controller
         // JSONでステータスコード=200のレスポンスを返す
         response()->json(['return-data' => 'data'], 200);
      //   return $bot;
-        
+        return $bot;
     }
+
+
+
+
 }
