@@ -18,6 +18,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-    Route::get('/api/callback', 'App\Http\Controllers\Callback@callback')->name('line.callback');
+Route::group(['namespace' => 'api'], function () {
+    Route::get('/callback', 'App\Http\Controllers\Callback@callback')->name('line.callback');
+});
 
