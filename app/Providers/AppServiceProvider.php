@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use LINE\LINEBot;
 // Controllerが実行される前にboot()から実行。一時的なconfigみたいな感じ。
 class AppServiceProvider extends ServiceProvider
 {
