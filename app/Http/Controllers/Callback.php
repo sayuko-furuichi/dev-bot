@@ -17,7 +17,11 @@ class Callback extends Controller
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '0b0aadd7b81ec25d7d861c28846e4048']);
 
     
-        $reply_token = $request->events->getReplyToken();
+       $dData =json_decode($request,true);
+
+if (isset($dData["events"]) ){
+}
+        $reply_token = $dData["replyToken"];
     
         // ここに自動応答処理を書く
         
