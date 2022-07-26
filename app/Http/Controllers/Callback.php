@@ -115,7 +115,7 @@ class Callback extends Controller
         //署名の検証
 
         $channelSecret = '0b0aadd7b81ec25d7d861c28846e4048'; // Channel secret string
-        $httpRequestBody = http_get_request_body(); // Request body string
+        $httpRequestBody = $request->all(); // Request body string
         $hash = hash_hmac('sha256', $httpRequestBody, $channelSecret, true);
         $signature = base64_encode($hash);
 
