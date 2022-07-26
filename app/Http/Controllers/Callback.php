@@ -96,5 +96,12 @@ class Callback extends Controller
 
             $bot->replyText($reply_token, $reply_message);
         }
+   
+        $bot = app('line-bot');
+        $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('送信');
+        $response = $bot->pushMessage('Uffd4dd52c580e1d2bb7b0a66e0ef1951', $textMessageBuilder);
+   
+   
+   
     }
 }
