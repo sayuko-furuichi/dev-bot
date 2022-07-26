@@ -17,11 +17,6 @@ class Callback extends Controller
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '0b0aadd7b81ec25d7d861c28846e4048']);
 
     
-        // LINE シグネチャのチェック
-        $signature = $_SERVER['HTTP_' . LINEBot\Constant\HTTPHeader::LINE_SIGNATURE];
-  //      if (!LINEBot\SignatureValidator::validateSignature($request->getContent(), config('line-bot.channel_secret'), $signature)) {
-    //        abort(400);
-     //   }
         $reply_token = $event->getReplyToken();
     
         // ここに自動応答処理を書く
