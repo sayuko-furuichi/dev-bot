@@ -117,7 +117,7 @@ class Callback extends Controller
         //'HTTP_'.LINEBot\Constant\HTTPHeader::LINE_SIGNATURE
 
         $channelSecret = '0b0aadd7b81ec25d7d861c28846e4048'; // Channel secret string
-        $httpRequestBody = $request->all(); // Request body string
+        $httpRequestBody = json_decode($request->all(),true); // Request body string
         $hash = hash_hmac('sha256', $httpRequestBody, $channelSecret, true);
         $signature = base64_encode($hash);
 
