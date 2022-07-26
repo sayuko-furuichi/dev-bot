@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 //webhookが来たら返す
-Route::get('/', 'App\Http\Controllers\Callback@index');
-//Route::post('/', 'App\Http\Controllers\Callback@index');
+//Route::get('/', 'App\Http\Controllers\Callback@index');
+Route::post('/', 'App\Http\Controllers\Callback@index');
 
 
