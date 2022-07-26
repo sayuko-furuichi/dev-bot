@@ -112,10 +112,10 @@ class Callback extends Controller
     public function text(Request $request){
 
         //署名の検証
-        $channelSecret = '0b0aadd7b81ec25d7d861c28846e4048'; // Channel secret string
-        $httpRequestBody = ['destination'=> 'xxxxxxxxxx','events'=>[]]; // Request body string
-        $hash = hash_hmac('sha256', $httpRequestBody, $channelSecret, true);
-        $signature = base64_encode($hash);
+        $signature = $_SERVER['HTTP_'.LINEBot\Constant\HTTPHeader::LINE_SIGNATURE];
+        if (!LINEBot\SignatureValidator::validateSignature($request->getContent(),'0b0aadd7b81ec25d7d861c28846e4048' , $signature)) {
+            abort(400);
+        }
 
         $bot = app('line-bot');
         $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('送信');
