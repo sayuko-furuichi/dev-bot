@@ -112,6 +112,7 @@ class Callback extends Controller
     public function text(Request $request){
 
         //署名の検証
+        dd($_SERVER);
         $signature = $_SERVER['HTTP_'.LINEBot\Constant\HTTPHeader::LINE_SIGNATURE];
         if (!LINEBot\SignatureValidator::validateSignature($request->getContent(),'0b0aadd7b81ec25d7d861c28846e4048' , $signature)) {
             abort(400);
