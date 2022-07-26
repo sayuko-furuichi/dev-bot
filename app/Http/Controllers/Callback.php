@@ -22,10 +22,15 @@ class Callback extends Controller
         $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('hello');
         
         $response=$bot->replyText($reply_token, $textMessageBuilder);
+        if( $response-> isSucceeded()){
+            echo  '成功しました！' ;
+           return;
+       }
     
         // JSONでステータスコード=200のレスポンスを返す
 
         echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
+
      
    
     }
