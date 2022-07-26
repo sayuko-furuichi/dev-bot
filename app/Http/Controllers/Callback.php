@@ -16,7 +16,7 @@ class Callback extends Controller
         $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => '0b0aadd7b81ec25d7d861c28846e4048']);
 
     
-        $dData =json_decode($request, true);
+        $dData =json_decode($_POST, true);
 
         var_dump($dData);
 
