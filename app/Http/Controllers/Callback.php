@@ -109,7 +109,7 @@ class Callback extends Controller
    
     }
 
-    public function text(Request $request,MessageEvent $events){
+    public function text(Request $request){
         $bot = app('line-bot');
         $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('送信');
         $response = $bot->pushMessage('Uffd4dd52c580e1d2bb7b0a66e0ef1951', $textMessageBuilder);
