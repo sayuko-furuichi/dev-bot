@@ -110,6 +110,13 @@ class Callback extends Controller
     }
 
     public function text(Request $request){
+
+        //署名の検証
+        $channelSecret = '0b0aadd7b81ec25d7d861c28846e4048'; // Channel secret string
+        $httpRequestBody = ['destination'=> 'xxxxxxxxxx','events'=>[]]; // Request body string
+        $hash = hash_hmac('sha256', $httpRequestBody, $channelSecret, true);
+        $signature = base64_encode($hash);
+
         $bot = app('line-bot');
         $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('送信');
         $response = $bot->pushMessage('Uffd4dd52c580e1d2bb7b0a66e0ef1951', $textMessageBuilder);
