@@ -38,6 +38,10 @@ class Callback extends Controller
                                     [
                                         'type' => 'text',
                                         'text' => $message['text']
+                                    ],
+                                    [
+                                        'type' => 'text',
+                                        'text' => 'まねしないで！'
                                     ]
                                 ]
                             ]);
