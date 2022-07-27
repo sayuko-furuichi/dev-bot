@@ -49,7 +49,10 @@ class Callback extends Controller
                $us = $event['source'];
 
                $use=$us['userId'];
-             //  $results =getUserProf($use);
+              $results =getUserProf($use);
+              $id= $results->id;
+              $userId= $results->line_user_id;
+              $usernm= $data->line_user_name;
                  
 
                 if ($message['text'] == 'おはよう') {
@@ -66,7 +69,7 @@ class Callback extends Controller
                 ],
                 [
                     'type' => 'text',
-                    'text' =>  'results'
+                    'text' =>  $id.$userId.$usenm
                 ]
             ]
         ]);
