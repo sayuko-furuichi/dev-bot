@@ -11,6 +11,7 @@ use Illuminate\Foundation\helpers;
 use LINE\LINEBot\Event\Parser;
 use LINE\LINEBot\Event\MessageEvent;
 use LINE\LINEBot\MessageBuilder;
+use app\Http\Controllers\LINEBotTiny;
 
 class Callback extends Controller
 {
