@@ -50,7 +50,7 @@ class Callback extends Controller
 
                 $use=$us['userId'];
                 $results =getUserProf($use);
-                if (($results) != null) {
+                if ($results!= null) {
                     $id= $results->id;
                     $userId= $results->line_user_id;
                     $usernm= $data->line_user_name;
