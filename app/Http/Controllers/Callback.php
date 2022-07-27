@@ -69,7 +69,7 @@ class Callback extends Controller
                 ],
                 [
                     'type' => 'text',
-                    'text' =>  "$id"
+                    'text' =>  dd($results)
                 ]
             ]
         ]);
