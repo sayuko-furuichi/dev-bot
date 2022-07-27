@@ -73,7 +73,7 @@ class Callback extends Controller
                 ],
                 [
                     'type' => 'text',
-                    'text' =>  $results->id
+                    'text' =>  'aaa'
                 ]
             ]
         ]);
