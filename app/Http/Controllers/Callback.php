@@ -12,7 +12,6 @@ use LINE\LINEBot\Event\Parser;
 use LINE\LINEBot\Event\MessageEvent;
 use LINE\LINEBot\MessageBuilder;
 
-
 class Callback extends Controller
 {
     //
@@ -106,24 +105,22 @@ class Callback extends Controller
         $bot = app('line-bot');
         $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('送信');
         $response = $bot->pushMessage('Uffd4dd52c580e1d2bb7b0a66e0ef1951', $textMessageBuilder);
-   
-   
-   
     }
 
-    public function text(Request $request){
+    public function text(Request $request)
+    {
 
         //署名の検証
 
         //'HTTP_'.LINEBot\Constant\HTTPHeader::LINE_SIGNATURE
-/*
-        $channelSecret = '0b0aadd7b81ec25d7d861c28846e4048'; // Channel secret string
-        $httpRequestBody = $request->all(); // Request body string
-        $hash = hash_hmac('sha256', $httpRequestBody, $channelSecret, true);
-        $signature = base64_encode($hash);
-*/
+        /*
+                $channelSecret = '0b0aadd7b81ec25d7d861c28846e4048'; // Channel secret string
+                $httpRequestBody = $request->all(); // Request body string
+                $hash = hash_hmac('sha256', $httpRequestBody, $channelSecret, true);
+                $signature = base64_encode($hash);
+        */
 
-$signature = $_SERVER['HTTP_'.LINEBot\Constant\HTTPHeader::LINE_SIGNATURE];
+        $signature = $_SERVER['HTTP_'.LINEBot\Constant\HTTPHeader::LINE_SIGNATURE];
         if (!LINEBot\SignatureValidator::validateSignature($request->getContent(), env('LINE_CHANNEL_SECRET'), $signature)) {
             abort(400);
         }
@@ -132,50 +129,47 @@ $signature = $_SERVER['HTTP_'.LINEBot\Constant\HTTPHeader::LINE_SIGNATURE];
         $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('送信');
         $response = $bot->pushMessage('Uffd4dd52c580e1d2bb7b0a66e0ef1951', $textMessageBuilder);
 
-    $event2 = $bot->parseEventRequest($request->getContent(), $signature);
-    foreach ($event2 as $ev){
-        $reply_token = $ev->getReplyToken();
-    } 
+        $event2 = $bot->parseEventRequest($request->getContent(), $signature);
+        foreach ($event2 as $ev) {
+            $reply_token = $ev->getReplyToken();
+        }
 
         $bot->replyText($reply_token, 'muri');
     }
 
-    public function tiny(){
+    public function tiny()
+    {
+        require_once('app\Http\Controllers\LINEBotTiny.php');
 
-    
-require_once('LINEBotTiny.php');
+        $channelAccessToken = '/4Ejv8i8d4NB1+KSUMMXZA7zEGoCpcBQgIbEng9HYYgcOL1xPcgolcwDSXKbOlRxHvUUhmocgJDvFQrqH7IfpMkxYBt1O2NcU0wSU8bPIIDI9Rpe2VQCHa7ngQp57ptBA7oEAkNxdkZTweVAR0RF1QdB04t89/1O/w1cDnyilFU=';
+        $channelSecret = '0b0aadd7b81ec25d7d861c28846e4048';
 
-$channelAccessToken = '/4Ejv8i8d4NB1+KSUMMXZA7zEGoCpcBQgIbEng9HYYgcOL1xPcgolcwDSXKbOlRxHvUUhmocgJDvFQrqH7IfpMkxYBt1O2NcU0wSU8bPIIDI9Rpe2VQCHa7ngQp57ptBA7oEAkNxdkZTweVAR0RF1QdB04t89/1O/w1cDnyilFU=';
-$channelSecret = '0b0aadd7b81ec25d7d861c28846e4048';
-
-$client = new LINEBotTiny($channelAccessToken, $channelSecret);
-foreach ($client->parseEvents() as $event) {
-    switch ($event['type']) {
-        case 'message':
-            $message = $event['message'];
-            switch ($message['type']) {
-                case 'text':
-                    $client->replyMessage([
-                        'replyToken' => $event['replyToken'],
-                        'messages' => [
-                            [
-                                'type' => 'text',
-                                'text' => $message['text']
-                            ]
-                        ]
-                    ]);
+        $client = new LINEBotTiny($channelAccessToken, $channelSecret);
+        foreach ($client->parseEvents() as $event) {
+            switch ($event['type']) {
+                case 'message':
+                    $message = $event['message'];
+                    switch ($message['type']) {
+                        case 'text':
+                            $client->replyMessage([
+                                'replyToken' => $event['replyToken'],
+                                'messages' => [
+                                    [
+                                        'type' => 'text',
+                                        'text' => $message['text']
+                                    ]
+                                ]
+                            ]);
+                            break;
+                        default:
+                            error_log('Unsupported message type: ' . $message['type']);
+                            break;
+                    }
                     break;
                 default:
-                    error_log('Unsupported message type: ' . $message['type']);
+                    error_log('Unsupported event type: ' . $event['type']);
                     break;
             }
-            break;
-        default:
-            error_log('Unsupported event type: ' . $event['type']);
-            break;
+        };
     }
-};
-        
-    }
-
 }
