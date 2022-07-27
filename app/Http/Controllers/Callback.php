@@ -29,32 +29,33 @@ class Callback extends Controller
     
 
 
-            //ifで書き直し
+            //ifで書き直しおｋ！
 
+            //eventtypeがmessageで、messagetypeがtextの時起動
             if ($event['type'] == 'message') {
                 $message = $event['message'];
-                if ($message['type']=='text') {
+                if ($message['text'] == 'おはよう') {
                     $client->replyMessage([
             'replyToken' => $event['replyToken'],
             'messages' => [
                 [
                     'type' => 'text',
-                    'text' => $message['text']
-                ],
-                [
-                    'type' => 'text',
-                    'text' => 'まねしないで！'
+                    'text' => 'いい朝ですね'
                 ]
             ]
         ]);
                 //ここから
-                } elseif ($message['text'] == 'おはよう') {
+                } elseif ($message['type']=='text') {
                     $client->replyMessage([
                                     'replyToken' => $event['replyToken'],
                                     'messages' => [
                                         [
                                             'type' => 'text',
                                             'text' => $message['text']
+                                        ],
+                                        [
+                                            'type' => 'text',
+                                            'text' => 'まねしないで！'
                                         ]
                                     ]
                                         ]);
