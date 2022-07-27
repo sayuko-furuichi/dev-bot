@@ -49,7 +49,7 @@ class Callback extends Controller
                $us = $event['source'];
 
                $use=$us['userId'];
-               $results =getUserProf($use);
+             //  $results =getUserProf($use);
                  
 
                 if ($message['text'] == 'おはよう') {
@@ -66,7 +66,7 @@ class Callback extends Controller
                 ],
                 [
                     'type' => 'text',
-                    'text' =>  "$results"
+                    'text' =>  'results'
                 ]
             ]
         ]);
