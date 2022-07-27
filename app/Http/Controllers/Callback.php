@@ -64,7 +64,7 @@ class Callback extends Controller
                 ],
                 [
                     'type' => 'text',
-                    'text' => $event['source']
+                    'text' => $message['source']
                 ]
             ]
         ]);
