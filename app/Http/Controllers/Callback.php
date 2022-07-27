@@ -66,7 +66,7 @@ class Callback extends Controller
                 ],
                 [
                     'type' => 'text',
-                    'text' =>  $results
+                    'text' =>  $results->line_user_name
                 ]
             ]
         ]);
