@@ -49,7 +49,7 @@ class Callback extends Controller
                 $us = $event['source'];
 
                 $use=$us['userId'];
-                
+              /*  
                 $prof = new getUserProf();
                  $results = $prof -> getProf($use);
 
@@ -58,6 +58,8 @@ class Callback extends Controller
                     $userId= $results->line_user_id;
                     $usernm= $data->line_user_name;
                 }
+
+*/
 
                 if ($message['text'] == 'ID') {
                     $client->replyMessage([
