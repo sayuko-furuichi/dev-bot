@@ -17,7 +17,7 @@ use App\Http\Service\getUserProf;
 class Callback extends Controller
 {
     //
-  // private String $userId;
+    // private String $userId;
 
 
     public function tiny()
@@ -46,14 +46,15 @@ class Callback extends Controller
 
                 //ユーザID取得のために、event配列からsoureを代入
                 //　$us['userId']　でユーザIDを持ってこれる。
-               $us = $event['source'];
+                $us = $event['source'];
 
-               $use=$us['userId'];
-              $results =getUserProf($use);
-              $id= $results->id;
-              $userId= $results->line_user_id;
-              $usernm= $data->line_user_name;
-                 
+                $use=$us['userId'];
+                $results =getUserProf($use);
+                if (($results) != null) {
+                    $id= $results->id;
+                    $userId= $results->line_user_id;
+                    $usernm= $data->line_user_name;
+                }
 
                 if ($message['text'] == 'おはよう') {
                     $client->replyMessage([
@@ -98,7 +99,4 @@ class Callback extends Controller
             }
         }
     }
-
-
-
 }
