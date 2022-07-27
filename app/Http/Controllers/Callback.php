@@ -46,6 +46,20 @@ class Callback extends Controller
                                 ]
                             ]);
                             break;
+                            //ここから
+                            case $message['text'] == 'おはよう':
+                                $client->replyMessage([
+                                    'replyToken' => $event['replyToken'],
+                                    'messages' => [
+                                        [
+                                            'type' => 'text',
+                                            'text' => $message['text']
+                                        ]
+                                    ]
+                                        ]);
+                                    break;
+
+
                         default:
                             error_log('Unsupported message type: ' . $message['type']);
                             break;
