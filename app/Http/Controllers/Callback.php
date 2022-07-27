@@ -140,6 +140,42 @@ $signature = $_SERVER['HTTP_'.LINEBot\Constant\HTTPHeader::LINE_SIGNATURE];
         $bot->replyText($reply_token, 'muri');
     }
 
+    public function tiny(){
+
     
+require_once('./LINEBotTiny.php');
+
+$channelAccessToken = '/4Ejv8i8d4NB1+KSUMMXZA7zEGoCpcBQgIbEng9HYYgcOL1xPcgolcwDSXKbOlRxHvUUhmocgJDvFQrqH7IfpMkxYBt1O2NcU0wSU8bPIIDI9Rpe2VQCHa7ngQp57ptBA7oEAkNxdkZTweVAR0RF1QdB04t89/1O/w1cDnyilFU=';
+$channelSecret = '0b0aadd7b81ec25d7d861c28846e4048';
+
+$client = new LINEBotTiny($channelAccessToken, $channelSecret);
+foreach ($client->parseEvents() as $event) {
+    switch ($event['type']) {
+        case 'message':
+            $message = $event['message'];
+            switch ($message['type']) {
+                case 'text':
+                    $client->replyMessage([
+                        'replyToken' => $event['replyToken'],
+                        'messages' => [
+                            [
+                                'type' => 'text',
+                                'text' => $message['text']
+                            ]
+                        ]
+                    ]);
+                    break;
+                default:
+                    error_log('Unsupported message type: ' . $message['type']);
+                    break;
+            }
+            break;
+        default:
+            error_log('Unsupported event type: ' . $event['type']);
+            break;
+    }
+};
+        
+    }
 
 }
