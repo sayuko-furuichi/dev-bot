@@ -140,7 +140,7 @@ class Callback extends Controller
 
     public function tiny()
     {
-        require_once(dirname(__FILE__)."/LINEBotTiny.php");
+      //  require_once(dirname(__FILE__)."/LINEBotTiny.php");
 
         $channelAccessToken = '/4Ejv8i8d4NB1+KSUMMXZA7zEGoCpcBQgIbEng9HYYgcOL1xPcgolcwDSXKbOlRxHvUUhmocgJDvFQrqH7IfpMkxYBt1O2NcU0wSU8bPIIDI9Rpe2VQCHa7ngQp57ptBA7oEAkNxdkZTweVAR0RF1QdB04t89/1O/w1cDnyilFU=';
         $channelSecret = '0b0aadd7b81ec25d7d861c28846e4048';
