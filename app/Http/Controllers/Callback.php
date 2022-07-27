@@ -17,7 +17,7 @@ use App\Http\Service\getUserProf;
 class Callback extends Controller
 {
     //
-   private String $userId;
+  // private String $userId;
 
 
     public function tiny()
@@ -56,8 +56,8 @@ class Callback extends Controller
             if ($event['type'] == 'message') {
                 $message = $event['message'];
 
-               $us -> $event['source'];
-                 $this->userId= $us['userId'];
+               $us = $event['source'];
+                 
 
                 if ($message['text'] == 'おはよう') {
                     $client->replyMessage([
@@ -69,7 +69,7 @@ class Callback extends Controller
                 ],
                 [
                     'type' => 'text',
-                    'text' =>  $this->userId
+                    'text' =>  $us['userId']
                 ]
             ]
         ]);
@@ -98,54 +98,6 @@ class Callback extends Controller
             }
         }
     }
-
-
-    /*
-
-                switch ($event['type']) {
-                    case 'message':
-                        $message = $event['message'];
-                        switch ($message['type']) {
-                            case 'text':
-                                $client->replyMessage([
-                                    'replyToken' => $event['replyToken'],
-                                    'messages' => [
-                                        [
-                                            'type' => 'text',
-                                            'text' => $message['text']
-                                        ],
-                                        [
-                                            'type' => 'text',
-                                            'text' => 'まねしないで！'
-                                        ]
-                                    ]
-                                ]);
-                                break;
-                                //ここから
-                                case $message['text'] == 'おはよう':
-                                    $client->replyMessage([
-                                        'replyToken' => $event['replyToken'],
-                                        'messages' => [
-                                            [
-                                                'type' => 'text',
-                                                'text' => $message['text']
-                                            ]
-                                        ]
-                                            ]);
-                                        break;
-
-
-                            default:
-                                error_log('Unsupported message type: ' . $message['type']);
-                                break;
-                        }
-                        break;
-                    default:
-                        error_log('Unsupported event type: ' . $event['type']);
-                        break;
-                }
-            };
-            */
 
 
             public function rgst($source){
