@@ -49,20 +49,21 @@ class Callback extends Controller
                 $us = $event['source'];
 
                 $use=$us['userId'];
-              /*  
-                $prof = new getUserProf();
-                 $results = $prof -> getProf($use);
+                /*
+                  $prof = new getUserProf();
+                   $results = $prof -> getProf($use);
 
-                if ($results != null) {
-                    $id= $results->id;
-                    $userId= $results->line_user_id;
-                    $usernm= $data->line_user_name;
-                }
+                  if ($results != null) {
+                      $id= $results->id;
+                      $userId= $results->line_user_id;
+                      $usernm= $data->line_user_name;
+                  }
 
 */
+//"ID"と入力されたら、ユーザIDを返す
 
-if ($message['text'] == 'ID') {
-    $client->replyMessage([
+                if ($message['text'] == 'ID') {
+                    $client->replyMessage([
             'replyToken' => $event['replyToken'],
             'messages' => [
                 [
@@ -72,15 +73,13 @@ if ($message['text'] == 'ID') {
                 [
     'type' => 'text',
     'text' =>  'あなたのユーザID：'.$us['userId']
-                ],
-                [
-    'type' => 'text',
-    'text' =>  '作業中...'
                 ]
+
             ]
         ]);
-}elseif($message['text'] == 'メニュー'){
-    $client->replyMessage([
+        // メニュー　と言われたら、返す
+                } elseif ($message['text'] == 'メニュー') {
+                    $client->replyMessage([
         'replyToken' => $event['replyToken'],
         'messages' => [
             [
