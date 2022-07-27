@@ -59,7 +59,7 @@ class Callback extends Controller
                     $usernm= $data->line_user_name;
                 }
 
-                if ($message['text'] == 'おはよう') {
+                if ($message['text'] == 'ID') {
                     $client->replyMessage([
             'replyToken' => $event['replyToken'],
             'messages' => [
