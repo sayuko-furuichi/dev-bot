@@ -19,6 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-    Route::get('/callback', 'App\Http\Controllers\Callback@tiny')->name('line.callback');
+    Route::post('/callback', 'App\Http\Controllers\Callback@tiny')->name('line.callback');
 
 
