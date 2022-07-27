@@ -65,7 +65,7 @@ class Callback extends Controller
             'messages' => [
                 [
                     'type' => 'text',
-                    'text' => 'いい朝ですね'
+                    'text' => '承知致しました。'
                 ],
                 [
                     'type' => 'text',
