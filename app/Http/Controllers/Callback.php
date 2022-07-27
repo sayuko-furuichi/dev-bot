@@ -17,7 +17,7 @@ use App\Http\Service\getUserProf;
 class Callback extends Controller
 {
     //
-   // private String $userId;
+   private String $userId;
 
 
     public function tiny()
@@ -52,8 +52,13 @@ class Callback extends Controller
 
 */
 
+
             if ($event['type'] == 'message') {
                 $message = $event['message'];
+
+               $us -> $message['source'];
+                 $this->userId= $us['userId'];
+
                 if ($message['text'] == 'おはよう') {
                     $client->replyMessage([
             'replyToken' => $event['replyToken'],
@@ -64,7 +69,7 @@ class Callback extends Controller
                 ],
                 [
                     'type' => 'text',
-                    'text' => $message['source']
+                    'text' =>  $this->userId
                 ]
             ]
         ]);
