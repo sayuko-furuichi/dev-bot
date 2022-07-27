@@ -147,7 +147,7 @@ class Callback extends Controller
 
         $client = new LINEBotTiny($channelAccessToken, $channelSecret);
         foreach ($client->parseEvents() as $event) {
-            Var_dump($event);
+    
             switch ($event['type']) {
                 case 'message':
                     $message = $event['message'];
