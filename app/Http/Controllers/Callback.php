@@ -49,7 +49,10 @@ class Callback extends Controller
                 $us = $event['source'];
 
                 $use=$us['userId'];
-                $results =getUserProf($use);
+                
+                $prof = new getUserProf;
+                 $results = $prof -> getProf($use);
+
                 if ($results != null) {
                     $id= $results->id;
                     $userId= $results->line_user_id;
@@ -70,7 +73,7 @@ class Callback extends Controller
                 ],
                 [
                     'type' => 'text',
-                    'text' =>  'zzzz'
+                    'text' =>  $results->id
                 ]
             ]
         ]);
