@@ -40,23 +40,16 @@ class Callback extends Controller
 
             //eventtypeがmessageで、messagetypeがtextの時起動
 
-            /*
-            if(isset($event['source'])){
-               $source=  $event['source'];
-               $userId= $source['userId'];
-
-
-
-                $result = getUserProf($userId);
-            }
-
-*/
-
 
             if ($event['type'] == 'message') {
                 $message = $event['message'];
 
+                //ユーザID取得のために、event配列からsoureを代入
+                //　$us['userId']　でユーザIDを持ってこれる。
                $us = $event['source'];
+
+               $use=$us['userId'];
+               $results =getUserProf($use);
                  
 
                 if ($message['text'] == 'おはよう') {
@@ -70,6 +63,10 @@ class Callback extends Controller
                 [
                     'type' => 'text',
                     'text' =>  'あなたのユーザID：'.$us['userId']
+                ],
+                [
+                    'type' => 'text',
+                    'text' =>  $results
                 ]
             ]
         ]);
@@ -99,13 +96,6 @@ class Callback extends Controller
         }
     }
 
-
-            public function rgst($source){
-
-               
-
-
-            }   
 
 
 }
