@@ -69,7 +69,7 @@ class Callback extends Controller
                 ],
                 [
                     'type' => 'text',
-                    'text' =>  $us['userId']
+                    'text' =>  'あなたのユーザID：'.$us['userId']
                 ]
             ]
         ]);
