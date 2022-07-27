@@ -57,7 +57,7 @@ class Callback extends Controller
                 $message = $event['message'];
 
                $us -> $message['source'];
-                 $this->userId= $us['userId'];
+                 $this->userId= $us['id'];
 
                 if ($message['text'] == 'おはよう') {
                     $client->replyMessage([
