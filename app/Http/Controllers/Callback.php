@@ -40,6 +40,7 @@ class Callback extends Controller
 
             //eventtypeがmessageで、messagetypeがtextの時起動
 
+            /*
             if(isset($event['source'])){
                $source=  $event['source'];
                $userId= $source['userId'];
@@ -49,7 +50,7 @@ class Callback extends Controller
                 $result = getUserProf($userId);
             }
 
-
+*/
 
             if ($event['type'] == 'message') {
                 $message = $event['message'];
@@ -59,11 +60,11 @@ class Callback extends Controller
             'messages' => [
                 [
                     'type' => 'text',
-                    'text' => 'いい朝ですね'.$event['source']
+                    'text' => 'いい朝ですね'
                 ],
                 [
                     'type' => 'text',
-                    'text' => 'user_id'.$result
+                    'text' => $event['source']
                 ]
             ]
         ]);
