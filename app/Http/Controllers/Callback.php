@@ -61,24 +61,45 @@ class Callback extends Controller
 
 */
 
-                if ($message['text'] == 'ID') {
-                    $client->replyMessage([
+if ($message['text'] == 'ID') {
+    $client->replyMessage([
             'replyToken' => $event['replyToken'],
             'messages' => [
                 [
-                    'type' => 'text',
-                    'text' => 'OK!'
+    'type' => 'text',
+    'text' => 'OK!'
                 ],
                 [
-                    'type' => 'text',
-                    'text' =>  'あなたのユーザID：'.$us['userId']
+    'type' => 'text',
+    'text' =>  'あなたのユーザID：'.$us['userId']
                 ],
                 [
-                    'type' => 'text',
-                    'text' =>  '作業中...'
+    'type' => 'text',
+    'text' =>  '作業中...'
                 ]
             ]
         ]);
+}elseif($message['text'] == 'メニュー'){
+    $client->replyMessage([
+        'replyToken' => $event['replyToken'],
+        'messages' => [
+            [
+'type' => 'text',
+'text' => 'まだメニューないよ！'
+            ],
+            [
+'type' => 'text',
+'text' =>  'あなたのユーザID：'.$us['userId']
+            ],
+            [
+'type' => 'text',
+'text' =>  '作業中...'
+            ]
+        ]
+    ]);
+
+
+
                 //ここから
                 } elseif ($message['type']=='text') {
                     $client->replyMessage([
