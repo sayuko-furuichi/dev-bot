@@ -75,7 +75,7 @@ class Callback extends Controller
                 ],
                 [
                     'type' => 'text',
-                    'text' =>  'aaa'
+                    'text' =>  '作業中...'
                 ]
             ]
         ]);
