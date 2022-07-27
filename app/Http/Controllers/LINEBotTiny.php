@@ -36,6 +36,8 @@ if (!function_exists('hash_equals')) {
      * @param string $userString
      * @return bool
      */
+
+     //ハッシュの検証
     function hash_equals($knownString, $userString)
     {
         $strlen = function ($string) {
@@ -74,7 +76,7 @@ class LINEBotTiny
      */
     public function __construct($channelAccessToken, $channelSecret)
     {
-        //TODO:設定する
+      
         $this->channelAccessToken = $channelAccessToken;
         $this->channelSecret = $channelSecret;
     }
@@ -82,6 +84,8 @@ class LINEBotTiny
     /**
      * @return mixed
      */
+
+     //署名の検証・POSTされたデータから、events抽出
     public function parseEvents()
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -117,6 +121,8 @@ class LINEBotTiny
      * @param array<string, mixed> $message
      * @return void
      */
+
+     //メッセージ送信処理
     public function replyMessage($message)
     {
         $header = array(
@@ -139,6 +145,7 @@ class LINEBotTiny
         }
     }
 
+    //署名をハッシュ化
     /**
      * @param string $body
      * @return string
