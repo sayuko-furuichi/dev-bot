@@ -4,7 +4,7 @@ namespace App\Http\Service;
 class getOrgMenuParam{
 
 
-public function getParam($storeId){
+public function getParam($storeId, $client,$event){
 
     $client->replyMessage([
         'replyToken' => $event['replyToken'],
@@ -15,7 +15,7 @@ public function getParam($storeId){
             ],
             [
 'type' => 'text',
-'text' =>  $mnParam
+'text' =>  $storeId
             ]
 
         ]
