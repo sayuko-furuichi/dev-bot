@@ -74,6 +74,14 @@ class SendMessage extends Controller
                   $param =new getOrgMenuParam();
                    $mnParam = $param ->getParam($storeId, $client,$event);
 
+
+                    //限定メニューを要求されたとき
+                } elseif ($message['text'] == 'READ') {
+                    $param =new getOrgMenuParam();
+                     $mnParam = $param ->getParam($storeId, $client,$event);
+  
+                   
+                  
                  
                 //ここから
                 } elseif ($message['type']=='text') {
