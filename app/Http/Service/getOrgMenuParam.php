@@ -4,6 +4,8 @@ namespace App\Http\Service;
 use Illuminate\Support\Facades\Storage;
 class getOrgMenuParam{
 
+// $thisでダメで、self::だったら行けるかもしれない。
+
   // private String $imgUrl;
   // private String $imgUrl2;
   // private String $title;
@@ -17,19 +19,27 @@ public function getParam($sId, $client,$event){
     $imgUrl ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cake1.jpg';
     $imgUrl2 ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cafe1.jpg';
     $title='Demo本店限定！ティラミス';
+    $title2='カプチーノ';
     $text='コーヒーに合うよ';
+    $text2='こだわりのコーヒー';
+
 
     }elseif($sId == '2'){
-      $imgUrl ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cake1.jpg';
-      $imgUrl2 ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cafe1.jpg';
-      $title='Demo2号店限定！ティラミス';
-      $text='おいしいよ';
+      $imgUrl ='https://dev-bot0722.herokuapp.com/storage/app/public/img/tea2.jpg';
+      $imgUrl2 ='https://dev-bot0722.herokuapp.com/storage/app/public/img/sand2.jpg';
+      $title='本格派 抹茶ラテ';
+      $text='人気商品です';
+      $title='サンドイッチ';
+      $text='テイクアウトできます！';
+
 
     }elseif($sId == '3'){
-      $imgUrl ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cake1.jpg';
-      $imgUrl2 ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cafe1.jpg';
-      $title='Demo3号店店限定！ティラミス';
-      $text='にゃー－－';
+      $imgUrl ='https://dev-bot0722.herokuapp.com/storage/app/public/img/roll3.jpg';
+      $imgUrl2 ='https://dev-bot0722.herokuapp.com/storage/app/public/img/al3.jpg';
+      $title='自家製ロールケーキ';
+      $text='1番人気の商品です';
+      $title='カクテル';
+      $text='まったりしませんか(*´ω｀)';
   
     }
 
@@ -74,8 +84,8 @@ public function getParam($sId, $client,$event){
         [
           'thumbnailImageUrl'=>$imgUrl2,
           'imageBackgroundColor'=> '#000000',
-          'title'=> $title,
-          'text'=>  $text,
+          'title'=> $title2,
+          'text'=>  $text2,
           'defaultAction'=> [
             'type'=> 'uri',
             'label'=> 'View detail',
