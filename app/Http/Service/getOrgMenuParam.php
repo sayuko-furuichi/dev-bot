@@ -13,6 +13,7 @@ public function getParam($storeId, $client,$event){
     $client->replyMessage([
         'replyToken' => $event['replyToken'],
         'messages' => [
+        /*
             [
 'type' => 'text',
 'text' => 'OK!'
@@ -22,6 +23,7 @@ public function getParam($storeId, $client,$event){
 
 'text' =>  $storeId
             ],
+            */
             [
                 'type'=> 'template',
                 'altText'=> 'this is a carousel template',
