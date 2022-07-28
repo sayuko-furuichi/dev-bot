@@ -75,7 +75,7 @@ public function getParam($sId, $client,$event){
             // ],
             [
               'type'=> 'uri',
-              'label'=> '外部webアプリで注文',
+              'label'=> '外部webアプリで注文(出来ません)',
               'uri'=> 'https://dev-ext-app.herokuapp.com/public/callback'
             ]
           ]
@@ -103,7 +103,7 @@ public function getParam($sId, $client,$event){
             // ],
             [
               'type'=> 'uri',
-              'label'=> 'LIFFアプリで注文',
+              'label'=> 'LIFFアプリで注文(出来ません)',
               'uri'=> 'https://liff.line.me/1657181787-2vrnwwlj'
             ]
           ]
