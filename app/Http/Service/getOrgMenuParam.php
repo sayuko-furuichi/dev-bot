@@ -31,7 +31,7 @@ public function getParam($storeId, $client,$event){
                   'type'=> 'carousel',
                   'columns'=> [
                     [
-                   'thumbnailImageUrl'=> 'img\cake1.jpg',
+                   'thumbnailImageUrl'=> '\public\img\cake1.jpg',
                       'imageBackgroundColor'=> '#FFFFFF',
                       'title'=> 'this is menu',
                       'text'=> 'description',
@@ -39,7 +39,9 @@ public function getParam($storeId, $client,$event){
                         'type'=> 'uri',
                         'label'=> 'View detail',
                         'uri'=> 'http=>//example.com/page/123'
-                      ],
+                      ]
+                      
+                /*,
                       'actions'=> [
                         [
                           'type'=> 'postback',
@@ -58,7 +60,8 @@ public function getParam($storeId, $client,$event){
                         ]
                       ]
                     ]
-                  
+                  */
+
                     /*
                      [
                     //   'thumbnailImageUrl'=> 'https=>//example.com/bot/images/item2.jpg',
@@ -98,13 +101,9 @@ public function getParam($storeId, $client,$event){
             ]
 
         ]
-    ]);
+    ]]);
 
     
-}  
-
-
-
-
-
 }
+}
+
