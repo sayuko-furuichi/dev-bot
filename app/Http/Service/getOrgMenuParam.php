@@ -46,8 +46,8 @@ public function getParam($sId, $client,$event){
         [
           'thumbnailImageUrl'=> $imgUrl,
           'imageBackgroundColor'=> '#FFFFFF',
-          'title'=> 'Demo本店限定！ティラミス',
-          'text'=> 'コーヒーに合うよ',
+          'title'=>  $title,
+          'text'=>  $text,
           'defaultAction'=> [
             'type'=> 'uri',
             'label'=> 'View detail',
@@ -72,10 +72,10 @@ public function getParam($sId, $client,$event){
           ]
         ],
         [
-          'thumbnailImageUrl'=>'https://dev-bot0722.herokuapp.com/storage/app/public/img/cafe1.jpg',
+          'thumbnailImageUrl'=>$imgUrl2,
           'imageBackgroundColor'=> '#000000',
-          'title'=> 'コーヒーに合うよ',
-          'text'=> 'description',
+          'title'=> $title,
+          'text'=>  $text,
           'defaultAction'=> [
             'type'=> 'uri',
             'label'=> 'View detail',
