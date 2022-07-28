@@ -9,6 +9,8 @@ use LINE\LINEBot\Constant\HTTPHeader;
 use LINE\LINEBot\HTTPClient\CurlHTTPClient;
 use LINE\LINEBot;
 
+use App\Http\Service\getOrgMenuParam;
+
 class SendMessage extends Controller
 {
     //
@@ -68,20 +70,12 @@ class SendMessage extends Controller
         ]
     ]);
                 } elseif ($message['text'] == '限定メニュー') {
-                    $client->replyMessage([
-                        'replyToken' => $event['replyToken'],
-                        'messages' => [
-                            [
-                'type' => 'text',
-                'text' => 'OK!'
-                            ],
-                            [
-                'type' => 'text',
-                'text' =>  ''
-                            ]
-            
-                        ]
-                    ]);
+                   
+                    $param =new getOrgMenuParam();
+                    $param = $param ->getParam($storeId);
+
+                   $this->orgMenu($param,$client,$event);
+
 
                 //ここから
                 } elseif ($message['type']=='text') {
@@ -107,5 +101,25 @@ class SendMessage extends Controller
                 break;
             }
         }
+    }
+
+    public function orgMenu($param,$client,$event){
+        
+        $client->replyMessage([
+            'replyToken' => $event['replyToken'],
+            'messages' => [
+                [
+    'type' => 'text',
+    'text' => 'OK!'
+                ],
+                [
+    'type' => 'text',
+    'text' =>  ''
+                ]
+
+            ]
+        ]);
+
+
     }
 }
