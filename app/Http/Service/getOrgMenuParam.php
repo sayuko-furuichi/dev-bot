@@ -60,7 +60,7 @@ public function getParam($sId, $client,$event){
           'defaultAction'=> [
             'type'=> 'uri',
             'label'=> 'View detail',
-            'uri'=> 'http://example.com/page/123'
+            'uri'=> 'https://dev-ext-app.herokuapp.com/public/callback'
           ],
           'actions'=> [
             [
@@ -88,7 +88,7 @@ public function getParam($sId, $client,$event){
           'defaultAction'=> [
             'type'=> 'uri',
             'label'=> 'View detail',
-            'uri'=> ''
+            'uri'=> 'https://liff.line.me/1657181787-2vrnwwlj'
           ],
           'actions'=> [
             [
