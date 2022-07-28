@@ -4,10 +4,10 @@ namespace App\Http\Service;
 use Illuminate\Support\Facades\Storage;
 class getOrgMenuParam{
 
-  private $imgUrl;
-  private $imgUrl2;
-  private $title;
-  private $text;
+  private String $imgUrl;
+  private String $imgUrl2;
+  private String $title;
+  private String $text;
 
 public function getParam($storeId, $client,$event){
 
