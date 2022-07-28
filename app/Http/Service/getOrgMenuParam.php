@@ -60,7 +60,7 @@ public function getParam($storeId, $client,$event){
       'type'=> 'carousel',
       'columns'=> [
         [
-          'thumbnailImageUrl'=> 'https://example.com/bot/images/item1.jpg',
+          'thumbnailImageUrl'=> 'https://dev-bot0722.herokuapp.com/storage/app/public/img/cake1.jpg',
           'imageBackgroundColor'=> '#FFFFFF',
           'title'=> 'this is menu',
           'text'=> 'description',
@@ -88,7 +88,7 @@ public function getParam($storeId, $client,$event){
           ]
         ],
         [
-          'thumbnailImageUrl'=> 'https://example.com/bot/images/item2.jpg',
+          'thumbnailImageUrl'=>'https://dev-bot0722.herokuapp.com/storage/app/public/img/cake1.jpg',
           'imageBackgroundColor'=> '#000000',
           'title'=> 'this is menu',
           'text'=> 'description',
