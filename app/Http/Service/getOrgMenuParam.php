@@ -14,14 +14,14 @@ public function getParam($storeId, $client,$event){
     $client->replyMessage([
         'replyToken' => $event['replyToken'],
         'messages' => [
-            [
-'type' => 'text',
-'text' => 'ないよ！' . $storeId
-            ],
-            [
-'type' => 'text',
-'text' =>  '作業中...'
-            ],
+//             [
+// 'type' => 'text',
+// 'text' => 'ないよ！' . $storeId
+//             ],
+//             [
+// 'type' => 'text',
+// 'text' =>  '作業中...'
+//             ],
          
             // ここからしたが合ってない
             [
