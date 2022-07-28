@@ -9,21 +9,21 @@ class getOrgMenuParam{
   private String $title;
   private String $text;
 
-public function getParam($storeId, $client,$event){
+public function getParam($sId, $client,$event){
 
-   if($storeId == '1'){
+   if($sId == '1'){
     $this->imgUrl ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cake1.jpg';
     $this->imgUrl2 ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cafe1.jpg';
     $this->title='Demo本店限定！ティラミス';
     $this->text='コーヒーに合うよ';
 
-    }elseif($storeId == '2'){
+    }elseif($sId == '2'){
       $this->imgUrl ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cake1.jpg';
       $this->imgUrl2 ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cafe1.jpg';
       $this->title='Demo2号店限定！ティラミス';
       $this->text='おいしいよ';
 
-    }elseif($storeId == '3'){
+    }elseif($sId == '3'){
       $this->imgUrl ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cake1.jpg';
       $this->imgUrl2 ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cafe1.jpg';
       $this->title='Demo3号店店限定！ティラミス';
@@ -42,7 +42,7 @@ public function getParam($storeId, $client,$event){
       'type'=> 'carousel',
       'columns'=> [
         [
-          'thumbnailImageUrl'=> "$imgUrl ",
+          'thumbnailImageUrl'=> "$imgUrl",
           'imageBackgroundColor'=> '#FFFFFF',
           'title'=> $title,
           'text'=> $text,
