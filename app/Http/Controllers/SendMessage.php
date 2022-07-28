@@ -29,7 +29,6 @@ class SendMessage extends Controller
                 //"ID"と入力されたら、ユーザIDを返す
 
                 if ($message['text'] == 'ID') {
-                
 
                     //ユーザID取得のために、event配列からsoureを代入
                     //　$us['userId']　でユーザIDを持ってこれる。
@@ -76,8 +75,8 @@ class SendMessage extends Controller
 
                 //限定メニューを要求されたとき
                 } elseif ($message['text'] == 'READ') {
-                    $param =new getOrgMenuParam();
-                    $mnParam = $param ->getParam($storeId, $client, $event);
+                    $us = $event['source'];
+                     $use=$us['userId'];
   
                    
                   
