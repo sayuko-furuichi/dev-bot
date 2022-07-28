@@ -60,7 +60,7 @@ public function getParam($storeId, $client,$event){
       'type'=> 'carousel',
       'columns'=> [
         [
-          'thumbnailImageUrl'=> 'https=>//example.com/bot/images/item1.jpg',
+          'thumbnailImageUrl'=> 'https://example.com/bot/images/item1.jpg',
           'imageBackgroundColor'=> '#FFFFFF',
           'title'=> 'this is menu',
           'text'=> 'description',
