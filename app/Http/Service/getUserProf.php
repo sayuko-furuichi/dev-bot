@@ -12,6 +12,7 @@ public function getProf($use){
 
     //Userのアクセストークンの取得
     $data =UserProf::where('line_user_id', $use) ->first();
+    
 
     $client->replyMessage([
         'replyToken' => $event['replyToken'],
@@ -22,7 +23,7 @@ public function getProf($use){
             ],
             [
 'type' => 'text',
-'text' =>  'あなたのユーザID：'.$us['userId']
+'text' =>  $data
             ]
 
         ]
