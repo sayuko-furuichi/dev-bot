@@ -25,11 +25,11 @@ class SendMessage extends Controller
             //eventtypeがmessageで、messagetypeがtextの時起動
 
             if ($event['type'] == 'message') {
-               
+                $message = $event['message'];
                 //"ID"と入力されたら、ユーザIDを返す
 
                 if ($message['text'] == 'ID') {
-                    $message = $event['message'];
+                
 
                     //ユーザID取得のために、event配列からsoureを代入
                     //　$us['userId']　でユーザIDを持ってこれる。
@@ -61,6 +61,7 @@ class SendMessage extends Controller
 'type' => 'text',
 'text' => 'まだメニューないよ！'
             ],
+
             [
 'type' => 'text',
 'text' =>  '作業中...'

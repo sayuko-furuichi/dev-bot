@@ -31,9 +31,9 @@ public function getParam($storeId, $client,$event){
                               'type'=> 'message',
                               'label'=> 'いいね！',
                               'text'=> '美味しそう！'
-                            ],
+                            ]
 
-                            ],
+                            ]
           
     ]]
 ]
