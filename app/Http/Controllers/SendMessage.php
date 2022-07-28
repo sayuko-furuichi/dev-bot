@@ -60,7 +60,7 @@ class SendMessage extends Controller
         'messages' => [
             [
 'type' => 'text',
-'text' => Storage::url('img\cake1.jpg')
+'text' =>'ないよ！'
             ],
 
             [
