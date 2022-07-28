@@ -69,12 +69,13 @@ class SendMessage extends Controller
             ]
         ]
     ]);
+                //限定メニューを要求されたとき
                 } elseif ($message['text'] == '限定メニュー') {
                    
                     $param =new getOrgMenuParam();
                     $param = $param ->getParam($storeId);
 
-                   $this->orgMenu($param,$client,$event);
+                    $client=$this->orgMenu($param,$client,$event);
 
 
                 //ここから
