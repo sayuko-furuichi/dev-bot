@@ -6,6 +6,9 @@ class getOrgMenuParam{
 
 public function getParam($storeId, $client,$event){
 
+  //  if($storeId == '1'){
+
+    //}
 
     $client->replyMessage([
         'replyToken' => $event['replyToken'],
@@ -26,7 +29,7 @@ public function getParam($storeId, $client,$event){
                   'type'=> 'carousel',
                   'columns'=> [
                     [
-                      'thumbnailImageUrl'=> 'https=>//example.com/bot/images/item1.jpg',
+                    //   'thumbnailImageUrl'=> 'https=>//example.com/bot/images/item1.jpg',
                       'imageBackgroundColor'=> '#FFFFFF',
                       'title'=> 'this is menu',
                       'text'=> 'description',
@@ -54,7 +57,7 @@ public function getParam($storeId, $client,$event){
                       ]
                     ],
                     [
-                      'thumbnailImageUrl'=> 'https=>//example.com/bot/images/item2.jpg',
+                    //   'thumbnailImageUrl'=> 'https=>//example.com/bot/images/item2.jpg',
                       'imageBackgroundColor'=> '#000000',
                       'title'=> 'this is menu',
                       'text'=> 'description',
