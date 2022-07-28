@@ -22,7 +22,7 @@ public function getParam($storeId, $client,$event){
                     'type'=> 'image_carousel',
                     'columns'=> [
                       [
-                        "imageUrl"=> "img\cake1.jpg",
+                        "imageUrl"=> Storage::get('public\img\cake1.jpg'),
                         'action'=> [
                             [
                               'type'=> 'message',
