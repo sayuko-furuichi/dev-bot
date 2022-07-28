@@ -71,13 +71,23 @@ class SendMessage extends Controller
     ]);
                 //限定メニューを要求されたとき
                 } elseif ($message['text'] == '限定メニュー') {
-                   
                     $param =new getOrgMenuParam();
                     $param = $param ->getParam($storeId);
 
-                    $client=$this->orgMenu($param,$client,$event);
-
-
+                    $client->replyMessage([
+                        'replyToken' => $event['replyToken'],
+                        'messages' => [
+                            [
+                'type' => 'text',
+                'text' => 'OK!'
+                            ],
+                            [
+                'type' => 'text',
+                'text' =>  $param
+                            ]
+            
+                        ]
+                    ]);
                 //ここから
                 } elseif ($message['type']=='text') {
                     $client->replyMessage([
@@ -102,25 +112,5 @@ class SendMessage extends Controller
                 break;
             }
         }
-    }
-
-    public function orgMenu($param,$client,$event){
-        
-        $client->replyMessage([
-            'replyToken' => $event['replyToken'],
-            'messages' => [
-                [
-    'type' => 'text',
-    'text' => 'OK!'
-                ],
-                [
-    'type' => 'text',
-    'text' =>  $param
-                ]
-
-            ]
-        ]);
-        return $client;
-
     }
 }
