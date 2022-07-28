@@ -74,7 +74,7 @@ class SendMessage extends Controller
                  //   $param =new getOrgMenuParam();
                   //  $mnParam = $param ->getParam($storeId);
 
-                  $mnParam='debug';
+                 $mnParam = 'debug';
                     $client->replyMessage([
                         'replyToken' => $event['replyToken'],
                         'messages' => [
@@ -84,7 +84,7 @@ class SendMessage extends Controller
                             ],
                             [
                 'type' => 'text',
-                'text' =>  "$mnparam"
+                'text' =>  "$mnParam"
                             ]
             
                         ]
