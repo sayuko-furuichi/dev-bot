@@ -11,11 +11,13 @@ class getOrgMenuParam{
 
 public function getParam($sId, $client,$event){
 
+
+
    if($sId == '1'){
-    $this->imgUrl ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cake1.jpg';
-    $this->imgUrl2 ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cafe1.jpg';
-    $this->title='Demo本店限定！ティラミス';
-    $this->text='コーヒーに合うよ';
+    $this->$imgUrl ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cake1.jpg';
+    $this->$imgUrl2 ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cafe1.jpg';
+    $this->$title='Demo本店限定！ティラミス';
+    $this->$text='コーヒーに合うよ';
 
     }elseif($sId == '2'){
       $this->imgUrl ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cake1.jpg';
