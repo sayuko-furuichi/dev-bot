@@ -6,7 +6,21 @@ class getOrgMenuParam{
 
 public function getParam($storeId){
 
-    return $storeId;
+    $client->replyMessage([
+        'replyToken' => $event['replyToken'],
+        'messages' => [
+            [
+'type' => 'text',
+'text' => 'OK!'
+            ],
+            [
+'type' => 'text',
+'text' =>  $mnParam
+            ]
+
+        ]
+    ]);
+
     
 }  
 
