@@ -55,8 +55,10 @@ public function getParam($storeId, $client,$event){
                           'uri'=> 'http=>//example.com/page/111'
                         ]
                       ]
-                    ],
-                    [
+                    ]
+                  
+                    /*
+                     [
                     //   'thumbnailImageUrl'=> 'https=>//example.com/bot/images/item2.jpg',
                       'imageBackgroundColor'=> '#000000',
                       'title'=> 'this is menu',
@@ -84,6 +86,9 @@ public function getParam($storeId, $client,$event){
                         ]
                       ]
                     ]
+                    
+                    */
+                  
                   ],
                   'imageAspectRatio'=> 'rectangle',
                   'imageSize'=> 'cover'
