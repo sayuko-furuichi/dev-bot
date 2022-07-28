@@ -4,32 +4,32 @@ namespace App\Http\Service;
 use Illuminate\Support\Facades\Storage;
 class getOrgMenuParam{
 
-  private String $imgUrl;
-  private String $imgUrl2;
-  private String $title;
-  private String $text;
+  // private String $imgUrl;
+  // private String $imgUrl2;
+  // private String $title;
+  // private String $text;
 
 public function getParam($sId, $client,$event){
 
 
 
-   if($sId == '1'){
-    $this->imgUrl ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cake1.jpg';
-    $this->imgUrl2 ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cafe1.jpg';
-    $this->title='Demo本店限定！ティラミス';
-    $this->text='コーヒーに合うよ';
+  if($sId == '1'){
+    $imgUrl ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cake1.jpg';
+    $imgUrl2 ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cafe1.jpg';
+    $title='Demo本店限定！ティラミス';
+    $text='コーヒーに合うよ';
 
     }elseif($sId == '2'){
-      $this->imgUrl ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cake1.jpg';
-      $this->imgUrl2 ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cafe1.jpg';
-      $this->title='Demo2号店限定！ティラミス';
-      $this->text='おいしいよ';
+      $imgUrl ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cake1.jpg';
+      $imgUrl2 ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cafe1.jpg';
+      $title='Demo2号店限定！ティラミス';
+      $text='おいしいよ';
 
     }elseif($sId == '3'){
-      $this->imgUrl ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cake1.jpg';
-      $this->imgUrl2 ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cafe1.jpg';
-      $this->title='Demo3号店店限定！ティラミス';
-      $this->text='にゃー－－';
+      $imgUrl ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cake1.jpg';
+      $imgUrl2 ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cafe1.jpg';
+      $title='Demo3号店店限定！ティラミス';
+      $text='にゃー－－';
   
     }
 
@@ -44,7 +44,7 @@ public function getParam($sId, $client,$event){
       'type'=> 'carousel',
       'columns'=> [
         [
-          'thumbnailImageUrl'=> 'https://dev-bot0722.herokuapp.com/storage/app/public/img/cake1.jpg',
+          'thumbnailImageUrl'=> $imgUrl,
           'imageBackgroundColor'=> '#FFFFFF',
           'title'=> 'Demo本店限定！ティラミス',
           'text'=> 'コーヒーに合うよ',
