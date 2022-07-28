@@ -10,6 +10,7 @@ public function getParam($storeId, $client,$event){
   //  if($storeId == '1'){
 
     //}
+    $storeId==null;
 
     $client->replyMessage([
         'replyToken' => $event['replyToken'],
