@@ -1,6 +1,8 @@
 <?php
+namespace App\Http\Service;
 
 use App\Models\UserProf;
+
 
 
 
