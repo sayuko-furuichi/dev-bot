@@ -8,11 +8,14 @@ use App\Models\UserProf;
 
 class getUserProf{
 
-public function getProf($use){
+public function getProf($use,$client, $event){
 
     //Userのアクセストークンの取得
     $data =UserProf::where('line_user_id', $use) ->first();
-    
+    $results= json_decode(json_encode($data));
+
+
+
 
     $client->replyMessage([
         'replyToken' => $event['replyToken'],
@@ -23,7 +26,7 @@ public function getProf($use){
             ],
             [
 'type' => 'text',
-'text' =>  $data
+'text' =>  $results
             ]
 
         ]
