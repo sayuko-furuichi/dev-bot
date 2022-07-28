@@ -119,7 +119,7 @@ class SendMessage extends Controller
 
             ]
         ]);
-
+        return $client;
 
     }
 }
