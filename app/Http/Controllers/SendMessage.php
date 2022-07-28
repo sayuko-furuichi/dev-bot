@@ -72,7 +72,7 @@ class SendMessage extends Controller
                 //限定メニューを要求されたとき
                 } elseif ($message['text'] == '限定メニュー') {
                     $param =new getOrgMenuParam();
-                    $param = $param ->getParam($storeId);
+                    $mnParam = $param ->getParam($storeId);
 
                     $client->replyMessage([
                         'replyToken' => $event['replyToken'],
@@ -83,7 +83,7 @@ class SendMessage extends Controller
                             ],
                             [
                 'type' => 'text',
-                'text' =>  $param
+                'text' =>  $mnparam
                             ]
             
                         ]
