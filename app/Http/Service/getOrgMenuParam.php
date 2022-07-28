@@ -4,13 +4,32 @@ namespace App\Http\Service;
 use Illuminate\Support\Facades\Storage;
 class getOrgMenuParam{
 
+  private $imgUrl;
+  private $imgUrl2;
+  private $title;
+  private $text;
 
 public function getParam($storeId, $client,$event){
 
-  //  if($storeId == '1'){
+   if($storeId == '1'){
+    $this->imgUrl ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cake1.jpg';
+    $this->imgUrl2 ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cafe1.jpg';
+    $this->title='Demo本店限定！ティラミス';
+    $this->text='コーヒーに合うよ';
 
-    //}
-    $storeId==null;
+    }elseif($storeId == '2'){
+      $this->imgUrl ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cake1.jpg';
+      $this->imgUrl2 ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cafe1.jpg';
+      $this->title='Demo2号店限定！ティラミス';
+      $this->text='';
+
+    }elseif($storeId == '3'){
+      $this->imgUrl ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cake1.jpg';
+      $this->imgUrl2 ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cafe1.jpg';
+      $this->title='Demo3号店店限定！ティラミス';
+      $this->text='';
+  
+    }
 
     $client->replyMessage([
         'replyToken' => $event['replyToken'],
@@ -23,10 +42,10 @@ public function getParam($storeId, $client,$event){
       'type'=> 'carousel',
       'columns'=> [
         [
-          'thumbnailImageUrl'=> 'https://dev-bot0722.herokuapp.com/storage/app/public/img/cake1.jpg',
+          'thumbnailImageUrl'=> $imgUrl ,
           'imageBackgroundColor'=> '#FFFFFF',
-          'title'=> 'this is menu',
-          'text'=> 'description',
+          'title'=> $title,
+          'text'=> $text,
           'defaultAction'=> [
             'type'=> 'uri',
             'label'=> 'View detail',
@@ -51,9 +70,9 @@ public function getParam($storeId, $client,$event){
           ]
         ],
         [
-          'thumbnailImageUrl'=>'https://dev-bot0722.herokuapp.com/storage/app/public/img/cake1.jpg',
+          'thumbnailImageUrl'=>$imgUrl2,
           'imageBackgroundColor'=> '#000000',
-          'title'=> 'this is menu',
+          'title'=> $title,
           'text'=> 'description',
           'defaultAction'=> [
             'type'=> 'uri',
