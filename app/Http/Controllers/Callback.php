@@ -40,10 +40,6 @@ class Callback extends Controller
 
 
         $this->send($channelAccessToken, $channelSecret,$store_id);
-
-
-
-    $this->send($channelAccessToken, $channelSecret);
 }
 public function send($channelAccessToken, $channelSecret,$store_id){
 
@@ -73,7 +69,7 @@ public function send($channelAccessToken, $channelSecret,$store_id){
             'messages' => [
                 [
     'type' => 'text',
-    'text' => 'This is '.$store_id.'号店です'
+    'text' => 'This is ' . $store_id . '号店です'
                 ],
                 [
     'type' => 'text',
