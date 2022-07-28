@@ -22,8 +22,6 @@ public function getParam($storeId, $client,$event){
 'type' => 'text',
 'text' =>  '作業中...'
             ],
-        
-    
             [
                 'type' => 'template',
                 'altText' =>  'message',
@@ -31,7 +29,7 @@ public function getParam($storeId, $client,$event){
                     'type'=> 'image_carousel',
                     'columns'=> [
                       [
-                        "imageUrl"=> Storage::url('\img\cake1.jpg'),
+                        "imageUrl"=> Storage::url('img\cake1.jpg'),
                         'action'=> [
                             [
                               'type'=> 'message',
