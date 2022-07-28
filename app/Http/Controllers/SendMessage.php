@@ -75,6 +75,9 @@ class SendMessage extends Controller
                     $mnParam = $param ->getParam($storeId, $client, $event);
 
 
+                    
+
+
                 //DB参照
                 } elseif ($message['text'] == 'READ') {
                     $us = $event['source'];
