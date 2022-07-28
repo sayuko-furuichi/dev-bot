@@ -84,7 +84,7 @@ class SendMessage extends Controller
                             ],
                             [
                 'type' => 'text',
-                'text' =>  $mnparam
+                'text' =>  "$mnparam"
                             ]
             
                         ]
