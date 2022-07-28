@@ -28,7 +28,15 @@ class Callback extends Controller
             $channelAccessToken ='8jCwB7uJHNCjdiXhcUmlpFheWXIAUB2mnScBaSBvcSPp209NiJ9c/dTdKv3EF0+ufDJFR7ZBZ3MhcRe7RfFO6iGo5DugZXsO+Hdw7hht2JfYP/m/HgOvWl5FDkrrAKKZUddiWqaBY5rSytRV7q/POQdB04t89/1O/w1cDnyilFU=';
         $channelSecret ='b1361c02edc2e4fe84b7bef6c3bddf9d';
 
+        }elseif($request->store_id == '3'){
+
+            $channelAccessToken ='paq5m/NvcbF96Rk5UUJoQlbLAS7FD5LRYMqzEWM+Ov8q1mb87WZWSd53enK+feHdV+pHfh6o3in2KI/cY4tEWmCJ7VOCuBHBSNkveeGFULhHWdLswizYiafmhee9yRgATphoOA1ZUY5F53R6/S4VigdB04t89/1O/w1cDnyilFU=';
+        $channelSecret ='0bedd5514772fb1d4160813f870386d4';
+
         }
+
+
+
         $this->send($channelAccessToken, $channelSecret);
 
 
