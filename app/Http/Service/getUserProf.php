@@ -14,9 +14,6 @@ public function getProf($use,$client, $event){
     $data =UserProf::where('line_user_id', $use) ->first();
     $results= json_decode(json_encode($data));
 
-
-
-
     $client->replyMessage([
         'replyToken' => $event['replyToken'],
         'messages' => [
