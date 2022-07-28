@@ -29,17 +29,16 @@ public function getParam($sId, $client,$event){
       $imgUrl2 ='https://dev-bot0722.herokuapp.com/storage/app/public/img/sand2.jpg';
       $title='本格派 抹茶ラテ';
       $text='人気商品です';
-      $title='サンドイッチ';
-      $text='テイクアウトできます！';
-
+      $title2='サンドイッチ';
+      $text2='テイクアウトできます！';
 
     }elseif($sId == '3'){
       $imgUrl ='https://dev-bot0722.herokuapp.com/storage/app/public/img/roll3.jpg';
       $imgUrl2 ='https://dev-bot0722.herokuapp.com/storage/app/public/img/al3.jpg';
       $title='自家製ロールケーキ';
       $text='1番人気の商品です';
-      $title='カクテル';
-      $text='まったりしませんか(*´ω｀)';
+      $title2='カクテル';
+      $text2='まったりしませんか(*´ω｀)';
   
     }
 
