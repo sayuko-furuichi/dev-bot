@@ -22,3 +22,5 @@ Route::get('/callback', 'App\Http\Controllers\Callback@tiny')->name('line.callba
     Route::post('/callback', 'App\Http\Controllers\Callback@tiny')->name('line.callback');
 
 
+Route::get('/demo2', 'App\Http\Controllers\Callback@demo2');
+    Route::post('/demo2', 'App\Http\Controllers\Callback@demo2');
