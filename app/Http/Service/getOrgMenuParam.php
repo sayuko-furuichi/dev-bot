@@ -13,7 +13,7 @@ class getOrgMenuParam{
 
 public function getParam($sId, $client,$event){
 
-
+  //店舗によって送信するメッセージを変更する。
 
   if($sId == '1'){
     $imgUrl ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cake1.jpg';
@@ -41,6 +41,9 @@ public function getParam($sId, $client,$event){
       $text2='まったりしませんか(*´ω｀)';
   
     }
+
+    //テンプレートを、変数でレンダリングする方式
+    //2clumnのカルーセルテンプレートメッセージ
 
     $client->replyMessage([
         'replyToken' => $event['replyToken'],
