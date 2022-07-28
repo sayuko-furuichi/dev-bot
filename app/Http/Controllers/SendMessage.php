@@ -25,17 +25,19 @@ class SendMessage extends Controller
             //eventtypeがmessageで、messagetypeがtextの時起動
 
             if ($event['type'] == 'message') {
-                $message = $event['message'];
-
-                //ユーザID取得のために、event配列からsoureを代入
-                //　$us['userId']　でユーザIDを持ってこれる。
-                $us = $event['source'];
-
-                $use=$us['userId'];
-
+               
                 //"ID"と入力されたら、ユーザIDを返す
 
                 if ($message['text'] == 'ID') {
+                    $message = $event['message'];
+
+                    //ユーザID取得のために、event配列からsoureを代入
+                    //　$us['userId']　でユーザIDを持ってこれる。
+                    $us = $event['source'];
+    
+                    $use=$us['userId'];
+    
+
                     $client->replyMessage([
             'replyToken' => $event['replyToken'],
             'messages' => [
@@ -61,24 +63,20 @@ class SendMessage extends Controller
             ],
             [
 'type' => 'text',
-'text' =>  'あなたのユーザID：'.$us['userId']
-            ],
-            [
-'type' => 'text',
 'text' =>  '作業中...'
             ]
         ]
     ]);
                 //限定メニューを要求されたとき
                 } elseif ($message['text'] == '限定メニュー') {
-                  $param =new getOrgMenuParam();
-                   $mnParam = $param ->getParam($storeId, $client,$event);
+                    $param =new getOrgMenuParam();
+                    $mnParam = $param ->getParam($storeId, $client, $event);
 
 
-                    //限定メニューを要求されたとき
+                //限定メニューを要求されたとき
                 } elseif ($message['text'] == 'READ') {
                     $param =new getOrgMenuParam();
-                     $mnParam = $param ->getParam($storeId, $client,$event);
+                    $mnParam = $param ->getParam($storeId, $client, $event);
   
                    
                   
