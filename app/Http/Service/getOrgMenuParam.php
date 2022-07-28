@@ -16,10 +16,6 @@ public function getParam($storeId, $client,$event){
         'messages' => [
        
             [
-'type' => 'text',
-'text' => 'OK!'
-            ],
-            [
                 'type' => 'templete',
                 'altText' =>  'message',
                 'template'=> [
@@ -38,6 +34,7 @@ public function getParam($storeId, $client,$event){
           
     ]]
 ]
+
 ]]]
 );
 

@@ -73,12 +73,25 @@ class SendMessage extends Controller
                     $mnParam = $param ->getParam($storeId, $client, $event);
 
 
-                //限定メニューを要求されたとき
+                //DB参照
                 } elseif ($message['text'] == 'READ') {
                     $us = $event['source'];
                      $use=$us['userId'];
-  
-                   
+
+                     $client->replyMessage([
+            'replyToken' => $event['replyToken'],
+            'messages' => [
+                [
+    'type' => 'text',
+    'text' => 'This is ' . $storeId . '号店'
+                ],
+                [
+    'type' => 'text',
+    'text' =>  'あなたのユーザID：'.$us['userId']
+                ]
+
+            ]
+        ]);
                   
                  
                 //ここから
