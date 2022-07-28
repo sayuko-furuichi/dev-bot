@@ -24,7 +24,7 @@ class Callback extends Controller
         $channelAccessToken ='8jCwB7uJHNCjdiXhcUmlpFheWXIAUB2mnScBaSBvcSPp209NiJ9c/dTdKv3EF0+ufDJFR7ZBZ3MhcRe7RfFO6iGo5DugZXsO+Hdw7hht2JfYP/m/HgOvWl5FDkrrAKKZUddiWqaBY5rSytRV7q/POQdB04t89/1O/w1cDnyilFU=';
         $channelSecret ='b1361c02edc2e4fe84b7bef6c3bddf9d';
 
-        $this->tiny($channelAccessToken, $channelSecret);
+        $this->send($channelAccessToken, $channelSecret);
 
 
     }
@@ -41,7 +41,7 @@ class Callback extends Controller
     $channelAccessToken = '/4Ejv8i8d4NB1+KSUMMXZA7zEGoCpcBQgIbEng9HYYgcOL1xPcgolcwDSXKbOlRxHvUUhmocgJDvFQrqH7IfpMkxYBt1O2NcU0wSU8bPIIDI9Rpe2VQCHa7ngQp57ptBA7oEAkNxdkZTweVAR0RF1QdB04t89/1O/w1cDnyilFU=';
     $channelSecret = '0b0aadd7b81ec25d7d861c28846e4048';
 
-    $this->tiny($channelAccessToken, $channelSecret);
+    $this->send($channelAccessToken, $channelSecret);
 }
 public function send($channelAccessToken, $channelSecret){
 
