@@ -19,17 +19,26 @@ public function getParam($storeId, $client,$event){
 'text' => 'OK!'
             ],
             [
-'type' => 'text',
+                'type' => 'templete',
+                'altText' =>  'message',
+                'template'=> [
+                    'type'=> 'image_carousel',
+                    'columns'=> [
+                      [
+                        "imageUrl"=> "img/cake1.jpg",
+                        'action'=> [
+                            [
+                              'type'=> 'message',
+                              'label'=> 'いいね！',
+                              'text'=> '美味しそう！'
+                            ],
 
-'text' =>  $storeId
-            ],
-            [
-                'type' => 'text',
-                
-                'text' =>  $storeId
                             ],
           
-    ]]);
+    ]]
+]
+]]]
+);
 
     
 }
