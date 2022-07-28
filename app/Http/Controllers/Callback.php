@@ -37,14 +37,11 @@ class Callback extends Controller
         $storeId=$request->store_id;
         }
 
-
-
-        $this->send($channelAccessToken, $channelSecret,$store_id);
+        $this->send($channelAccessToken, $channelSecret,$storeId);
 }
-public function send($channelAccessToken, $channelSecret,$store_id){
+public function send($channelAccessToken, $channelSecret,$storeId){
 
 
-   
         $client = new LINEBotTiny($channelAccessToken, $channelSecret);
         foreach ($client->parseEvents() as $event) {
     
@@ -69,7 +66,7 @@ public function send($channelAccessToken, $channelSecret,$store_id){
             'messages' => [
                 [
     'type' => 'text',
-    'text' => 'This is ' . $store_id . '号店です'
+    'text' => 'This is ' . $storeId . '号店です'
                 ],
                 [
     'type' => 'text',
