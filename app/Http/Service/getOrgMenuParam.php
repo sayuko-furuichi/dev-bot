@@ -21,13 +21,13 @@ public function getParam($storeId, $client,$event){
       $this->imgUrl ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cake1.jpg';
       $this->imgUrl2 ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cafe1.jpg';
       $this->title='Demo2号店限定！ティラミス';
-      $this->text='';
+      $this->text='おいしいよ';
 
     }elseif($storeId == '3'){
       $this->imgUrl ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cake1.jpg';
       $this->imgUrl2 ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cafe1.jpg';
       $this->title='Demo3号店店限定！ティラミス';
-      $this->text='';
+      $this->text='にゃー－－';
   
     }
 
@@ -42,7 +42,7 @@ public function getParam($storeId, $client,$event){
       'type'=> 'carousel',
       'columns'=> [
         [
-          'thumbnailImageUrl'=> $imgUrl ,
+          'thumbnailImageUrl'=> "$imgUrl ",
           'imageBackgroundColor'=> '#FFFFFF',
           'title'=> $title,
           'text'=> $text,
