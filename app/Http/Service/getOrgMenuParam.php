@@ -68,11 +68,11 @@ public function getParam($sId, $client,$event){
               'label'=> 'Buy',
               'data'=> 'action=buy&itemid=111'
             ],
-            // [
-            //   'type'=> 'postback',
-            //   'label'=> 'Add to cart',
-            //   'data'=> 'action=add&itemid=111'
-            // ],
+            [
+            'type'=> 'postback',
+             'label'=> 'Add to cart',
+              'data'=> 'action=add&itemid=111'
+            ],
             [
               'type'=> 'uri',
               'label'=> '外部webアプリで注文(出来ません)',
@@ -96,11 +96,11 @@ public function getParam($sId, $client,$event){
               'label'=> 'Buy',
               'data'=> 'action=buy&itemid=222'
             ],
-            // [
-            //   'type'=> 'postback',
-            //   'label'=> 'Add to cart',
-            //   'data'=> 'action=add&itemid=222'
-            // ],
+            [
+             'type'=> 'postback',
+             'label'=> 'Add to cart',
+              'data'=> 'action=add&itemid=222'
+             ],
             [
               'type'=> 'uri',
               'label'=> 'LIFFアプリで注文(出来ません)',
