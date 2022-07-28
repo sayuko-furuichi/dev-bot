@@ -15,7 +15,7 @@ public function getParam($storeId, $client,$event){
 'text' => 'OK!'
             ],
             [
-'type' => 'template',
+'type' => 'text',
 
 'text' =>  $storeId
             ],
