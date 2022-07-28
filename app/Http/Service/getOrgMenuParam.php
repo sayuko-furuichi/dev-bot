@@ -22,6 +22,7 @@ public function getParam($storeId, $client,$event){
 'type' => 'text',
 'text' =>  '作業中...'
             ],
+         
             // ここからしたが合ってない
             [
                 'type' => 'template',
@@ -39,7 +40,7 @@ public function getParam($storeId, $client,$event){
                             ]
                            
 
-                            ]
+                            ],
          
     ]]
 
