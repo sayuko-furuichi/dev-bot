@@ -60,7 +60,7 @@ public function getParam($sId, $client,$event){
           'defaultAction'=> [
             'type'=> 'uri',
             'label'=> 'View detail',
-            'uri'=> 'https://dev-ext-app.herokuapp.com/public/callback'
+            'uri'=> 'https://dev-ext-app.herokuapp.com/public/login'
           ],
           'actions'=> [
             [
@@ -76,7 +76,7 @@ public function getParam($sId, $client,$event){
             [
               'type'=> 'uri',
               'label'=> '外部webアプリで注文(出来ません)',
-              'uri'=> 'https://dev-ext-app.herokuapp.com/public/callback'
+              'uri'=> 'https://dev-ext-app.herokuapp.com/public/login'
             ]
           ]
         ],
