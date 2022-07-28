@@ -14,7 +14,17 @@ public function getParam($storeId, $client,$event){
     $client->replyMessage([
         'replyToken' => $event['replyToken'],
         'messages' => [
-       
+            [
+'type' => 'text',
+'text' => 'ないよ！'
+            ],
+
+            [
+'type' => 'text',
+'text' =>  '作業中...'
+            ]
+        ]
+       /*
             [
                 'type' => 'template',
                 'altText' =>  'message',
@@ -29,15 +39,15 @@ public function getParam($storeId, $client,$event){
                               'label'=> 'いいね！',
                               'text'=> '美味しそう！'
                             ]
+                           
 
                             ]
-          
+         
     ]]
 ]
+  */
 
-]]]
-);
-
+                            ]);
     
 }
 }
