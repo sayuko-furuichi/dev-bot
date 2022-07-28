@@ -114,7 +114,7 @@ class SendMessage extends Controller
                 ],
                 [
     'type' => 'text',
-    'text' =>  ''
+    'text' =>  $param
                 ]
 
             ]

@@ -3,9 +3,9 @@
 class getOrgMenuParam{
 
 
-public function getParam(){
+public function getParam($storeId){
 
-    return null;
+    return $storeId;
     
 }  
 
