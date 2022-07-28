@@ -44,8 +44,8 @@ public function getParam($sId, $client,$event){
         [
           'thumbnailImageUrl'=> "$imgUrl",
           'imageBackgroundColor'=> '#FFFFFF',
-          'title'=> $title,
-          'text'=> $text,
+          'title'=> "$title",
+          'text'=> "$text",
           'defaultAction'=> [
             'type'=> 'uri',
             'label'=> 'View detail',
@@ -70,9 +70,9 @@ public function getParam($sId, $client,$event){
           ]
         ],
         [
-          'thumbnailImageUrl'=>$imgUrl2,
+          'thumbnailImageUrl'=>"$imgUrl2",
           'imageBackgroundColor'=> '#000000',
-          'title'=> $title,
+          'title'=> "$title",
           'text'=> 'description',
           'defaultAction'=> [
             'type'=> 'uri',
