@@ -66,7 +66,7 @@ public function send($channelAccessToken, $channelSecret,$storeId){
             'messages' => [
                 [
     'type' => 'text',
-    'text' => 'This is ' . $storeId . '号店です'
+    'text' => 'This is ' . $storeId . '号店'
                 ],
                 [
     'type' => 'text',
