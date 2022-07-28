@@ -16,7 +16,7 @@ public function getParam($storeId, $client,$event){
         'messages' => [
        
             [
-                'type' => 'templete',
+                'type' => 'template',
                 'altText' =>  'message',
                 'template'=> [
                     'type'=> 'image_carousel',
