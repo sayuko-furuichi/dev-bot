@@ -58,7 +58,7 @@ class SendMessage extends Controller
         'messages' => [
             [
 'type' => 'text',
-'text' => Storage::url('img\cake1.jpg')
+'text' => Storage::url('cake1.jpg')
             ],
 
             [
@@ -78,20 +78,8 @@ class SendMessage extends Controller
                     $us = $event['source'];
                      $use=$us['userId'];
 
-                     $client->replyMessage([
-            'replyToken' => $event['replyToken'],
-            'messages' => [
-                [
-    'type' => 'text',
-    'text' => 'This is ' . $storeId . '号店'
-                ],
-                [
-    'type' => 'text',
-    'text' =>  'あなたのユーザID：'.$us['userId']
-                ]
-
-            ]
-        ]);
+                     $uP= new getUserProf();
+                     $uP->getProf($use,$client, $event);
                   
                  
                 //ここから
