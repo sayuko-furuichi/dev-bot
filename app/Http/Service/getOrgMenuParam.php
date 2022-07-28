@@ -16,9 +16,8 @@ public function getParam($storeId, $client,$event){
         'messages' => [
             [
 'type' => 'text',
-'text' => 'ないよ！'
+'text' => 'ないよ！' . $storeId
             ],
-
             [
 'type' => 'text',
 'text' =>  '作業中...'
