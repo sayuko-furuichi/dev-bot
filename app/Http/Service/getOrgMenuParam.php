@@ -68,15 +68,15 @@ public function getParam($sId, $client,$event){
               'label'=> 'Buy',
               'data'=> 'action=buy&itemid=111'
             ],
-            [
-              'type'=> 'postback',
-              'label'=> 'Add to cart',
-              'data'=> 'action=add&itemid=111'
-            ],
+            // [
+            //   'type'=> 'postback',
+            //   'label'=> 'Add to cart',
+            //   'data'=> 'action=add&itemid=111'
+            // ],
             [
               'type'=> 'uri',
-              'label'=> 'View detail',
-              'uri'=> 'http://example.com/page/111'
+              'label'=> '外部webアプリで注文',
+              'uri'=> 'https://dev-ext-app.herokuapp.com/public/callback'
             ]
           ]
         ],
@@ -88,7 +88,7 @@ public function getParam($sId, $client,$event){
           'defaultAction'=> [
             'type'=> 'uri',
             'label'=> 'View detail',
-            'uri'=> 'http://example.com/page/222'
+            'uri'=> ''
           ],
           'actions'=> [
             [
@@ -96,15 +96,15 @@ public function getParam($sId, $client,$event){
               'label'=> 'Buy',
               'data'=> 'action=buy&itemid=222'
             ],
-            [
-              'type'=> 'postback',
-              'label'=> 'Add to cart',
-              'data'=> 'action=add&itemid=222'
-            ],
+            // [
+            //   'type'=> 'postback',
+            //   'label'=> 'Add to cart',
+            //   'data'=> 'action=add&itemid=222'
+            // ],
             [
               'type'=> 'uri',
-              'label'=> 'View detail',
-              'uri'=> 'http://example.com/page/222'
+              'label'=> 'LIFFアプリで注文',
+              'uri'=> 'https://liff.line.me/1657181787-2vrnwwlj'
             ]
           ]
         ]
