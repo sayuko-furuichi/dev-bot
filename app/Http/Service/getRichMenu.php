@@ -84,12 +84,21 @@ class getRichMenu{
     $selected= true;
     $name='Nice richmenu';
     $chatBarText= 'Tap to open';
+
+    $x=0;
+     $y=10; 
+      $width=1250; 
+       $height=1676;
+
+
+       $label='message label';
+        $text='test message';
     $areaBuilders= [new RichMenuAreaBuilder(
 
-        //RichMenuAreaBoundsBuilder() params =  $x, $y, $width, $height
-        new RichMenuAreaBoundsBuilder(0, 10, 1250, 1676),
-        // MessageTemplateActionBuilder params = $label, $text
-        new MessageTemplateActionBuilder('message label', 'test message')
+        //RichMenuAreaBoundsBuilder() params =  $x, $y, $width, $height (boundsオブジェクト==タップ領域)
+        new RichMenuAreaBoundsBuilder($x, $y, $width, $height),
+        // MessageTemplateActionBuilder params = $label, $text (actionオブジェクト==タップされたときの挙動)
+        new MessageTemplateActionBuilder($label, $text)
     )];
     $richMenuBuilder = new RichMenuBuilder($sizeBuilder, $selected, $name, $chatBarText, $areaBuilders);
      //LINEBot classの、createRichMenu($richMenuBuilder)　を呼ぶ。渡した後、ちゃんとbild()してるから個々ではbildしなくていい。
