@@ -32,7 +32,7 @@ class getRichMenu{
     $this->channelAccessToken= $channelAccessToken;
     $this->channelSecret= $channelSecret;
 
-    //!!debug CODE
+    //debug CODE
     return $this->channelAccessToken;
 }
 
