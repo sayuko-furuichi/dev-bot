@@ -21,10 +21,19 @@ class getRichMenu{
     //chanell_secret
     private $channelSecret;
     
-    public function __construct($channelAccessToken,$channelSecret){
+    /**
+     * Undocumented __construct
+     *
+     * @param String $channelAccessToken
+     * @param String $channelSecret
+     */
+    public function __construct(String $channelAccessToken,String $channelSecret){
    // $this->userId= $userId;
     $this->channelAccessToken= $channelAccessToken;
     $this->channelSecret= $channelSecret;
+
+    //!!debug CODE
+    return $this->channelAccessToken;
 }
 
     public function create(){
@@ -54,7 +63,12 @@ class getRichMenu{
 
 
     //Richメニュー作成
-    public function createRichMenu()
+    /**
+     * Undocumented function
+     *
+     * @return $menuId
+     */
+    public function createRichMenu():String
      {
         //testから引用
     //     $bot = new LINEBot(new CurlHttpClient($this->channelAccessToken), ['channelSecret' => $this->channelSecret]);
