@@ -17,16 +17,15 @@ class getRichMenu{
 
     private $userId;
     //chanell_access_token
-    private $cat;
+    private $channelAccessToken;
     //chanell_secret
-    private $sc;
+    private $channelSecret;
     
-    public function __construct($userId,$cat,$cs){
-        $this->userId= $userId;
-        $this->cat= $cat;
-        $this->sc= $sc;
-
-    }
+    public function __construct($userId,$channelAccessToken,$channelSecret){
+    $this->userId= $userId;
+    $this->channelAccessToken= $channelAccessToken;
+    $this->channelSecret= $channelSecret;
+}
 
     public function create(){
 
@@ -87,7 +86,7 @@ class getRichMenu{
 
         //     return ['status' => 200];
         // };
-        $bot = new LINEBot(new HttpClient($this), ['channelSecret' => $cs]);
+        $bot = new LINEBot(new HttpClient($this), ['channelSecret' => $this->channelSecret]);
         $res = $bot->createRichMenu(
             new RichMenuBuilder(
                 RichMenuSizeBuilder::getFull(),
@@ -106,7 +105,14 @@ class getRichMenu{
                 ]
             )
         );
-        return $res;
+        
+        $respons =jsondecode($res);
+         $menuId = $responce['richMenuId'];
+
+         //use debug
+         return $menuId;
+
+
         // $this->assertEquals(200, $res->getHTTPStatus());
         // $this->assertTrue($res->isSucceeded());
         // $this->assertEquals(200, $res->getJSONDecodedBody()['status']);

@@ -11,10 +11,12 @@ use LINE\LINEBot;
 use Illuminate\Support\Facades\Storage;
 
 use App\Http\Service\getOrgMenuParam;
-use App\Http\Service\get;
+use App\Http\Service\getRichmenu;
+
 
 class SendMessage extends Controller
 {
+
     //
 
     public function send($channelAccessToken, $channelSecret, $storeId)
@@ -54,18 +56,24 @@ class SendMessage extends Controller
             ]
         ]);
                 // メニュー　と言われたら、返す
-                } elseif ($message['text'] == 'メニュー') {
+                } elseif ($message['text'] == 'create Rich Menu') {
+                    $ss = new getRichMenu();
+                    $mId = $ss->createRichMenu($channelAccessToken, $channelSecret);
+
+                   
+
+
                     $client->replyMessage([
         'replyToken' => $event['replyToken'],
         'messages' => [
             [
 'type' => 'text',
-'text' =>'ないよ！'
+'text' =>$storeId . 'OK!'
             ],
 
             [
 'type' => 'text',
-'text' =>  '作業中...'
+'text' =>  $mId .'is richmenuID'
             ]
         ]
     ]);
