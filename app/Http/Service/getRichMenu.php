@@ -68,6 +68,8 @@ class getRichMenu{
      *
      * @return $menuId
      */
+
+     //!! 出来ないお(；ω；)　連想配列で渡して、encodeする書き方にしようかな。
     public function createRichMenu():String
      {
         //testから引用
