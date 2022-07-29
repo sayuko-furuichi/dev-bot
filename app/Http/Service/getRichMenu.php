@@ -21,8 +21,8 @@ class getRichMenu{
     //chanell_secret
     private $channelSecret;
     
-    public function __construct($userId,$channelAccessToken,$channelSecret){
-    $this->userId= $userId;
+    public function __construct($channelAccessToken,$channelSecret){
+   // $this->userId= $userId;
     $this->channelAccessToken= $channelAccessToken;
     $this->channelSecret= $channelSecret;
 }
@@ -85,12 +85,13 @@ class getRichMenu{
     $name='Nice richmenu';
     $chatBarText= 'Tap to open';
 
+  //RichMenuAreaBoundsBuilder() params 
     $x=0;
      $y=10; 
       $width=1250; 
        $height=1676;
 
-
+ // MessageTemplateActionBuilder params
        $label='message label';
         $text='test message';
     $areaBuilders= [new RichMenuAreaBuilder(
@@ -105,6 +106,7 @@ class getRichMenu{
     $res = $bot->createRichMenu($richMenuBuilder);
 
         $dcdRes =jsondecode($res);
+        $dcdRes;
          $menuId = $dcdRes['richMenuId'];
 
          //use debug
