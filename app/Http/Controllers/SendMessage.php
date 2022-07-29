@@ -73,19 +73,15 @@ class SendMessage extends Controller
                 } elseif ($message['text'] == '限定メニュー') {
                     $param =new getOrgMenuParam();
                     $sId =$storeId;
-                     $param ->getParam($sId, $client, $event);
-
-
-                    
-
+                    $param ->getParam($sId, $client, $event);
 
                 //DB参照
                 } elseif ($message['text'] == 'READ') {
                     $us = $event['source'];
-                     $use=$us['userId'];
+                    $use=$us['userId'];
 
-                     $uP= new getUserProf();
-                     $uP->getProf($use,$client, $event);
+                    $uP= new getUserProf();
+                    $uP->getProf($use, $client, $event);
                   
                  
                 //ここから
