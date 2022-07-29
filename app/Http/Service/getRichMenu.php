@@ -76,11 +76,11 @@ class getRichMenu{
     //             ]
     //         )
     //     );
-    $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($this->channelAccessToken);
-    $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $this->channelSecret]);
+    $httpClient = new CurlHTTPClient($this->channelAccessToken);
+    $bot = new LINEBot($httpClient, ['channelSecret' => $this->channelSecret]);
    
-    $richMenuBuilder = new \LINE\LINEBot\RichMenuBuilder(
-        RichMenuSizeBuilder::getFull(),   true,
+    $richMenuBuilder = new RichMenuBuilder(
+        RichMenuSizeBuilder::getFull(),true,
                'Nice richmenu',
                  'Tap to open',
                 [     new RichMenuAreaBuilder(
