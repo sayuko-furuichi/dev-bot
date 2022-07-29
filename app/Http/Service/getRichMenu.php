@@ -8,16 +8,23 @@ use LINE\LINEBot\RichMenuBuilder\RichMenuSizeBuilder;
 use LINE\LINEBot\RichMenuBuilder\RichMenuAreaBuilder;
 use LINE\LINEBot\RichMenuBuilder\RichMenuAreaBoundsBuilder;
 use LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder;
-use LINE\Tests\LINEBot\Util\DummyHttpClient;
+use LINE\LINEBot\HTTPClient\CurlHTTPClient;
+use LINE\LINEBot\HTTPClient;
 use PHPUnit\Framework\TestCase;
 use App\Models\UserProf;
 
 class getRichMenu{
 
     private $userId;
+    //chanell_access_token
+    private $cat;
+    //chanell_secret
+    private $sc;
     
-    public function __construct($userId){
+    public function __construct($userId,$cat,$cs){
         $this->userId= $userId;
+        $this->cat= $cat;
+        $this->sc= $sc;
 
     }
 
@@ -48,7 +55,7 @@ class getRichMenu{
 
 
     //Richメニュー作成
-    public function testCreateRichMenu()
+    public function createRichMenu()
     {
         $mock = function ($testRunner, $httpMethod, $url, $data) {
             /** @var \PHPUnit\Framework\TestCase $testRunner */
@@ -80,7 +87,7 @@ class getRichMenu{
 
             return ['status' => 200];
         };
-        $bot = new LINEBot(new DummyHttpClient($this, $mock), ['channelSecret' => 'CHANNEL-SECRET']);
+        $bot = new LINEBot(new HttpClient($this, $mock), ['channelSecret' => 'CHANNEL-SECRET']);
         $res = $bot->createRichMenu(
             new RichMenuBuilder(
                 RichMenuSizeBuilder::getFull(),
