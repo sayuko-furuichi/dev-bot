@@ -78,15 +78,18 @@ class getRichMenu{
     //     );
     $httpClient = new CurlHTTPClient($this->channelAccessToken);
     $bot = new LINEBot($httpClient, ['channelSecret' => $this->channelSecret]);
+
+    //RichMenuBuilder() params
+    $sizeBuilder= RichMenuSizeBuilder::getFull();
+    $selected= true;
+    $name='Nice richmenu';
+    $chatBarText= 'Tap to open';
+    $areaBuilders= [     new RichMenuAreaBuilder(
+        new RichMenuAreaBoundsBuilder(0, 10, 1250, 1676),
+        new MessageTemplateActionBuilder('message label', 'test message')
+    )];
    
-    $richMenuBuilder = new RichMenuBuilder(
-        RichMenuSizeBuilder::getFull(),true,
-               'Nice richmenu',
-                 'Tap to open',
-                [     new RichMenuAreaBuilder(
-                    new RichMenuAreaBoundsBuilder(0, 10, 1250, 1676),
-                    new MessageTemplateActionBuilder('message label', 'test message')
-                )]);
+    $richMenuBuilder = new RichMenuBuilder($sizeBuilder, $selected, $name, $chatBarText, $areaBuilders);
      //LINEBot classの、createRichMenu($richMenuBuilder)　を呼ぶ
     $res = $bot->createRichMenu($richMenuBuilder);
 
