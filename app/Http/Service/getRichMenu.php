@@ -85,11 +85,13 @@ class getRichMenu{
     $name='Nice richmenu';
     $chatBarText= 'Tap to open';
     $areaBuilders= [new RichMenuAreaBuilder(
+
+        //RichMenuAreaBoundsBuilder() params =  $x, $y, $width, $height
         new RichMenuAreaBoundsBuilder(0, 10, 1250, 1676),
+        // MessageTemplateActionBuilder params = $label, $text
         new MessageTemplateActionBuilder('message label', 'test message')
     )];
-   
-    $richMenuBuilder = new RichMenuBuilder();
+    $richMenuBuilder = new RichMenuBuilder($sizeBuilder, $selected, $name, $chatBarText, $areaBuilders);
      //LINEBot classの、createRichMenu($richMenuBuilder)　を呼ぶ。渡した後、ちゃんとbild()してるから個々ではbildしなくていい。
     $res = $bot->createRichMenu($richMenuBuilder);
 
