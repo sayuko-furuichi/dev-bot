@@ -11,7 +11,7 @@ use LINE\LINEBot;
 use Illuminate\Support\Facades\Storage;
 
 use App\Http\Service\getOrgMenuParam;
-use App\Http\Service\getRichmenu;
+use App\Http\Service\getRichMenu;
 
 
 class SendMessage extends Controller
