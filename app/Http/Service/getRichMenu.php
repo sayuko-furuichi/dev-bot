@@ -106,7 +106,7 @@ class getRichMenu{
     $res = $bot->createRichMenu($richMenuBuilder);
 
         $dcdRes =jsondecode($res);
-        $dcdRes;
+
          $menuId = $dcdRes['richMenuId'];
 
          //use debug
