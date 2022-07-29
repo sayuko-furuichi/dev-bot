@@ -87,7 +87,7 @@ class getRichMenu{
 
             return ['status' => 200];
         };
-        $bot = new LINEBot(new HttpClient($this, $mock), ['channelSecret' => 'CHANNEL-SECRET']);
+        $bot = new LINEBot(new CurlHttpClient($this, ), ['channelSecret' => 'CHANNEL-SECRET']);
         $res = $bot->createRichMenu(
             new RichMenuBuilder(
                 RichMenuSizeBuilder::getFull(),
@@ -152,6 +152,27 @@ class getRichMenu{
         $this->assertEquals(200, $res->getHTTPStatus());
         $this->assertTrue($res->isSucceeded());
         $this->assertEquals(200, $res->getJSONDecodedBody()['status']);
+    }
+
+    //エイリアス作成
+    public function testCreateRichMenuAlias()
+    {
+        $mock = function ($testRunner, $httpMethod, $url, $data) {
+            /** @var \PHPUnit\Framework\TestCase $testRunner */
+            $testRunner->assertEquals('POST', $httpMethod);
+            $testRunner->assertEquals('https://api.line.me/v2/bot/richmenu/alias', $url);
+            $testRunner->assertEquals([
+                'richMenuAliasId' => 'richmenu-alias-a',
+                'richMenuId' => 'richmenu-862e6ad6c267d2ddf3f42bc78554f6a4'
+            ], $data);
+
+            return [];
+        };
+        $bot = new LINEBot(new DummyHttpClient($this, $mock), ['channelSecret' => 'CHANNEL-SECRET']);
+        $res = $bot->createRichMenuAlias('richmenu-alias-a', 'richmenu-862e6ad6c267d2ddf3f42bc78554f6a4');
+
+        $this->assertEquals(200, $res->getHTTPStatus());
+        $this->assertTrue($res->isSucceeded());
     }
 
 }
