@@ -38,7 +38,7 @@ class Callback extends Controller
             $storeId=$request->store_id;
         }
 
-           
+           //DB共有できたら生き返らせる
         // $pr = UserProf::where('id',$request->store_id)->first();
             
         // $channelAccessToken= $pr->channel_access_token;

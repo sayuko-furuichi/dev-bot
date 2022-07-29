@@ -57,8 +57,8 @@ class SendMessage extends Controller
         ]);
                 // メニュー　と言われたら、返す
                 } elseif ($message['text'] == 'create Rich Menu') {
-                    $ss = new getRichMenu();
-                    $mId = $ss->createRichMenu($channelAccessToken, $channelSecret);
+                    // $ss = new getRichMenu();
+                    // $mId = $ss->createRichMenu($channelAccessToken, $channelSecret);
 
                    
 
@@ -73,7 +73,8 @@ class SendMessage extends Controller
 
             [
 'type' => 'text',
-'text' =>  $mId .'is richmenuID'
+// 'text' =>  $mId .'is richmenuID'
+'text' => 'is richmenuID'
             ]
         ]
     ]);
