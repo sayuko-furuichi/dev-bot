@@ -90,8 +90,8 @@ class getRichMenu{
     )];
    
     $richMenuBuilder = new RichMenuBuilder();
-     //LINEBot classの、createRichMenu($richMenuBuilder)　を呼ぶ
-    $res = $bot->createRichMenu($richMenuBuilder->bild($sizeBuilder, $selected, $name, $chatBarText, $areaBuilders));
+     //LINEBot classの、createRichMenu($richMenuBuilder)　を呼ぶ。渡した後、ちゃんとbild()してるから個々ではbildしなくていい。
+    $res = $bot->createRichMenu($richMenuBuilder);
 
         $dcdRes =jsondecode($res);
          $menuId = $dcdRes['richMenuId'];
