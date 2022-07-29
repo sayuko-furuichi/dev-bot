@@ -84,14 +84,14 @@ class getRichMenu{
     $selected= true;
     $name='Nice richmenu';
     $chatBarText= 'Tap to open';
-    $areaBuilders= [     new RichMenuAreaBuilder(
+    $areaBuilders= [new RichMenuAreaBuilder(
         new RichMenuAreaBoundsBuilder(0, 10, 1250, 1676),
         new MessageTemplateActionBuilder('message label', 'test message')
     )];
    
-    $richMenuBuilder = new RichMenuBuilder($sizeBuilder, $selected, $name, $chatBarText, $areaBuilders);
+    $richMenuBuilder = new RichMenuBuilder();
      //LINEBot classの、createRichMenu($richMenuBuilder)　を呼ぶ
-    $res = $bot->createRichMenu($richMenuBuilder);
+    $res = $bot->createRichMenu($richMenuBuilder->bild($sizeBuilder, $selected, $name, $chatBarText, $areaBuilders));
 
         $dcdRes =jsondecode($res);
          $menuId = $dcdRes['richMenuId'];
