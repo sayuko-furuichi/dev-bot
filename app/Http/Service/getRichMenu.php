@@ -34,7 +34,7 @@ class getRichMenu{
 
     }
     
-
+//assertEquals()　とは、PHPUnitのアサーションメソッドで、期待した値と等しいか判定する
     // //richメニュー取得
     // public function testGetRichMenu()
     // {
@@ -57,37 +57,37 @@ class getRichMenu{
     //Richメニュー作成
     public function createRichMenu()
     {
-        $mock = function ($testRunner, $httpMethod, $url, $data) {
-            /** @var \PHPUnit\Framework\TestCase $testRunner */
-            $testRunner->assertEquals('POST', $httpMethod);
-            $testRunner->assertEquals('https://api.line.me/v2/bot/richmenu', $url);
+        // $mock = function ($testRunner, $httpMethod, $url, $data) {
+        //     /** @var \PHPUnit\Framework\TestCase $testRunner */
+        //     $testRunner->assertEquals('POST', $httpMethod);
+        //     $testRunner->assertEquals('https://api.line.me/v2/bot/richmenu', $url);
 
-            $testRunner->assertEquals(2500, $data['size']['width']);
-            $testRunner->assertEquals(1686, $data['size']['height']);
-            $testRunner->assertEquals(true, $data['selected']);
-            $testRunner->assertEquals('Nice richmenu', $data['name']);
-            $testRunner->assertEquals('Tap to open', $data['chatBarText']);
+        //     $testRunner->assertEquals(2500, $data['size']['width']);
+        //     $testRunner->assertEquals(1686, $data['size']['height']);
+        //     $testRunner->assertEquals(true, $data['selected']);
+        //     $testRunner->assertEquals('Nice richmenu', $data['name']);
+        //     $testRunner->assertEquals('Tap to open', $data['chatBarText']);
 
-            $areas = $data['areas'];
-            $testRunner->assertEquals(2, count($areas));
+        //     $areas = $data['areas'];
+        //     $testRunner->assertEquals(2, count($areas));
 
-            $testRunner->assertEquals(0, $areas[0]['bounds']['x']);
-            $testRunner->assertEquals(10, $areas[0]['bounds']['y']);
-            $testRunner->assertEquals(1250, $areas[0]['bounds']['width']);
-            $testRunner->assertEquals(1676, $areas[0]['bounds']['height']);
-            $testRunner->assertEquals(ActionType::MESSAGE, $areas[0]['action']['type']);
-            $testRunner->assertEquals('test message', $areas[0]['action']['text']);
+        //     $testRunner->assertEquals(0, $areas[0]['bounds']['x']);
+        //     $testRunner->assertEquals(10, $areas[0]['bounds']['y']);
+        //     $testRunner->assertEquals(1250, $areas[0]['bounds']['width']);
+        //     $testRunner->assertEquals(1676, $areas[0]['bounds']['height']);
+        //     $testRunner->assertEquals(ActionType::MESSAGE, $areas[0]['action']['type']);
+        //     $testRunner->assertEquals('test message', $areas[0]['action']['text']);
 
-            $testRunner->assertEquals(1250, $areas[1]['bounds']['x']);
-            $testRunner->assertEquals(0, $areas[1]['bounds']['y']);
-            $testRunner->assertEquals(1240, $areas[1]['bounds']['width']);
-            $testRunner->assertEquals(1686, $areas[1]['bounds']['height']);
-            $testRunner->assertEquals(ActionType::MESSAGE, $areas[1]['action']['type']);
-            $testRunner->assertEquals('test message 2', $areas[1]['action']['text']);
+        //     $testRunner->assertEquals(1250, $areas[1]['bounds']['x']);
+        //     $testRunner->assertEquals(0, $areas[1]['bounds']['y']);
+        //     $testRunner->assertEquals(1240, $areas[1]['bounds']['width']);
+        //     $testRunner->assertEquals(1686, $areas[1]['bounds']['height']);
+        //     $testRunner->assertEquals(ActionType::MESSAGE, $areas[1]['action']['type']);
+        //     $testRunner->assertEquals('test message 2', $areas[1]['action']['text']);
 
-            return ['status' => 200];
-        };
-        $bot = new LINEBot(new CurlHttpClient($this, ), ['channelSecret' => 'CHANNEL-SECRET']);
+        //     return ['status' => 200];
+        // };
+        $bot = new LINEBot(new HttpClient($this), ['channelSecret' => $cs]);
         $res = $bot->createRichMenu(
             new RichMenuBuilder(
                 RichMenuSizeBuilder::getFull(),
@@ -106,10 +106,10 @@ class getRichMenu{
                 ]
             )
         );
-
-        $this->assertEquals(200, $res->getHTTPStatus());
-        $this->assertTrue($res->isSucceeded());
-        $this->assertEquals(200, $res->getJSONDecodedBody()['status']);
+        return $res;
+        // $this->assertEquals(200, $res->getHTTPStatus());
+        // $this->assertTrue($res->isSucceeded());
+        // $this->assertEquals(200, $res->getJSONDecodedBody()['status']);
     }
 
     //デフォルトのrichメニューを設定
