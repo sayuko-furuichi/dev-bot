@@ -55,29 +55,43 @@ class getRichMenu{
 
     //Richメニュー作成
     public function createRichMenu()
-    {
-        $bot = new LINEBot(new CurlHttpClient($this->channelAccessToken), ['channelSecret' => $this->channelSecret]);
-        $res = $bot->createRichMenu(
-            new RichMenuBuilder(
-                RichMenuSizeBuilder::getFull(),
-                true,
-                'Nice richmenu',
-                'Tap to open',
-                [
-                    new RichMenuAreaBuilder(
-                        new RichMenuAreaBoundsBuilder(0, 10, 1250, 1676),
-                        new MessageTemplateActionBuilder('message label', 'test message')
-                    ),
-                    new RichMenuAreaBuilder(
-                        new RichMenuAreaBoundsBuilder(1250, 0, 1240, 1686),
-                        new MessageTemplateActionBuilder('message label 2', 'test message 2')
-                    )
-                ]
-            )
-        );
-        
-        $respons =jsondecode($res);
-         $menuId = $responce['richMenuId'];
+     {
+        //testから引用
+    //     $bot = new LINEBot(new CurlHttpClient($this->channelAccessToken), ['channelSecret' => $this->channelSecret]);
+    //     $res = $bot->createRichMenu(
+    //         new RichMenuBuilder(
+    //             RichMenuSizeBuilder::getFull(),
+    //             true,
+    //             'Nice richmenu',
+    //             'Tap to open',
+    //             [
+    //                 new RichMenuAreaBuilder(
+    //                     new RichMenuAreaBoundsBuilder(0, 10, 1250, 1676),
+    //                     new MessageTemplateActionBuilder('message label', 'test message')
+    //                 ),
+    //                 new RichMenuAreaBuilder(
+    //                     new RichMenuAreaBoundsBuilder(1250, 0, 1240, 1686),
+    //                     new MessageTemplateActionBuilder('message label 2', 'test message 2')
+    //                 )
+    //             ]
+    //         )
+    //     );
+    $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($this->channelAccessToken);
+    $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $this->channelSecret]);
+   
+    $richMenuBuilder = new \LINE\LINEBot\RichMenuBuilder(
+        RichMenuSizeBuilder::getFull(),   true,
+               'Nice richmenu',
+                 'Tap to open',
+                [     new RichMenuAreaBuilder(
+                    new RichMenuAreaBoundsBuilder(0, 10, 1250, 1676),
+                    new MessageTemplateActionBuilder('message label', 'test message')
+                )]);
+     //LINEBot classの、createRichMenu($richMenuBuilder)　を呼ぶ
+    $res = $bot->createRichMenu($richMenuBuilder);
+
+        $dcdRes =jsondecode($res);
+         $menuId = $dcdRes['richMenuId'];
 
          //use debug
          return $menuId;
