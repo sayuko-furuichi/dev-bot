@@ -15,7 +15,7 @@ use App\Models\UserProf;
 
 class getRichMenu{
 
-    private $userId;
+  //  private $userId;
     //chanell_access_token
     private $channelAccessToken;
     //chanell_secret
