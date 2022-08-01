@@ -41,8 +41,8 @@ class getRichMenu
     public function create()
     {
         //debug
-//        $res=$this->client->rtRichMenu([
-        $res=$this->client->validateRm([
+       $res=$this->client->rtRichMenu([
+      //  $res=$this->client->validateRm([
             'size'=>[
                 'width'=>2500,
                 'height'=>1686
@@ -90,10 +90,10 @@ class getRichMenu
             ]
                     ]);
 
-        $resa=json_decode($res);
-        $resDcd= $resa[0];
+       // $resa=json_decode($res);
+     //   $resDcd= $resa[0];
 
-        return $resDcd;
+        return $res;
     }
     
     //assertEquals()　とは、PHPUnitのアサーションメソッドで、期待した値と等しいか判定する
