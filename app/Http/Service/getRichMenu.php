@@ -72,7 +72,7 @@ class getRichMenu
     );
     $resDcd=jsondecode($res,true);
 
-    return $res;
+    return $resDcd;
     //   $res=$this->client->rtRichMenu([
     //  //   $response=$this->client->validateRm([
     //         'size'=>[
