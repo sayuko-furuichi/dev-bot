@@ -54,7 +54,7 @@ class getRichMenu
                 'selected'=> true,
                 'name'=> 'LINE Developers Info',
                 'chatBarText'=> 'Tap to open',
-                array('areas'=> [
+                'areas'=> array([
                   
                         'bounds'=> [
                             'x'=> 0,
