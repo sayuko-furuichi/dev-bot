@@ -63,6 +63,7 @@ class SendMessage extends Controller
                     $res = $rmDetail->create();
 
                     $dcd=json_decode($res,true);
+                    
 
                     if($dcd==false || $dcd== null ||$dcd== 'undefine' || !isset($dcd['message']) ){
                         $flag='false';
@@ -87,7 +88,7 @@ class SendMessage extends Controller
 
             [
 'type' => 'text',
-'text' =>  $flag . ' is richmenuID'
+'text' =>  $dcd['message'] . ' is richmenuID'
             ]
         ]
     ]);
