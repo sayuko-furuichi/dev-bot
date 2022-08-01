@@ -35,9 +35,8 @@ class getRichMenu{
     $this->channelSecret= $channelSecret;
 }
 
-    public function create($client){
-
-
+    public function create(){
+        $client = new LINEBotTiny($this->channelAccessToken, $this->channelSecret);
         $res=$client->rtRichMenu([
             'size'=>[
                 'width'=>2500,
