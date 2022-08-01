@@ -57,40 +57,17 @@ class getRichMenu
                 'areas'=> [
                   
                         'bounds'=> [
-                            'x'=> 34,
-                            'y'=> 24,
-                            'width'=> 169,
-                            'height'=> 193
+                            'x'=> 0,
+                            'y'=> 0,
+                            'width'=> 2400,
+                            'height'=> 1500
                         ],
                         'action'=> [
                             'type'=> 'uri',
                             'uri'=> 'https://developers.line.biz/en/news/'
                         ]
                     ],
-                    [
-                        'bounds'=> [
-                            'x'=> 229,
-                            'y'=> 24,
-                            'width'=> 207,
-                            'height'=> 193
-                        ],
-                        'action'=> [
-                            'type'=> 'uri',
-                            'uri'=> 'https://www.line-community.me/ja/'
-                        ]
-                    ],
-                    [
-                        'bounds'=> [
-                            'x'=> 461,
-                            'y'=> 24,
-                            'width'=> 173,
-                            'height'=> 193
-                        ],
-                        'action'=> [
-                            'type'=> 'uri',
-                            'uri'=> 'https://engineering.linecorp.com/en/blog/'
-                    ]
-         ] ]);
+                    ]);
                         
            return $res;
    
