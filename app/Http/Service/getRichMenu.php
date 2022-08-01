@@ -31,9 +31,6 @@ class getRichMenu{
    // $this->userId= $userId;
     $this->channelAccessToken= $channelAccessToken;
     $this->channelSecret= $channelSecret;
-
-    //debug CODE
-    return $this->channelAccessToken;
 }
 
     public function create(){
@@ -92,7 +89,7 @@ class getRichMenu{
     //             ]
     //         )
     //     );
-    $httpClient = new HTTPClient($this->channelAccessToken);
+    $httpClient = new CurlHTTPClient($this->channelAccessToken);
     $bot = new LINEBot($httpClient, ['channelSecret' => $this->channelSecret]);
 
     //RichMenuBuilder() params
@@ -129,9 +126,6 @@ class getRichMenu{
          return $menuId;
 
 
-        // $this->assertEquals(200, $res->getHTTPStatus());
-        // $this->assertTrue($res->isSucceeded());
-        // $this->assertEquals(200, $res->getJSONDecodedBody()['status']);
     }
 
     //デフォルトのrichメニューを設定
