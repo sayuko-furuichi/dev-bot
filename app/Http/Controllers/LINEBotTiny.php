@@ -172,7 +172,7 @@ class LINEBotTiny
         $api_url ='https://api.line.me/v2/bot/richmenu';
 
         //GETでリクエストする。
-        $headers = [ "Authorization:Bearer $access_token","Content-Type:application/json"];
+        $headers = array( "Authorization:Bearer $access_token","Content-Type:application/json");
 
         $curl_handle = curl_init();
 
