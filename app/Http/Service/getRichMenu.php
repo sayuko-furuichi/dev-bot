@@ -92,7 +92,7 @@ class getRichMenu{
     //             ]
     //         )
     //     );
-    $httpClient = new CurlHTTPClient($this->channelAccessToken);
+    $httpClient = new HTTPClient($this->channelAccessToken);
     $bot = new LINEBot($httpClient, ['channelSecret' => $this->channelSecret]);
 
     //RichMenuBuilder() params
