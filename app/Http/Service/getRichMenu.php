@@ -94,10 +94,10 @@ class getRichMenu
             ]
                     ]);
 
-       // $resa=json_decode($res);
-     //   $resDcd= $resa[0];
+        $resa=json_decode($res);
+        $resDcd= $resa[0];
 
-        return $res;
+        return $resDcd;
     }
     
     //assertEquals()　とは、PHPUnitのアサーションメソッドで、期待した値と等しいか判定する
