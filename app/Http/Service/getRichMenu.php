@@ -46,7 +46,7 @@ class getRichMenu
     {
         //debug
       // $res=$this->client->rtRichMenu([
-        $res=$this->client->validateRm([
+        $response=$this->client->validateRm([
             'size'=>[
                 'width'=>2500,
                 'height'=>1686
@@ -94,28 +94,10 @@ class getRichMenu
             ]
                     ]);
 
-        $resDcd=json_decode($res);
+        $resDcd=json_decode($response);
         return $resDcd;
     }
     
-    //assertEquals()　とは、PHPUnitのアサーションメソッドで、期待した値と等しいか判定する
-    // //richメニュー取得
-    // public function testGetRichMenu()
-    // {
-    //     $mock = function ($testRunner, $httpMethod, $url, $data) {
-    //         /** @var \PHPUnit\Framework\TestCase $testRunner */
-    //         $testRunner->assertEquals('GET', $httpMethod);
-    //         $testRunner->assertEquals('https://api.line.me/v2/bot/richmenu/123', $url);
-    //         $testRunner->assertEquals([], $data);
-    //         return ['status' => 200];
-    //     };
-    //     $bot = new LINEBot(new DummyHttpClient($this, $mock), ['channelSecret' => 'CHANNEL-SECRET']);
-    //     $res = $bot->getRichMenu(123);
-
-    //     $this->assertEquals(200, $res->getHTTPStatus());
-    //     $this->assertTrue($res->isSucceeded());
-    //     $this->assertEquals(200, $res->getJSONDecodedBody()['status']);
-    // }
 
 
     //Richメニュー作成
