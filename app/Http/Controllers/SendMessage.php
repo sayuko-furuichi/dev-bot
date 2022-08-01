@@ -82,7 +82,7 @@ class SendMessage extends Controller
 
             [
 'type' => 'text',
-'text' => $resDcd['message'] . 'is richmenuID'
+'text' => $resDcd['richMenuId'] . 'is richmenuID'
             ]
         ]
     ]);
