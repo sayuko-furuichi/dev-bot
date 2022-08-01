@@ -44,87 +44,80 @@ class getRichMenu
 
     public function create()
     {
-        //debug
-        $res=$this->client->rtRichMenu(
-        '{
-            "size": {
-              "width": 2500,
-              "height": 1686
-            },
-            "selected": false,
-            "name": "Nice richmenu",
-            "chatBarText": "Tap here",
-            "areas": [
-              {
-                "bounds": {
-                  "x": 0,
-                  "y": 0,
-                  "width": 2500,
-                  "height": 1686
-                },
-                "action": {
-                  "type": "postback",
-                  "data": "action=buy&itemid=123"
-                }
-              }
-           ]
-        }'
-    );
-    $resDcd=jsondecode($res,true);
+        $res=$this->client->rtRichMenu([
+         //   $response=$this->client->validateRm([
 
-    return $resDcd;
-    //   $res=$this->client->rtRichMenu([
-    //  //   $response=$this->client->validateRm([
-    //         'size'=>[
-    //             'width'=>2400,
-    //             'height'=>1600
-    //         ],
-    //         'selected'=> true,
-    //         'name'=> 'LINE Developers Info',
-    //         'chatBarText'=> 'Tap to open',
-    //         'areas'=> [
-                
-    //                 'bounds'=> [
-    //                     'x'=> 34,
-    //                     'y'=> 24,
-    //                     'width'=> 169,
-    //                     'height'=> 193
-    //                 ],
-    //                 'action'=> [
-    //                     'type'=> 'uri',
-    //                     'uri'=> 'https://developers.line.biz/en/news/'
-    //                 ]
-    //             ]
-    //             //,
-                // [
-                //     'bounds'=> [
-                //         'x'=> 229,
-                //         'y'=> 24,
-                //         'width'=> 207,
-                //         'height'=> 193
-                //     ],
-                //     'action'=> [
-                //         'type'=> 'uri',
-                //         'uri'=> 'https://www.line-community.me/ja/'
-                //     ]
+            'size'=>[
+                'width'=>'2400',
+                'height'=>'1600'
+            ],
+            'selected'=> true,
+            'name'=> 'LINE Developers Info',
+            'chatBarText'=> 'Tap to open',
+            'areas'=> [
+               
+                    'bounds'=> [
+                        'x'=> '34',
+                        'y'=> '24',
+                        'width'=> '169',
+                        'height'=> '193'
+                    ],
+                    'action'=> [
+                        'type'=> 'uri',
+                        'uri'=> 'https:developers.line.biz/en/news/'
+                    ]
+                // 'size'=>[
+                //     'width'=>2400,
+                //     'height'=>1600
                 // ],
-                // [
-                //     'bounds'=> [
-                //         'x'=> 461,
-                //         'y'=> 24,
-                //         'width'=> 173,
-                //         'height'=> 193
-                //     ],
-                //     'action'=> [
-                //         'type'=> 'uri',
-                //         'uri'=> 'https://engineering.linecorp.com/en/blog/'
-                //     ]
-                // ]
-            
-                //    ]);
+                // 'selected'=> true,
+                // 'name'=> 'LINE Developers Info',
+                // 'chatBarText'=> 'Tap to open',
+                // 'areas'=> [
+                   
+                //         'bounds'=> [
+                //             'x'=> 34,
+                //             'y'=> 24,
+                //             'width'=> 169,
+                //             'height'=> 193
+                //         ],
+                //         'action'=> [
+                //             'type'=> 'uri',
+                //             'uri'=> 'https:developers.line.biz/en/news/'
+                //         ]
+                    // ],
+                    // [
+                    //     'bounds'=> [
+                    //         'x'=> 229,
+                    //         'y'=> 24,
+                    //         'width'=> 207,
+                    //         'height'=> 193
+                    //     ],
+                    //     'action'=> [
+                    //         'type'=> 'uri',
+                    //         'uri'=> 'https:www.line-community.me/ja/'
+                    //     ]
+                    // ],
+                    // [
+                    //     'bounds'=> [
+                    //         'x'=> 461,
+                    //         'y'=> 24,
+                    //         'width'=> 173,
+                    //         'height'=> 193
+                    //     ],
+                    //     'action'=> [
+                    //         'type'=> 'uri',
+                    //         'uri'=> 'https:engineering.linecorp.com/en/blog/'
+                    //     ]
+                    ]
+               
+                       ]);
+   
+            $resDcd=json_decode($response);
+            return $resDcd;
+   
+   
 
-        // $resDcd=json_decode($response);
-        // return $resDcd;
 
     }
     
