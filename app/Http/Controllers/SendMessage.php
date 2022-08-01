@@ -61,6 +61,8 @@ class SendMessage extends Controller
 
                     $rmDetail = new getRichMenu($channelAccessToken, $channelSecret,$client);
                     $resDcd = $rmDetail->create();
+                    $tex='dummy';
+                    $tex= strval($resDcd);
 
                    
 
@@ -80,7 +82,7 @@ class SendMessage extends Controller
 
             [
 'type' => 'text',
-'text' =>strval($resDcd) . 'is richmenuID'
+'text' => $tex . 'is richmenuID'
             ]
         ]
     ]);
