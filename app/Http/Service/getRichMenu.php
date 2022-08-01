@@ -23,6 +23,8 @@ class getRichMenu
     private $channelAccessToken;
     //chanell_secret
     private $channelSecret;
+
+    private $client;
     
     /**
      * Undocumented __construct
