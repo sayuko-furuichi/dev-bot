@@ -85,8 +85,8 @@ class getRichMenu{
             ]
                     ]);
 
-        $res=json_decode($res);
-        $resDcd= $res['richMenuId'];
+        $resa=json_decode($res);
+        $resDcd= $resa['richMenuId'];
 
         return $resDcd;
     
