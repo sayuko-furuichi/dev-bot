@@ -44,12 +44,12 @@ class getRichMenu
 
     public function create()
     {
-        $res=$this->client->rtRichMenu([
+        $res=$this->client->rtRichMenu(array([
          //   $response=$this->client->validateRm([
 
             'size'=>[
-                'width'=>'2400',
-                'height'=>'1600'
+                'width'=>2400,
+                'height'=>1600
             ],
             'selected'=> true,
             'name'=> 'LINE Developers Info',
@@ -57,10 +57,10 @@ class getRichMenu
             'areas'=> [
                
                     'bounds'=> [
-                        'x'=> '34',
-                        'y'=> '24',
-                        'width'=> '169',
-                        'height'=> '193'
+                        'x'=> 34,
+                        'y'=> 24,
+                        'width'=> 169,
+                        'height'=> 193
                     ],
                     'action'=> [
                         'type'=> 'uri',
@@ -111,7 +111,7 @@ class getRichMenu
                     //     ]
                     ]
                
-                       ]);
+                       ]));
    
             $resDcd=json_decode($response);
             return $resDcd;
