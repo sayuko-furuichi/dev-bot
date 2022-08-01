@@ -29,15 +29,15 @@ class getRichMenu{
      * @param String $channelAccessToken
      * @param String $channelSecret
      */
-    public function __construct(String $channelAccessToken,String $channelSecret){
+    public function __construct(String $channelAccessToken,String $channelSecret,$client){
    // $this->userId= $userId;
     $this->channelAccessToken= $channelAccessToken;
     $this->channelSecret= $channelSecret;
+    $this->client->$client;
 }
 
     public function create(){
-        $client = new LINEBotTiny($this->channelAccessToken, $this->channelSecret);
-        $res=$client->rtRichMenu([
+        $res=$this->client->rtRichMenu([
             'size'=>[
                 'width'=>2500,
                 'height'=>1686
