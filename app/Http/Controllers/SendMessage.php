@@ -75,12 +75,12 @@ class SendMessage extends Controller
         'messages' => [
             [
 'type' => 'text',
-'text' =>$storeId . 'OK!'
+'text' =>$storeId . '　OK!'
             ],
 
             [
 'type' => 'text',
-'text' => $resDcd . 'is richmenuID'
+'text' => $resDcd[0] . 'is richmenuID'
             ]
         ]
     ]);
