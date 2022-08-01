@@ -18,26 +18,28 @@ use App\Models\UserProf;
 class getRichMenu
 {
 
-    //  private $userId;
+
     //chanell_access_token
     private $channelAccessToken;
     //chanell_secret
     private $channelSecret;
 
-    private $client;
+    //LINEBotTiny client
+    private LINEBotTiny $client;
     
     /**
      * Undocumented __construct
      *
      * @param String $channelAccessToken
      * @param String $channelSecret
+     * @param LINEBotTiny $client
      */
     public function __construct(String $channelAccessToken, String $channelSecret, $client)
     {
         // $this->userId= $userId;
         $this->channelAccessToken= $channelAccessToken;
         $this->channelSecret= $channelSecret;
-        $this->client->$client;
+        $this->client=$client;
     }
 
     public function create()
