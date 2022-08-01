@@ -15,9 +15,10 @@ use LINE\LINEBot\HTTPClient;
 use PHPUnit\Framework\TestCase;
 use App\Models\UserProf;
 
-class getRichMenu{
+class getRichMenu
+{
 
-  //  private $userId;
+    //  private $userId;
     //chanell_access_token
     private $channelAccessToken;
     //chanell_secret
@@ -29,15 +30,19 @@ class getRichMenu{
      * @param String $channelAccessToken
      * @param String $channelSecret
      */
-    public function __construct(String $channelAccessToken,String $channelSecret,$client){
-   // $this->userId= $userId;
-    $this->channelAccessToken= $channelAccessToken;
-    $this->channelSecret= $channelSecret;
-    $this->client->$client;
-}
+    public function __construct(String $channelAccessToken, String $channelSecret, $client)
+    {
+        // $this->userId= $userId;
+        $this->channelAccessToken= $channelAccessToken;
+        $this->channelSecret= $channelSecret;
+        $this->client->$client;
+    }
 
-    public function create(){
-        $res=$this->client->rtRichMenu([
+    public function create()
+    {
+        //debug
+//        $res=$this->client->rtRichMenu([
+        $res=$this->client->validateRm([
             'size'=>[
                 'width'=>2500,
                 'height'=>1686
@@ -89,11 +94,9 @@ class getRichMenu{
         $resDcd= $resa[0];
 
         return $resDcd;
-    
-
     }
     
-//assertEquals()　とは、PHPUnitのアサーションメソッドで、期待した値と等しいか判定する
+    //assertEquals()　とは、PHPUnitのアサーションメソッドで、期待した値と等しいか判定する
     // //richメニュー取得
     // public function testGetRichMenu()
     // {
@@ -120,66 +123,64 @@ class getRichMenu{
      * @return $menuId
      */
 
-     //!! 出来ないお(；ω；)　連想配列で渡して、encodeする書き方にしようかな。
+    //!! 出来ないお(；ω；)　連想配列で渡して、encodeする書き方にしようかな。
     public function createRichMenu():String
-     {
+    {
         //testから引用
-    //     $bot = new LINEBot(new CurlHttpClient($this->channelAccessToken), ['channelSecret' => $this->channelSecret]);
-    //     $res = $bot->createRichMenu(
-    //         new RichMenuBuilder(
-    //             RichMenuSizeBuilder::getFull(),
-    //             true,
-    //             'Nice richmenu',
-    //             'Tap to open',
-    //             [
-    //                 new RichMenuAreaBuilder(
-    //                     new RichMenuAreaBoundsBuilder(0, 10, 1250, 1676),
-    //                     new MessageTemplateActionBuilder('message label', 'test message')
-    //                 ),
-    //                 new RichMenuAreaBuilder(
-    //                     new RichMenuAreaBoundsBuilder(1250, 0, 1240, 1686),
-    //                     new MessageTemplateActionBuilder('message label 2', 'test message 2')
-    //                 )
-    //             ]
-    //         )
-    //     );
-    $httpClient = new CurlHTTPClient($this->channelAccessToken);
-    $bot = new LINEBot($httpClient, ['channelSecret' => $this->channelSecret]);
+        //     $bot = new LINEBot(new CurlHttpClient($this->channelAccessToken), ['channelSecret' => $this->channelSecret]);
+        //     $res = $bot->createRichMenu(
+        //         new RichMenuBuilder(
+        //             RichMenuSizeBuilder::getFull(),
+        //             true,
+        //             'Nice richmenu',
+        //             'Tap to open',
+        //             [
+        //                 new RichMenuAreaBuilder(
+        //                     new RichMenuAreaBoundsBuilder(0, 10, 1250, 1676),
+        //                     new MessageTemplateActionBuilder('message label', 'test message')
+        //                 ),
+        //                 new RichMenuAreaBuilder(
+        //                     new RichMenuAreaBoundsBuilder(1250, 0, 1240, 1686),
+        //                     new MessageTemplateActionBuilder('message label 2', 'test message 2')
+        //                 )
+        //             ]
+        //         )
+        //     );
+        $httpClient = new CurlHTTPClient($this->channelAccessToken);
+        $bot = new LINEBot($httpClient, ['channelSecret' => $this->channelSecret]);
 
-    //RichMenuBuilder() params
-    $sizeBuilder= RichMenuSizeBuilder::getFull();
-    $selected= true;
-    $name='Nice richmenu';
-    $chatBarText= 'Tap to open';
+        //RichMenuBuilder() params
+        $sizeBuilder= RichMenuSizeBuilder::getFull();
+        $selected= true;
+        $name='Nice richmenu';
+        $chatBarText= 'Tap to open';
 
-  //RichMenuAreaBoundsBuilder() params 
-    $x=0;
-     $y=10; 
-      $width=1250; 
-       $height=1676;
+        //RichMenuAreaBoundsBuilder() params
+        $x=0;
+        $y=10;
+        $width=1250;
+        $height=1676;
 
- // MessageTemplateActionBuilder params
-       $label='message label';
+        // MessageTemplateActionBuilder params
+        $label='message label';
         $text='test message';
-    $areaBuilders= [new RichMenuAreaBuilder(
+        $areaBuilders= [new RichMenuAreaBuilder(
 
-        //RichMenuAreaBoundsBuilder() params =  $x, $y, $width, $height (boundsオブジェクト==タップ領域)
-        new RichMenuAreaBoundsBuilder($x, $y, $width, $height),
-        // MessageTemplateActionBuilder params = $label, $text (actionオブジェクト==タップされたときの挙動)
-        new MessageTemplateActionBuilder($label, $text)
-    )];
-    $richMenuBuilder = new RichMenuBuilder($sizeBuilder, $selected, $name, $chatBarText, $areaBuilders);
-     //LINEBot classの、createRichMenu($richMenuBuilder)　を呼ぶ。渡した後、ちゃんとbild()してるから個々ではbildしなくていい。
-    $res = $bot->createRichMenu($richMenuBuilder);
+            //RichMenuAreaBoundsBuilder() params =  $x, $y, $width, $height (boundsオブジェクト==タップ領域)
+            new RichMenuAreaBoundsBuilder($x, $y, $width, $height),
+            // MessageTemplateActionBuilder params = $label, $text (actionオブジェクト==タップされたときの挙動)
+            new MessageTemplateActionBuilder($label, $text)
+        )];
+        $richMenuBuilder = new RichMenuBuilder($sizeBuilder, $selected, $name, $chatBarText, $areaBuilders);
+        //LINEBot classの、createRichMenu($richMenuBuilder)　を呼ぶ。渡した後、ちゃんとbild()してるから個々ではbildしなくていい。
+        $res = $bot->createRichMenu($richMenuBuilder);
 
         $dcdRes =jsondecode($res);
 
-         $menuId = $dcdRes['richMenuId'];
+        $menuId = $dcdRes['richMenuId'];
 
-         //use debug
-         return $menuId;
-
-
+        //use debug
+        return $menuId;
     }
 
     //デフォルトのrichメニューを設定
@@ -244,5 +245,4 @@ class getRichMenu{
         $this->assertEquals(200, $res->getHTTPStatus());
         $this->assertTrue($res->isSucceeded());
     }
-
 }
