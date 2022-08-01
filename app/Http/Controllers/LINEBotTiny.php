@@ -148,25 +148,53 @@ class LINEBotTiny
 
     public function rtRichMenu($rmDetail)
     {
-        $header = array(
-            'Content-Type: application/json',
-            'Authorization: Bearer ' . $this->channelAccessToken,
-        );
+        // $header = array(
+        //     'Content-Type: application/json',
+        //     'Authorization: Bearer ' . $this->channelAccessToken,
+        // );
 
-        $context = stream_context_create([
-            'http' => [
-                'ignore_errors' => true,
-                'method' => 'POST',
-                'header' => implode("\r\n", $header),
-                'content' => json_encode($rmDetail)
-            ],
-        ]);
+        // $context = stream_context_create([
+        //     'http' => [
+        //         'ignore_errors' => true,
+        //         'method' => 'POST',
+        //         'header' => implode("\r\n", $header),
+        //         'content' => json_encode($rmDetail)
+        //     ],
+        // ]);
 
-        $response = file_get_contents('https://api.line.me/v2/bot/richmenu', false, $context);
-        if (strpos($http_response_header[0], '200') === false) {
-            error_log('Request failed: ' . $response);
-        }
-        return $response;
+        // $response = file_get_contents('https://api.line.me/v2/bot/richmenu', false, $context);
+        // if (strpos($http_response_header[0], '200') === false) {
+        //     error_log('Request failed: ' . $response);
+        // }
+        // return $response;
+
+
+        $api_url ='https://api.line.me/v2/bot/richmenu';
+
+        //GETでリクエストする。
+        $headers = [ "Authorization:Bearer $access_token","Content-Type:application/json"];
+
+        $curl_handle = curl_init();
+
+        curl_setopt($curl_handle, CURLOPT_POST, true);
+        curl_setopt($curl_handle, CURLOPT_URL, $api_url);
+        curl_setopt($curl_handle, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($curl_handle, CURLOPT_POSTFIELDS, json_decode($rmDetail));
+                // curl_exec()の結果を文字列にする
+        curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, true);
+        
+
+        //実行
+        $json_response = curl_exec($curl_handle);
+
+        //close
+        curl_close($curl_handle);
+
+        //デコード
+        $decoded_data = json_decode($json_response, true);
+
+       return $decoded_data;
+
     }
 
 

@@ -95,7 +95,7 @@ class getRichMenu
                     //     ],
                     //     'action'=> [
                     //         'type'=> 'uri',
-                    //         'uri'=> 'https:www.line-community.me/ja/'
+                    //         'uri'=> 'https://www.line-community.me/ja/'
                     //     ]
                     // ],
                     // [
