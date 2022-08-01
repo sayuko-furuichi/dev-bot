@@ -48,8 +48,8 @@ class getRichMenu
       // $res=$this->client->rtRichMenu([
         $response=$this->client->validateRm([
             'size'=>[
-                'width'=>2500,
-                'height'=>1686
+                'width'=>2400,
+                'height'=>1600
             ],
             'selected'=> true,
             'name'=> 'LINE Developers Info',
