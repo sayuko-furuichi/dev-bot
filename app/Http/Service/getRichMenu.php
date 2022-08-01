@@ -112,9 +112,12 @@ class getRichMenu
                     ]
                
                        ]);
+
+                     $ss=$this->client->upRmImg();
+
    
-            $resDcd=json_decode($response);
-            return $resDcd;
+            // $resDcd=json_decode($response);
+            // return $resDcd;
    
    
 

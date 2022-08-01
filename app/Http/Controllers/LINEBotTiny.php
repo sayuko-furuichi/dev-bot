@@ -222,6 +222,34 @@ class LINEBotTiny
     }
 
 
+    //rmImg
+    public function upRmImg()
+    {
+        $richmenuId="richmenu-7f09955916775b1a82ade2117a1df0f9";
+
+        $header = array(
+            'Content-Type: image/jpeg',
+            'Authorization: Bearer ' . $this->channelAccessToken,
+        );
+
+        $context = stream_context_create([
+            'http' => [
+                'ignore_errors' => true,
+                'method' => 'POST',
+                'header' => implode("\r\n", $header),
+                'content' =>'https://dev-bot0722.herokuapp.com/storage/app/public/img/cafe1.jpg',
+            ],
+        ]);
+
+        $response = file_get_contents('https://api-data.line.me/v2/bot/richmenu/'. $richmenuId . '/content', false, $context);
+        if (strpos($http_response_header[0], '200') === false) {
+            error_log('Request failed: ' . $response);
+        }
+    }
+
+
+
+
 
     //署名をハッシュ化
     /**
