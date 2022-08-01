@@ -45,6 +45,7 @@ class getRichMenu
     public function create()
     {
        // $response=$this->client->validateRm([
+        //色んなサイズの物があったらいいかも。
         $res=$this->client->rtRichMenu([
        
                 'size'=>[
@@ -60,14 +61,25 @@ class getRichMenu
                         'bounds'=> [
                             'x'=> 0,
                             'y'=> 0,
-                            'width'=> 2400,
-                            'height'=> 1500
+                            'width'=> 1200,
+                            'height'=> 750
+                        ],
+                        'action'=> [
+                            'type'=> 'uri',
+                            'uri'=> 'https://developers.line.biz/en/news/'
+                        ],
+                        'bounds'=> [
+                            'x'=>1200,
+                            'y'=> 1600,
+                            'width'=> 1200,
+                            'height'=> 750
                         ],
                         'action'=> [
                             'type'=> 'uri',
                             'uri'=> 'https://developers.line.biz/en/news/'
                         ]
-                    ]),
+                        ]),
+
                     ]);
                         
            return $res;
