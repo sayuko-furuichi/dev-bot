@@ -25,7 +25,7 @@ class getRichMenu
     private $channelSecret;
 
     //LINEBotTiny client
-    private LINEBotTiny $client;
+    private $client;
     
     /**
      * Undocumented __construct
@@ -66,31 +66,32 @@ class getRichMenu
                         'type'=> 'uri',
                         'uri'=> 'https://developers.line.biz/en/news/'
                     ]
-                ],
-                [
-                    'bounds'=> [
-                        'x'=> 229,
-                        'y'=> 24,
-                        'width'=> 207,
-                        'height'=> 193
-                    ],
-                    'action'=> [
-                        'type'=> 'uri',
-                        'uri'=> 'https://www.line-community.me/ja/'
-                    ]
-                ],
-                [
-                    'bounds'=> [
-                        'x'=> 461,
-                        'y'=> 24,
-                        'width'=> 173,
-                        'height'=> 193
-                    ],
-                    'action'=> [
-                        'type'=> 'uri',
-                        'uri'=> 'https://engineering.linecorp.com/en/blog/'
-                    ]
                 ]
+                //,
+                // [
+                //     'bounds'=> [
+                //         'x'=> 229,
+                //         'y'=> 24,
+                //         'width'=> 207,
+                //         'height'=> 193
+                //     ],
+                //     'action'=> [
+                //         'type'=> 'uri',
+                //         'uri'=> 'https://www.line-community.me/ja/'
+                //     ]
+                // ],
+                // [
+                //     'bounds'=> [
+                //         'x'=> 461,
+                //         'y'=> 24,
+                //         'width'=> 173,
+                //         'height'=> 193
+                //     ],
+                //     'action'=> [
+                //         'type'=> 'uri',
+                //         'uri'=> 'https://engineering.linecorp.com/en/blog/'
+                //     ]
+                // ]
             ]
                     ]);
 
