@@ -145,7 +145,7 @@ class LINEBotTiny
         }
     }
 
-
+        //OK!!!
     public function rtRichMenu($rmDetail)
     {
 
