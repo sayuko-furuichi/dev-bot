@@ -114,9 +114,9 @@ class getRichMenu
                        ]);
                        
    
-            $resDcd=json_decode($res);
-            return $resDcd;
-   
+          //  $resDcd=json_decode($res);
+           // return $resDcd;
+           return $res;
    
 
 
