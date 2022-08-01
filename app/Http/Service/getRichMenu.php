@@ -45,8 +45,8 @@ class getRichMenu
     public function create()
     {
         //debug
-       $res=$this->client->rtRichMenu([
-      //  $res=$this->client->validateRm([
+      // $res=$this->client->rtRichMenu([
+        $res=$this->client->validateRm([
             'size'=>[
                 'width'=>2500,
                 'height'=>1686
