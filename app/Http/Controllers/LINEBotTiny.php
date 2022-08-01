@@ -145,6 +145,34 @@ class LINEBotTiny
         }
     }
 
+
+    public function rtRichMenu($rmDetail)
+    {
+        $header = array(
+            'Content-Type: application/json',
+            'Authorization: Bearer ' . $this->channelAccessToken,
+        );
+
+        $context = stream_context_create([
+            'http' => [
+                'ignore_errors' => true,
+                'method' => 'POST',
+                'header' => implode("\r\n", $header),
+                'content' => $rmDetail,
+            ],
+        ]);
+
+        $response = file_get_contents('https://api.line.me/v2/bot/richmenu', false, $context);
+        if (strpos($http_response_header[0], '200') === false) {
+            error_log('Request failed: ' . $response);
+        }
+        return $response;
+    }
+
+
+
+
+
     //署名をハッシュ化
     /**
      * @param string $body

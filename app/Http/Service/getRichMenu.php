@@ -2,6 +2,8 @@
 namespace App\Http\Service;
 
 use LINE\LINEBot;
+use App\Http\Controllers\LINEBotTiny;
+
 use LINE\LINEBot\Constant\ActionType;
 use LINE\LINEBot\RichMenuBuilder;
 use LINE\LINEBot\RichMenuBuilder\RichMenuSizeBuilder;
@@ -33,9 +35,62 @@ class getRichMenu{
     $this->channelSecret= $channelSecret;
 }
 
-    public function create(){
+    public function create($client){
 
-//build()で、作れそう。
+
+        $res=$client->rtRichMenu([
+            'size'=>[
+                'width'=>2500,
+                'height'=>1686
+            ],
+            'selected'=> true,
+            'name'=> 'LINE Developers Info',
+            'chatBarText'=> 'Tap to open',
+            'areas'=> [
+                [
+                    'bounds'=> [
+                        'x'=> 34,
+                        'y'=> 24,
+                        'width'=> 169,
+                        'height'=> 193
+                    ],
+                    'action'=> [
+                        'type'=> 'uri',
+                        'uri'=> 'https://developers.line.biz/en/news/'
+                    ]
+                ],
+                [
+                    'bounds'=> [
+                        'x'=> 229,
+                        'y'=> 24,
+                        'width'=> 207,
+                        'height'=> 193
+                    ],
+                    'action'=> [
+                        'type'=> 'uri',
+                        'uri'=> 'https://www.line-community.me/ja/'
+                    ]
+                ],
+                [
+                    'bounds'=> [
+                        'x'=> 461,
+                        'y'=> 24,
+                        'width'=> 173,
+                        'height'=> 193
+                    ],
+                    'action'=> [
+                        'type'=> 'uri',
+                        'uri'=> 'https://engineering.linecorp.com/en/blog/'
+                    ]
+                ]
+            ]
+                    ]);
+
+        $res=json_decode($res);
+        $resDcd= $res['richMenuId'];
+
+        return $resDcd;
+    
 
     }
     
