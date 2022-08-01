@@ -55,7 +55,7 @@ class getRichMenu
             'name'=> 'LINE Developers Info',
             'chatBarText'=> 'Tap to open',
             'areas'=> [
-                [
+                
                     'bounds'=> [
                         'x'=> 34,
                         'y'=> 24,
@@ -92,7 +92,7 @@ class getRichMenu
                 //         'uri'=> 'https://engineering.linecorp.com/en/blog/'
                 //     ]
                 // ]
-            ]
+            
                     ]);
 
         $resDcd=json_decode($response);
