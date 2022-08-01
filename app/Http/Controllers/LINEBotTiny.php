@@ -149,25 +149,25 @@ class LINEBotTiny
     public function rtRichMenu($rmDetail)
     {
 
-        $header = array(
+        $rmheader = array(
             'Content-Type: application/json',
             'Authorization: Bearer ' . $this->channelAccessToken,
         );
 
-        $context = stream_context_create([
+        $rmcontext = stream_context_create([
             'http' => [
                 'ignore_errors' => true,
                 'method' => 'POST',
-                'header' => implode("\r\n", $header),
+                'header' => implode("\r\n", $rmheader),
                 'content' => json_encode($rmDetail)
             ],
         ]);
 
-        $response = file_get_contents('https://api.line.me/v2/bot/richmenu', false, $context);
+        $rmresponse = file_get_contents('https://api.line.me/v2/bot/richmenu', false, $rmcontext);
         if (strpos($http_response_header[0], '200') === false) {
-            error_log('Request failed: ' . $response);
+            error_log('Request failed: ' . $rmresponse);
         }
-        return $response;
+        return $rmresponse;
 
     }
 
