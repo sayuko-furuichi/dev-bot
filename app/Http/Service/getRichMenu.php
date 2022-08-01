@@ -44,8 +44,9 @@ class getRichMenu
 
     public function create()
     {
+       // $response=$this->client->validateRm([
         $res=$this->client->rtRichMenu([
-            $response=$this->client->validateRm([
+       
                 'size'=>[
                     'width'=>2400,
                     'height'=>1600
@@ -89,7 +90,7 @@ class getRichMenu
                             'type'=> 'uri',
                             'uri'=> 'https://engineering.linecorp.com/en/blog/'
                     ]
-         ]]) ]);
+         ] ]);
                         
            return $res;
    
