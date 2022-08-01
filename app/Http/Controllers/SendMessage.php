@@ -62,7 +62,7 @@ class SendMessage extends Controller
                     $rmDetail = new getRichMenu($channelAccessToken, $channelSecret,$client);
                     $res = $rmDetail->create();
 
-                    if($res==false){
+                    if($res==false || $res== null ||$res== 'undefine'){
                         $flag='false';
                     }else{
                         $flag='true';
