@@ -179,7 +179,7 @@ class LINEBotTiny
         curl_setopt($curl_handle, CURLOPT_POST, true);
         curl_setopt($curl_handle, CURLOPT_URL, $api_url);
         curl_setopt($curl_handle, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($curl_handle, CURLOPT_POSTFIELDS, json_decode($rmDetail));
+        curl_setopt($curl_handle, CURLOPT_POSTFIELDS, json_encode($rmDetail));
                 // curl_exec()の結果を文字列にする
         curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, true);
         
