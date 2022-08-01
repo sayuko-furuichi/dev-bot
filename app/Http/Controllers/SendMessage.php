@@ -64,7 +64,7 @@ class SendMessage extends Controller
 
                     $dcd=json_decode($res,true);
 
-                    if($dcd==false || $dcd== null ||$dcd== 'undefine'|| !isset($dcd['state'])){
+                    if($dcd==false || $dcd== null ||$dcd== 'undefine' || !isset($dcd['message']) ){
                         $flag='false';
                     }else{
                         $flag='true';
