@@ -61,11 +61,8 @@ class SendMessage extends Controller
 
                     $rmDetail = new getRichMenu($channelAccessToken, $channelSecret,$client);
                     $resDcd = $rmDetail->create();
-                    $tex='dummy';
-                    $tex= strval($resDcd[0]);
 
-                   
-
+                
                     //$ss = new getRichMenu($channelAccessToken, $channelSecret);
                
                    

@@ -158,7 +158,7 @@ class LINEBotTiny
                 'ignore_errors' => true,
                 'method' => 'POST',
                 'header' => implode("\r\n", $header),
-                'content' => json_encode($rmDetail),
+                'content' => $rmDetail,
             ],
         ]);
 
