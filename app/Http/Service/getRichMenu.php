@@ -44,7 +44,7 @@ class getRichMenu
 
     public function create()
     {
-        $res=$this->client->rtRichMenu(array([
+        $res=$this->client->rtRichMenu([
          //   $response=$this->client->validateRm([
 
             'size'=>[
@@ -64,7 +64,7 @@ class getRichMenu
                     ],
                     'action'=> [
                         'type'=> 'uri',
-                        'uri'=> 'https:developers.line.biz/en/news/'
+                        'uri'=> 'https://developers.line.biz/en/news/'
                     ]
                 // 'size'=>[
                 //     'width'=>2400,
@@ -83,7 +83,7 @@ class getRichMenu
                 //         ],
                 //         'action'=> [
                 //             'type'=> 'uri',
-                //             'uri'=> 'https:developers.line.biz/en/news/'
+                //             'uri'=> 'https://developers.line.biz/en/news/'
                 //         ]
                     // ],
                     // [
@@ -107,11 +107,11 @@ class getRichMenu
                     //     ],
                     //     'action'=> [
                     //         'type'=> 'uri',
-                    //         'uri'=> 'https:engineering.linecorp.com/en/blog/'
+                    //         'uri'=> 'https://engineering.linecorp.com/en/blog/'
                     //     ]
                     ]
                
-                       ]));
+                       ]);
    
             $resDcd=json_decode($response);
             return $resDcd;
