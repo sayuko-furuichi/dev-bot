@@ -54,7 +54,7 @@ class getRichMenu
                 'selected'=> true,
                 'name'=> 'LINE Developers Info',
                 'chatBarText'=> 'Tap to open',
-                'areas'=> [
+                array('areas'=> [
                   
                         'bounds'=> [
                             'x'=> 0,
@@ -66,7 +66,7 @@ class getRichMenu
                             'type'=> 'uri',
                             'uri'=> 'https://developers.line.biz/en/news/'
                         ]
-                    ],
+                    ]),
                     ]);
                         
            return $res;
