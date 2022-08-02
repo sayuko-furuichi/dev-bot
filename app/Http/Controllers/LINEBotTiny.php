@@ -214,11 +214,11 @@ class LINEBotTiny
                 'ignore_errors' => true,
                 'method' => 'POST',
                 'header' => implode("\r\n", $header),
-              //  'content' =>'https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/3.png',
+               'content' => $imgurl,
             ],
         ]);
 
-        $imgresponse = file_get_contents('https://api-data.line.me/v2/bot/richmenu/richmenu-2dd1b020b8b48ca04b37494f8a81e4d3/content', false, $imgcontext,$imgurl);
+        $imgresponse = file_get_contents('https://api-data.line.me/v2/bot/richmenu/richmenu-2dd1b020b8b48ca04b37494f8a81e4d3/content', false, $imgcontext);
         if (strpos($http_response_header[0], '200') === false) {
             error_log('Request failed: ' . $imgresponse);
         }
