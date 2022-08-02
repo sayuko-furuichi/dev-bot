@@ -243,9 +243,9 @@ class LINEBotTiny
         curl_close($curl_handle);
     
         //デコード
-        $logdData = json_decode($json_response, true);
+        $imres = json_decode($json_response, true);
 
-        return $logdata;
+        return $imres;
     }
 
 
