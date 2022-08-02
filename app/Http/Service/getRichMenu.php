@@ -48,80 +48,41 @@ class getRichMenu
         //色んなサイズの物があったらいいかも。
         $res=$this->client->rtRichMenu([
        
-                'size'=>[
-                    'width'=>2500,
-                    'height'=>1686
-                ],
-                'selected'=> true,
-                'name'=> 'alias menuA',
-                'chatBarText'=> 'alias menu',
-                //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
-                'areas'=> array([
-                        'bounds'=> [
-                            'x'=> 0,
-                            'y'=> 0,
-                            'width'=> 1200,
-                            'height'=> 560
-                        ],
-                        'action'=> [
-                            'type'=> 'url',
-                            'uri'=> 'https://liff.line.me/1657181787-2vrnwwlj'
-                        ],
-                        'bounds'=> [
-                            'x'=>125,
-                            'y'=> 515,
-                            'width'=> 1244,
-                            'height'=> 585
-                        ],
-                        'action'=> [
-                            'type'=> 'uri',
-                            'uri'=> 'https://dev-ext-app.herokuapp.com/public/login'
-                        ],
-                        'bounds'=> [
-                            'x'=>0,
-                            'y'=> 151,
-                            'width'=> 124,
-                            'height'=> 551
-                        ],
-                        'action'=> [
-                            'type'=> 'uri',
-                            'uri'=> 'https://dev-ext-app.herokuapp.com/public/lp'
-                        ],
-                        'bounds'=> [
-                            'x'=>12,
-                            'y'=> 116,
-                            'width'=> 1245,
-                            'height'=> 560
-                        ],
-                        'action'=> [
-                            'type'=> 'message',
-                            'text'=> '限定メニュー'
-                        ],
-                        'bounds'=> [
-                            'x'=>1500,
-                            'y'=> 0,
-                            'width'=> 1000,
-                            'height'=> 560
-                        ],
-                        'action'=> [
-                            'type'=> 'richmenuswitch',
-                            'richMenuAliasId'=> 'richmenu-alias-b',
-                            'data'=> 'richmenu-changed-to-b'
-                        ],
-                        'bounds'=>
-                        [
-                            'x'=>0,
-                            'y'=> 0,
-                            'width'=> 1000,
-                            'height'=> 560
-                        ],
-                        'action'=> [
-                            'type'=> 'message',
-                            'text'=> 'おｋ'
-                        ],
-                        ]),
+            'size'=>[
+                'width'=>2400,
+                'height'=>1600
+            ],
+            'selected'=> true,
+            'name'=> 'LINE Developers Info',
+            'chatBarText'=> 'Tap to open',
+            //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
+            'areas'=> array([
+              
+                    'bounds'=> [
+                        'x'=> 0,
+                        'y'=> 0,
+                        'width'=> 1200,
+                        'height'=> 750
+                    ],
+                    'action'=> [
+                        'type'=> 'uri',
+                        'uri'=> 'https://developers.line.biz/en/news/'
+                    ],
+                    'bounds'=> [
+                        'x'=>1200,
+                        'y'=> 1600,
+                        'width'=> 1200,
+                        'height'=> 750
+                    ],
+                    'action'=> [
+                        'type'=> 'richmenuswitch',
+                        //切り替え先設定
+                        'richMenuAliasId'=> 'richmenu-alias1',
+                        'data'=> 'richmenu-changed-to-b'
+                    ]
+                    ]),
 
-                    ]);
+                ]);
                         
            return $res;
    
