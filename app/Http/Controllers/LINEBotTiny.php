@@ -225,7 +225,7 @@ class LINEBotTiny
         // return $imgresponse;
 
 
-        $file = new \CURLFile('@/https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu'); //<-- Path could be relative
+        $file = new \CURLFile('@/../storage/app/public/img/richmenu/3.png'); //<-- Path could be relative
         $data = array('name' => '3.png', 'file' => $file);
         
         $ch = curl_init();
