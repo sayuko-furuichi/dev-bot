@@ -49,8 +49,8 @@ class getRichMenu
         $res=$this->client->rtRichMenu([
        
                 'size'=>[
-                    'width'=>2400,
-                    'height'=>1600
+                    'width'=>2500,
+                    'height'=>1686
                 ],
                 'selected'=> true,
                 'name'=> 'alias menuA',
@@ -65,7 +65,7 @@ class getRichMenu
                             'height'=> 562
                         ],
                         'action'=> [
-                            'type'=> 'uri',
+                            'type'=> 'message',
                             'uri'=> 'https://developers.line.biz/en/news/'
                         ],
                      //B
