@@ -59,25 +59,39 @@ class getRichMenu
             'areas'=> array([
               
                     'bounds'=> [
-                        'x'=> 0,
+                        'x'=> 1250,
                         'y'=> 0,
-                        'width'=> 1200,
-                        'height'=> 750
+                        'width'=> 1250,
+                        'height'=> 200
                     ],
                     'action'=> [
                         'type'=> 'uri',
                         'uri'=> 'https://developers.line.biz/en/news/'
                     ],
                     'bounds'=> [
-                        'x'=>1200,
-                        'y'=> 1600,
-                        'width'=> 1200,
-                        'height'=> 750
+                        'x'=>0,
+                        'y'=> 200,
+                        'width'=> 833,
+                        'height'=> 1486
                     ],
                     'action'=> [
                         'type'=> 'uri',
                         'uri'=> 'https://developers.line.biz/en/news/'
+                    ],
+                      //E 切り替えアクション
+                      'bounds'=> [
+                        'x'=>1666,
+                        'y'=> 200,
+                        'width'=> 833,
+                        'height'=> 1486
+                    ],
+                    'action'=> [
+                        'type'=> 'richmenuswitch',
+                        //切り替え先設定
+                        'richMenuAliasId'=> 'richmenu-alias2',
+                        'data'=> 'richmenu-changed-to-b'
                     ]
+
                     ]),
 
                 ]);
