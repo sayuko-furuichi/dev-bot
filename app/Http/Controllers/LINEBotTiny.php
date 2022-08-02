@@ -274,7 +274,7 @@ class LINEBotTiny
             ],
         ]);
 
-        $dfresponse = file_get_contents('https://api.line.me/v2/bot/user/all/richmenu/{richmenuID}', false, $dfcontext);
+        $dfresponse = file_get_contents('https://api.line.me/v2/bot/user/all/richmenu/richmenu-2dd1b020b8b48ca04b37494f8a81e4d3', false, $dfcontext);
         if (strpos($http_response_header[0], '200') === false) {
             error_log('Request failed: ' . $dfresponse);
         }
