@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Service;
 
 use LINE\LINEBot;
@@ -17,8 +18,6 @@ use App\Models\UserProf;
 
 class getRichMenu
 {
-
-
     //chanell_access_token
     private $channelAccessToken;
     //chanell_secret
@@ -26,7 +25,7 @@ class getRichMenu
 
     //LINEBotTiny client
     private $client;
-    
+
     /**
      * Undocumented __construct
      *
@@ -44,10 +43,10 @@ class getRichMenu
 
     public function create()
     {
-       // $response=$this->client->validateRm([
+        // $response=$this->client->validateRm([
         //色んなサイズの物があったらいいかも。
         $res=$this->client->rtRichMenu([
-       
+
                 'size'=>[
                     'width'=>2500,
                     'height'=>1686
@@ -58,31 +57,31 @@ class getRichMenu
                 //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
                 'areas'=> array([
 
-  //E 切り替えアクション
-  'bounds'=> [
-    'x'=>1500,
-    'y'=> 0,
-    'width'=> 1000,
-    'height'=> 560
-],
-'action'=> [
-    'type'=> 'richmenuswitch',
-    //切り替え先設定
-    'richMenuAliasId'=> 'richmenu-alias-b',
-    'data'=> 'richmenu-changed-to-b'
-],
-//F 
-'bounds'=>
-[
-    'x'=>0,
-    'y'=> 0,
-    'width'=> 1245,
-    'height'=> 560
-],
-'action'=> [
-    'type'=> 'message',
-    'text'=> 'おｋ'
-],
+//   //E 切り替えアクション
+//   'bounds'=> [
+//     'x'=>1500,
+//     'y'=> 0,
+//     'width'=> 1000,
+//     'height'=> 560
+// ],
+// 'action'=> [
+//     'type'=> 'richmenuswitch',
+//     //切り替え先設定
+//     'richMenuAliasId'=> 'richmenu-alias-b',
+//     'data'=> 'richmenu-changed-to-b'
+// ],
+// //F
+// 'bounds'=>
+// [
+//     'x'=>0,
+//     'y'=> 0,
+//     'width'=> 1245,
+//     'height'=> 560
+// ],
+// 'action'=> [
+//     'type'=> 'message',
+//     'text'=> 'おｋ'
+// ],
 
                   //A
                         'bounds'=> [
@@ -106,7 +105,7 @@ class getRichMenu
                             'type'=> 'uri',
                             'uri'=> 'https://dev-ext-app.herokuapp.com/public/login'
                         ],
-                      
+
                       //C
                         'bounds'=> [
                             'x'=>0,
@@ -118,7 +117,7 @@ class getRichMenu
                             'type'=> 'uri',
                             'uri'=> 'https://dev-ext-app.herokuapp.com/public/lp'
                         ],
-                        
+
                         //D
                         'bounds'=> [
                             'x'=>1245,
@@ -131,17 +130,14 @@ class getRichMenu
                             'text'=> '限定メニュー'
                         ],
 
-                      
+
                         ]),
 
                     ]);
-                        
-           return $res;
-   
 
-
+        return $res;
     }
-    
+
 
 
     //Richメニュー作成
@@ -151,7 +147,7 @@ class getRichMenu
      * @return $menuId
      */
 
-  
+
 
     //デフォルトのrichメニューを設定
     public function testSetDefaultRichMenuId()
