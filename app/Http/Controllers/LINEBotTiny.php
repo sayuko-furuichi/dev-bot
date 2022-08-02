@@ -224,34 +224,33 @@ class LINEBotTiny
 
         // return $imgresponse;
 
+        $file = new \CURLFile('@/https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/3.png');
+       
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'https://api-data.line.me/v2/bot/richmenu/richmenu-2dd1b020b8b48ca04b37494f8a81e4d3/content');
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, true);
+        $json_response= curl_exec($ch);
 
-        // $file = new \CURLFile('@/https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/3.png'); //<-- Path could be relative
-        // $data = array('name' => 'Foo', 'file' => $file);
-        
-        // $ch = curl_init();
-        // curl_setopt($ch, CURLOPT_URL, 'https://api-data.line.me/v2/bot/richmenu/richmenu-2dd1b020b8b48ca04b37494f8a81e4d3/content');
-        // curl_setopt($ch, CURLOPT_POST, 1);
-        // //CURLOPT_SAFE_UPLOAD defaulted to true in 5.6.0
-        // //So next line is required as of php >= 5.6.0
-        // curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
-        // curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        // curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, true);
-        // $json_response= curl_exec($ch);
- 
-        // curl_close($ch);
+        curl_close($ch);
 
-        // return  $json_response;
-
-       $rid= 'richmenu-2dd1b020b8b48ca04b37494f8a81e4d3';
+        return  $json_response;
 
 
-        $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($this->channelAccessToken);
-$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $this->channelSecret]);
-$imagePath = 'https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/3.png';
-$contentType = 'image/png';
-$res = $bot->uploadRichMenuImage($rid, $imagePath, $contentType);
 
-return $res;
+
+//        $rid= 'richmenu-2dd1b020b8b48ca04b37494f8a81e4d3';
+
+
+//         $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($this->channelAccessToken);
+// $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $this->channelSecret]);
+// $imagePath = 'https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/3.png';
+// $contentType = 'image/png';
+// $res = $bot->uploadRichMenuImage($rid, $imagePath, $contentType);
+
+// return $res;
 
     }
 
