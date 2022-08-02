@@ -226,10 +226,10 @@ class LINEBotTiny
 
 
         $file = new \CURLFile('@/../storage/app/public/img/richmenu/3.png'); //<-- Path could be relative
-        $data = array('name' => '3.png', 'file' => $file);
+        $data = array('name' => 'Foo', 'file' => $file);
         
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'https://api-data.line.me/v2/bot/richmenu/richmenu-2dd1b020b8b48ca04b37494f8a81e4d3/content');
+        curl_setopt($ch, CURLOPT_URL, );
         curl_setopt($ch, CURLOPT_POST, 1);
         //CURLOPT_SAFE_UPLOAD defaulted to true in 5.6.0
         //So next line is required as of php >= 5.6.0
