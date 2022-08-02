@@ -211,7 +211,7 @@ class LINEBotTiny
                 'ignore_errors' => true,
                 'method' => 'POST',
                 'header' => implode("\r\n", $header),
-                'content' =>'https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/2.png',
+                'content' =>'https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/3.png',
             ],
         ]);
 
