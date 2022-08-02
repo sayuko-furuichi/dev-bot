@@ -240,7 +240,7 @@ class LINEBotTiny
  
         curl_close($ch);
 
-        return $ch;
+        return  $json_response;
 
 
     }
