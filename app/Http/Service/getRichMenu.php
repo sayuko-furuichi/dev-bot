@@ -60,8 +60,8 @@ class getRichMenu
                   //A
                         'bounds'=> [
                             'x'=> 0,
-                            'y'=> 562,
-                            'width'=> 1250,
+                            'y'=> 560,
+                            'width'=> 1245,
                             'height'=> 562
                         ],
                         'action'=> [
@@ -70,9 +70,9 @@ class getRichMenu
                         ],
                      //B
                         'bounds'=> [
-                            'x'=>1250,
-                            'y'=> 562,
-                            'width'=> 1250,
+                            'x'=>1251,
+                            'y'=> 560,
+                            'width'=> 1245,
                             'height'=> 562
                         ],
                         'action'=> [
@@ -83,9 +83,9 @@ class getRichMenu
                       //C
                         'bounds'=> [
                             'x'=>0,
-                            'y'=> 1124,
-                            'width'=> 1250,
-                            'height'=> 562
+                            'y'=> 1125,
+                            'width'=> 1245,
+                            'height'=> 560
                         ],
                         'action'=> [
                             'type'=> 'uri',
@@ -94,10 +94,10 @@ class getRichMenu
                         
                         //D
                         'bounds'=> [
-                            'x'=>1250,
-                            'y'=> 1124,
-                            'width'=> 1250,
-                            'height'=> 562
+                            'x'=>1245,
+                            'y'=> 1120,
+                            'width'=> 1245,
+                            'height'=> 560
                         ],
                         'action'=> [
                             'type'=> 'message',
