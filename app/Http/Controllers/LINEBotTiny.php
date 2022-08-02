@@ -201,51 +201,29 @@ class LINEBotTiny
     {
        // $richmenuId="richmenu-b56771c2cf5b359b8c182d7de6f9e2c8";
 
-        // $header = array(
-        //     'Content-Type: image/png',
-        //     'Authorization: Bearer ' . $this->channelAccessToken,
-        // );
+        $header = array(
+            'Content-Type: image/png',
+            'Authorization: Bearer ' . $this->channelAccessToken,
+        );
 
-        // $context = stream_context_create([
-        //     'http' => [
-        //         'ignore_errors' => true,
-        //         'method' => 'POST',
-        //         'header' => implode("\r\n", $header),
-        //         'content' =>'https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/3.png',
-        //     ],
-        // ]);
+        $context = stream_context_create([
+            'http' => [
+                'ignore_errors' => true,
+                'method' => 'POST',
+                'header' => implode("\r\n", $header),
+                'content' =>'https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/3.png',
+            ],
+        ]);
 
-        // $response = file_get_contents('https://api-data.line.me/v2/bot/richmenu/richmenu-b56771c2cf5b359b8c182d7de6f9e2c8/content', false, $context);
-        // if (strpos($http_response_header[0], '200') === false) {
-        //     error_log('Request failed: ' . $response);
-        // }
+        $response = file_get_contents('https://api-data.line.me/v2/bot/richmenu/richmenu-b56771c2cf5b359b8c182d7de6f9e2c8/content', false, $context);
+        if (strpos($http_response_header[0], '200') === false) {
+            error_log('Request failed: ' . $response);
+        }
 
 
-        $api_url ='https://api-data.line.me/v2/bot/richmenu/richmenu-b56771c2cf5b359b8c182d7de6f9e2c8/content';
+        
 
-        //エンコードされたURLで通信する
-        $headers = [ 'Content-Type: image/png','Authorization: Bearer ' . $this->channelAccessToken];
-    
-        $curl_handle = curl_init();
-    
-        curl_setopt($curl_handle, CURLOPT_POST, true);
-        curl_setopt($curl_handle, CURLOPT_URL, $api_url);
-        curl_setopt($curl_handle, CURLOPT_POSTFIELDS, "https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/3.png");
-        curl_setopt($curl_handle, CURLOPT_HTTPHEADER, $headers);
-        // curl_exec()の結果を文字列にする
-        curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, true);
-            
-    
-        //実行
-        $json_response = curl_exec($curl_handle);
-    
-        //close
-        curl_close($curl_handle);
-    
-        //デコード
-        $imres = json_decode($json_response, true);
-
-        return $imres;
+        return $response;
     }
 
 
