@@ -127,8 +127,8 @@ class getRichMenu
                             'height'=> 560
                         ],
                         'action'=> [
-                            'type'=> 'url',
-                            'url'=> ''
+                            'type'=> 'message',
+                            'text'=> 'おｋ'
                         ],
                         ]),
 
@@ -171,27 +171,9 @@ class getRichMenu
 
     //Richmenuの画像をアップロード
 
-    public function testUploadRichMenuImage()
-    {
-        $mock = function ($testRunner, $httpMethod, $url, $data, $headers) {
-            /** @var \PHPUnit\Framework\TestCase $testRunner */
-            $testRunner->assertEquals('POST', $httpMethod);
-            $testRunner->assertEquals('https://api-data.line.me/v2/bot/richmenu/123/content', $url);
 
-            $testRunner->assertEquals(1, count($headers));
-            $testRunner->assertEquals('Content-Type: image/png', $headers[0]);
 
-            $testRunner->assertEquals('/path/to/image.png', $data['__file']);
-            $testRunner->assertEquals('image/png', $data['__type']);
-            return ['status' => 200];
-        };
-        $bot = new LINEBot(new DummyHttpClient($this, $mock), ['channelSecret' => 'CHANNEL-SECRET']);
-        $res = $bot->uploadRichMenuImage(123, '/path/to/image.png', 'image/png');
 
-        $this->assertEquals(200, $res->getHTTPStatus());
-        $this->assertTrue($res->isSucceeded());
-        $this->assertEquals(200, $res->getJSONDecodedBody()['status']);
-    }
 
     //エイリアス作成
     public function testCreateRichMenuAlias()
