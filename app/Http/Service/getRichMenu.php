@@ -57,7 +57,7 @@ class getRichMenu
                 'height'=>1600
             ],
             'selected'=> false,
-            'name'=> 'LINE Developers Info',
+            'name'=> 'DEV_LINE',
             'chatBarText'=> 'Tap to open',
             //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
             'areas'=> array([
