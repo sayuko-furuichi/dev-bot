@@ -53,26 +53,63 @@ class getRichMenu
                     'height'=>1600
                 ],
                 'selected'=> true,
-                'name'=> 'LINE Developers Info',
-                'chatBarText'=> 'Tap to open',
+                'name'=> 'alias menuA',
+                'chatBarText'=> 'alias menu',
                 //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
                 'areas'=> array([
-                  
+                  //A
                         'bounds'=> [
                             'x'=> 0,
-                            'y'=> 0,
-                            'width'=> 1200,
-                            'height'=> 750
+                            'y'=> 562,
+                            'width'=> 1250,
+                            'height'=> 562
                         ],
                         'action'=> [
                             'type'=> 'uri',
                             'uri'=> 'https://developers.line.biz/en/news/'
                         ],
+                     //B
                         'bounds'=> [
-                            'x'=>1200,
-                            'y'=> 1600,
-                            'width'=> 1200,
-                            'height'=> 750
+                            'x'=>1250,
+                            'y'=> 562,
+                            'width'=> 1250,
+                            'height'=> 562
+                        ],
+                        'action'=> [
+                            'type'=> 'uri',
+                            'uri'=> 'https://developers.line.biz/en/news/'
+                        ],
+                      
+                      //C
+                        'bounds'=> [
+                            'x'=>0,
+                            'y'=> 1124,
+                            'width'=> 1250,
+                            'height'=> 562
+                        ],
+                        'action'=> [
+                            'type'=> 'uri',
+                            'uri'=> 'https://developers.line.biz/en/news/'
+                        ],
+                        
+                        //D
+                        'bounds'=> [
+                            'x'=>1250,
+                            'y'=> 1124,
+                            'width'=> 1250,
+                            'height'=> 562
+                        ],
+                        'action'=> [
+                            'type'=> 'uri',
+                            'uri'=> 'https://developers.line.biz/en/news/'
+                        ],
+
+                        //E 切り替えアクション
+                        'bounds'=> [
+                            'x'=>1500,
+                            'y'=> 0,
+                            'width'=> 1000,
+                            'height'=> 562
                         ],
                         'action'=> [
                             'type'=> 'uri',
