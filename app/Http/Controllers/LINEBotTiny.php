@@ -249,9 +249,9 @@ class LINEBotTiny
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $this->channelSecret]);
 $imagePath = 'https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/3.png';
 $contentType = 'image/png';
-$response = $bot->uploadRichMenuImage($rid, $imagePath, $contentType);
+$res = $bot->uploadRichMenuImage($rid, $imagePath, $contentType);
 
-return $responce;
+return $res;
 
     }
 
