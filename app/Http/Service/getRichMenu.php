@@ -109,7 +109,7 @@ class getRichMenu
                             'x'=>1500,
                             'y'=> 0,
                             'width'=> 1000,
-                            'height'=> 562
+                            'height'=> 560
                         ],
                         'action'=> [
                             'type'=> 'richmenuswitch',
@@ -136,65 +136,7 @@ class getRichMenu
      * @return $menuId
      */
 
-    //!! 出来ないお(；ω；)　連想配列で渡して、encodeする書き方にしようかな。
-    public function createRichMenu():String
-    {
-        //testから引用
-        //     $bot = new LINEBot(new CurlHttpClient($this->channelAccessToken), ['channelSecret' => $this->channelSecret]);
-        //     $res = $bot->createRichMenu(
-        //         new RichMenuBuilder(
-        //             RichMenuSizeBuilder::getFull(),
-        //             true,
-        //             'Nice richmenu',
-        //             'Tap to open',
-        //             [
-        //                 new RichMenuAreaBuilder(
-        //                     new RichMenuAreaBoundsBuilder(0, 10, 1250, 1676),
-        //                     new MessageTemplateActionBuilder('message label', 'test message')
-        //                 ),
-        //                 new RichMenuAreaBuilder(
-        //                     new RichMenuAreaBoundsBuilder(1250, 0, 1240, 1686),
-        //                     new MessageTemplateActionBuilder('message label 2', 'test message 2')
-        //                 )
-        //             ]
-        //         )
-        //     );
-        $httpClient = new CurlHTTPClient($this->channelAccessToken);
-        $bot = new LINEBot($httpClient, ['channelSecret' => $this->channelSecret]);
-
-        //RichMenuBuilder() params
-        $sizeBuilder= RichMenuSizeBuilder::getFull();
-        $selected= true;
-        $name='Nice richmenu';
-        $chatBarText= 'Tap to open';
-
-        //RichMenuAreaBoundsBuilder() params
-        $x=0;
-        $y=10;
-        $width=1250;
-        $height=1676;
-
-        // MessageTemplateActionBuilder params
-        $label='message label';
-        $text='test message';
-        $areaBuilders= [new RichMenuAreaBuilder(
-
-            //RichMenuAreaBoundsBuilder() params =  $x, $y, $width, $height (boundsオブジェクト==タップ領域)
-            new RichMenuAreaBoundsBuilder($x, $y, $width, $height),
-            // MessageTemplateActionBuilder params = $label, $text (actionオブジェクト==タップされたときの挙動)
-            new MessageTemplateActionBuilder($label, $text)
-        )];
-        $richMenuBuilder = new RichMenuBuilder($sizeBuilder, $selected, $name, $chatBarText, $areaBuilders);
-        //LINEBot classの、createRichMenu($richMenuBuilder)　を呼ぶ。渡した後、ちゃんとbild()してるから個々ではbildしなくていい。
-        $res = $bot->createRichMenu($richMenuBuilder);
-
-        $dcdRes =jsondecode($res);
-
-        $menuId = $dcdRes['richMenuId'];
-
-        //use debug
-        return $menuId;
-    }
+  
 
     //デフォルトのrichメニューを設定
     public function testSetDefaultRichMenuId()
