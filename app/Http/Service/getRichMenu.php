@@ -84,15 +84,15 @@ class getRichMenu
                     ],
                       //E 切り替えアクション
                       'bounds'=> [
-                        'x'=>1666,
-                        'y'=> 200,
-                        'width'=> 833,
-                        'height'=> 1486
+                        'x'=>0,
+                        'y'=> 100,
+                        'width'=> 200,
+                        'height'=> 100
                     ],
                     'action'=> [
                         'type'=> 'richmenuswitch',
                         //切り替え先設定
-                        'richMenuAliasId'=> 'alias_1',
+                        'richMenuAliasId'=> 'alias_2',
                         'data'=> 'richmenu-changed-to-b'
                     ]
 
