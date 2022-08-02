@@ -57,7 +57,46 @@ class getRichMenu
                 'chatBarText'=> 'alias menu',
                 //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
                 'areas'=> array([
-  //E 切り替えアクション
+                        'bounds'=> [
+                            'x'=> 0,
+                            'y'=> 560,
+                            'width'=> 1245,
+                            'height'=> 562
+                        ],
+                        'action'=> [
+                            'type'=> 'url',
+                            'uri'=> 'https://liff.line.me/1657181787-2vrnwwlj'
+                        ],
+                        'bounds'=> [
+                            'x'=>1251,
+                            'y'=> 560,
+                            'width'=> 1245,
+                            'height'=> 562
+                        ],
+                        'action'=> [
+                            'type'=> 'uri',
+                            'uri'=> 'https://dev-ext-app.herokuapp.com/public/login'
+                        ],
+                        'bounds'=> [
+                            'x'=>0,
+                            'y'=> 1125,
+                            'width'=> 1245,
+                            'height'=> 560
+                        ],
+                        'action'=> [
+                            'type'=> 'uri',
+                            'uri'=> 'https://dev-ext-app.herokuapp.com/public/lp'
+                        ],
+                        'bounds'=> [
+                            'x'=>1245,
+                            'y'=> 1120,
+                            'width'=> 1245,
+                            'height'=> 560
+                        ],
+                        'action'=> [
+                            'type'=> 'message',
+                            'text'=> '限定メニュー'
+                        ],
                         'bounds'=> [
                             'x'=>1500,
                             'y'=> 0,
@@ -66,11 +105,9 @@ class getRichMenu
                         ],
                         'action'=> [
                             'type'=> 'richmenuswitch',
-                            //切り替え先設定
                             'richMenuAliasId'=> 'richmenu-alias-b',
                             'data'=> 'richmenu-changed-to-b'
                         ],
-                        //F 
                         'bounds'=>
                         [
                             'x'=>0,
@@ -82,9 +119,6 @@ class getRichMenu
                             'type'=> 'message',
                             'text'=> 'おｋ'
                         ],
-
-               
-                      
                         ]),
 
                     ]);
