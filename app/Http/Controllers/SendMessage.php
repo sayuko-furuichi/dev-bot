@@ -13,17 +13,15 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Service\getOrgMenuParam;
 use App\Http\Service\getRichMenu;
 
-
 class SendMessage extends Controller
 {
-
     //
 
     public function send($channelAccessToken, $channelSecret, $storeId)
     {
         $client = new LINEBotTiny($channelAccessToken, $channelSecret);
         foreach ($client->parseEvents() as $event) {
-    
+
             //ifで書き直しおｋ！
 
             //eventtypeがmessageで、messagetypeがtextの時起動
@@ -37,9 +35,9 @@ class SendMessage extends Controller
                     //ユーザID取得のために、event配列からsoureを代入
                     //　$us['userId']　でユーザIDを持ってこれる。
                     $us = $event['source'];
-    
+
                     $use=$us['userId'];
-    
+
 
                     $client->replyMessage([
             'replyToken' => $event['replyToken'],
@@ -59,25 +57,25 @@ class SendMessage extends Controller
                 } elseif ($message['text'] == 'create Rich Menu') {
                     //__construct　は、newした時に実行されるので、これが正解？
 
-                    $rmDetail = new getRichMenu($channelAccessToken, $channelSecret,$client);
+                    $rmDetail = new getRichMenu($channelAccessToken, $channelSecret, $client);
                     $res = $rmDetail->create();
 
-                    $imres=json_decode($res,true);
-                    
+                    $imres=json_decode($res, true);
 
-                    if($imres==false || $imres== null ||$imres== 'undefine' || !isset($imres['message']) ){
+
+                    if ($imres==false || $imres== null ||$imres== 'undefine' || !isset($imres['message'])) {
                         $flag='false';
-                    }else{
+                    } else {
                         $flag='true';
                     }
 
-                
-                    //$ss = new getRichMenu($channelAccessToken, $channelSecret);
-               
-                   
-                //    $mId = $ss->createRichMenu();
 
-          //      $imres['richMenuId']
+                    //$ss = new getRichMenu($channelAccessToken, $channelSecret);
+
+
+                    //    $mId = $ss->createRichMenu();
+
+                    //      $imres['richMenuId']
 
                     $client->replyMessage([
         'replyToken' => $event['replyToken'],
@@ -106,14 +104,14 @@ class SendMessage extends Controller
 
                     $uP= new getUserProf();
                     $uP->getProf($use, $client, $event);
-                  
-                    //richメニュー画像
+
+                //richメニュー画像
                 } elseif ($message['text'] == '画像') {
                     $param =new getOrgMenuParam();
                     $sId =$storeId;
                     $param ->getParam($sId, $client, $event);
 
-                 
+
                 //ここから
                 } elseif ($message['type']=='text') {
                     $client->replyMessage([
