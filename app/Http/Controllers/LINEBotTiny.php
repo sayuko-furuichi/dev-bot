@@ -197,7 +197,7 @@ class LINEBotTiny
 
 
     //rmImg
-    public function upRmImg($dcd)
+    public function upRmImg($rmId)
     {
 
         $header = array(
@@ -214,7 +214,7 @@ class LINEBotTiny
             ],
         ]);
 
-        $response = file_get_contents('https://api-data.line.me/v2/bot/richmenu/'. $dcd['richMenuId'] . '/content', false, $context);
+        $response = file_get_contents('https://api-data.line.me/v2/bot/richmenu/'. $rmId . '/content', false, $context);
         if (strpos($http_response_header[0], '200') === false) {
             error_log('Request failed: ' . $response);
         }
