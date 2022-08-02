@@ -206,16 +206,18 @@ class LINEBotTiny
             'Authorization: Bearer ' . $this->channelAccessToken,
         );
 
+        $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/3.png';
+
         $context = stream_context_create([
             'http' => [
                 'ignore_errors' => true,
                 'method' => 'POST',
                 'header' => implode("\r\n", $header),
-                'content' =>'https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/3.png',
+              //  'content' =>'https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/3.png',
             ],
         ]);
 
-        $response = file_get_contents('https://api-data.line.me/v2/bot/richmenu/richmenu-b56771c2cf5b359b8c182d7de6f9e2c8/content', false, $context);
+        $response = file_get_contents('https://api-data.line.me/v2/bot/richmenu/richmenu-b56771c2cf5b359b8c182d7de6f9e2c8/content', false, $context,$imgurl);
         if (strpos($http_response_header[0], '200') === false) {
             error_log('Request failed: ' . $response);
         }
