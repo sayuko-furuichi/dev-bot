@@ -199,44 +199,48 @@ class LINEBotTiny
     //rmImg
     public function upRmImg()
     {
+   
        // $richmenuId="richmenu-b56771c2cf5b359b8c182d7de6f9e2c8";
 
-        // $imgheader = array(
-        //     'Content-Type: image/png',
-        //     'Authorization: Bearer ' . $this->channelAccessToken,
-        // );
+        $imgheader = array(
+            'Content-Type: image/png',
+            'Authorization: Bearer ' . $this->channelAccessToken,
+        );
 
-        // $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/3.png';
+        $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/3.png';
 
-        // $imgcontext = stream_context_create([
-        //     'http' => [
-        //         'ignore_errors' => true,
-        //         'method' => 'POST',
-        //         'header' => implode("\r\n", $header),
-        //       //  'content' =>'https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/3.png',
-        //     ],
-        // ]);
+        $imgcontext = stream_context_create([
+            'http' => [
+                'ignore_errors' => true,
+                'method' => 'POST',
+                'header' => implode("\r\n", $header),
+              //  'content' =>'https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/3.png',
+            ],
+        ]);
 
-        // $imgresponse = file_get_contents('https://api-data.line.me/v2/bot/richmenu/richmenu-2dd1b020b8b48ca04b37494f8a81e4d3/content', false, $context,$imgurl);
-        // if (strpos($http_response_header[0], '200') === false) {
-        //     error_log('Request failed: ' . $imgresponse);
-        // }
+        $imgresponse = file_get_contents('https://api-data.line.me/v2/bot/richmenu/richmenu-2dd1b020b8b48ca04b37494f8a81e4d3/content', false, $imgcontext,$imgurl);
+        if (strpos($http_response_header[0], '200') === false) {
+            error_log('Request failed: ' . $imgresponse);
+        }
 
-        // return $imgresponse;
+        return $imgresponse;
 
-        $file = new \CURLFile('@/../storage/app/public/img/richmenu/3.png');
+
+
+
+        // $file = new \CURLFile('@/../storage/app/public/img/richmenu/3.png');
        
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'https://api-data.line.me/v2/bot/richmenu/richmenu-2dd1b020b8b48ca04b37494f8a81e4d3/content');
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, true);
-        $json_response= curl_exec($ch);
+        // $ch = curl_init();
+        // curl_setopt($ch, CURLOPT_URL, 'https://api-data.line.me/v2/bot/richmenu/richmenu-2dd1b020b8b48ca04b37494f8a81e4d3/content');
+        // curl_setopt($ch, CURLOPT_POST, 1);
+        // curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
+        // curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        // curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, true);
+        // $json_response= curl_exec($ch);
 
-        curl_close($ch);
+        // curl_close($ch);
 
-        return  $json_response;
+        // return  $json_response;
 
 
 
