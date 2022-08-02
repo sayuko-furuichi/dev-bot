@@ -92,7 +92,7 @@ class getRichMenu
                     'action'=> [
                         'type'=> 'richmenuswitch',
                         //切り替え先設定
-                        'richMenuAliasId'=> 'richmenu-alias2',
+                        'richMenuAliasId'=> 'alias_1',
                         'data'=> 'richmenu-changed-to-b'
                     ]
 
