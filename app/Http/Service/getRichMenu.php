@@ -57,6 +57,33 @@ class getRichMenu
                 'chatBarText'=> 'alias menu',
                 //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
                 'areas'=> array([
+
+  //E 切り替えアクション
+  'bounds'=> [
+    'x'=>1500,
+    'y'=> 0,
+    'width'=> 1000,
+    'height'=> 560
+],
+'action'=> [
+    'type'=> 'richmenuswitch',
+    //切り替え先設定
+    'richMenuAliasId'=> 'richmenu-alias-b',
+    'data'=> 'richmenu-changed-to-b'
+],
+//F 
+'bounds'=>
+[
+    'x'=>0,
+    'y'=> 0,
+    'width'=> 1245,
+    'height'=> 560
+],
+'action'=> [
+    'type'=> 'message',
+    'text'=> 'おｋ'
+],
+
                   //A
                         'bounds'=> [
                             'x'=> 0,
@@ -104,32 +131,7 @@ class getRichMenu
                             'text'=> '限定メニュー'
                         ],
 
-                        //E 切り替えアクション
-                        'bounds'=> [
-                            'x'=>1500,
-                            'y'=> 0,
-                            'width'=> 1000,
-                            'height'=> 560
-                        ],
-                        'action'=> [
-                            'type'=> 'richmenuswitch',
-                            //切り替え先設定
-                            'richMenuAliasId'=> 'richmenu-alias-b',
-                            'data'=> 'richmenu-changed-to-b'
-                        ],
-
-                        //F 
-                        'bounds'=>
-                        [
-                            'x'=>0,
-                            'y'=> 0,
-                            'width'=> 1245,
-                            'height'=> 560
-                        ],
-                        'action'=> [
-                            'type'=> 'message',
-                            'text'=> 'おｋ'
-                        ],
+                      
                         ]),
 
                     ]);
