@@ -59,9 +59,9 @@ class getRichMenu
                 'areas'=> array([
                         'bounds'=> [
                             'x'=> 0,
-                            'y'=> 560,
+                            'y'=> 561,
                             'width'=> 1245,
-                            'height'=> 562
+                            'height'=> 560
                         ],
                         'action'=> [
                             'type'=> 'url',
@@ -69,9 +69,9 @@ class getRichMenu
                         ],
                         'bounds'=> [
                             'x'=>1251,
-                            'y'=> 560,
+                            'y'=> 561,
                             'width'=> 1245,
-                            'height'=> 562
+                            'height'=> 560
                         ],
                         'action'=> [
                             'type'=> 'uri',
@@ -79,7 +79,7 @@ class getRichMenu
                         ],
                         'bounds'=> [
                             'x'=>0,
-                            'y'=> 1125,
+                            'y'=> 1126,
                             'width'=> 1245,
                             'height'=> 560
                         ],
@@ -89,7 +89,7 @@ class getRichMenu
                         ],
                         'bounds'=> [
                             'x'=>1245,
-                            'y'=> 1120,
+                            'y'=> 1126,
                             'width'=> 1245,
                             'height'=> 560
                         ],
@@ -112,7 +112,7 @@ class getRichMenu
                         [
                             'x'=>0,
                             'y'=> 0,
-                            'width'=> 1245,
+                            'width'=> 1000,
                             'height'=> 560
                         ],
                         'action'=> [
