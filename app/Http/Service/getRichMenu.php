@@ -54,9 +54,9 @@ class getRichMenu
 
 
         //デフォルト設定
-        $res= $this->client->defaultRm();
+        // $res= $this->client->defaultRm();
 
-        return $res;
+        // return $res;
 
 
         $res= $this->client->createAlias([
