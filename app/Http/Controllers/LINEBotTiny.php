@@ -213,7 +213,7 @@ class LINEBotTiny
             'http' => [
                 'ignore_errors' => true,
                 'method' => 'POST',
-                'header' => implode("\r\n", $header),
+                'header' => implode("\r\n", $imgheader),
                'content' => $imgurl,
             ],
         ]);
