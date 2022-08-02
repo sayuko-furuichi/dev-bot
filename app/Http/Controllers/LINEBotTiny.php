@@ -199,10 +199,10 @@ class LINEBotTiny
     //rmImg
     public function upRmImg()
     {
-        $richmenuId="richmenu-7f09955916775b1a82ade2117a1df0f9";
+        $richmenuId="richmenu-b56771c2cf5b359b8c182d7de6f9e2c8";
 
         $header = array(
-            'Content-Type: image/jpeg',
+            'Content-Type: image/png',
             'Authorization: Bearer ' . $this->channelAccessToken,
         );
 

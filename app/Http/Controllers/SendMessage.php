@@ -106,6 +106,12 @@ class SendMessage extends Controller
                     $uP= new getUserProf();
                     $uP->getProf($use, $client, $event);
                   
+                    //richメニュー画像
+                } elseif ($message['text'] == '画像') {
+                    $param =new getOrgMenuParam();
+                    $sId =$storeId;
+                    $param ->getParam($sId, $client, $event);
+
                  
                 //ここから
                 } elseif ($message['type']=='text') {
