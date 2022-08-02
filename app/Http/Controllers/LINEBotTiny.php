@@ -258,6 +258,58 @@ class LINEBotTiny
 
     }
 
+    public function defaultRm(){
+        //
+        $dfheader = array(
+            'Authorization: Bearer ' . $this->channelAccessToken,
+        );
+
+
+        $dfcontext = stream_context_create([
+            'http' => [
+                'ignore_errors' => true,
+                'method' => 'POST',
+                'header' => implode("\r\n", $dfheader),
+              // 'content' => $imgurl,
+            ],
+        ]);
+
+        $dfresponse = file_get_contents('https://api.line.me/v2/bot/user/all/richmenu/{richmenuID}', false, $dfcontext);
+        if (strpos($http_response_header[0], '200') === false) {
+            error_log('Request failed: ' . $dfresponse);
+        }
+
+        return $dfresponse;
+
+    }
+
+
+    public function createAlias(){
+        //
+
+        $imgheader = array(
+            'Content-Type: image/png',
+            'Authorization: Bearer ' . $this->channelAccessToken,
+        );
+
+        $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/2.png';
+
+        $imgcontext = stream_context_create([
+            'http' => [
+                'ignore_errors' => true,
+                'method' => 'POST',
+                'header' => implode("\r\n", $imgheader),
+               'content' => $imgurl,
+            ],
+        ]);
+
+        $imgresponse = file_get_contents('https://api-data.line.me/v2/bot/richmenu/richmenu-064525e33e871ebf24edb9d2910a1697/content', false, $imgcontext);
+        if (strpos($http_response_header[0], '200') === false) {
+            error_log('Request failed: ' . $imgresponse);
+        }
+
+        return $imgresponse;
+    }
 
 
 
