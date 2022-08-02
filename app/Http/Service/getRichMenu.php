@@ -46,62 +46,62 @@ class getRichMenu
     {
        // $response=$this->client->validateRm([
         //色んなサイズの物があったらいいかも。
-       $imres= $this->$client->upRmImg();
+    //    $imres= $this->$client->upRmImg();
 
-       return $imres;
-
-        // $res=$this->client->rtRichMenu([
+    //    return $imres;
        
-        //     'size'=>[
-        //         'width'=>2400,
-        //         'height'=>1600
-        //     ],
-        //     'selected'=> false,
-        //     'name'=> 'LINE Developers Info',
-        //     'chatBarText'=> 'Tap to open',
-        //     //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
-        //     'areas'=> array([
+        $res=$this->client->rtRichMenu([
+       
+            'size'=>[
+                'width'=>2400,
+                'height'=>1600
+            ],
+            'selected'=> false,
+            'name'=> 'LINE Developers Info',
+            'chatBarText'=> 'Tap to open',
+            //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
+            'areas'=> array([
               
-        //             'bounds'=> [
-        //                 'x'=> 1250,
-        //                 'y'=> 0,
-        //                 'width'=> 1250,
-        //                 'height'=> 200
-        //             ],
-        //             'action'=> [
-        //                 'type'=> 'uri',
-        //                 'uri'=> 'https://developers.line.biz/en/news/'
-        //             ],
-        //             'bounds'=> [
-        //                 'x'=>0,
-        //                 'y'=> 200,
-        //                 'width'=> 833,
-        //                 'height'=> 1486
-        //             ],
-        //             'action'=> [
-        //                 'type'=> 'uri',
-        //                 'uri'=> 'https://developers.line.biz/en/news/'
-        //             ],
-        //               //E 切り替えアクション
-        //               'bounds'=> [
-        //                 'x'=>1666,
-        //                 'y'=> 200,
-        //                 'width'=> 833,
-        //                 'height'=> 1486
-        //             ],
-        //             'action'=> [
-        //                 'type'=> 'richmenuswitch',
-        //                 //切り替え先設定
-        //                 'richMenuAliasId'=> 'richmenu-alias2',
-        //                 'data'=> 'richmenu-changed-to-b'
-        //             ]
+                    'bounds'=> [
+                        'x'=> 1250,
+                        'y'=> 0,
+                        'width'=> 1250,
+                        'height'=> 200
+                    ],
+                    'action'=> [
+                        'type'=> 'uri',
+                        'uri'=> 'https://developers.line.biz/en/news/'
+                    ],
+                    'bounds'=> [
+                        'x'=>0,
+                        'y'=> 200,
+                        'width'=> 833,
+                        'height'=> 1486
+                    ],
+                    'action'=> [
+                        'type'=> 'uri',
+                        'uri'=> 'https://developers.line.biz/en/news/'
+                    ],
+                      //E 切り替えアクション
+                      'bounds'=> [
+                        'x'=>1666,
+                        'y'=> 200,
+                        'width'=> 833,
+                        'height'=> 1486
+                    ],
+                    'action'=> [
+                        'type'=> 'richmenuswitch',
+                        //切り替え先設定
+                        'richMenuAliasId'=> 'richmenu-alias2',
+                        'data'=> 'richmenu-changed-to-b'
+                    ]
 
-        //             ]),
+                    ]),
 
-        //         ]);
+                ]);
 
                         
-        //    return $res;
+           return $res;
    
 
 

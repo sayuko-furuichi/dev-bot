@@ -222,9 +222,6 @@ class LINEBotTiny
             error_log('Request failed: ' . $response);
         }
 
-
-        
-
         return $response;
     }
 
