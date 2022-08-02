@@ -47,9 +47,9 @@ class getRichMenu
        // $response=$this->client->validateRm([
         //色んなサイズの物があったらいいかも。
     
-            $imres= $this->$client->upRmImg();
+            $res= $this->$client->upRmImg();
 
-        return $imres;
+        return $res;
        
         // $res=$this->client->rtRichMenu([
        
