@@ -77,6 +77,7 @@ class SendMessage extends Controller
                    
                 //    $mId = $ss->createRichMenu();
 
+          //      $imres['richMenuId']
 
                     $client->replyMessage([
         'replyToken' => $event['replyToken'],
@@ -88,7 +89,7 @@ class SendMessage extends Controller
 
             [
 'type' => 'text',
-'text' =>  $imres['richMenuId'] . ' is richmenuID'
+'text' => $flag . ' is richmenuID'
             ]
         ]
     ]);
