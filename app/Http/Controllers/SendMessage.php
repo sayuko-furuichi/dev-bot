@@ -63,7 +63,7 @@ class SendMessage extends Controller
                     $imres=json_decode($res, true);
 
 
-                    if ($imres[0] != ""|| $imres==false || $imres== null ||$imres== 'undefine' || isset($imres['message'])) {
+                    if ($imres==false || $imres== null ||$imres== 'undefine' || isset($imres['message'])) {
                         $flag='false';
                      
                     } elseif(!isset($imres['message']))  {
