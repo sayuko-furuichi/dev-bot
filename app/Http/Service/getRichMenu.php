@@ -59,8 +59,8 @@ class getRichMenu
                 'areas'=> array([
                         'bounds'=> [
                             'x'=> 0,
-                            'y'=> 561,
-                            'width'=> 1245,
+                            'y'=> 0,
+                            'width'=> 1200,
                             'height'=> 560
                         ],
                         'action'=> [
@@ -68,10 +68,10 @@ class getRichMenu
                             'uri'=> 'https://liff.line.me/1657181787-2vrnwwlj'
                         ],
                         'bounds'=> [
-                            'x'=>1251,
-                            'y'=> 561,
-                            'width'=> 1245,
-                            'height'=> 560
+                            'x'=>125,
+                            'y'=> 515,
+                            'width'=> 1244,
+                            'height'=> 585
                         ],
                         'action'=> [
                             'type'=> 'uri',
@@ -79,17 +79,17 @@ class getRichMenu
                         ],
                         'bounds'=> [
                             'x'=>0,
-                            'y'=> 1126,
-                            'width'=> 1245,
-                            'height'=> 560
+                            'y'=> 151,
+                            'width'=> 124,
+                            'height'=> 551
                         ],
                         'action'=> [
                             'type'=> 'uri',
                             'uri'=> 'https://dev-ext-app.herokuapp.com/public/lp'
                         ],
                         'bounds'=> [
-                            'x'=>1245,
-                            'y'=> 1126,
+                            'x'=>12,
+                            'y'=> 116,
                             'width'=> 1245,
                             'height'=> 560
                         ],
