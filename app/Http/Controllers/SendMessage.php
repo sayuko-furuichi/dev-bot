@@ -65,8 +65,10 @@ class SendMessage extends Controller
 
                     if ($imres==false || $imres== null ||$imres== 'undefine' || !isset($imres['message'])) {
                         $flag='false';
-                    } else {
+                        $imres=' false';
+                    } elseif(isset($imres['message']))  {
                         $flag='true';
+                    
                     }
 
 
@@ -87,7 +89,7 @@ class SendMessage extends Controller
 
             [
 'type' => 'text',
-'text' => $flag . ' is richmenuID'
+'text' => $flag . ' is richmenuID' . $imres['message']
             ]
         ]
     ]);
