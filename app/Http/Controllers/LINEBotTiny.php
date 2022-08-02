@@ -284,31 +284,29 @@ class LINEBotTiny
     }
 
 
-    public function createAlias(){
+    public function createAlias($param){
         //
 
-        $imgheader = array(
-            'Content-Type: image/png',
+        $header = array(
+            'Content-Type: application/json',
             'Authorization: Bearer ' . $this->channelAccessToken,
         );
 
-        $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/2.png';
-
-        $imgcontext = stream_context_create([
+        $context = stream_context_create([
             'http' => [
                 'ignore_errors' => true,
                 'method' => 'POST',
-                'header' => implode("\r\n", $imgheader),
-               'content' => $imgurl,
+                'header' => implode("\r\n", $header),
+               'content' => json_encode($param),
             ],
         ]);
 
-        $imgresponse = file_get_contents('https://api-data.line.me/v2/bot/richmenu/richmenu-064525e33e871ebf24edb9d2910a1697/content', false, $imgcontext);
+        $response = file_get_contents('https://api.line.me/v2/bot/richmenu/alias', false, $context);
         if (strpos($http_response_header[0], '200') === false) {
-            error_log('Request failed: ' . $imgresponse);
+            error_log('Request failed: ' . $response);
         }
 
-        return $imgresponse;
+        return $response;
     }
 
 

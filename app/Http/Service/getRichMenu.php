@@ -47,16 +47,31 @@ class getRichMenu
        // $response=$this->client->validateRm([
         //色んなサイズの物があったらいいかも。
     
+        //画像UP
         //     $res= $this->client->upRmImg();
 
         // return $res;
 
 
-        
+        //デフォルト設定
         $res= $this->client->defaultRm();
 
         return $res;
+
+
+        $res= $this->client->createAlias([
+
+            'richMenuAliasId'=> 'alias_1',
+            'richMenuId'=>'richmenu-2dd1b020b8b48ca04b37494f8a81e4d3'
+
+
+        ]);
+
+        return $res;
        
+
+//作成
+
         // $res=$this->client->rtRichMenu([
        
         //     'size'=>[
