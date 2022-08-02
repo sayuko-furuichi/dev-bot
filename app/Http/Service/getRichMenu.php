@@ -75,10 +75,8 @@ class getRichMenu
                         'height'=> 750
                     ],
                     'action'=> [
-                        'type'=> 'richmenuswitch',
-                        //切り替え先設定
-                        'richMenuAliasId'=> 'richmenu-alias1',
-                        'data'=> 'richmenu-changed-to-b'
+                        'type'=> 'uri',
+                        'uri'=> 'https://developers.line.biz/en/news/'
                     ]
                     ]),
 
