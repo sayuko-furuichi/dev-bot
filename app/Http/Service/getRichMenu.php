@@ -116,7 +116,20 @@ class getRichMenu
                             //切り替え先設定
                             'richMenuAliasId'=> 'richmenu-alias-b',
                             'data'=> 'richmenu-changed-to-b'
-                        ]
+                        ],
+
+                        //F 
+                        'bounds'=>
+                        [
+                            'x'=>0,
+                            'y'=> 0,
+                            'width'=> 1245,
+                            'height'=> 560
+                        ],
+                        'action'=> [
+                            'type'=> 'url',
+                            'url'=> ''
+                        ],
                         ]),
 
                     ]);
