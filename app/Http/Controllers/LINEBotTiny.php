@@ -219,6 +219,8 @@ class LINEBotTiny
         if (strpos($http_response_header[0], '200') === false) {
             error_log('Request failed: ' . $response);
         }
+
+        return $response;
     }
 
 
