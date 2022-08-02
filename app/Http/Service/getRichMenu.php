@@ -65,8 +65,8 @@ class getRichMenu
                             'height'=> 562
                         ],
                         'action'=> [
-                            'type'=> 'message',
-                            'uri'=> 'https://developers.line.biz/en/news/'
+                            'type'=> 'url',
+                            'uri'=> 'https://liff.line.me/1657181787-2vrnwwlj'
                         ],
                      //B
                         'bounds'=> [
@@ -77,7 +77,7 @@ class getRichMenu
                         ],
                         'action'=> [
                             'type'=> 'uri',
-                            'uri'=> 'https://developers.line.biz/en/news/'
+                            'uri'=> 'https://dev-ext-app.herokuapp.com/public/login'
                         ],
                       
                       //C
@@ -89,7 +89,7 @@ class getRichMenu
                         ],
                         'action'=> [
                             'type'=> 'uri',
-                            'uri'=> 'https://developers.line.biz/en/news/'
+                            'uri'=> 'https://dev-ext-app.herokuapp.com/public/lp'
                         ],
                         
                         //D
@@ -100,8 +100,8 @@ class getRichMenu
                             'height'=> 562
                         ],
                         'action'=> [
-                            'type'=> 'uri',
-                            'uri'=> 'https://developers.line.biz/en/news/'
+                            'type'=> 'message',
+                            'text'=> '限定メニュー'
                         ],
 
                         //E 切り替えアクション
@@ -112,8 +112,10 @@ class getRichMenu
                             'height'=> 562
                         ],
                         'action'=> [
-                            'type'=> 'uri',
-                            'uri'=> 'https://developers.line.biz/en/news/'
+                            'type'=> 'richmenuswitch',
+                            //切り替え先設定
+                            'richMenuAliasId'=> 'richmenu-alias-b',
+                            'data'=> 'richmenu-changed-to-b'
                         ]
                         ]),
 
