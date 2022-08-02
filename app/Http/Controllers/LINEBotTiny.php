@@ -197,8 +197,9 @@ class LINEBotTiny
 
 
     //rmImg
-    public function upRmImg($rmId)
+    public function upRmImg()
     {
+        $richmenuId="richmenu-7f09955916775b1a82ade2117a1df0f9";
 
         $header = array(
             'Content-Type: image/jpeg',
@@ -214,11 +215,10 @@ class LINEBotTiny
             ],
         ]);
 
-        $response = file_get_contents('https://api-data.line.me/v2/bot/richmenu/'. $rmId . '/content', false, $context);
+        $response = file_get_contents('https://api-data.line.me/v2/bot/richmenu/'. $richmenuId . '/content', false, $context);
         if (strpos($http_response_header[0], '200') === false) {
             error_log('Request failed: ' . $response);
         }
-        return $responce;
     }
 
 

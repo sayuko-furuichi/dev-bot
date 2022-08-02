@@ -3,7 +3,7 @@ namespace App\Http\Service;
 
 use LINE\LINEBot;
 use App\Http\Controllers\LINEBotTiny;
-
+use Illuminate\Http\Request;
 use LINE\LINEBot\Constant\ActionType;
 use LINE\LINEBot\RichMenuBuilder;
 use LINE\LINEBot\RichMenuBuilder\RichMenuSizeBuilder;
@@ -81,10 +81,6 @@ class getRichMenu
                     ]),
 
                 ]);
-                $dcd=json_decode($res,true);
-                $rmId= $dcd['richMenuId'];
-
-                $res=$this->client->upRmImg($rmId);
 
                         
            return $res;
