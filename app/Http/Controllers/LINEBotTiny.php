@@ -308,7 +308,7 @@ class LINEBotTiny
                 ],
             ]);
     
-            file_get_contents('https://api.line.me/v2/bot/user/all/richmenu', false, $dcontext);
+            file_get_contents('https://api.line.me/v2/bot/user/all/richmenu', false, $dfcontext);
 
             $dheader = array(
                 'Authorization: Bearer ' . $this->channelAccessToken,
