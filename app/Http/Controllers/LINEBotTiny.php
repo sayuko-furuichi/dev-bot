@@ -208,7 +208,7 @@ class LINEBotTiny
         $imgheader = array(
             'Content-Type: image/png',
             'Authorization: Bearer ' . $this->channelAccessToken,
-          //  "Content-Length: ".strlen($img),
+            "Content-Length: ".strlen($img),
         );
 
 
