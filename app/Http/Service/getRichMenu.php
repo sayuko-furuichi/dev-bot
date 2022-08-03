@@ -145,7 +145,35 @@ $res=$this->client->rtRichMenu([
                 'richMenuAliasId'=> 'richmenu-alias-b',
                 'data'=> 'richmenu-changed-to-b'
             ]
-            ]    ]
+            ],
+            [
+                //F 切り替えアクション
+                'bounds'=> [
+                    'x'=>0,
+                    'y'=> 0,
+                    'width'=> 1000,
+                    'height'=> 560
+                ],
+                'action'=> [
+                    'type'=> 'url',
+                    //切り替え先設定
+                    'url'=>'',
+                ]
+                ],
+                [
+                    // 0
+                    'bounds'=> [
+                        'x'=>1001,
+                        'y'=> 0,
+                        'width'=> 499,
+                        'height'=> 560
+                    ],
+                    'action'=> [
+                        'type'=> 'url',
+                        //切り替え先設定
+                        'url'=>'',
+                    ]
+                    ]    ]
 
         ]);
 
