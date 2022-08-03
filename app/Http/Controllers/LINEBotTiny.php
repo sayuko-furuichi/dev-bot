@@ -202,7 +202,7 @@ class LINEBotTiny
    
        // $richmenuId="richmenu-b56771c2cf5b359b8c182d7de6f9e2c8";
 
-       
+       //画像URL
         $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/2.png';
         $img = file_get_contents($imgurl);
         $imgheader = array(
