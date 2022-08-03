@@ -72,56 +72,80 @@ class getRichMenu
 $res=$this->client->rtRichMenu([
        
     'size'=>[
-        'width'=>2400,
-        'height'=>1600
+        'width'=>2500,
+        'height'=>1686
     ],
-    'selected'=> false,
-    'name'=> 'DEV_LINE',
-    'chatBarText'=> 'Tap to open',
- //   ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
+    'selected'=> true,
+    'name'=> 'alias menuA',
+    'chatBarText'=> 'alias menu',
+    //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
     'areas'=> [[
-      
+      //A
             'bounds'=> [
-                'x'=> 1250,
-                'y'=> 0,
+                'x'=> 0,
+                'y'=> 562,
                 'width'=> 1250,
-                'height'=> 200
+                'height'=> 562
             ],
             'action'=> [
-                'type'=> 'uri',
-                'uri'=> 'https://developers.line.biz/en/news/'
+                'type'=> 'url',
+                'uri'=> 'https://liff.line.me/1657181787-2vrnwwlj'
             ],
         ],
         [
-      
+         //B
+            'bounds'=> [
+                'x'=>1250,
+                'y'=> 562,
+                'width'=> 1250,
+                'height'=> 562
+            ],
+            'action'=> [
+                'type'=> 'uri',
+                'uri'=> 'https://dev-ext-app.herokuapp.com/public/login'
+            ],
+        ],
+        [ 
+          //C
             'bounds'=> [
                 'x'=>0,
-                'y'=> 200,
-                'width'=> 833,
-                'height'=> 1486
+                'y'=> 1124,
+                'width'=> 1250,
+                'height'=> 562
             ],
             'action'=> [
                 'type'=> 'uri',
-                'uri'=> 'https://developers.line.biz/en/news/'
+                'uri'=> 'https://dev-ext-app.herokuapp.com/public/lp'
+            ],
+        ],
+        [   
+            //D
+            'bounds'=> [
+                'x'=>1250,
+                'y'=> 1124,
+                'width'=> 1250,
+                'height'=> 562
+            ],
+            'action'=> [
+                'type'=> 'message',
+                'text'=> '限定メニュー'
             ],
         ],
         [
-    
-           //   E 切り替えアクション
-              'bounds'=> [
-                'x'=>0,
-                'y'=> 100,
-                'width'=> 200,
-                'height'=> 100
+            //E 切り替えアクション
+            'bounds'=> [
+                'x'=>1500,
+                'y'=> 0,
+                'width'=> 1000,
+                'height'=> 562
             ],
             'action'=> [
                 'type'=> 'richmenuswitch',
-             //   切り替え先設定
-                'richMenuAliasId'=> 'alias_0803',
+                //切り替え先設定
+                'richMenuAliasId'=> 'richmenu-alias-b',
                 'data'=> 'richmenu-changed-to-b'
             ]
-            
-            ] ],
+            ]    ],
 
         ]);
 
