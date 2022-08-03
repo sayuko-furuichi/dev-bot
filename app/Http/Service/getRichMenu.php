@@ -80,7 +80,7 @@ $res=$this->client->rtRichMenu([
         'height'=>1686
     ],
     'selected'=> true,
-    'name'=> 'demo_2_b',
+    'name'=> 'demo_2_a',
     'chatBarText'=> 'alias menu',
     //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
     'areas'=> [[
@@ -119,7 +119,7 @@ $res=$this->client->rtRichMenu([
         'action'=> [
             'type'=> 'richmenuswitch',
            // 切り替え[先]設定
-            'richMenuAliasId'=> 'demo_2_a',
+            'richMenuAliasId'=> 'demo_2_b',
             'data'=> 'richmenu-changed-to-b'
         ]
         ]
