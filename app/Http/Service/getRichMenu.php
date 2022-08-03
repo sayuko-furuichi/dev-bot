@@ -48,9 +48,9 @@ class getRichMenu
         //色んなサイズの物があったらいいかも。
     
         //画像UP
-             $res= $this->client->upRmImg();
+  //           $res= $this->client->upRmImg();
 
-         return $res;
+     //    return $res;
 
 
         //デフォルト設定
@@ -111,7 +111,7 @@ $res=$this->client->rtRichMenu([
             'action'=> [
                 'type'=> 'richmenuswitch',
              //   切り替え先設定
-                'richMenuAliasId'=> 'alias_dev',
+                'richMenuAliasId'=> 'alias_0803',
                 'data'=> 'richmenu-changed-to-b'
             ]
 
