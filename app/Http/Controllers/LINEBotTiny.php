@@ -207,7 +207,7 @@ class LINEBotTiny
             'Authorization: Bearer ' . $this->channelAccessToken,
         );
 
-        $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/3.png';
+        $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/2.png';
 
         $imgcontext = stream_context_create([
             'http' => [
@@ -218,7 +218,7 @@ class LINEBotTiny
             ],
         ]);
 
-        $imgresponse = file_get_contents('https://api-data.line.me/v2/bot/richmenu/richmenu-acc86e1b07bb019ba62e5f5e937e3c42/content', false, $imgcontext);
+        $imgresponse = file_get_contents('https://api-data.line.me/v2/bot/richmenu/richmenu-3314b59741163f1ee95266baeb8e955f/content', false, $imgcontext);
         if (strpos($http_response_header[0], '200') === false) {
             error_log('Request failed: ' . $imgresponse);
         }
