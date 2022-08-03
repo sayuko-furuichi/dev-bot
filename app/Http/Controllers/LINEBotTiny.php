@@ -214,7 +214,7 @@ class LINEBotTiny
                 'ignore_errors' => true,
                 'method' => 'POST',
                 'header' => implode("\r\n", $imgheader),
-               'content' => urlencode($imgurl)
+               'content' => implode("\r\n",urlencode($imgurl))
             ],
         ]);
 
