@@ -304,7 +304,7 @@ class LINEBotTiny
                 'ignore_errors' => true,
                 'method' => 'POST',
                 'header' => implode("\r\n", $alheader),
-               'content' => json_encode($param),
+               'content' => json_encode($param ,true),
             ],
         ]);
 
