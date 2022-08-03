@@ -79,8 +79,8 @@ $res=$this->client->rtRichMenu([
     'name'=> 'DEV_LINE',
     'chatBarText'=> 'Tap to open',
  //   ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
-    'areas'=> array([
-        array(
+    'areas'=> [[
+      
             'bounds'=> [
                 'x'=> 1250,
                 'y'=> 0,
@@ -91,9 +91,8 @@ $res=$this->client->rtRichMenu([
                 'type'=> 'uri',
                 'uri'=> 'https://developers.line.biz/en/news/'
             ],
-        ),
-        array(
-            
+       
+      
             'bounds'=> [
                 'x'=>0,
                 'y'=> 200,
@@ -104,8 +103,7 @@ $res=$this->client->rtRichMenu([
                 'type'=> 'uri',
                 'uri'=> 'https://developers.line.biz/en/news/'
             ],
-        ),
-        array(
+    
            //   E 切り替えアクション
               'bounds'=> [
                 'x'=>0,
@@ -119,8 +117,8 @@ $res=$this->client->rtRichMenu([
                 'richMenuAliasId'=> 'alias_0803',
                 'data'=> 'richmenu-changed-to-b'
             ]
-            )
-            ]),
+            
+            ] ],
 
         ]);
 
