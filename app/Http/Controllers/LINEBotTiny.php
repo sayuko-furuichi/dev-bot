@@ -308,7 +308,23 @@ class LINEBotTiny
                 ],
             ]);
     
-            file_get_contents('https://api.line.me/v2/bot/user/all/richmenu', false, $dfcontext);
+            file_get_contents('https://api.line.me/v2/bot/user/all/richmenu', false, $dcontext);
+
+            $dheader = array(
+                'Authorization: Bearer ' . $this->channelAccessToken,
+            );
+            $dcontext = stream_context_create([
+                'http' => [
+                    'ignore_errors' => true,
+                    'method' => 'DELETE',
+                    'header' => $dheader,
+                  // 'content' => $imgurl,
+                ],
+            ]);
+    
+            file_get_contents('https://api.line.me/v2/bot/user/Uffd4dd52c580e1d2bb7b0a66e0ef1951/richmenu', false, $dcontext);
+
+
             // if (strpos($http_response_header[0], '200') === false) {
             //     $dfresponse= 'Request failed';
             //   }else{
