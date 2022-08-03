@@ -323,8 +323,8 @@ class LINEBotTiny
         //
 
         $alheader = array(
-            'Content-Type: application/json',
             'Authorization: Bearer ' . $this->channelAccessToken,
+            'Content-Type: application/json',
         );
 
         $alcontext = stream_context_create([
@@ -332,7 +332,7 @@ class LINEBotTiny
                 'ignore_errors' => true,
                 'method' => 'POST',
                 'header' => implode("\r\n", $alheader),
-               'content' => json_encode($param ,true),
+               'content' => json_encode($param),
             ],
         ]);
 
