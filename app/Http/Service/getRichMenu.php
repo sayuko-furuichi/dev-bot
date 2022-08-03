@@ -48,9 +48,9 @@ class getRichMenu
         //色んなサイズの物があったらいいかも。
     
         //画像UP
-     //       $res= $this->client->upRmImg();
+            $res= $this->client->upRmImg();
 
-      //   return $res;
+         return $res;
 
 
         //デフォルト設定  効かない
@@ -72,7 +72,7 @@ class getRichMenu
 //作成
 
 
-
+/*
 $res=$this->client->rtRichMenu([
        
     'size'=>[
@@ -130,7 +130,7 @@ $res=$this->client->rtRichMenu([
 
                
    return $res;
-
+*/
    
 
 

@@ -203,7 +203,7 @@ class LINEBotTiny
        // $richmenuId="richmenu-b56771c2cf5b359b8c182d7de6f9e2c8";
 
        
-        $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/3.png';
+        $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/2.png';
         $img = file_get_contents($imgurl);
         $imgheader = array(
             'Content-Type: image/png',
@@ -221,7 +221,7 @@ class LINEBotTiny
             ],
         ]);
 
-        $imgresponse = file_get_contents('https://api-data.line.me/v2/bot/richmenu/richmenu-3314b59741163f1ee95266baeb8e955f/content', false, $imgcontext);
+        $imgresponse = file_get_contents('https://api-data.line.me/v2/bot/richmenu/richmenu-0b4dd4edf8700e9c07b626329d2b728b/content', false, $imgcontext);
            if (strpos($http_response_header[0], '200') === false) {
                $imgresponse= 'Request failed: ';
            }else{
