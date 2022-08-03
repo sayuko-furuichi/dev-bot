@@ -281,7 +281,7 @@ class LINEBotTiny
             ],
         ]);
 
-        $dfresponse = file_get_contents('https://api.line.me/v2/bot/user/all/richmenu/richmenu-bf8b3752d1e0bfe1038f9ac813021c4d', false, $dfcontext);
+        $dfresponse = file_get_contents('https://api.line.me/v2/bot/user/all/richmenu/richmenu-8c01133380fd14ed25ff56802ade17f7', false, $dfcontext);
         // if (strpos($http_response_header[0], '200') === false) {
         //     $dfresponse= 'Request failed';
         //   }else{
