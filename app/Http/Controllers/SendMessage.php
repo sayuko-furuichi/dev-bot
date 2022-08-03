@@ -60,7 +60,7 @@ class SendMessage extends Controller
                     $rmDetail = new getRichMenu($channelAccessToken, $channelSecret, $client);
                     $res = $rmDetail->create();
 
-                    $imres=json_decode($res, true);
+                //    $imres=json_decode($res, true);
 
                     if ($imres==false || $imres== null ||$imres== 'undefine' || isset($imres['message'])) {
                         $flag='false';
