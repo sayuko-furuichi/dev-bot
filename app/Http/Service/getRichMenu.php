@@ -83,7 +83,7 @@ $res=$this->client->rtRichMenu([
       //A
             'bounds'=> [
                 'x'=> 0,
-                'y'=> 562,
+                'y'=> 560,
                 'width'=> 1250,
                 'height'=> 562
             ],
@@ -95,9 +95,9 @@ $res=$this->client->rtRichMenu([
         [
          //B
             'bounds'=> [
-                'x'=>1250,
-                'y'=> 562,
-                'width'=> 1250,
+                'x'=>1251,
+                'y'=> 560,
+                'width'=> 1249,
                 'height'=> 562
             ],
             'action'=> [
@@ -121,9 +121,9 @@ $res=$this->client->rtRichMenu([
         [   
             //D
             'bounds'=> [
-                'x'=>1250,
+                'x'=>1251,
                 'y'=> 1124,
-                'width'=> 1250,
+                'width'=> 1249,
                 'height'=> 562
             ],
             'action'=> [
@@ -137,7 +137,7 @@ $res=$this->client->rtRichMenu([
                 'x'=>1500,
                 'y'=> 0,
                 'width'=> 1000,
-                'height'=> 562
+                'height'=> 559
             ],
             'action'=> [
                 'type'=> 'richmenuswitch',
