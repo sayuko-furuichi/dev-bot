@@ -65,7 +65,7 @@ class SendMessage extends Controller
                     if ($res==false || $res== null ||$res== 'undefine' || isset($res['message'])) {
                         $flag='false';
                      
-                    } elseif(!isset($res['message']))  {
+                    } elseif(!isset($imres['message']))  {
                         $flag='true';
                       //  $imres['message']='true';
                     
