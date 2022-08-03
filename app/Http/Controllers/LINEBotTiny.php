@@ -217,7 +217,7 @@ class LINEBotTiny
                 'ignore_errors' => true,
                 'method' => 'POST',
                 'header' => implode("\r\n", $imgheader),
-               'content' => implode("\r\n", $img)
+               'content' => $img,
             ],
         ]);
 
