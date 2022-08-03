@@ -54,20 +54,20 @@ class getRichMenu
 
 
         //デフォルト設定
-         $res= $this->client->defaultRm();
+  //       $res= $this->client->defaultRm();
 
-         return $res;
+    //     return $res;
 
-        /*
+        
 //エイリアス作成
         $res= $this->client->createAlias([
-            'richMenuAliasId'=> 'alias_2',
-            'richMenuId'=>'richmenu-064525e33e871ebf24edb9d2910a1697'
+            'richMenuAliasId'=> 'alias_dev',
+            'richMenuId'=>'richmenu-acc86e1b07bb019ba62e5f5e937e3c42'
         ]);
 
         return $res;
        
-*/
+
 //作成
 
 /*
