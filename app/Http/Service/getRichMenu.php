@@ -91,7 +91,8 @@ $res=$this->client->rtRichMenu([
                 'type'=> 'uri',
                 'uri'=> 'https://developers.line.biz/en/news/'
             ],
-       
+        ],
+        [
       
             'bounds'=> [
                 'x'=>0,
@@ -103,6 +104,8 @@ $res=$this->client->rtRichMenu([
                 'type'=> 'uri',
                 'uri'=> 'https://developers.line.biz/en/news/'
             ],
+        ],
+        [
     
            //   E 切り替えアクション
               'bounds'=> [
