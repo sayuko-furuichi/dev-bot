@@ -202,20 +202,22 @@ class LINEBotTiny
    
        // $richmenuId="richmenu-b56771c2cf5b359b8c182d7de6f9e2c8";
 
+       
+        $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/2.png';
+        $img=file_get_contents($imgurl);
         $imgheader = array(
             'Content-Type: image/png',
             'Authorization: Bearer ' . $this->channelAccessToken,
-            "Content-Length: ".strlen($imgurl),
+            "Content-Length: ".strlen($img),
         );
 
-        $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/2.png';
 
         $imgcontext = stream_context_create([
             'http' => [
                 'ignore_errors' => true,
                 'method' => 'POST',
                 'header' => implode("\r\n", $imgheader),
-               'content' => implode("\r\n",urlencode($imgurl))
+               'content' => $img
             ],
         ]);
 
