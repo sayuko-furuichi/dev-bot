@@ -221,7 +221,7 @@ class LINEBotTiny
             ],
         ]);
 
-        $imgresponse = file_get_contents('https://api-data.line.me/v2/bot/richmenu/richmenu-2dd1b020b8b48ca04b37494f8a81e4d3/content', false, $imgcontext);
+        $imgresponse = file_get_contents('https://api-data.line.me/v2/bot/richmenu/richmenu-acc86e1b07bb019ba62e5f5e937e3c42', false, $imgcontext);
           if (strpos($http_response_header[0], '200') === false) {
               $imgresponse= 'Request failed: ';
           }
