@@ -80,98 +80,48 @@ $res=$this->client->rtRichMenu([
     'chatBarText'=> 'alias menu',
     //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
     'areas'=> [[
-      //A
-            'bounds'=> [
-                'x'=> 0,
-                'y'=> 561,
-                'width'=> 1249,
-                'height'=> 561
-            ],
-            'action'=> [
-                'type'=> 'url',
-                'uri'=> 'https://liff.line.me/1657181787-2vrnwwlj'
+              
+        'bounds'=> [
+            'x'=> 1250,
+            'y'=> 0,
+            'width'=> 1250,
+            'height'=> 200
+        ],
+        'action'=> [
+            'type'=> 'uri',
+            'uri'=> 'https://developers.line.biz/en/news/'
+        ],
+    ],
+    [
+        'bounds'=> [
+            'x'=>0,
+            'y'=> 200,
+            'width'=> 833,
+            'height'=> 1486
+        ],
+        'action'=> [
+            'type'=> 'uri',
+            'uri'=> 'https://developers.line.biz/en/news/'
             ]
         ],
         [
-         //B
-            'bounds'=> [
-                'x'=>1250,
-                'y'=> 561,
-                'width'=> 1250,
-                'height'=> 561
-            ],
-            'action'=> [
-                'type'=> 'uri',
-                'uri'=> 'https://dev-ext-app.herokuapp.com/public/login'
-            ]
+       //   E 切り替えアクション
+          'bounds'=> [
+            'x'=>0,
+            'y'=> 100,
+            'width'=> 200,
+            'height'=> 100
         ],
-        [ 
-          //C
-            'bounds'=> [
-                'x'=>0,
-                'y'=> 1123,
-                'width'=> 1249,
-                'height'=> 563
-            ],
-            'action'=> [
-                'type'=> 'uri',
-                'uri'=> 'https://dev-ext-app.herokuapp.com/public/lp'
-            ]
-        ],
-        [   
-            //D
-            'bounds'=> [
-                'x'=>1250,
-                'y'=> 1123,
-                'width'=> 1250,
-                'height'=> 563
-            ],
-            'action'=> [
-                'type'=> 'message',
-                'text'=> '限定メニュー'
-            ]
-        ],
-        [
-            //E 切り替えアクション
-            'bounds'=> [
-                'x'=>1500,
-                'y'=> 560,
-                'width'=> 1000,
-                'height'=> 560
-            ],
-            'action'=> [
-                'type'=> 'richmenuswitch',
-                'richMenuAliasId'=> 'richmenu-alias-b',
-                'data'=> 'richmenu-changed-to-b'
-            ]
-            ],
-            [
-                //F 切り替えアクション
-                'bounds'=> [
-                    'x'=>0,
-                    'y'=> 560,
-                    'width'=> 1000,
-                    'height'=> 560
-                ],
-                'action'=> [
-                    'type'=> 'url',
-                    'url'=>'',
-                ]
-                ],
-                [
-                    // 0
-                    'bounds'=> [
-                        'x'=>1001,
-                        'y'=> 560,
-                        'width'=> 499,
-                        'height'=> 560
-                    ],
-                    'action'=> [
-                        'type'=> 'url',
-                        'url'=>'',
-                    ]
-                    ]    ]
+        'action'=> [
+            'type'=> 'richmenuswitch',
+           // 切り替え先設定
+            'richMenuAliasId'=> 'alias_dev2',
+            'data'=> 'richmenu-changed-to-b'
+        ]
+        ]
 
+
+        ],
         ]);
 
                
