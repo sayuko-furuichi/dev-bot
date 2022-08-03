@@ -90,7 +90,7 @@ $res=$this->client->rtRichMenu([
             'action'=> [
                 'type'=> 'url',
                 'uri'=> 'https://liff.line.me/1657181787-2vrnwwlj'
-            ],
+            ]
         ],
         [
          //B
@@ -103,7 +103,7 @@ $res=$this->client->rtRichMenu([
             'action'=> [
                 'type'=> 'uri',
                 'uri'=> 'https://dev-ext-app.herokuapp.com/public/login'
-            ],
+            ]
         ],
         [ 
           //C
@@ -116,7 +116,7 @@ $res=$this->client->rtRichMenu([
             'action'=> [
                 'type'=> 'uri',
                 'uri'=> 'https://dev-ext-app.herokuapp.com/public/lp'
-            ],
+            ]
         ],
         [   
             //D
@@ -129,7 +129,7 @@ $res=$this->client->rtRichMenu([
             'action'=> [
                 'type'=> 'message',
                 'text'=> '限定メニュー'
-            ],
+            ]
         ],
         [
             //E 切り替えアクション
@@ -145,7 +145,7 @@ $res=$this->client->rtRichMenu([
                 'richMenuAliasId'=> 'richmenu-alias-b',
                 'data'=> 'richmenu-changed-to-b'
             ]
-            ]    ],
+            ]    ]
 
         ]);
 
