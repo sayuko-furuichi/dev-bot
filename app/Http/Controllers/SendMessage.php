@@ -77,8 +77,8 @@ class SendMessage extends Controller
                     //    $mId = $ss->createRichMenu();
 
                     //      $imres['richMenuId']
-
-                    $client->replyMessage([
+foreach ($imres as $r) {
+    $client->replyMessage([
         'replyToken' => $event['replyToken'],
         'messages' => [
             [
@@ -88,10 +88,11 @@ class SendMessage extends Controller
 
             [
 'type' => 'text',
-'text' => $flag . ' is richmenuID'   . $res . $imres['message']
+'text' => $flag . ' is richmenuID'   . $res . $r
             ]
         ]
     ]);
+}
                 //限定メニューを要求されたとき
                 } elseif ($message['text'] == '限定メニュー') {
                     $param =new getOrgMenuParam();
