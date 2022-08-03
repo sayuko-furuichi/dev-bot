@@ -264,6 +264,8 @@ class LINEBotTiny
     }
 
     public function defaultRm(){
+
+        $this->dltDefaultRm();
         //
         $dfheader = array(
             'Authorization: Bearer ' . $this->channelAccessToken,
@@ -289,6 +291,32 @@ class LINEBotTiny
         return $dfresponse;
 
     }
+
+        //デフォルト解除
+
+        public function dltDefaultRm(){
+
+            $dfheader = array(
+                'Authorization: Bearer ' . $this->channelAccessToken,
+            );
+            $dfcontext = stream_context_create([
+                'http' => [
+                    'ignore_errors' => true,
+                    'method' => 'DELETE',
+                    'header' => $dfheader,
+                  // 'content' => $imgurl,
+                ],
+            ]);
+    
+            file_get_contents('https://api.line.me/v2/bot/user/all/richmenu', false, $dfcontext);
+            // if (strpos($http_response_header[0], '200') === false) {
+            //     $dfresponse= 'Request failed';
+            //   }else{
+            //     $dfresponse= 'OK';
+            //    }
+        }
+
+
 
 
     public function createAlias($param){
