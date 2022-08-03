@@ -52,7 +52,7 @@ Content-Type: application/json
 
 ###
 
-POST https://api-data.line.me/v2/bot/richmenu/richmenu-b56771c2cf5b359b8c182d7de6f9e2c8/content
+POST https://api-data.line.me/v2/bot/richmenu/richmenu-acc86e1b07bb019ba62e5f5e937e3c42/content
 Authorization: Bearer paq5m/NvcbF96Rk5UUJoQlbLAS7FD5LRYMqzEWM+Ov8q1mb87WZWSd53enK+feHdV+pHfh6o3in2KI/cY4tEWmCJ7VOCuBHBSNkveeGFULhHWdLswizYiafmhee9yRgATphoOA1ZUY5F53R6/S4VigdB04t89/1O/w1cDnyilFU=
 Content-Type: image/png
 
