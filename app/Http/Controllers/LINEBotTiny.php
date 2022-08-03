@@ -196,7 +196,7 @@ class LINEBotTiny
     }
 
 
-    //rmImg
+    //リッチメニューに画像添付
     public function upRmImg()
     {
    

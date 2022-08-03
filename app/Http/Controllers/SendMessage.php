@@ -62,7 +62,6 @@ class SendMessage extends Controller
 
                     $imres=json_decode($res, true);
 
-
                     if ($imres==false || $imres== null ||$imres== 'undefine' || isset($imres['message'])) {
                         $flag='false';
                      
@@ -71,7 +70,6 @@ class SendMessage extends Controller
                         $imres['message']='true';
                     
                     }
-
 
                     //$ss = new getRichMenu($channelAccessToken, $channelSecret);
 
