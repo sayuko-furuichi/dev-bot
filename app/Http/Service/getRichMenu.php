@@ -53,7 +53,7 @@ class getRichMenu
          return $res;
 
 
-        //デフォルト設定
+        //デフォルト設定  効かない
     //     $res= $this->client->defaultRm();
 
      //    return $res;
