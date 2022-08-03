@@ -205,6 +205,7 @@ class LINEBotTiny
         $imgheader = array(
             'Content-Type: image/png',
             'Authorization: Bearer ' . $this->channelAccessToken,
+            "Content-Length: ".strlen($imgurl),
         );
 
         $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/2.png';
