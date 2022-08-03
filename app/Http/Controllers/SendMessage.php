@@ -88,7 +88,7 @@ class SendMessage extends Controller
 
             [
 'type' => 'text',
-'text' => $flag . ' is richmenuID' //. $imres['message']
+'text' => $flag . ' is richmenuID'   . $res //. $imres['message']
             ]
         ]
     ]);
