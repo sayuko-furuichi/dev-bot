@@ -48,15 +48,15 @@ class getRichMenu
         //色んなサイズの物があったらいいかも。
     
         //画像UP
-             $res= $this->client->upRmImg();
+    //         $res= $this->client->upRmImg();
 
-         return $res;
+      //   return $res;
 
 
         //デフォルト設定
-      //   $res= $this->client->defaultRm();
+         $res= $this->client->defaultRm();
 
-       //  return $res;
+         return $res;
 
         
 //エイリアス作成
