@@ -141,7 +141,6 @@ $res=$this->client->rtRichMenu([
             ],
             'action'=> [
                 'type'=> 'richmenuswitch',
-                //切り替え先設定
                 'richMenuAliasId'=> 'richmenu-alias-b',
                 'data'=> 'richmenu-changed-to-b'
             ]
@@ -156,7 +155,6 @@ $res=$this->client->rtRichMenu([
                 ],
                 'action'=> [
                     'type'=> 'url',
-                    //切り替え先設定
                     'url'=>'',
                 ]
                 ],
@@ -170,7 +168,6 @@ $res=$this->client->rtRichMenu([
                     ],
                     'action'=> [
                         'type'=> 'url',
-                        //切り替え先設定
                         'url'=>'',
                     ]
                     ]    ]
