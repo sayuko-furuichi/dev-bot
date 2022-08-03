@@ -135,7 +135,7 @@ $res=$this->client->rtRichMenu([
             //E 切り替えアクション
             'bounds'=> [
                 'x'=>1500,
-                'y'=> 0,
+                'y'=> 560,
                 'width'=> 1000,
                 'height'=> 560
             ],
@@ -149,7 +149,7 @@ $res=$this->client->rtRichMenu([
                 //F 切り替えアクション
                 'bounds'=> [
                     'x'=>0,
-                    'y'=> 0,
+                    'y'=> 560,
                     'width'=> 1000,
                     'height'=> 560
                 ],
@@ -162,7 +162,7 @@ $res=$this->client->rtRichMenu([
                     // 0
                     'bounds'=> [
                         'x'=>1001,
-                        'y'=> 0,
+                        'y'=> 560,
                         'width'=> 499,
                         'height'=> 560
                     ],
