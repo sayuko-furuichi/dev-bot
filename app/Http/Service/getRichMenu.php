@@ -62,8 +62,8 @@ class getRichMenu
 //エイリアス作成
  
       $res= $this->client->createAlias([
-              'richMenuAliasId'=> 'demo_2_a',
-             'richMenuId'=>'richmenu-8c01133380fd14ed25ff56802ade17f7',
+              'richMenuAliasId'=> 'demo_2_b',
+             'richMenuId'=>'richmenu-1b685399fb923d3bc290504cc6d13f67',
             ]);
 
           return $res;
