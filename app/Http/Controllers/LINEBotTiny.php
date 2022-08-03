@@ -204,11 +204,11 @@ class LINEBotTiny
 
        
         $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/2.png';
-        $img=file_get_contents($imgurl);
+        $img = file_get_contents($imgurl);
         $imgheader = array(
             'Content-Type: image/png',
             'Authorization: Bearer ' . $this->channelAccessToken,
-            "Content-Length: ".strlen($img),
+          //  "Content-Length: ".strlen($img),
         );
 
 
