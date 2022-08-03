@@ -63,7 +63,7 @@ class getRichMenu
  
       $res= $this->client->createAlias([
               'richMenuAliasId'=> 'demo_1_a',
-             'richMenuId'=>'demo_1_a'
+             'richMenuId'=>'demo_1_a',
           ]);
 
           return $res;
