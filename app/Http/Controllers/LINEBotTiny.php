@@ -294,26 +294,26 @@ class LINEBotTiny
     public function createAlias($param){
         //
 
-        $header = array(
+        $alheader = array(
             'Content-Type: application/json',
             'Authorization: Bearer ' . $this->channelAccessToken,
         );
 
-        $context = stream_context_create([
+        $alcontext = stream_context_create([
             'http' => [
                 'ignore_errors' => true,
                 'method' => 'POST',
-                'header' => implode("\r\n", $header),
+                'header' => implode("\r\n", $alheader),
                'content' => json_encode($param),
             ],
         ]);
 
-        $response = file_get_contents('https://api.line.me/v2/bot/richmenu/alias', false, $context);
+        $alresponse = file_get_contents('https://api.line.me/v2/bot/richmenu/alias', false, $alcontext);
         if (strpos($http_response_header[0], '200') === false) {
-            $response= 'Request failed';
+            $alresponse= 'Request failed';
         }
 
-        return $response;
+        return $alresponse;
     }
 
 
