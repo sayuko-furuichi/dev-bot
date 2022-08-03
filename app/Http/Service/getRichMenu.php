@@ -61,17 +61,17 @@ class getRichMenu
         
 //エイリアス作成
  
-     $res= $this->client->createAlias([
-             'richMenuAliasId'=> 'alias_dev2',
-             'richMenuId'=>'richmenu-3314b59741163f1ee95266baeb8e955f'
-         ]);
+    //  $res= $this->client->createAlias([
+    //          'richMenuAliasId'=> 'alias_dev2',
+    //          'richMenuId'=>'richmenu-3314b59741163f1ee95266baeb8e955f'
+    //      ]);
 
-         return $res;
+    //      return $res;
        
 
 //作成
 
-/*
+
 
 $res=$this->client->rtRichMenu([
        
@@ -86,8 +86,8 @@ $res=$this->client->rtRichMenu([
     'areas'=> [[
               
         'bounds'=> [
-            'x'=> 1250,
-            'y'=> 0,
+            'x'=> 0,
+            'y'=> 501,
             'width'=> 1250,
             'height'=> 200
         ],
@@ -99,9 +99,9 @@ $res=$this->client->rtRichMenu([
     [
         'bounds'=> [
             'x'=>0,
-            'y'=> 200,
+            'y'=> 702,
             'width'=> 833,
-            'height'=> 1486
+            'height'=> 800
         ],
         'action'=> [
             'type'=> 'uri',
@@ -112,9 +112,9 @@ $res=$this->client->rtRichMenu([
        //   E 切り替えアクション
           'bounds'=> [
             'x'=>0,
-            'y'=> 100,
-            'width'=> 200,
-            'height'=> 100
+            'y'=> 0,
+            'width'=> 2500,
+            'height'=>500 
         ],
         'action'=> [
             'type'=> 'richmenuswitch',
@@ -130,7 +130,7 @@ $res=$this->client->rtRichMenu([
 
                
    return $res;
-*/
+
    
 
 
