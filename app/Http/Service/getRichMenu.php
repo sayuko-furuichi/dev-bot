@@ -54,9 +54,9 @@ class getRichMenu
 
 
         //デフォルト設定  ここが効かない！
-        $res= $this->client->defaultRm();
+   //     $res= $this->client->defaultRm();
 
-         return $res;
+      //   return $res;
 
         
 //エイリアス作成
@@ -72,7 +72,7 @@ class getRichMenu
 //作成
 
 
-/*
+
 $res=$this->client->rtRichMenu([
        
     'size'=>[
@@ -80,7 +80,7 @@ $res=$this->client->rtRichMenu([
         'height'=>1686
     ],
     'selected'=> true,
-    'name'=> 'demo_1_b',
+    'name'=> 'demo_2_b',
     'chatBarText'=> 'alias menu',
     //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
     'areas'=> [[
@@ -118,8 +118,8 @@ $res=$this->client->rtRichMenu([
         ],
         'action'=> [
             'type'=> 'richmenuswitch',
-           // 切り替え先設定
-            'richMenuAliasId'=> 'demo_1_b',
+           // 切り替え[先]設定
+            'richMenuAliasId'=> 'demo_2_a',
             'data'=> 'richmenu-changed-to-b'
         ]
         ]
@@ -130,7 +130,7 @@ $res=$this->client->rtRichMenu([
 
                
    return $res;
-*/
+
    
 
 
