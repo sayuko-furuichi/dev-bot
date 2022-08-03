@@ -165,7 +165,7 @@ class LINEBotTiny
 
         $rmresponse = file_get_contents('https://api.line.me/v2/bot/richmenu', false, $rmcontext);
         if (strpos($http_response_header[0], '200') === false) {
-            error_log('Request failed: ' . $rmresponse);
+            $rmresponse = 'false';
         }
         return $rmresponse;
 
@@ -197,7 +197,7 @@ class LINEBotTiny
 
 
     //リッチメニューに画像添付
-    public function upRmImg()
+    public function upRmImg($rmId)
     {
    
        // $richmenuId="richmenu-b56771c2cf5b359b8c182d7de6f9e2c8";
@@ -221,7 +221,7 @@ class LINEBotTiny
             ],
         ]);
 
-        $imgresponse = file_get_contents('https://api-data.line.me/v2/bot/richmenu/richmenu-1b685399fb923d3bc290504cc6d13f67/content', false, $imgcontext);
+        $imgresponse = file_get_contents("https://api-data.line.me/v2/bot/richmenu/$rmId/content", false, $imgcontext);
            if (strpos($http_response_header[0], '200') === false) {
                $imgresponse= 'Request failed: ';
            }else{
@@ -230,40 +230,9 @@ class LINEBotTiny
 
         return $imgresponse;
 
-
-
-
-        // $file = new \CURLFile('@/../storage/app/public/img/richmenu/3.png');
-       
-        // $ch = curl_init();
-        // curl_setopt($ch, CURLOPT_URL, 'https://api-data.line.me/v2/bot/richmenu/richmenu-2dd1b020b8b48ca04b37494f8a81e4d3/content');
-        // curl_setopt($ch, CURLOPT_POST, 1);
-        // curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
-        // curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        // curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, true);
-        // $json_response= curl_exec($ch);
-
-        // curl_close($ch);
-
-        // return  $json_response;
-
-
-
-
-//        $rid= 'richmenu-2dd1b020b8b48ca04b37494f8a81e4d3';
-
-
-//         $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($this->channelAccessToken);
-// $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $this->channelSecret]);
-// $imagePath = 'https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/3.png';
-// $contentType = 'image/png';
-// $res = $bot->uploadRichMenuImage($rid, $imagePath, $contentType);
-
-// return $res;
-
     }
 
-    public function defaultRm(){
+    public function defaultRm($rmId){
 
         $this->dltDefaultRm();
         //
@@ -281,7 +250,7 @@ class LINEBotTiny
             ],
         ]);
 
-        $dfresponse = file_get_contents('https://api.line.me/v2/bot/user/all/richmenu/richmenu-8c01133380fd14ed25ff56802ade17f7', false, $dfcontext);
+        $dfresponse = file_get_contents("https://api.line.me/v2/bot/user/all/richmenu/$rmId", false, $dfcontext);
         // if (strpos($http_response_header[0], '200') === false) {
         //     $dfresponse= 'Request failed';
         //   }else{

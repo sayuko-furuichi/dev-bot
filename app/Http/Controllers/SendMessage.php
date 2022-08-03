@@ -58,7 +58,7 @@ class SendMessage extends Controller
                     //__construct　は、newした時に実行されるので、これが正解？
 
                     $rmDetail = new getRichMenu($channelAccessToken, $channelSecret, $client);
-                    $res = $rmDetail->create();
+                    $res = $rmDetail->creater();
 
                  //   $imres=json_decode($res, true);
 

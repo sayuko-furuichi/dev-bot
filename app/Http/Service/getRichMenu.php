@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Service;
 
 use LINE\LINEBot;
@@ -17,8 +18,6 @@ use App\Models\UserProf;
 
 class getRichMenu
 {
-
-
     //chanell_access_token
     private $channelAccessToken;
     //chanell_secret
@@ -26,7 +25,7 @@ class getRichMenu
 
     //LINEBotTiny client
     private $client;
-    
+
     /**
      * Undocumented __construct
      *
@@ -42,49 +41,41 @@ class getRichMenu
         $this->client=$client;
     }
 
-    public function create()
+    public function creater()
     {
-       // $response=$this->client->validateRm([
-        //色んなサイズの物があったらいいかも。
-    
+        $res= $this->createRm();
+       $res= json_decode($res,true);
+       $rmId=$res['richMenuId'];
         //画像UP
-  //          $res= $this->client->upRmImg();
+        $res= $this->client->upRmImg($rmId);
+        $res= $this->client->defaultRm($rmId);
+        $res= $this->createAliasRm($rmId);
 
-    //    return $res;
+
+        return $res;
 
 
-        //デフォルト設定  ここが効かない！
-    //    $res= $this->client->defaultRm();
+        // $response=$this->client->validateRm([
+        //色んなサイズの物があったらいいかも。
+    }
+    
+    public function createRm()
+    {
+        //作成
 
-    //     return $res;
 
-        
-//エイリアス作成
- 
-      $res= $this->client->createAlias([
-              'richMenuAliasId'=> 'demo_2_b',
-             'richMenuId'=>'richmenu-1b685399fb923d3bc290504cc6d13f67',
-            ]);
+        $res=$this->client->rtRichMenu([
 
-          return $res;
-       
-
-//作成
-
-/*
-
-$res=$this->client->rtRichMenu([
-       
     'size'=>[
         'width'=>2500,
         'height'=>1686
     ],
     'selected'=> true,
-    'name'=> 'demo_2_a',
+    'name'=> 'demo_3',
     'chatBarText'=> 'alias menu',
     //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
     'areas'=> [[
-              
+
         'bounds'=> [
             'x'=> 0,
             'y'=> 501,
@@ -114,7 +105,7 @@ $res=$this->client->rtRichMenu([
             'x'=>0,
             'y'=> 0,
             'width'=> 2500,
-            'height'=>500 
+            'height'=>500
         ],
         'action'=> [
             'type'=> 'richmenuswitch',
@@ -128,67 +119,21 @@ $res=$this->client->rtRichMenu([
         ],
         ]);
 
-               
-   return $res;
-
-   */
-
-
-    }
-    
-
-
-    //Richメニュー作成
-    /**
-     * Undocumented function
-     *
-     * @return $menuId
-     */
-
-  
-
-    //デフォルトのrichメニューを設定
-    public function testSetDefaultRichMenuId()
-    {
-        $mock = function ($testRunner, $httpMethod, $url, $data) {
-            /** @var \PHPUnit\Framework\TestCase $testRunner */
-            $testRunner->assertEquals('POST', $httpMethod);
-            $testRunner->assertEquals('https://api.line.me/v2/bot/user/all/richmenu/123', $url);
-            $testRunner->assertEquals([], $data);
-            return ['status' => 200];
-        };
-        $bot = new LINEBot(new DummyHttpClient($this, $mock), ['channelSecret' => 'CHANNEL-SECRET']);
-        $res = $bot->setDefaultRichMenuId(123);
-
-        $this->assertEquals(200, $res->getHTTPStatus());
-        $this->assertTrue($res->isSucceeded());
-        $this->assertEquals(200, $res->getJSONDecodedBody()['status']);
+        return $res;
     }
 
-    //Richmenuの画像をアップロード
 
-
-
-
-
-    //エイリアス作成
-    public function testCreateRichMenuAlias()
+    public function createAliasRm($rmId)
     {
-        $mock = function ($testRunner, $httpMethod, $url, $data) {
-            /** @var \PHPUnit\Framework\TestCase $testRunner */
-            $testRunner->assertEquals('POST', $httpMethod);
-            $testRunner->assertEquals('https://api.line.me/v2/bot/richmenu/alias', $url);
-            $testRunner->assertEquals([
-                'richMenuAliasId' => 'richmenu-alias-a',
-                'richMenuId' => 'richmenu-862e6ad6c267d2ddf3f42bc78554f6a4'
-            ], $data);
 
-            return [];
-        };
-        $bot = new LINEBot(new DummyHttpClient($this, $mock), ['channelSecret' => 'CHANNEL-SECRET']);
-        $res = $bot->createRichMenuAlias('richmenu-alias-a', 'richmenu-862e6ad6c267d2ddf3f42bc78554f6a4');
 
-        $this->assertEquals(200, $res->getHTTPStatus());
-        $this->assertTrue($res->isSucceeded());
+        //エイリアス作成
+
+        $res= $this->client->createAlias([
+    'richMenuAliasId'=> 'demo_2_b',
+   'richMenuId'=>$rmId,
+  ]);
+
+        return $res;
     }
 }
