@@ -83,9 +83,9 @@ $res=$this->client->rtRichMenu([
       //A
             'bounds'=> [
                 'x'=> 0,
-                'y'=> 560,
-                'width'=> 1250,
-                'height'=> 562
+                'y'=> 561,
+                'width'=> 1249,
+                'height'=> 561
             ],
             'action'=> [
                 'type'=> 'url',
@@ -95,10 +95,10 @@ $res=$this->client->rtRichMenu([
         [
          //B
             'bounds'=> [
-                'x'=>1251,
-                'y'=> 560,
-                'width'=> 1249,
-                'height'=> 562
+                'x'=>1250,
+                'y'=> 561,
+                'width'=> 1250,
+                'height'=> 561
             ],
             'action'=> [
                 'type'=> 'uri',
@@ -109,9 +109,9 @@ $res=$this->client->rtRichMenu([
           //C
             'bounds'=> [
                 'x'=>0,
-                'y'=> 1124,
-                'width'=> 1250,
-                'height'=> 562
+                'y'=> 1123,
+                'width'=> 1249,
+                'height'=> 563
             ],
             'action'=> [
                 'type'=> 'uri',
@@ -121,10 +121,10 @@ $res=$this->client->rtRichMenu([
         [   
             //D
             'bounds'=> [
-                'x'=>1251,
-                'y'=> 1124,
-                'width'=> 1249,
-                'height'=> 562
+                'x'=>1250,
+                'y'=> 1123,
+                'width'=> 1250,
+                'height'=> 563
             ],
             'action'=> [
                 'type'=> 'message',
@@ -137,7 +137,7 @@ $res=$this->client->rtRichMenu([
                 'x'=>1500,
                 'y'=> 0,
                 'width'=> 1000,
-                'height'=> 559
+                'height'=> 560
             ],
             'action'=> [
                 'type'=> 'richmenuswitch',
