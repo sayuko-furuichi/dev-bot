@@ -220,7 +220,7 @@ class LINEBotTiny
 
         $imgresponse = file_get_contents('https://api-data.line.me/v2/bot/richmenu/richmenu-3314b59741163f1ee95266baeb8e955f/content', false, $imgcontext);
         if (strpos($http_response_header[0], '200') === false) {
-            error_log('Request failed: ' . $imgresponse);
+            $imgresponse= 'Request failed: ';
         }
 
         return $imgresponse;
