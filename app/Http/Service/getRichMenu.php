@@ -171,23 +171,20 @@ class getRichMenu
              ]
              ],
              [
-                //   t-1 切り替えアクション
+                //   t-2 切り替えアクション
                    'bounds'=> [
-                     'x'=>0,
+                     'x'=>1570,
                      'y'=> 0,
-                     'width'=> 974,
-                     'height'=>170
+                     'width'=> 937,
+                     'height'=>152
                  ],
                  'action'=> [
                      'type'=> 'richmenuswitch',
                     // 切り替え[先]設定
-                     'richMenuAliasId'=> $this->rmNmB,
-                     'data'=> 'richmenu-changed-to-b'
+                     'richMenuAliasId'=> $this->rmNmA,
+                     'data'=> 'richmenu-changed-to-a'
                  ]
                  ]
-
-
-
 
     ],
     ]);
@@ -278,21 +275,22 @@ class getRichMenu
                              'text'=> '普請中',
                          ]
                          ],
-                         [
-                            //   t-2 切り替えアクション
-                               'bounds'=> [
-                                 'x'=>1570,
-                                 'y'=> 0,
-                                 'width'=> 937,
-                                 'height'=>152
-                             ],
-                             'action'=> [
-                                 'type'=> 'richmenuswitch',
-                                // 切り替え[先]設定
-                                 'richMenuAliasId'=> $this->rmNmA,
-                                 'data'=> 'richmenu-changed-to-a'
-                             ]
-                             ]
+              
+                             [
+                                //   t-1 切り替えアクション
+                                   'bounds'=> [
+                                     'x'=>0,
+                                     'y'=> 0,
+                                     'width'=> 974,
+                                     'height'=>170
+                                 ],
+                                 'action'=> [
+                                     'type'=> 'richmenuswitch',
+                                    // 切り替え[先]設定
+                                     'richMenuAliasId'=> $this->rmNmB,
+                                     'data'=> 'richmenu-changed-to-b'
+                                 ]
+                                 ]
 
                 ],
                 ]);
