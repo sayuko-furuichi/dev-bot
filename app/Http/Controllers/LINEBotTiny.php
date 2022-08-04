@@ -306,14 +306,13 @@ class LINEBotTiny
                 // curl_exec()の結果を文字列にする
         curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, true);
         //実行
-        $json_response = curl_exec($curl_handle);
+        $res = curl_exec($curl_handle);
 
         //close
         curl_close($curl_handle);
 
         //デコード
-        $res = json_decode($json_response, true);
-
+      //  $res = json_decode($json_response, true);
         return $res;
 
     }
