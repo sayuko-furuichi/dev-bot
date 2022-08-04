@@ -279,8 +279,7 @@ class LINEBotTiny
             'http' => [
                 'ignore_errors' => true,
                 'method' => 'POST',
-                'header' => $dfheader ."\r\n",
-               'content' => '',
+                'header' => $dfheader,
             ],
         ]);
 
