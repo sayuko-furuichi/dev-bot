@@ -43,13 +43,14 @@ class getRichMenu
 
     public function creater()
     {
-        $res= $this->createRm();
-    //    $res= json_decode($res,true);
-    //    $rmId=$res['richMenuId'];
-    //     //画像UP
-    //     $res= $this->client->upRmImg($rmId);
-    //     $res= $this->client->defaultRm($rmId);
-    //     $res= $this->createAliasRm($rmId);
+        $res= $this->createRmA();
+        $res= $this->createRmB();
+        //    $res= json_decode($res,true);
+        //    $rmId=$res['richMenuId'];
+        //     //画像UP
+        //     $res= $this->client->upRmImg($rmId);
+        //     $res= $this->client->defaultRm($rmId);
+        //     $res= $this->createAliasRm($rmId);
 
 
         return $res;
@@ -58,8 +59,8 @@ class getRichMenu
         // $response=$this->client->validateRm([
         //色んなサイズの物があったらいいかも。
     }
-    
-    public function createRm()
+
+    public function createRmA()
     {
         //作成
 
@@ -67,8 +68,8 @@ class getRichMenu
         $res=$this->client->rtRichMenu([
 
     'size'=>[
-        'width'=>2500,
-        'height'=>1686
+    'width'=>2500,
+    'height'=>1686
     ],
     'selected'=> true,
     'name'=> 'demo_5_a',
@@ -76,99 +77,102 @@ class getRichMenu
     //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
     'areas'=> [[
 
-        //A 
-        'bounds'=> [
-            'x'=> 13,
-            'y'=> 223,
-            'width'=> 1227,
-            'height'=> 478
-        ],
-        'action'=> [
-            'type'=> 'uri',
-            //ext_app
-            'uri'=> 'https://dev-ext-app.herokuapp.com/public/login'
-        ],
+    //A
+    'bounds'=> [
+        'x'=> 13,
+        'y'=> 223,
+        'width'=> 1227,
+        'height'=> 478
+    ],
+    'action'=> [
+        'type'=> 'uri',
+        //ext_app
+        'uri'=> 'https://dev-ext-app.herokuapp.com/public/login'
+    ],
     ],
     // B
     [
-        'bounds'=> [
-            'x'=>1300,
-            'y'=> 246,
-            'width'=> 1158,
-            'height'=> 437
-        ],
-        'action'=> [
-            'type'=> 'uri',
-            //LIFF
-            'uri'=> 'https://liff.line.me/1657181787-2vrnwwlj'
-            ]
-        ],
-
-        [
-       //  C
-          'bounds'=> [
-            'x'=>32,
-            'y'=> 175,
-             'width'=> 1176,
-            'height'=>441
-        ],
-        'action'=> [
-            'type'=> 'message',
-           // 切り替え[先]設定
-           'text'=>'限定メニュー'
+    'bounds'=> [
+        'x'=>1300,
+        'y'=> 246,
+        'width'=> 1158,
+        'height'=> 437
+    ],
+    'action'=> [
+        'type'=> 'uri',
+        //LIFF
+        'uri'=> 'https://liff.line.me/1657181787-2vrnwwlj'
         ]
-        ],
-        [
-            //   D 
+    ],
+
+    [
+       //  C
+      'bounds'=> [
+        'x'=>32,
+        'y'=> 175,
+         'width'=> 1176,
+        'height'=>441
+    ],
+    'action'=> [
+        'type'=> 'message',
+       // 切り替え[先]設定
+       'text'=>'限定メニュー'
+    ]
+    ],
+    [
+        //   D
+           'bounds'=> [
+             'x'=>1300,
+             'y'=> 756,
+             'width'=> 1176,
+             'height'=>441
+         ],
+         'action'=> [
+            'type'=> 'message',
+            'text'=> '普請中',
+        ]
+         ],
+
+         [
+            //   E
                'bounds'=> [
-                 'x'=>1300,
-                 'y'=> 756,
-                 'width'=> 1176,
-                 'height'=>441
+                 'x'=>82,
+                 'y'=> 1276,
+                 'width'=> 1108,
+                 'height'=>386
              ],
              'action'=> [
-                'type'=> 'message',
-                'text'=> '普請中',
-            ]
+                 'type'=> 'message',
+                 'text'=> '普請中',
+             ]
              ],
-
              [
-                //   E 
+                //   t-1 切り替えアクション
                    'bounds'=> [
-                     'x'=>82,
-                     'y'=> 1276,
-                     'width'=> 1108,
-                     'height'=>386
+                     'x'=>0,
+                     'y'=> 0,
+                     'width'=> 974,
+                     'height'=>170
                  ],
                  'action'=> [
-                     'type'=> 'message',
-                     'text'=> '普請中',
+                     'type'=> 'richmenuswitch',
+                    // 切り替え[先]設定
+                     'richMenuAliasId'=> 'demo_5_b',
+                     'data'=> 'richmenu-changed-to-b'
                  ]
-                 ],
-                 [
-                    //   t-1 切り替えアクション
-                       'bounds'=> [
-                         'x'=>0,
-                         'y'=> 0,
-                         'width'=> 974,
-                         'height'=>170
-                     ],
-                     'action'=> [
-                         'type'=> 'richmenuswitch',
-                        // 切り替え[先]設定
-                         'richMenuAliasId'=> 'demo_5_b',
-                         'data'=> 'richmenu-changed-to-b'
-                     ]
-                     ]
-         
-     
+                 ]
 
 
-        ],
-        ]);
+
+
+    ],
+    ]);
 
         return $res;
+    }
 
+    public function createRmB()
+    {
         $res=$this->client->rtRichMenu([
 
             'size'=>[
@@ -180,8 +184,8 @@ class getRichMenu
             'chatBarText'=> 'リッチメニュー2',
             //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
             'areas'=> [[
-        
-                //A 
+
+                //A
                 'bounds'=> [
                     'x'=> 13,
                     'y'=> 223,
@@ -208,7 +212,7 @@ class getRichMenu
                     'uri'=> 'https://liff.line.me/1657181787-2vrnwwlj'
                     ]
                 ],
-        
+
                 [
                //  C
                   'bounds'=> [
@@ -224,7 +228,7 @@ class getRichMenu
                 ]
                 ],
                 [
-                    //   D 
+                    //   D
                        'bounds'=> [
                          'x'=>1300,
                          'y'=> 756,
@@ -236,9 +240,9 @@ class getRichMenu
                         'text'=> '普請中',
                     ]
                      ],
-        
+
                      [
-                        //   E 
+                        //   E
                            'bounds'=> [
                              'x'=>82,
                              'y'=> 1276,
@@ -265,11 +269,10 @@ class getRichMenu
                                  'data'=> 'richmenu-changed-to-a'
                              ]
                              ]
-        
+
                 ],
                 ]);
-                return $res;
-       
+        return $res;
     }
 
 
