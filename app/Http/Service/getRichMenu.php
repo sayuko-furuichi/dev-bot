@@ -30,6 +30,9 @@ class getRichMenu
     private $rmIdA;
     private $rmIdB;
 
+    private $rmNmA;
+    private $rmNmB;
+
     /**
      * Undocumented __construct
      *
@@ -43,8 +46,9 @@ class getRichMenu
         $this->channelAccessToken= $channelAccessToken;
         $this->channelSecret= $channelSecret;
         $this->client=$client;
-        // $this->rmIdA='';
-        // $this->rmIdB='';
+        
+         $this->rmNmA=date('Y-m-d') . '_a';
+         $this->rmNmB=date('Y-m-d') . '_b';
     }
 
     public function creater()
@@ -52,6 +56,7 @@ class getRichMenu
     
     //TODO:各フィードバッグ後の、trueなら続行、falseなら中断の分岐(trycatchでもいいかも？)
        
+
         //create rich menu A
         $res= $this->createRmA();
         $rs= json_decode($res,true);
@@ -68,8 +73,8 @@ class getRichMenu
              $res= $this->client->upRmImgB($this->rmIdB);
 
            $res= $this->client->defaultRm($this->rmIdA);
-        //     $res= $this->createAliasRm($this->rmIdA);
-         //     $res= $this->createAliasRm($this->rmIdB);
+             $res= $this->createAliasRm($this->rmIdA);
+             $res= $this->createAliasRm($this->rmIdB);
 
 
         return $res;
@@ -81,8 +86,9 @@ class getRichMenu
 
     public function createRmA()
     {
+        
+        
         //作成
-
 
         $res=$this->client->rtRichMenu([
 
@@ -91,7 +97,7 @@ class getRichMenu
     'height'=>1686
     ],
     'selected'=> false,
-    'name'=> 'demo_5_a',
+    'name'=> $this->rmNmA,
     'chatBarText'=> 'リッチメニュー1',
     //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
     'areas'=> [[
@@ -176,7 +182,7 @@ class getRichMenu
                  'action'=> [
                      'type'=> 'richmenuswitch',
                     // 切り替え[先]設定
-                     'richMenuAliasId'=> 'demo_5_b',
+                     'richMenuAliasId'=> $this->rmNmB,
                      'data'=> 'richmenu-changed-to-b'
                  ]
                  ]
@@ -199,7 +205,7 @@ class getRichMenu
                 'height'=>1686
             ],
             'selected'=> false,
-            'name'=> 'demo_5_b',
+            'name'=> $this->rmNmB,
             'chatBarText'=> 'リッチメニュー2',
             //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
             'areas'=> [[
@@ -251,8 +257,8 @@ class getRichMenu
                        'bounds'=> [
                          'x'=>1300,
                          'y'=> 756,
-                         'width'=> 1176,
-                         'height'=>441
+                         'width'=> 1144,
+                         'height'=>892
                      ],
                      'action'=> [
                         'type'=> 'message',
@@ -284,7 +290,7 @@ class getRichMenu
                              'action'=> [
                                  'type'=> 'richmenuswitch',
                                 // 切り替え[先]設定
-                                 'richMenuAliasId'=> 'demo_5_a',
+                                 'richMenuAliasId'=> $this->rmNmA,
                                  'data'=> 'richmenu-changed-to-a'
                              ]
                              ]
@@ -302,7 +308,7 @@ class getRichMenu
         //エイリアス作成
 
         $res= $this->client->createAlias([
-    'richMenuAliasId'=> 'demo_2_b',
+    'richMenuAliasId'=>$this->rmNmA,
    'richMenuId'=>$this->rmIdA,
   ]);
 
@@ -314,7 +320,7 @@ class getRichMenu
         //エイリアス作成
 
         $res= $this->client->createAlias([
-    'richMenuAliasId'=> 'demo_2_b',
+    'richMenuAliasId'=> $this->rmNmB,
    'richMenuId'=>$this->rmIdB,
   ]);
 
