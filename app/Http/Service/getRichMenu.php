@@ -53,37 +53,37 @@ class getRichMenu
 
     public function creater()
     {
-    
-    //TODO:各フィードバッグ後の、trueなら続行、falseなら中断の分岐(trycatchでもいいかも？)
 
-    $str= date('Y-m-d H-i-s');
+        //TODO:各フィードバッグ後の、trueなら続行、falseなら中断の分岐(trycatchでもいいかも？)
 
-    $this->rmAlIdA='Al_'. $str . '_a';
-    $this->rmAlIdB='Al_'. $str . '_b';
+        $str= date('Y-m-d H-i-s');
 
-    $str=date('Y-m-d');
+        $this->rmAlIdA='Al_'. $str . '_a';
+        $this->rmAlIdB='Al_'. $str . '_b';
 
-    $this->rmNmA=$str . '_a';
-    $this->rmNmB=$str . '_b';
-       
+        $str=date('Y-m-d');
+
+        $this->rmNmA=$str . '_a';
+        $this->rmNmB=$str . '_b';
+
         //create rich menu A
         $res= $this->createRmA();
-        $rs= json_decode($res,true);
+        $rs= json_decode($res, true);
         $this->rmIdA=$rs['richMenuId'];
-       
+
         //create rich menu B
         $res= $this->createRmB();
-        $rs= json_decode($res,true);
+        $rs= json_decode($res, true);
         $this->rmIdB=$rs['richMenuId'];
-       
 
-           //画像UP
-             $res= $this->client->upRmImgA($this->rmIdA);
-             $res= $this->client->upRmImgB($this->rmIdB);
 
-           $res= $this->client->defaultRm($this->rmIdA);
-             $res= $this->createAliasRmA($this->rmIdA);
-             $res= $this->createAliasRmB($this->rmIdB);
+        //画像UP
+        $res= $this->client->upRmImgA($this->rmIdA);
+        $res= $this->client->upRmImgB($this->rmIdB);
+
+        $res= $this->client->defaultRm($this->rmIdA);
+        $res= $this->createAliasRmA($this->rmIdA);
+        $res= $this->createAliasRmB($this->rmIdB);
 
 
         return $res;
@@ -95,8 +95,8 @@ class getRichMenu
 
     public function createRmA()
     {
-        
-        
+
+
         //作成
 
         $res=$this->client->rtRichMenu([
@@ -285,7 +285,7 @@ class getRichMenu
                              'text'=> '普請中',
                          ]
                          ],
-              
+
                              [
                                 //   t-1 切り替えアクション
                                    'bounds'=> [
