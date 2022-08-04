@@ -71,7 +71,7 @@ class getRichMenu
         'height'=>1686
     ],
     'selected'=> true,
-    'name'=> 'demo_4_a',
+    'name'=> 'demo_5_a',
     'chatBarText'=> 'リッチメニュー1',
     //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
     'areas'=> [[
@@ -156,7 +156,7 @@ class getRichMenu
                      'action'=> [
                          'type'=> 'richmenuswitch',
                         // 切り替え[先]設定
-                         'richMenuAliasId'=> 'demo_4_b',
+                         'richMenuAliasId'=> 'demo_5_b',
                          'data'=> 'richmenu-changed-to-b'
                      ]
                      ]
@@ -168,6 +168,108 @@ class getRichMenu
         ]);
 
         return $res;
+
+        $res=$this->client->rtRichMenu([
+
+            'size'=>[
+                'width'=>2500,
+                'height'=>1686
+            ],
+            'selected'=> true,
+            'name'=> 'demo_5_b',
+            'chatBarText'=> 'リッチメニュー2',
+            //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
+            'areas'=> [[
+        
+                //A 
+                'bounds'=> [
+                    'x'=> 13,
+                    'y'=> 223,
+                    'width'=> 1227,
+                    'height'=> 478
+                ],
+                'action'=> [
+                    'type'=> 'uri',
+                    //ext_app
+                    'uri'=> 'https://dev-ext-app.herokuapp.com/public/login'
+                ],
+            ],
+            // B
+            [
+                'bounds'=> [
+                    'x'=>1300,
+                    'y'=> 246,
+                    'width'=> 1158,
+                    'height'=> 437
+                ],
+                'action'=> [
+                    'type'=> 'uri',
+                    //LIFF
+                    'uri'=> 'https://liff.line.me/1657181787-2vrnwwlj'
+                    ]
+                ],
+        
+                [
+               //  C
+                  'bounds'=> [
+                    'x'=>32,
+                    'y'=> 175,
+                     'width'=> 1176,
+                    'height'=>441
+                ],
+                'action'=> [
+                    'type'=> 'message',
+                   // 切り替え[先]設定
+                   'text'=>'限定メニュー'
+                ]
+                ],
+                [
+                    //   D 
+                       'bounds'=> [
+                         'x'=>1300,
+                         'y'=> 756,
+                         'width'=> 1176,
+                         'height'=>441
+                     ],
+                     'action'=> [
+                        'type'=> 'message',
+                        'text'=> '普請中',
+                    ]
+                     ],
+        
+                     [
+                        //   E 
+                           'bounds'=> [
+                             'x'=>82,
+                             'y'=> 1276,
+                             'width'=> 1108,
+                             'height'=>386
+                         ],
+                         'action'=> [
+                             'type'=> 'message',
+                             'text'=> '普請中',
+                         ]
+                         ],
+                         [
+                            //   t-2 切り替えアクション
+                               'bounds'=> [
+                                 'x'=>1570,
+                                 'y'=> 0,
+                                 'width'=> 937,
+                                 'height'=>152
+                             ],
+                             'action'=> [
+                                 'type'=> 'richmenuswitch',
+                                // 切り替え[先]設定
+                                 'richMenuAliasId'=> 'demo_5_a',
+                                 'data'=> 'richmenu-changed-to-a'
+                             ]
+                             ]
+        
+                ],
+                ]);
+                return $res;
+       
     }
 
 
