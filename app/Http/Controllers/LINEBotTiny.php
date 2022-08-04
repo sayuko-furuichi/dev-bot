@@ -221,7 +221,7 @@ class LINEBotTiny
             ],
         ]);
 
-        $imgresponse = file_get_contents('https://api-data.line.me/v2/bot/richmenu/'."$rmId". '/content', false, $imgcontext);
+        $imgresponse = file_get_contents('https://api-data.line.me/v2/bot/richmenu/'.$rmId.'/content', false, $imgcontext);
            if (strpos($http_response_header[0], '200') === false) {
                $imgresponse= 'Request failed: ';
            }else{
