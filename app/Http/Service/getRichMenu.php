@@ -43,6 +43,8 @@ class getRichMenu
         $this->channelAccessToken= $channelAccessToken;
         $this->channelSecret= $channelSecret;
         $this->client=$client;
+        $this->rmIdA='';
+        $this->rmIdB='';
     }
 
     public function creater()
@@ -65,8 +67,9 @@ class getRichMenu
              $res= $this->client->upRmImg($this->rmIdA);
              $res= $this->client->upRmImg($this->rmIdB);
 
-        //     $res= $this->client->defaultRm($rmId);
-        //     $res= $this->createAliasRm($rmId);
+        //     $res= $this->client->defaultRm($this->rmIdA);
+        //     $res= $this->createAliasRm($this->rmIdA);
+         //     $res= $this->createAliasRm($this->rmIdB);
 
 
         return $res;
@@ -292,7 +295,7 @@ class getRichMenu
     }
 
 
-    public function createAliasRm($rmId)
+    public function createAliasRmA($rmId)
     {
 
 
@@ -300,7 +303,19 @@ class getRichMenu
 
         $res= $this->client->createAlias([
     'richMenuAliasId'=> 'demo_2_b',
-   'richMenuId'=>$rmId,
+   'richMenuId'=>$this->rmIdA,
+  ]);
+
+        return $res;
+    }
+
+    public function createAliasRmB()
+    {
+        //エイリアス作成
+
+        $res= $this->client->createAlias([
+    'richMenuAliasId'=> 'demo_2_b',
+   'richMenuId'=>$this->rmIdB,
   ]);
 
         return $res;
