@@ -56,7 +56,6 @@ class getRichMenu
     
     //TODO:各フィードバッグ後の、trueなら続行、falseなら中断の分岐(trycatchでもいいかも？)
        
-            return $this->rmNmB;
         //create rich menu A
         $res= $this->createRmA();
         $rs= json_decode($res,true);
