@@ -46,7 +46,7 @@ class getRichMenu
         $this->channelAccessToken= $channelAccessToken;
         $this->channelSecret= $channelSecret;
         $this->client=$client;
-        
+
          $this->rmNmA=date('Y-m-d') . '_a';
          $this->rmNmB=date('Y-m-d') . '_b';
     }
@@ -56,7 +56,7 @@ class getRichMenu
     
     //TODO:各フィードバッグ後の、trueなら続行、falseなら中断の分岐(trycatchでもいいかも？)
        
-
+            return $this->rmNmB;
         //create rich menu A
         $res= $this->createRmA();
         $rs= json_decode($res,true);
