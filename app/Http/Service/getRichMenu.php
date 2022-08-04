@@ -26,6 +26,10 @@ class getRichMenu
     //LINEBotTiny client
     private $client;
 
+    //rich menu id
+    private $rmIdA;
+    private $rmIdB;
+
     /**
      * Undocumented __construct
      *
@@ -44,7 +48,13 @@ class getRichMenu
     public function creater()
     {
         $res= $this->createRmA();
+        $rs= json_decode($res,true);
+        $this->rmIdA=$rs['richMenuId'];
+       
         $res= $this->createRmB();
+        $rs= json_decode($res,true);
+        $this->rmIdB=$rs['richMenuId'];
+       
         //    $res= json_decode($res,true);
         //    $rmId=$res['richMenuId'];
         //     //画像UP
