@@ -33,6 +33,9 @@ class getRichMenu
     private $rmNmA;
     private $rmNmB;
 
+    private $rmAlIdA;
+    private $rmAlIdB;
+
     /**
      * Undocumented __construct
      *
@@ -46,15 +49,22 @@ class getRichMenu
         $this->channelAccessToken= $channelAccessToken;
         $this->channelSecret= $channelSecret;
         $this->client=$client;
-
-         $this->rmNmA=date('Y-m-d') . '_a';
-         $this->rmNmB=date('Y-m-d') . '_b';
     }
 
     public function creater()
     {
     
     //TODO:各フィードバッグ後の、trueなら続行、falseなら中断の分岐(trycatchでもいいかも？)
+
+    $str= date('Y-m-d H-i-s');
+
+    $this->rmAlIdA='Al_'. $str . '_a';
+    $this->rmAlIdB='Al_'. $str . '_b';
+
+    $str=date('Y-m-d');
+
+    $this->rmNmA=$str . '_a';
+    $this->rmNmB=$str . '_b';
        
         //create rich menu A
         $res= $this->createRmA();
@@ -181,7 +191,7 @@ class getRichMenu
                  'action'=> [
                      'type'=> 'richmenuswitch',
                     // 切り替え[先]設定
-                     'richMenuAliasId'=>$this->rmNmB,
+                     'richMenuAliasId'=>$this->rmAlIdB,
                      'data'=> 'richmenu-changed-to-a'
                  ]
                  ]
@@ -287,7 +297,7 @@ class getRichMenu
                                  'action'=> [
                                      'type'=> 'richmenuswitch',
                                     // 切り替え[先]設定
-                                     'richMenuAliasId'=> $this->rmNmA,
+                                     'richMenuAliasId'=> $this->rmAlIdA,
                                      'data'=> 'richmenu-changed-to-b'
                                  ]
                                  ]
