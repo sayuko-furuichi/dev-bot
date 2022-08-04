@@ -127,8 +127,8 @@ class getRichMenu
                  'height'=>441
              ],
              'action'=> [
-                'type'=> 'url',
-                'url'=> '',
+                'type'=> 'message',
+                'text'=> '普請中',
             ]
              ],
 
@@ -141,8 +141,8 @@ class getRichMenu
                      'height'=>386
                  ],
                  'action'=> [
-                     'type'=> 'url',
-                     'url'=> '',
+                     'type'=> 'message',
+                     'text'=> '普請中',
                  ]
                  ],
                  [
