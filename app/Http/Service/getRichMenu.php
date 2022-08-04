@@ -43,8 +43,8 @@ class getRichMenu
         $this->channelAccessToken= $channelAccessToken;
         $this->channelSecret= $channelSecret;
         $this->client=$client;
-        $this->rmIdA='';
-        $this->rmIdB='';
+        // $this->rmIdA='';
+        // $this->rmIdB='';
     }
 
     public function creater()
