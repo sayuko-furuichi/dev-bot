@@ -67,7 +67,7 @@ class getRichMenu
              $res= $this->client->upRmImgA($this->rmIdA);
              $res= $this->client->upRmImgB($this->rmIdB);
 
-           $res= $this->client->defaultRm($this->rmIdB);
+           $res= $this->client->defaultRm($this->rmIdA);
         //     $res= $this->createAliasRm($this->rmIdA);
          //     $res= $this->createAliasRm($this->rmIdB);
 

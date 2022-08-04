@@ -272,25 +272,49 @@ class LINEBotTiny
         //デフォルト解除しておく
         $this->dltDefaultRm();
         //
-        $dfheader =array();
+        // $dfheader =array();
 
 
-        $dfcontext = stream_context_create([
-            'http' => [
-                'ignore_errors' => true,
-                'method' => 'POST',
-                'header' => 'Authorization: Bearer ' . $this->channelAccessToken
-            ],
-        ]);
+        // $dfcontext = stream_context_create([
+        //     'http' => [
+        //         'ignore_errors' => true,
+        //         'method' => 'POST',
+        //         'header' => 'Authorization: Bearer ' . $this->channelAccessToken
+        //     ],
+        // ]);
 
-        $dfresponse = file_get_contents('https://api.line.me/v2/bot/user/all/richmenu/'. $rmId, false, $dfcontext);
-        // if (strpos($http_response_header[0], '200') === false) {
-        //     $dfresponse= 'Request failed';
-        //   }else{
-        //     $dfresponse= 'OK';
-        //    }
+        // $dfresponse = file_get_contents('https://api.line.me/v2/bot/user/all/richmenu/'. $rmId, false, $dfcontext);
+        // // if (strpos($http_response_header[0], '200') === false) {
+        // //     $dfresponse= 'Request failed';
+        // //   }else{
+        // //     $dfresponse= 'OK';
+        // //    }
 
-        return $dfresponse;
+        // return $dfresponse;
+
+
+        $api_url ='https://api.line.me/v2/bot/user/all/richmenu/'. $rmId;
+
+        //エンコードされたURLでPOST通信する
+        $headers = [ 'Authorization: Bearer ' . $this->channelAccessToken,];
+
+        $curl_handle = curl_init();
+
+        curl_setopt($curl_handle, CURLOPT_POST, true);
+        curl_setopt($curl_handle, CURLOPT_URL, $api_url);
+        curl_setopt($curl_handle, CURLOPT_HTTPHEADER, $headers);
+                // curl_exec()の結果を文字列にする
+        curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, true);
+        //実行
+        $json_response = curl_exec($curl_handle);
+
+        //close
+        curl_close($curl_handle);
+
+        //デコード
+        $res = json_decode($json_response, true);
+
+        return $res;
 
     }
 
