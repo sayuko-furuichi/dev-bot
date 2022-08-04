@@ -58,3 +58,8 @@ Content-Type: image/png
 
 ../storage/app/public/img/richmenu/3.png
 
+
+###
+
+POST https://api.line.me/v2/bot/user/all/richmenu/richmenu-e53946c946070034a6690b9f1b2eab0b
+Authorization: Bearer paq5m/NvcbF96Rk5UUJoQlbLAS7FD5LRYMqzEWM+Ov8q1mb87WZWSd53enK+feHdV+pHfh6o3in2KI/cY4tEWmCJ7VOCuBHBSNkveeGFULhHWdLswizYiafmhee9yRgATphoOA1ZUY5F53R6/S4VigdB04t89/1O/w1cDnyilFU=
