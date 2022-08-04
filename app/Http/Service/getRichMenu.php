@@ -47,14 +47,17 @@ class getRichMenu
 
     public function creater()
     {
+        //create rich menu A
         $res= $this->createRmA();
         $rs= json_decode($res,true);
         $this->rmIdA=$rs['richMenuId'];
        
+        //create rich menu B
         $res= $this->createRmB();
         $rs= json_decode($res,true);
         $this->rmIdB=$rs['richMenuId'];
        
+        
         //    $res= json_decode($res,true);
         //    $rmId=$res['richMenuId'];
         //     //画像UP
