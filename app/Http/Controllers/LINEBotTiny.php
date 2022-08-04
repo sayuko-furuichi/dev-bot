@@ -267,9 +267,9 @@ class LINEBotTiny
          return $imgresponse;
  
      }
-
+//効いてないッッ
     public function defaultRm($rmId){
-
+        //デフォルト解除しておく
         $this->dltDefaultRm();
         //
         $dfheader = array(
@@ -281,7 +281,7 @@ class LINEBotTiny
             'http' => [
                 'ignore_errors' => true,
                 'method' => 'POST',
-                'header' => $dfheader,
+                'header' => $dfheader. "\r\n",
               // 'content' => $imgurl,
             ],
         ]);
