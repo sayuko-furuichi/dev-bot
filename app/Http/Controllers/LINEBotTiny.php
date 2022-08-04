@@ -272,16 +272,16 @@ class LINEBotTiny
         //デフォルト解除しておく
         $this->dltDefaultRm();
         //
-        $dfheader = array(
+        $dfheader = [
             'Authorization: Bearer ' . $this->channelAccessToken,
-        );
+        ];
 
 
         $dfcontext = stream_context_create([
             'http' => [
                 'ignore_errors' => true,
                 'method' => 'POST',
-                'header' => $dfheader. "\r\n",
+                'header' => implode("\r\n", $dfheader),
               // 'content' => $imgurl,
             ],
         ]);
