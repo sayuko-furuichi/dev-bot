@@ -51,7 +51,7 @@ class getRichMenu
     {
     
     //TODO:各フィードバッグ後の、trueなら続行、falseなら中断の分岐(trycatchでもいいかも？)
-        /*
+       
         //create rich menu A
         $res= $this->createRmA();
         $rs= json_decode($res,true);
@@ -62,7 +62,7 @@ class getRichMenu
         $rs= json_decode($res,true);
         $this->rmIdB=$rs['richMenuId'];
        
-*/
+
            //画像UP
              $res= $this->client->upRmImg($this->rmIdA);
              $res= $this->client->upRmImg($this->rmIdB);
