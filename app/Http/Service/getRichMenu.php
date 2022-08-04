@@ -44,12 +44,12 @@ class getRichMenu
     public function creater()
     {
         $res= $this->createRm();
-       $res= json_decode($res,true);
-       $rmId=$res['richMenuId'];
-        //画像UP
-        $res= $this->client->upRmImg($rmId);
-        $res= $this->client->defaultRm($rmId);
-        $res= $this->createAliasRm($rmId);
+    //    $res= json_decode($res,true);
+    //    $rmId=$res['richMenuId'];
+    //     //画像UP
+    //     $res= $this->client->upRmImg($rmId);
+    //     $res= $this->client->defaultRm($rmId);
+    //     $res= $this->createAliasRm($rmId);
 
 
         return $res;
@@ -71,49 +71,97 @@ class getRichMenu
         'height'=>1686
     ],
     'selected'=> true,
-    'name'=> 'demo_3',
-    'chatBarText'=> 'alias menu',
+    'name'=> 'demo_4_a',
+    'chatBarText'=> 'リッチメニュー1',
     //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
     'areas'=> [[
 
+        //A 
         'bounds'=> [
-            'x'=> 0,
-            'y'=> 501,
-            'width'=> 1250,
-            'height'=> 200
+            'x'=> 13,
+            'y'=> 223,
+            'width'=> 1227,
+            'height'=> 478
         ],
         'action'=> [
             'type'=> 'uri',
-            'uri'=> 'https://developers.line.biz/en/news/'
+            //ext_app
+            'uri'=> 'https://dev-ext-app.herokuapp.com/public/login'
         ],
     ],
+    // B
     [
         'bounds'=> [
-            'x'=>0,
-            'y'=> 702,
-            'width'=> 833,
-            'height'=> 800
+            'x'=>1300,
+            'y'=> 246,
+            'width'=> 1158,
+            'height'=> 437
         ],
         'action'=> [
             'type'=> 'uri',
-            'uri'=> 'https://developers.line.biz/en/news/'
+            //LIFF
+            'uri'=> 'https://liff.line.me/1657181787-2vrnwwlj'
             ]
         ],
+
         [
-       //   E 切り替えアクション
+       //  C
           'bounds'=> [
-            'x'=>0,
-            'y'=> 0,
-            'width'=> 2500,
-            'height'=>500
+            'x'=>32,
+            'y'=> 175,
+             'width'=> 1176,
+            'height'=>441
         ],
         'action'=> [
-            'type'=> 'richmenuswitch',
+            'type'=> 'message',
            // 切り替え[先]設定
-            'richMenuAliasId'=> 'demo_2_b',
-            'data'=> 'richmenu-changed-to-b'
+           'text'=>'限定メニュー'
         ]
-        ]
+        ],
+        [
+            //   D 
+               'bounds'=> [
+                 'x'=>1300,
+                 'y'=> 756,
+                 'width'=> 1176,
+                 'height'=>441
+             ],
+             'action'=> [
+                'type'=> 'url',
+                'url'=> '',
+            ]
+             ],
+
+             [
+                //   E 
+                   'bounds'=> [
+                     'x'=>82,
+                     'y'=> 1276,
+                     'width'=> 1108,
+                     'height'=>386
+                 ],
+                 'action'=> [
+                     'type'=> 'url',
+                     'url'=> '',
+                 ]
+                 ],
+                 [
+                    //   t-1 切り替えアクション
+                       'bounds'=> [
+                         'x'=>0,
+                         'y'=> 0,
+                         'width'=> 974,
+                         'height'=>170
+                     ],
+                     'action'=> [
+                         'type'=> 'richmenuswitch',
+                        // 切り替え[先]設定
+                         'richMenuAliasId'=> 'demo_4_b',
+                         'data'=> 'richmenu-changed-to-b'
+                     ]
+                     ]
+         
+     
 
 
         ],
