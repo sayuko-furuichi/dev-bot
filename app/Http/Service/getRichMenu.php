@@ -90,7 +90,7 @@ class getRichMenu
     'width'=>2500,
     'height'=>1686
     ],
-    'selected'=> true,
+    'selected'=> false,
     'name'=> 'demo_5_a',
     'chatBarText'=> 'リッチメニュー1',
     //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
@@ -198,7 +198,7 @@ class getRichMenu
                 'width'=>2500,
                 'height'=>1686
             ],
-            'selected'=> true,
+            'selected'=> false,
             'name'=> 'demo_5_b',
             'chatBarText'=> 'リッチメニュー2',
             //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
