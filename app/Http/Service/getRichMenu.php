@@ -47,6 +47,9 @@ class getRichMenu
 
     public function creater()
     {
+    
+    //TODO:各フィードバッグ後の、trueなら続行、falseなら中断の分岐(trycatchでもいいかも？)
+        /*
         //create rich menu A
         $res= $this->createRmA();
         $rs= json_decode($res,true);
@@ -57,11 +60,11 @@ class getRichMenu
         $rs= json_decode($res,true);
         $this->rmIdB=$rs['richMenuId'];
        
-        
-        //    $res= json_decode($res,true);
-        //    $rmId=$res['richMenuId'];
-        //     //画像UP
-        //     $res= $this->client->upRmImg($rmId);
+*/
+           //画像UP
+             $res= $this->client->upRmImg($this->rmIdA);
+             $res= $this->client->upRmImg($this->rmIdB);
+
         //     $res= $this->client->defaultRm($rmId);
         //     $res= $this->createAliasRm($rmId);
 
