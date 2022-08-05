@@ -49,15 +49,6 @@ class getRichMenu
         $this->channelAccessToken= $channelAccessToken;
         $this->channelSecret= $channelSecret;
         $this->client=$client;
-        
-        $strAl= date('Y-m-d-H-i-s');
-                 $this->rmAlIdA='Al_'. $strAl . '_a';
-         $this->rmAlIdB='Al_'. $strAl . '_b';
-
-         $str=date('Y-m-d');
-
-         $this->rmNmA=$str . '_a';
-         $this->rmNmB=$str . '_b';
     }
 
     public function creater()
@@ -65,15 +56,19 @@ class getRichMenu
 
         //TODO:各フィードバッグ後の、trueなら続行、falseなら中断の分岐(trycatchでもいいかも？)
 
+      //  $strAl= date('Y-m-d-H-i-s');
 
-    //    $this->rmAlIdA='Al_a';
-     //   $this->rmAlIdB='Al_b';
+        $this->rmAlIdA='Al_a';
+        $this->rmAlIdB='Al_b';
 
         // $this->rmAlIdA='Al_'. $strAl . '_a';
         // $this->rmAlIdB='Al_'. $strAl . '_b';
 
 
+        $str=date('Y-m-d');
 
+        $this->rmNmA=$str . '_a';
+        $this->rmNmB=$str . '_b';
 
         //create rich menu A
         $res= $this->createRmA();
