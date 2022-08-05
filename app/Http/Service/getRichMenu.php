@@ -192,7 +192,7 @@ class getRichMenu
                      'type'=> 'richmenuswitch',
                     // 切り替え[先]設定
                      'richMenuAliasId'=>$this->rmAlIdB,
-                     'data'=> 'richmenu-changed-to-a'
+                     'data'=> 'richmenu-changed-to-b'
                  ]
                  ]
 
@@ -298,7 +298,7 @@ class getRichMenu
                                      'type'=> 'richmenuswitch',
                                     // 切り替え[先]設定
                                      'richMenuAliasId'=> $this->rmAlIdA,
-                                     'data'=> 'richmenu-changed-to-b'
+                                     'data'=> 'richmenu-changed-to-a'
                                  ]
                                  ]
 
