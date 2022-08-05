@@ -158,8 +158,8 @@ class getRichMenu
            'bounds'=> [
              'x'=>1300,
              'y'=> 756,
-             'width'=> 1176,
-             'height'=>441
+             'width'=> 1144,
+             'height'=>892
          ],
          'action'=> [
             'type'=> 'message',
