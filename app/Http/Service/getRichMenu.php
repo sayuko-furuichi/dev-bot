@@ -143,7 +143,7 @@ class getRichMenu
        //  C
       'bounds'=> [
         'x'=>32,
-        'y'=> 175,
+        'y'=> 756,
          'width'=> 1176,
         'height'=>441
     ],
@@ -248,7 +248,7 @@ class getRichMenu
                //  C
                   'bounds'=> [
                     'x'=>32,
-                    'y'=> 175,
+                    'y'=> 756,
                      'width'=> 1176,
                     'height'=>441
                 ],
