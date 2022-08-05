@@ -315,7 +315,7 @@ class getRichMenu
         //エイリアス作成
 
         $res= $this->client->createAlias([
-    'richMenuAliasId'=>$this->rmNmA,
+    'richMenuAliasId'=>$this->rmAlIdA,
    'richMenuId'=>$this->rmIdA,
   ]);
 
@@ -327,7 +327,7 @@ class getRichMenu
         //エイリアス作成
 
         $res= $this->client->createAlias([
-    'richMenuAliasId'=> $this->rmNmB,
+    'richMenuAliasId'=> $this->rmAlIdB,
    'richMenuId'=>$this->rmIdB,
   ]);
 
