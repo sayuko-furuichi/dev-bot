@@ -153,7 +153,7 @@ class getRichMenu
     ],
     'action'=> [
         'type'=> 'message',
-       // 切り替え[先]設定
+       // 切り替え先設定
        'text'=>'限定メニュー'
     ]
     ],
@@ -194,7 +194,7 @@ class getRichMenu
                  ],
                  'action'=> [
                      'type'=> 'richmenuswitch',
-                    // 切り替え[先]設定
+                    // 切り替え先設定
                      'richMenuAliasId'=>$this->rmAlIdB,
                      'data'=> 'richmenu-changed-to-b'
                  ]
