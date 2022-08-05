@@ -56,7 +56,7 @@ class getRichMenu
 
         //TODO:各フィードバッグ後の、trueなら続行、falseなら中断の分岐(trycatchでもいいかも？)
 
-        $str= date('m-d-H-i-s');
+        $str= date('Y-m-d-H-i-s');
 
         $this->rmAlIdA='Al_'. $str . '_a';
         $this->rmAlIdB='Al_'. $str . '_b';
