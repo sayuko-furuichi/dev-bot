@@ -122,7 +122,7 @@ class getRichMenu
         'type'=> 'uri',
         //ext_app
         'uri'=> 'https://dev-ext-app.herokuapp.com/public/login'
-    ],
+    ]
     ],
     // B
     [
@@ -227,7 +227,7 @@ class getRichMenu
                     'type'=> 'uri',
                     //ext_app
                     'uri'=> 'https://dev-ext-app.herokuapp.com/public/login'
-                ],
+                ]
             ],
             // B
             [
@@ -290,7 +290,7 @@ class getRichMenu
                                 //   t-1 切り替えアクション
                                    'bounds'=> [
                                      'x'=>0,
-                                     'y'=> 0,
+                                     'y'=> 1,
                                      'width'=> 974,
                                      'height'=>170
                                  ],
