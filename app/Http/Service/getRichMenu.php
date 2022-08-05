@@ -290,7 +290,7 @@ class getRichMenu
                                 //   t-1 切り替えアクション
                                    'bounds'=> [
                                      'x'=>0,
-                                     'y'=> 1,
+                                     'y'=> 0,
                                      'width'=> 974,
                                      'height'=>170
                                  ],
