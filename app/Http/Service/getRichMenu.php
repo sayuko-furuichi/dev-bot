@@ -58,10 +58,15 @@ class getRichMenu
 
         $str= date('Y-m-d-H-i-s');
 
-        $this->rmAlIdA='Al_'. $str . '_a';
-        $this->rmAlIdB='Al_'. $str . '_b';
 
-        return $this->rmAlIdB;
+        //解決しないのでとりあえず
+        $this->rmAlIdA='Al_a';
+        $this->rmAlIdB='Al_b';
+
+
+
+        // $this->rmAlIdA='Al_'. $str . '_a';
+        // $this->rmAlIdB='Al_'. $str . '_b';
 
         $str=date('Y-m-d');
 
