@@ -198,7 +198,7 @@ class getRichMenu
                      'richMenuAliasId'=>$this->rmAlIdB,
                      'data'=> 'richmenu-changed-to-b'
                  ]
-                 ]
+                 ],
 
     ],
     ]);
@@ -304,7 +304,7 @@ class getRichMenu
                                      'richMenuAliasId'=> $this->rmAlIdA,
                                      'data'=> 'richmenu-changed-to-a'
                                  ]
-                                 ]
+                                 ],
 
                 ],
                 ]);
