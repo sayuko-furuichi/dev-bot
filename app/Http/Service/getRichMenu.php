@@ -165,7 +165,7 @@ class getRichMenu
          ],
          'action'=> [
             'type'=> 'message',
-            'text'=> '普請中',
+            'text'=> '普請中です',
         ]
          ],
 
@@ -179,7 +179,7 @@ class getRichMenu
              ],
              'action'=> [
                  'type'=> 'message',
-                 'text'=> '普請中',
+                 'text'=> '普請中です',
              ]
              ],
              [
@@ -270,7 +270,7 @@ class getRichMenu
                      ],
                      'action'=> [
                         'type'=> 'message',
-                        'text'=> '普請中',
+                        'text'=> '普請中です',
                     ]
                      ],
 
@@ -284,7 +284,7 @@ class getRichMenu
                          ],
                          'action'=> [
                              'type'=> 'message',
-                             'text'=> '普請中',
+                             'text'=> '普請中です',
                          ]
                          ],
 
