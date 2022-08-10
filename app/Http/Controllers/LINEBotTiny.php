@@ -404,7 +404,7 @@ if (isset($headers['X-Line-Request-Id']) || isset($headers['X-LINE-REQUEST-ID'])
 //     $response = 'life on mars?';
     // }
 }
-        return $response;
+        return $headers;
 
         
 
