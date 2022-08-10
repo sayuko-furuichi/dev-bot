@@ -425,24 +425,46 @@ if (isset($t[1])) {
 
 public function analys($requestId){
     
-$header = array(
-    'Authorization: Bearer ' . $this->channelAccessToken,
-);
+// $header = array(
+//     'Authorization: Bearer ' . $this->channelAccessToken,
+// );
 
-$context = stream_context_create([
-    'http' => [
-        'ignore_errors' => true,
-        'method' => 'GET',
-        'header' => implode("\r\n", $header),
-    ],
-]);
+// $context = stream_context_create([
+//     'http' => [
+//         'ignore_errors' => true,
+//         'method' => 'GET',
+//         'header' => implode("\r\n", $header),
+//     ],
+// ]);
 
-$response = file_get_contents('https://api.line.me/v2/bot/insight/message/event?requestId='. $requestId , false, $context);
-if (strpos($http_response_header[0], '200') === false) {
-    $response='request failed';
-}
+// $response = file_get_contents('https://api.line.me/v2/bot/insight/message/event?requestId='. $requestId , false, $context);
+// if (strpos($http_response_header[0], '200') === false) {
+//     $response='request failed';
+// }
 
-    return $response;
+//     return $response;
+
+    $api_url ='https://api.line.me/v2/bot/insight/message/event?requestId='. $requestId ;
+
+    //エンコードされたURLでPOST通信する
+    $headers = [ 'Authorization: Bearer ' . $this->channelAccessToken,];
+
+    $curl_handle = curl_init();
+
+    curl_setopt($curl_handle, HTTPGET, true);
+    curl_setopt($curl_handle, CURLOPT_URL, $api_url);
+    curl_setopt($curl_handle, CURLOPT_HTTPHEADER, $headers);
+            // curl_exec()の結果を文字列にする
+    curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, true);
+    //実行
+    $res = curl_exec($curl_handle);
+
+    //close
+    curl_close($curl_handle);
+
+    //デコード
+  //  $res = json_decode($json_response, true);
+    return $res;
 
 
 }
