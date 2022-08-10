@@ -451,7 +451,7 @@ public function analys($requestId){
 
     $curl_handle = curl_init();
 
-    curl_setopt($curl_handle, HTTPGET, true);
+    curl_setopt($curl_handle, CURLOPT_HTTPGET, true);
     curl_setopt($curl_handle, CURLOPT_URL, $api_url);
     curl_setopt($curl_handle, CURLOPT_HTTPHEADER, $headers);
             // curl_exec()の結果を文字列にする
