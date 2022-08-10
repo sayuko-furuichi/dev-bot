@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 
 use App\Http\Service\getOrgMenuParam;
 use App\Http\Service\getRichMenu;
+use App\Http\Service\sendNarrow;
 
 class SendMessage extends Controller
 {
@@ -94,6 +95,17 @@ class SendMessage extends Controller
     ]);
                 //限定メニューを要求されたとき
                 } elseif ($message['text'] == '限定メニュー') {
+                    $param =new getOrgMenuParam();
+                    $sId =$storeId;
+                    $param ->getParam($sId, $client, $event);
+
+                } elseif ($message['text'] == 'ナロキャス') {
+                    $param =new getOrgMenuParam();
+                    $sId =$storeId;
+                    $param ->getParam($sId, $client, $event);
+
+
+                } elseif ($message['text'] == '分析') {
                     $param =new getOrgMenuParam();
                     $sId =$storeId;
                     $param ->getParam($sId, $client, $event);
