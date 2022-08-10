@@ -137,6 +137,9 @@ class SendMessage extends Controller
 
                   $rs= json_decode($res,true);
                   $ss= $rs['overview'];
+                  if($ss['uniqueImpression'] == null){
+                    $ss['uniqueImpression'] ='nullぽ';
+                  }
 
                   $client->replyMessage([
                     'replyToken' => $event['replyToken'],
