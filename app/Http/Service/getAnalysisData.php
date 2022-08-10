@@ -29,11 +29,16 @@ private $event;
         $rs= json_decode($res,true);
 
         $ov= $rs['overview'];
+        $ms=$rs['messages'];
+
+
         if($ov['uniqueImpression'] == null){
           $ov['uniqueImpression'] ='nullぽ';
         }
         date_default_timezone_set('Asia/Tokyo');
         $ovTime= date('Y/m/d H:i:s', $ov['timestamp']);
+
+
 
         $this->client->replyMessage([
           'replyToken' => $this->event['replyToken'],
@@ -63,9 +68,23 @@ private $event;
               [
 
                 'type' => 'text',
-                'text' => 'メッセージを開封した人数：　'. $ov['uniqueImpression'] .
-                ",\n メッセージの送信数　：　". $ov['delivered'] .
-                ",\n 　メッセージ内のいずれかのURLをタップした人数：　". $ov['uniqueClick'] 
+                'text' => '吹き出し単位ごとの統計' . 
+                ",\n メッセージの送信数　：　". $ms[''] .
+                ",\n 　吹き出しが表示された回数：　". $ov['impression'] .
+                ",\n 　吹き出し内の動画または音声を再生開始し、75%再生した人数：　". $ov['uniqueMediaPlayed75Percent'] .
+                ",\n 　メッセージ内のいずれかのURLをタップした人数：　". $ov['mediaPlayed50Percent'] .
+                ",\n 　吹き出し内の動画または音声が再生開始された回数：　". $ov['mediaPlayed'] 
+
+              ],
+              [
+                'type' => 'text',
+                'text' => 'タップしたURLに関する情報' . 
+                ",\n メッセージの送信数　：　". $ms[''] .
+                ",\n 　吹き出しが表示された回数：　". $ov['impression'] .
+                ",\n 　吹き出し内の動画または音声を再生開始し、75%再生した人数：　". $ov['uniqueMediaPlayed75Percent'] .
+                ",\n 　メッセージ内のいずれかのURLをタップした人数：　". $ov['mediaPlayed50Percent'] .
+                ",\n 　吹き出し内の動画または音声が再生開始された回数：　". $ov['mediaPlayed'] 
+
 
               ]
               
