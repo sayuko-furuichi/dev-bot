@@ -132,7 +132,7 @@ class SendMessage extends Controller
 
 
                 } elseif ($message['text'] == '分析') {
-                    $param = new getAnalysisData($client);
+                    $param = new getAnalysisData($client,$event);
                    $param->getData(); 
                     
 

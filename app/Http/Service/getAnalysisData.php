@@ -10,10 +10,14 @@ class getAnalysisData
     
         //LINEBotTiny client
         private $client;
-        public function __construct($client)
+
+private $event;
+
+        public function __construct($client,$event)
         {
 
             $this->client=$client;
+            $this->event=$event;
         }
     
 
