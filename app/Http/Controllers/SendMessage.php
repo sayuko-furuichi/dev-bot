@@ -105,6 +105,8 @@ class SendMessage extends Controller
                     $param = new sendNarrow($channelAccessToken, $channelSecret, $client);
                     $res = $param->sendMessage();
 
+                    $rs=json_decode($res,true);
+
                     $client->replyMessage([
                         'replyToken' => $event['replyToken'],
                         'messages' => [
@@ -115,7 +117,7 @@ class SendMessage extends Controller
                
                             [
                 'type' => 'text',
-                'text' => 'OK'. $res
+                'text' => 'OK'. $rs['message']
                             ]
                         ]
                     ]);
