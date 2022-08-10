@@ -27,36 +27,7 @@ class sendNarrow
     //送信後、ヘッダーからrequestIDを貰う
     public function sendMessage()
     {
-        
-        $res = $this->client->sendBroad([
-            'messages' => [
-                [
-    'type' => 'text',
-    'text' =>$storeId . '　OK!'
-                ],
-
-                [
-    'type' => 'text',
-    'text' => ' OK 3'
-                ],
-                                    [
-    'type' => 'text',
-    'text' => 'OK  2'
-                ],
-                                    [
-    'type' => 'text',
-    'text' => 'OK  1'
-                ],
-                                    [
-    'type' => 'text',
-    'text' => 'fire!!'
-                ],
-
-            ]
-
-
-
-        ]);
+        return $this->channelSecret;
 
 
     }
