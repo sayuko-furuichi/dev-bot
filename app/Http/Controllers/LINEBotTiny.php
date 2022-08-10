@@ -390,9 +390,9 @@ class LINEBotTiny
     }else{
 $head= $this->parseHeaders($http_response_header);
 //$response= $hds['X-Line-Request-Id'];
-//$response= $head['X-Line-Request-Id'];
+$response= $head['x-line-request-id'];
 
-$response= $http_response_header[5];
+//$response= $http_response_header[5];
 
 }
 
