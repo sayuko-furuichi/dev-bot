@@ -385,12 +385,15 @@ class LINEBotTiny
     ]);
 
     $response = file_get_contents('https://api.line.me/v2/bot/message/broadcast', false, $context);
-    // if (strpos($http_response_header[0], '200') === false) {
-    //     $response='request failed';
-    // }else{
-        $hds= $this->parseHeaders($http_response_header);
-        $response= $hds['X-Line-Request-Id'];      
-    //}
+    if (strpos($http_response_header[0], '200') === false) {
+        $response='request failed';
+    }else{
+// $hds= parseHeaders($http_response_header);
+//   $response= $hds['X-Line-Request-Id'];
+
+$response = $http_response_header['X-Line-Request-Id'];
+
+    }
 
    
 
