@@ -384,7 +384,7 @@ class LINEBotTiny
         ],
     ]);
 
-    $response = file_get_contents('https://api.line.me/v2/bot/message/broadcast', false, $context);
+    $response = get_headers(file_get_contents('https://api.line.me/v2/bot/message/broadcast', false, $context),true);
     if (strpos($http_response_header[0], '200') === false) {
         $response= 'Request failed';
         // }elseif(isset($http_response_header['X-Line-Request-Id']) || isset($http_response_header['X-LINE-REQUEST-ID']) ){
@@ -395,7 +395,7 @@ class LINEBotTiny
 //    if(isset($headers['X-Line-Request-Id']) || isset($headers['X-LINE-REQUEST-ID']) ){
 //     $response='Life on mars?';
 //    }
-if (isset($http_response_header['X-Line-Request-Id']) || isset($http_response_header['X-LINE-REQUEST-ID'])) {
+if (isset($response['X-Line-Request-Id']) || isset($response['X-LINE-REQUEST-ID'])) {
         //     $response='Life on mars?';
         //    }
 
