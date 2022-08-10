@@ -427,7 +427,6 @@ public function analys($requestId){
     
 $header = array(
     'Authorization: Bearer ' . $this->channelAccessToken,
-  //  'Content-Type: application/json',
 );
 
 $context = stream_context_create([
@@ -435,7 +434,6 @@ $context = stream_context_create([
         'ignore_errors' => true,
         'method' => 'GET',
         'header' => implode("\r\n", $header),
-    //   'content' => json_encode($param),
     ],
 ]);
 

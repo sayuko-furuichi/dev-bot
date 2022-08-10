@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Service\getOrgMenuParam;
 use App\Http\Service\getRichMenu;
 use App\Http\Service\sendNarrow;
+use App\Http\Service\getAnalysisData;
 
 class SendMessage extends Controller
 {
@@ -133,6 +134,7 @@ class SendMessage extends Controller
                 } elseif ($message['text'] == '分析') {
                     $requestId='1474ca29-09cc-48e3-8431-aeee775b2259';
                   $res=$client->analys($requestId);
+                  
                   $rs= jsen_decode($res,true);
                   $ss= $rs['overview'];
                   $s=$ss['uniqueImpression'];
