@@ -388,7 +388,7 @@ class LINEBotTiny
     if (strpos($http_response_header[0], '200') === false) {
         $response='request failed';
     }else{
-        $hds= parseHeaders($http_response_header);
+        $hds= $this->parseHeaders($http_response_header);
         $response= $hds['X-Line-Request-Id'];      
     }
 
