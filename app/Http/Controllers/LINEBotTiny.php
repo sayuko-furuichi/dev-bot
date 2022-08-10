@@ -424,10 +424,7 @@ if (isset($t[1])) {
 //分析結果
 
 public function analys($requestId){
-$res='aaaaaa';
-    return $res;
-    //
-
+    
 $header = array(
     'Authorization: Bearer ' . $this->channelAccessToken,
   //  'Content-Type: application/json',
