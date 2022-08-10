@@ -365,7 +365,7 @@ class LINEBotTiny
         return $alresponse;
     }
 
-    //ブロードキャスト
+    //ブロードキャスト responceヘッダーの
 
     public function sendBroad($param){
         //
@@ -388,11 +388,6 @@ class LINEBotTiny
     if (strpos($http_response_header[0], '200') === false) {
         $response='request failed';
     }
-    $headers = getallheaders();
- if (isset($headers['X-Line-Request-Id']) || isset($headers['X-LINE-REQUEST-ID'])) {
-     $response='Life on mars?';
-
- }
         return $response;
 
         
