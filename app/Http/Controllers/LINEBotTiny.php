@@ -391,17 +391,23 @@ class LINEBotTiny
 
         //     $response='Life on mars?';
     }
-//         $headers= json_decode($http_response_header,true);
-//    if(isset($headers['X-Line-Request-Id']) || isset($headers['X-LINE-REQUEST-ID']) ){
-//     $response='Life on mars?';
+$headers = apache_response_headers();
+
+      //   $headers= json_decode($http_response_header,true);
+if (isset($headers['X-Line-Request-Id']) || isset($headers['X-LINE-REQUEST-ID'])) {
+    $response='Life on mars?';
 //    }
-// if (isset($response['X-Line-Request-Id']) || isset($response['X-LINE-REQUEST-ID'])) {
+    // if (isset($response['X-Line-Request-Id']) || isset($response['X-LINE-REQUEST-ID'])) {
 //         //     $response='Life on mars?';
 //         //    }
 
 //     $response = 'life on mars?';
-// }
+    // }
+}
         return $response;
+
+        
+
  
 }
 
