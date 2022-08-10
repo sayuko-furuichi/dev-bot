@@ -27,5 +27,7 @@ class sendNarrow
     //送信後、ヘッダーからrequestIDを貰う
     public function sendMessage()
     {
+            return $this->channelSecret;
+
     }
 }
