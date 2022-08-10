@@ -53,9 +53,6 @@ class sendNarrow
                 ]
 
             ]
-
-
-
         ]);
 
         return $res;
