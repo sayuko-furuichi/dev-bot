@@ -2,6 +2,7 @@
 
 namespace App\Http\Service;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\LINEBotTiny;
 class getAnalysisData
 {
 
@@ -26,7 +27,7 @@ class getAnalysisData
         $res=$this->client->analys($requestId);
 
         $rs= json_decode($res,true);
-        
+
         $ov= $rs['overview'];
         if($ov['uniqueImpression'] == null){
           $ov['uniqueImpression'] ='nullぽ';
