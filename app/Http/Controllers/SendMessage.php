@@ -137,7 +137,6 @@ class SendMessage extends Controller
 
                   $rs= json_decode($res,true);
                   $ss= $rs['overview'];
-                  $s=$ss['uniqueImpression'];
 
                   $client->replyMessage([
                     'replyToken' => $event['replyToken'],
@@ -149,7 +148,7 @@ class SendMessage extends Controller
                         
                         [
                             'type' => 'text',
-                            'text' => 'OK　　：'. $s
+                            'text' => 'OK　　：'. $ss['uniqueImpression']
                         ]
                         
                     ]
