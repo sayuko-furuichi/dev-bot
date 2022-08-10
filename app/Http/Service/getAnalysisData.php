@@ -30,7 +30,7 @@ private $event;
 
         $ov= $rs['overview'];
         $ms=$rs['messages'];
-        $cl=$rs['clicks'];
+      //  $cl=$rs['clicks'];
 
 
         if($ov['uniqueImpression'] == null){
