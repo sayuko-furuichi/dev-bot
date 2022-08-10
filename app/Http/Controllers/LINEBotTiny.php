@@ -390,6 +390,8 @@ class LINEBotTiny
     }else{
 $head= $this->parseHeaders($http_response_header);
 //$response= $hds['X-Line-Request-Id'];
+
+//小文字で指定しないと出なかった！
 $response= $head['x-line-request-id'];
 
 //$response= $http_response_header[5];
