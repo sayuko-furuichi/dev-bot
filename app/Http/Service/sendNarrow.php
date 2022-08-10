@@ -29,37 +29,6 @@ class sendNarrow
     {
         return 'あああああ';
 
-        
-        $res = $this->client->sendBroad([
-            'messages' => [
-                [
-    'type' => 'text',
-    'text' =>$storeId . '　OK!'
-                ],
-
-                [
-    'type' => 'text',
-    'text' => ' OK 3'
-                ],
-                                    [
-    'type' => 'text',
-    'text' => 'OK  2'
-                ],
-                                    [
-    'type' => 'text',
-    'text' => 'OK  1'
-                ],
-                                    [
-    'type' => 'text',
-    'text' => 'fire!!'
-                ],
-
-            ]
-
-
-
-        ]);
-
 
     }
 }
