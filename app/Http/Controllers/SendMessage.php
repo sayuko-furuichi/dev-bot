@@ -96,10 +96,14 @@ class SendMessage extends Controller
                 //限定メニューを要求されたとき
                 } elseif ($message['text'] == '限定メニュー') {
                     $param =new getOrgMenuParam();
-                    $res= $param->sendMessage();
+                    $sId =$storeId;
+                    $param ->getParam($sId, $client, $event);
+
+
                     //ブロードキャスト
                 } elseif ($message['text'] == 'ブロキャス') {
-                    $res = new sendNarrow($channelAccessToken, $channelSecret, $client);
+                    $param = new sentNarrow($channelAccessToken, $channelSecret, $client);
+                    $res = $param->sendMessage();
 
                     $client->replyMessage([
                         'replyToken' => $event['replyToken'],
