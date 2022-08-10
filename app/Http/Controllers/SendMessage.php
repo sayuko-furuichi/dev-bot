@@ -132,33 +132,10 @@ class SendMessage extends Controller
 
 
                 } elseif ($message['text'] == '分析') {
+                    $param = new getAnalysisData($channelAccessToken, $channelSecret, $client);
+                   $param->getData($requestId); 
                     $requestId='1474ca29-09cc-48e3-8431-aeee775b2259';
-                  $res=$client->analys($requestId);
 
-                  $rs= json_decode($res,true);
-                  $ov= $rs['overview'];
-                  if($ov['uniqueImpression'] == null){
-                    $ov['uniqueImpression'] ='nullぽ';
-                  }
-
-                  $client->replyMessage([
-                    'replyToken' => $event['replyToken'],
-                    'messages' => [
-                        [
-                            'type' => 'text',
-                            'text' =>$storeId . '　OK!'
-                        ],
-                        
-                        [
-                            'type' => 'text',
-                            'text' => 'メッセージを開封した人数：　'. $ov['uniqueImpression'] .
-                            ",\\n メッセージの送信数　：　". $ov['delivered'] .
-                            ',\\n 　メッセージ内のいずれかのURLをタップした人数：　'. $ov['uniqueClick']
-                                    
-                        ]
-                        
-                    ]
-                ]);
             
 
                 //DB参照
