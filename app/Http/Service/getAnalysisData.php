@@ -70,7 +70,7 @@ private $event;
 
                 'type' => 'text',
                 'text' => '吹き出し単位ごとの統計' . 
-                ",\n 　吹き出しが表示された回数：　". $ov['impression'] .
+                ",\n 　吹き出しが表示された回数：　". $ms['impression'] .
                 ",\n 　吹き出し内の動画または音声を再生開始し、75%再生した人数：　". $ms['uniqueMediaPlayed75Percent'] .
                 ",\n 　メッセージ内のいずれかのURLをタップした人数：　". $ms['mediaPlayed50Percent'] .
                 ",\n 　吹き出し内の動画または音声が再生開始された回数：　". $ms['mediaPlayed'] 
