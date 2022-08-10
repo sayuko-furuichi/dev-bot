@@ -17,8 +17,9 @@ class getAnalysisData
         }
     
 
-    public function getData($requestId){
+    public function getData(){
 
+        $requestId='1474ca29-09cc-48e3-8431-aeee775b2259';
         $res=$this->client->analys($requestId);
 
         $rs= json_decode($res,true);
