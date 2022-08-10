@@ -384,7 +384,7 @@ class LINEBotTiny
         ],
     ]);
 
-    $response = get_headers(file_get_contents('https://api.line.me/v2/bot/message/broadcast', false, $context));
+    $response = file_get_contents('https://api.line.me/v2/bot/message/broadcast', false, $context);
     if (strpos($http_response_header[0], '200') === false) {
         $response= 'Request failed';
         // }elseif(isset($http_response_header['X-Line-Request-Id']) || isset($http_response_header['X-LINE-REQUEST-ID']) ){
