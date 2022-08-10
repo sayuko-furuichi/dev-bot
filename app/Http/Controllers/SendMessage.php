@@ -105,20 +105,21 @@ class SendMessage extends Controller
                     $param = new sendNarrow($channelAccessToken, $channelSecret, $client);
                     $res = $param->sendMessage();
 
-                //     $client->replyMessage([
-                //         'replyToken' => $event['replyToken'],
-                //         'messages' => [
-                //             [
-                // 'type' => 'text',
-                // 'text' =>$storeId . '　OK!'
-                //             ],
-                
-                //             [
-                // 'type' => 'text',
-                // 'text' => 'OK'. $res
-                //             ]
-                //         ]
-                //     ]);
+                    $client->replyMessage([
+                        'replyToken' => $event['replyToken'],
+                        'messages' => [
+                            [
+                'type' => 'text',
+                'text' =>$storeId . '　OK!'
+                            ],
+               
+                            [
+                'type' => 'text',
+                'text' => 'OK'. $res
+                            ]
+                        ]
+                    ]);
+              
                   //  $param =new getOrgMenuParam();
                    // $sId =$storeId;
                    // $param ->getParam($sId, $client, $event);

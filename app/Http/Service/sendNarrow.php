@@ -28,7 +28,8 @@ class sendNarrow
     //送信後、ヘッダーからrequestIDを貰う
     public function sendMessage()
     {
-      $res='aaaaa';
-        return $res;
+        
+        return 'あああああ';
+
     }
 }
