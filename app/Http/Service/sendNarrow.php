@@ -32,7 +32,7 @@ class sendNarrow
             'messages' => [
                 [
     'type' => 'text',
-    'text' =>$storeId . '　OK!'
+    'text' =>'　OK!'
                 ],
 
                 [
@@ -50,7 +50,7 @@ class sendNarrow
                                     [
     'type' => 'text',
     'text' => 'fire!!'
-                ],
+                ]
 
             ]
 
