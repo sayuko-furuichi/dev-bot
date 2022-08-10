@@ -40,7 +40,7 @@ private $event;
           'messages' => [
               [
                   'type' => 'text',
-                  'text' => "　OK!\n ",
+                  'text' => '$'."　OK!\n ",
                   'emoji' =>[
                     'index' => 0,
                     'productId' => '5ac21b4f031a6752fb806d59',
