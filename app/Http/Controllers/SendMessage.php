@@ -118,7 +118,7 @@ class SendMessage extends Controller
             
             [
                 'type' => 'text',
-                'text' => 'OK'. $res
+                'text' => 'OK　　：'. $res
             ]
             
         ]
