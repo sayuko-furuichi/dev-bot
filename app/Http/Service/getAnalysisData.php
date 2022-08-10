@@ -33,10 +33,6 @@ private $event;
       //  $m=$ms[0];
       //  $cl=$rs['clicks'];
 
-
-        if($ov['uniqueImpression'] == null){
-          $ov['uniqueImpression'] ='nullぽ';
-        }
         date_default_timezone_set('Asia/Tokyo');
         $ovTime= date('Y/m/d H:i:s', $ov['timestamp']);
 
