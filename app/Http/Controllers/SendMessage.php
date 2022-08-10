@@ -134,8 +134,6 @@ class SendMessage extends Controller
                 } elseif ($message['text'] == '分析') {
                     $param = new getAnalysisData($client,$event);
                    $param->getData(); 
-                    
-
 
                 //DB参照
                 } elseif ($message['text'] == 'READ') {

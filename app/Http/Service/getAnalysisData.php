@@ -32,6 +32,7 @@ private $event;
         if($ov['uniqueImpression'] == null){
           $ov['uniqueImpression'] ='nullぽ';
         }
+        $ovTime= date('Y/m/d H:i:s', $ov['timestamp']);
 
         $this->client->replyMessage([
           'replyToken' => $this->event['replyToken'],
@@ -45,7 +46,10 @@ private $event;
                   'type' => 'text',
                   'text' => 'メッセージを開封した人数：　'. $ov['uniqueImpression'] .
                   ",\n メッセージの送信数　：　". $ov['delivered'] .
-                  ',\\n 　メッセージ内のいずれかのURLをタップした人数：　'. $ov['uniqueClick']
+                  ",\n 　メッセージ内のいずれかのURLをタップした人数：　". $ov['uniqueClick'] .
+                  ",\n 　メッセージが配信された時刻 ：　".  $ovTime .
+                  ",\n 　メッセージ内のいずれかのURLをタップした人数：　". $ov['uniqueClick'] .
+                  ",\n 　メッセージ内のいずれかのURLをタップした人数：　". $ov['uniqueClick'] 
                           
               ]
               
