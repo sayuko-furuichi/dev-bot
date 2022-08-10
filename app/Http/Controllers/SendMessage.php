@@ -132,7 +132,7 @@ class SendMessage extends Controller
 
 
                 } elseif ($message['text'] == '分析') {
-                    $param = new getAnalysisData($channelAccessToken, $channelSecret, $client);
+                    $param = new getAnalysisData($client);
                     $requestId='1474ca29-09cc-48e3-8431-aeee775b2259';
                    $param->getData($requestId); 
                     

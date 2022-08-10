@@ -6,18 +6,13 @@ use App\Http\Controllers\LINEBotTiny;
 class getAnalysisData
 {
 
-        //chanell_access_token
-        private $channelAccessToken;
-        //chanell_secret
-        private $channelSecret;
+
     
         //LINEBotTiny client
         private $client;
-        public function __construct(String $channelAccessToken, String $channelSecret, $client)
+        public function __construct($client)
         {
-            // $this->userId= $userId;
-            $this->channelAccessToken= $channelAccessToken;
-            $this->channelSecret= $channelSecret;
+
             $this->client=$client;
         }
     
