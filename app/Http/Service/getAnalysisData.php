@@ -28,7 +28,7 @@ class getAnalysisData
           $ov['uniqueImpression'] ='nullぽ';
         }
 
-        $client->replyMessage([
+        $this->client->replyMessage([
           'replyToken' => $event['replyToken'],
           'messages' => [
               [
