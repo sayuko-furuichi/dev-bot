@@ -402,7 +402,7 @@ $response= $head['x-line-request-id'];
 
  
 }
-
+//$http_response_headerを連想配列にする
 public function parseHeaders( $headers )
 {
     $head = array();
@@ -421,6 +421,36 @@ if (isset($t[1])) {
     return $head;
 }
 
+//分析結果
+
+public function analys($requestId){
+$res='aaaaaa';
+    return $res;
+    //
+
+$header = array(
+    'Authorization: Bearer ' . $this->channelAccessToken,
+  //  'Content-Type: application/json',
+);
+
+$context = stream_context_create([
+    'http' => [
+        'ignore_errors' => true,
+        'method' => 'GET',
+        'header' => implode("\r\n", $header),
+    //   'content' => json_encode($param),
+    ],
+]);
+
+$response = file_get_contents('https://api.line.me/v2/bot/insight/message/event?requestId='. $requestId , false, $context);
+if (strpos($http_response_header[0], '200') === false) {
+    $response='request failed';
+}
+
+    return $response;
+
+
+}
 
 
     //署名をハッシュ化

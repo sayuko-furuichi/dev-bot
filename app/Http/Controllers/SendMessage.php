@@ -131,9 +131,25 @@ class SendMessage extends Controller
 
 
                 } elseif ($message['text'] == '分析') {
-                    $param =new getOrgMenuParam();
-                    $sId =$storeId;
-                    $param ->getParam($sId, $client, $event);
+                    $requestId='1474ca29-09cc-48e3-8431-aeee775b2259';
+                  $res=$client->analys($requestId);
+
+                  $client->replyMessage([
+                    'replyToken' => $event['replyToken'],
+                    'messages' => [
+                        [
+                            'type' => 'text',
+                            'text' =>$storeId . '　OK!'
+                        ],
+                        
+                        [
+                            'type' => 'text',
+                            'text' => 'OK　　：'. $res
+                        ]
+                        
+                    ]
+                ]);
+            
 
                 //DB参照
                 } elseif ($message['text'] == 'READ') {
