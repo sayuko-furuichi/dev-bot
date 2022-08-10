@@ -136,9 +136,9 @@ class SendMessage extends Controller
                   $res=$client->analys($requestId);
 
                   $rs= json_decode($res,true);
-                  $ss= $rs['overview'];
-                  if($ss['uniqueImpression'] == null){
-                    $ss['uniqueImpression'] ='nullぽ';
+                  $ov= $rs['overview'];
+                  if($ov['uniqueImpression'] == null){
+                    $ov['uniqueImpression'] ='nullぽ';
                   }
 
                   $client->replyMessage([
@@ -151,7 +151,10 @@ class SendMessage extends Controller
                         
                         [
                             'type' => 'text',
-                            'text' => 'OK　　：'. $ss['uniqueImpression']
+                            'text' => 'メッセージを開封した人数：　'. $ov['uniqueImpression'] .
+                            ',\n メッセージの送信数　：　'. $ov['delivered'] .
+                            ',\n 　メッセージ内のいずれかのURLをタップした人数：　'. $ov['uniqueClick']
+                                    
                         ]
                         
                     ]
