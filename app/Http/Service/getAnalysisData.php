@@ -30,7 +30,7 @@ private $event;
 
         $ov= $rs['overview'];
         $ms=$rs['messages'];
-        $m=$ms[0];
+      //  $m=$ms[0];
       //  $cl=$rs['clicks'];
 
 
