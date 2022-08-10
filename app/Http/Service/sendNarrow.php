@@ -135,7 +135,27 @@ class sendNarrow
                 ]
               ]]]);
 
-              return $res;
+
+
+          //    return $res;
+
+              $res2 = $this->client->sendBroad([
+                
+        'messages' => [
+            [
+                 'type' => 'text',
+                 'text' =>'　OK!'
+                             ],
             
+                             [
+                 'type' => 'postback',
+                 'displayText'=>'send',
+                'data' => $res
+                             ],
+
+        ]]);
+            
+return $res2;
+
     }
 }
