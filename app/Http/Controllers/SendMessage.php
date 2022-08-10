@@ -99,7 +99,7 @@ class SendMessage extends Controller
                     $res= $param->sendMessage();
                     //ブロードキャスト
                 } elseif ($message['text'] == 'ブロキャス') {
-                    $param = new sendNarrow($channelAccessToken, $channelSecret, $client);
+                    $res = new sendNarrow($channelAccessToken, $channelSecret, $client);
 
                     $client->replyMessage([
                         'replyToken' => $event['replyToken'],

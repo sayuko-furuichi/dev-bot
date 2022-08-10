@@ -29,6 +29,8 @@ class sendNarrow
     {
         return $this->channelSecret;
 
+        
+
 
     }
 }
