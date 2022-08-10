@@ -40,7 +40,14 @@ private $event;
           'messages' => [
               [
                   'type' => 'text',
-                  'text' => '　OK!'
+                  'text' => "　OK!\n ",
+                  'emoji' =>[
+                    'index' => 0,
+                    'productId' => '5ac21b4f031a6752fb806d59',
+                    'emojiId' =>'114',
+
+
+                  ]
               ],
               
               [
@@ -52,6 +59,14 @@ private $event;
                   ",\n 　メッセージ内のいずれかのURLをタップした人数：　". $ov['uniqueClick'] .
                   ",\n 　メッセージ内のいずれかのURLをタップした人数：　". $ov['uniqueClick'] 
                           
+              ],
+              [
+
+                'type' => 'text',
+                'text' => 'メッセージを開封した人数：　'. $ov['uniqueImpression'] .
+                ",\n メッセージの送信数　：　". $ov['delivered'] .
+                ",\n 　メッセージ内のいずれかのURLをタップした人数：　". $ov['uniqueClick'] 
+
               ]
               
           ]
