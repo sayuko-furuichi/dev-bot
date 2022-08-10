@@ -152,7 +152,7 @@ class SendMessage extends Controller
                         [
                             'type' => 'text',
                             'text' => 'メッセージを開封した人数：　'. $ov['uniqueImpression'] .
-                            ',\\n メッセージの送信数　：　'. $ov['delivered'] .
+                            ",\\n メッセージの送信数　：　". $ov['delivered'] .
                             ',\\n 　メッセージ内のいずれかのURLをタップした人数：　'. $ov['uniqueClick']
                                     
                         ]
