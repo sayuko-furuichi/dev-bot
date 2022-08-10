@@ -107,7 +107,7 @@ class SendMessage extends Controller
 
                 //    $rs=json_decode($res,true);
 
-foreach ($res as $rs) {
+
     $client->replyMessage([
         'replyToken' => $event['replyToken'],
         'messages' => [
@@ -115,14 +115,15 @@ foreach ($res as $rs) {
                 'type' => 'text',
                 'text' =>$storeId . '　OK!'
             ],
-
+            
             [
                 'type' => 'text',
-                'text' => 'OK'. $rs
+                'text' => 'OK'. $res
             ]
+            
         ]
     ]);
-}
+
               
                   //  $param =new getOrgMenuParam();
                    // $sId =$storeId;
