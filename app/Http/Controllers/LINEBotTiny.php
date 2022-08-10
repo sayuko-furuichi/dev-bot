@@ -370,37 +370,39 @@ class LINEBotTiny
     public function sendBroad($param){
         //
 
-        $header = array(
-            'Authorization: Bearer ' . $this->channelAccessToken,
-            'Content-Type: application/json',
-        );
+    $header = array(
+        'Authorization: Bearer ' . $this->channelAccessToken,
+        'Content-Type: application/json',
+    );
 
-        $context = stream_context_create([
-            'http' => [
-                'ignore_errors' => true,
-                'method' => 'POST',
-                'header' => implode("\r\n", $header),
-               'content' => json_encode($param),
-            ],
-        ]);
+    $context = stream_context_create([
+        'http' => [
+            'ignore_errors' => true,
+            'method' => 'POST',
+            'header' => implode("\r\n", $header),
+           'content' => json_encode($param),
+        ],
+    ]);
 
-        $response = file_get_contents('https://api.line.me/v2/bot/message/broadcast', false, $context);
-        if (strpos($http_response_header[0], '200') === false) {
-            $response= 'Request failed';
+    $response = get_headers(file_get_contents('https://api.line.me/v2/bot/message/broadcast', false, $context));
+    if (strpos($http_response_header[0], '200') === false) {
+        $response= 'Request failed';
         // }elseif(isset($http_response_header['X-Line-Request-Id']) || isset($http_response_header['X-LINE-REQUEST-ID']) ){
 
         //     $response='Life on mars?';
-        }
-        $headers= json_decode($http_response_header,true);
-   if(isset($headers['X-Line-Request-Id']) || isset($headers['X-LINE-REQUEST-ID']) ){
-    $response='Life on mars?';
-   }
-       
-   
+    }
+//         $headers= json_decode($http_response_header,true);
+//    if(isset($headers['X-Line-Request-Id']) || isset($headers['X-LINE-REQUEST-ID']) ){
+//     $response='Life on mars?';
+//    }
+    if (isset($response['X-Line-Request-Id']) || isset($response['X-LINE-REQUEST-ID'])) {
+            //     $response='Life on mars?';
+            //    }
+
+        $response = 'life on mars?';
         return $response;
     }
-
-
+}
 
 
 
