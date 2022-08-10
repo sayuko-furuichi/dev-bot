@@ -134,6 +134,8 @@ class sendNarrow
                   'imageSize'=> 'cover'
                 ]
               ]]]);
+
+              return $res;
             
     }
 }
