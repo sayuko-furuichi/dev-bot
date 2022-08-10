@@ -119,7 +119,7 @@ class SendMessage extends Controller
                     $param = new sendNarrow($channelAccessToken, $channelSecret, $client);
                     $requestId = $param->sendMessage();
                     $params = new getAnalysisData($client,$event);
-                    $params->getData($requestId);
+                   $res= $params->getData($requestId);
 
                 //    $rs=json_decode($res,true);
 
