@@ -134,8 +134,8 @@ class SendMessage extends Controller
                 } elseif ($message['text'] == '分析') {
                     $requestId='1474ca29-09cc-48e3-8431-aeee775b2259';
                   $res=$client->analys($requestId);
-                  
-                  $rs= jsen_decode($res,true);
+
+                  $rs= json_decode($res,true);
                   $ss= $rs['overview'];
                   $s=$ss['uniqueImpression'];
 
