@@ -24,7 +24,20 @@ class SendMessage extends Controller
         $client = new LINEBotTiny($channelAccessToken, $channelSecret);
         foreach ($client->parseEvents() as $event) {
 
-            //ifで書き直しおｋ！
+            if ($event['type'] == 'postback'){
+                $pt=$event['postback'];
+                $ptD = $pt['data'];
+
+                $pra = new getAnalysisData($client,$event);
+                   $param->getData($ptD); 
+
+
+                // if($pt['data'] ==''){
+
+
+                // }
+
+            }
 
             //eventtypeがmessageで、messagetypeがtextの時起動
 
