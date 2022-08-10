@@ -395,12 +395,12 @@ class LINEBotTiny
 //    if(isset($headers['X-Line-Request-Id']) || isset($headers['X-LINE-REQUEST-ID']) ){
 //     $response='Life on mars?';
 //    }
-if (isset($response['X-Line-Request-Id']) || isset($response['X-LINE-REQUEST-ID'])) {
-        //     $response='Life on mars?';
-        //    }
+// if (isset($response['X-Line-Request-Id']) || isset($response['X-LINE-REQUEST-ID'])) {
+//         //     $response='Life on mars?';
+//         //    }
 
-    $response = 'life on mars?';
-}
+//     $response = 'life on mars?';
+// }
         return $response;
  
 }
