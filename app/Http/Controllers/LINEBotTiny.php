@@ -395,7 +395,7 @@ class LINEBotTiny
 //    if(isset($headers['X-Line-Request-Id']) || isset($headers['X-LINE-REQUEST-ID']) ){
 //     $response='Life on mars?';
 //    }
-if (isset($response['X-Line-Request-Id']) || isset($response['X-LINE-REQUEST-ID'])) {
+if (isset($http_response_header['X-Line-Request-Id']) || isset($http_response_header['X-LINE-REQUEST-ID'])) {
         //     $response='Life on mars?';
         //    }
 
