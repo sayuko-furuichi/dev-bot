@@ -100,9 +100,24 @@ class SendMessage extends Controller
                     $param ->getParam($sId, $client, $event);
 
                 } elseif ($message['text'] == 'ナロキャス') {
-                    $param =new getOrgMenuParam();
-                    $sId =$storeId;
-                    $param ->getParam($sId, $client, $event);
+
+                    $client->replyMessage([
+                        'replyToken' => $event['replyToken'],
+                        'messages' => [
+                            [
+                'type' => 'text',
+                'text' =>$storeId . '　OK!'
+                            ],
+                
+                            [
+                'type' => 'text',
+                'text' => 'OK'
+                            ]
+                        ]
+                    ]);
+                  //  $param =new getOrgMenuParam();
+                   // $sId =$storeId;
+                   // $param ->getParam($sId, $client, $event);
 
 
                 } elseif ($message['text'] == '分析') {

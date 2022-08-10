@@ -365,6 +365,34 @@ class LINEBotTiny
         return $alresponse;
     }
 
+    //ブロードキャスト
+
+    public function sendBroad($param){
+        //
+
+        $header = array(
+            'Authorization: Bearer ' . $this->channelAccessToken,
+            'Content-Type: application/json',
+        );
+
+        $context = stream_context_create([
+            'http' => [
+                'ignore_errors' => true,
+                'method' => 'POST',
+                'header' => implode("\r\n", $header),
+               'content' => json_encode($param),
+            ],
+        ]);
+
+        $response = file_get_contents('https://api.line.me/v2/bot/richmenu/alias', false, $context);
+        if (strpos($http_response_header[0], '200') === false) {
+            $response= 'Request failed';
+        }
+
+        return $response;
+    }
+
+
 
 
 
