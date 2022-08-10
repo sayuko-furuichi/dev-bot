@@ -141,18 +141,44 @@ class sendNarrow
 
               $res2 = $this->client->sendBroad([
                 
-        'messages' => [
-            [
-                 'type' => 'text',
-                 'text' =>'　OK!'
-                             ],
-            
-                             [
-                 'type' => 'message',
-                'text' => $res
-                             ],
+       
+                'messages' => [
 
-        ]]);
+                    [
+                        'type'=> 'template',
+                        'altText'=> 'this is a carousel template',
+                        'template'=> [
+                          'type'=> 'carousel',
+                          'columns'=> [
+                            [
+                              'thumbnailImageUrl'=> $imgUrl,
+                              'imageBackgroundColor'=> '#FFFFFF',
+                              'title'=>  $title,
+                              'text'=>  $text,
+                              'defaultAction'=> [
+                                'type'=> 'uri',
+                                'label'=> 'View detail',
+                                'uri'=> 'https://dev-ext-app.herokuapp.com/public/login'
+                              ],
+                              'actions'=> [
+                                [
+                                  'type'=> 'message',
+                                  'text'=> $res
+                                ],
+                                // [
+                                // 'type'=> 'postback',
+                                //  'label'=> 'Add to cart',
+                                //   'data'=> 'action=add&itemid=111'
+                                // ],
+                                [
+                                  'type'=> 'uri',
+                                  'label'=> '外部webアプリで注文',
+                                  'uri'=> 'https://dev-ext-app.herokuapp.com/public/login'
+                                ]
+                              ]
+                            ]
+
+       ]]]]] );
             
 return $res2;
 
