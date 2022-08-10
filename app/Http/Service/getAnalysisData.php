@@ -30,7 +30,7 @@ private $event;
 
         $ov= $rs['overview'];
         $ms=$rs['messages'];
-        $m=$ms['seq'];
+      //  $m=$ms['seq'];
       //  $cl=$rs['clicks'];
 
         date_default_timezone_set('Asia/Tokyo');
@@ -66,7 +66,7 @@ private $event;
               [
 
                 'type' => 'text',
-                'text' => '吹き出し単位ごとの統計' . $m .
+                'text' => '吹き出し単位ごとの統計' .
                 ",\n 　吹き出しが表示された回数：　"//. $m['impression'] 
                 // ",\n 　吹き出し内の動画または音声を再生開始し、75%再生した人数：　". $m['uniqueMediaPlayed75Percent'] .
                 // ",\n 　メッセージ内のいずれかのURLをタップした人数：　". $m['mediaPlayed50Percent'] .
