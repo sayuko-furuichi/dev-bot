@@ -118,8 +118,8 @@ class SendMessage extends Controller
                 } elseif ($message['text'] == 'ブロキャス') {
                     $param = new sendNarrow($channelAccessToken, $channelSecret, $client);
                     $requestId = $param->sendMessage();
-                    $params = new getAnalysisData($client,$event);
-                   $res= $params->getData($requestId);
+                //     $params = new getAnalysisData($client,$event);
+                // $params->getData($requestId);
 
                 //    $rs=json_decode($res,true);
 
@@ -134,7 +134,7 @@ class SendMessage extends Controller
             
             [
                 'type' => 'text',
-                'text' => 'OK　　：'. $res
+                'text' => 'OK　　：'.  $requestId
             ]
             
         ]
