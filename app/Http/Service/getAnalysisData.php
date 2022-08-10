@@ -41,7 +41,7 @@ private $event;
               [
                   'type' => 'text',
                   'text' => "$"."　OK!\n ",
-                  'emoji' =>[
+                  'emojis' =>[
                     'index' => 0,
                     'productId' => '5ac21b4f031a6752fb806d59',
                     'emojiId' =>'114',
