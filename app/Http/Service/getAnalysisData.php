@@ -33,7 +33,7 @@ class getAnalysisData
           'messages' => [
               [
                   'type' => 'text',
-                  'text' =>$storeId . '　OK!'
+                  'text' => '　OK!'
               ],
               
               [
