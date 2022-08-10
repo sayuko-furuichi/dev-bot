@@ -148,9 +148,8 @@ class sendNarrow
                              ],
             
                              [
-                 'type' => 'postback',
-                 'displayText'=>'send',
-                'data' => $res
+                 'type' => 'message',
+                'text' => $res
                              ],
 
         ]]);
