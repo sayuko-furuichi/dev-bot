@@ -21,9 +21,8 @@ private $event;
         }
     
 
-    public function getData(){
+    public function getData($requestId){
 
-        $requestId='b736e0df-b47d-4b14-9e53-81986609d3a8';
         $res=$this->client->analys($requestId);
 
         $rs= json_decode($res,true);
