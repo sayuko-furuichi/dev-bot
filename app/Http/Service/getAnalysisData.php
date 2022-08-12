@@ -71,7 +71,7 @@ private $event;
           'messages' => [
               [
                   'type' => 'text',
-                  'text' => "　OK!\n ！！取得するイベントを発生させた実人数が20人未満だった場合は取得できる値が限られます！！"
+                  'text' => "　OK!\n主に以下のような値が取得できます\n ！！イベントを発生させた実人数が20人未満だった場合は取得できる値が限られます！！"
                 //   'emojis' =>[[
                 //     'index' => 0,
                 //     'productId' => '5ac21b4f031a6752fb806d59',
@@ -104,13 +104,17 @@ private $event;
              [
                'type' => 'text',
                'text' => 'タップしたURLに関する情報' .
-                 ",\n 　吹き出しが表示された回数：　".// $m['impression'] .
-                 ",\n 　吹き出し内の動画または音声を再生開始し、75%再生した人数：　". // $m['uniqueMediaPlayed75Percent'] .
-                 ",\n 　メッセージ内のいずれかのURLをタップした人数：　".// $m['mediaPlayed50Percent'] .
+                 ",\n 　記載された　URL：　".// $m['impression'] .
+                 ",\n 　吹き出し内のURLをタップした回数：　". // $m['uniqueMediaPlayed75Percent'] .
+                 ",\n 　吹き出し内のURLをタップした人数：　".// $m['mediaPlayed50Percent'] .
                  ",\n 　吹き出し内の動画または音声が再生開始された回数：　"// . $m['mediaPlayed'] 
 
 
 
+              ],
+              [
+                'type' => 'text',
+                'text' => "その他の取得可能な値は、以下のURLから確認出来ます\nhttps://developers.line.biz/ja/reference/messaging-api/#get-insight-message-event-response" 
               ]
               
           ]
