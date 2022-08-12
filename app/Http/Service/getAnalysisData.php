@@ -38,7 +38,7 @@ private $event;
               ],
               [
                   'type' => 'text',
-                  'text' => 'NotFound ID:' . $rqMsgId
+                  'text' => 'NotFound ID:'
               ]
           ]
               ]);
