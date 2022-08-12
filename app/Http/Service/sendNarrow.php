@@ -5,6 +5,7 @@ namespace App\Http\Service;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\LINEBotTiny;
 use App\Models\SentMessage;
+use Illuminate\Support\Facades\DB;
 
 class sendNarrow
 {
@@ -110,9 +111,13 @@ class sendNarrow
                 ]
               ]]]);
 
+              $msg = new SentMessages;
+              $msg->request_id=$res;
+              $msg->save();
 
+              $msgId = SentMessages::where('request_id',$res)->first();
 
-             return $res;
+             return $msgId;
 
 //               $res2 = $this->client->sendBroad([
                 
