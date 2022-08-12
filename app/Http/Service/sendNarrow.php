@@ -114,10 +114,12 @@ class sendNarrow
               $msg = new SentMessages;
               $msg->request_id=$res;
               $msg->save();
+            
+              return $msg;
 
-              $msgId = SentMessages::where('request_id',$res)->first();
+            //   $msgId = SentMessages::where('request_id',$res)->first();
 
-             return $msgId;
+            //  return $msgId;
 
 //               $res2 = $this->client->sendBroad([
                 
