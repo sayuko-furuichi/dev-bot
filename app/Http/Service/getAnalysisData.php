@@ -56,7 +56,7 @@ private $event;
 
         $ov= $rs['overview'];
         $ms=$rs['messages'];
-        $m=$ms[1];
+        $m=$ms['seq'];
 
         $cl=$rs['clicks'];
 
