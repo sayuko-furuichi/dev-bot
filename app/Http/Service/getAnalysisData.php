@@ -24,15 +24,27 @@ private $event;
 
     public function getData($rqMsgId){
 
-      $rqMsgId=  str_replece('ID:','',$rqMsgId);
+      $rqMsg=  str_replece('ID:','',$rqMsgId);
 
-      // $requestId = SentMessage::where('id',$rqMsgId)->first();
-      // if($requestId==null){
-
+      //  $requestId = SentMessage::where('id',$rqMsgId)->first();
+      //  if($requestId==null){
+      //   $client->replyMessage([
+      //     'replyToken' => $event['replyToken'],
+      //     'messages' => [
+      //         [
+      //             'type' => 'text',
+      //             'text' => 'sorry'
+      //         ],
+      //         [
+      //             'type' => 'text',
+      //             'text' => 'NotFound ID:' . $rqMsgId
+      //         ]
+      //     ]
+      //         ]);
 
       // }
       
- return $rqMsgId;
+ return $rqMsg;
 
         $res=$this->client->analys($requestId);
 
