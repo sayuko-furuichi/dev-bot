@@ -164,7 +164,7 @@ class SendMessage extends Controller
                     $sId =$storeId;
                     $param ->getParam($sId, $client, $event);
 
-                } elseif ($message['text'] == 'ID:') {
+                } elseif (preg_match('/ID:/',$message['text'] == 'ID:')) {
 
                     $client->replyMessage([
                         'replyToken' => $event['replyToken'],
