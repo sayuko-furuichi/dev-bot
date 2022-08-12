@@ -4,6 +4,7 @@ namespace App\Http\Service;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\LINEBotTiny;
 use App\Models\SentMessage;
+use Illuminate\Support\Facades\DB;
 class getAnalysisData
 {
 
