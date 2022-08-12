@@ -85,8 +85,8 @@ private $event;
                   ",\n メッセージの送信数　：　". $ov['delivered'] .
                   ",\n 　メッセージ内のいずれかのURLをタップした人数：　". $ov['uniqueClick'] .
                   ",\n 　メッセージが配信された時刻 ：　".  $ovTime .
-                  ",\n 　メッセージ内のいずれかの動画または音声の再生を開始した人数：　". $ov['uniqueMediaPlayed'] .
-                  ",\n 　メッセージ内のいずれかの動画または音声を最後まで視聴した人数：　". $ov['uniqueMediaPlayed100Percent'] 
+                  ",\n 　メッセージ内のいずれかの動画または音声の再生を開始した人数：　". // $ov['uniqueMediaPlayed'] .
+                  ",\n 　メッセージ内のいずれかの動画または音声を最後まで視聴した人数：　"//. $ov['uniqueMediaPlayed100Percent'] 
                           
               ],
               [
