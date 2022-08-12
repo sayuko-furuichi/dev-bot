@@ -165,6 +165,10 @@ class SendMessage extends Controller
                     $param ->getParam($sId, $client, $event);
 
                 } elseif (preg_match('/ID:/',$message['text'])) {
+                    $rqMsgId = $message['text'];
+                    $param = new getAnalysisData($client,$event);
+                 //   $param->getData($rqMsgId);
+                    
 
                     $client->replyMessage([
                         'replyToken' => $event['replyToken'],
