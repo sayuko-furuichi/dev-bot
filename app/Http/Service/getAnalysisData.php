@@ -42,9 +42,8 @@ private $event;
           ]
               ]);
 
-      }
-      
- 
+      }else{
+
         $res=$this->client->analys($requestId);
 
         $rs= json_decode($res,true);
@@ -108,6 +107,9 @@ private $event;
           ]
       ]);
 
+      }
+      
+ 
 
     }
 
