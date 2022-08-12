@@ -24,72 +24,78 @@ private $event;
 
     public function getData($rqMsgId){
 
-      $requestId=  str_replece('ID:','',$rqMsgId);
+      $rqMsgId=  str_replece('ID:','',$rqMsgId);
 
- return $requestId;
-
-      //   $res=$this->client->analys($requestId);
-
-      //   $rs= json_decode($res,true);
-
-      //   $ov= $rs['overview'];
-      //   $ms=$rs['messages'];
-      // //  $m=$ms['seq'];
-      // //  $cl=$rs['clicks'];
-
-      //   date_default_timezone_set('Asia/Tokyo');
-      //   $ovTime= date('Y/m/d H:i:s', $ov['timestamp']);
+      // $requestId = SentMessage::where('id',$rqMsgId)->first();
+      // if($requestId==null){
 
 
+      // }
+      
+ return $rqMsgId;
 
-      //   $this->client->replyMessage([
-      //     'replyToken' => $this->event['replyToken'],
-      //     'messages' => [
-      //         [
-      //             'type' => 'text',
-      //             'text' => "　OK!\n "
-      //           //   'emojis' =>[[
-      //           //     'index' => 0,
-      //           //     'productId' => '5ac21b4f031a6752fb806d59',
-      //           //     'emojiId' =>'114',
-      //           //     ]
+        $res=$this->client->analys($requestId);
 
-      //           //   ]
-      //         ],
+        $rs= json_decode($res,true);
+
+        $ov= $rs['overview'];
+        $ms=$rs['messages'];
+      //  $m=$ms['seq'];
+      //  $cl=$rs['clicks'];
+
+        date_default_timezone_set('Asia/Tokyo');
+        $ovTime= date('Y/m/d H:i:s', $ov['timestamp']);
+
+
+
+        $this->client->replyMessage([
+          'replyToken' => $this->event['replyToken'],
+          'messages' => [
+              [
+                  'type' => 'text',
+                  'text' => "　OK!\n "
+                //   'emojis' =>[[
+                //     'index' => 0,
+                //     'productId' => '5ac21b4f031a6752fb806d59',
+                //     'emojiId' =>'114',
+                //     ]
+
+                //   ]
+              ],
               
-      //         [
-      //             'type' => 'text',
-      //             'text' => 'メッセージを開封した人数：　'. $ov['uniqueImpression'] .
-      //             ",\n メッセージの送信数　：　". $ov['delivered'] .
-      //             ",\n 　メッセージ内のいずれかのURLをタップした人数：　". $ov['uniqueClick'] .
-      //             ",\n 　メッセージが配信された時刻 ：　".  $ovTime .
-      //             ",\n 　メッセージ内のいずれかのURLをタップした人数：　". $ov['uniqueClick'] .
-      //             ",\n 　メッセージ内のいずれかのURLをタップした人数：　". $ov['uniqueClick'] 
+              [
+                  'type' => 'text',
+                  'text' => 'メッセージを開封した人数：　'. $ov['uniqueImpression'] .
+                  ",\n メッセージの送信数　：　". $ov['delivered'] .
+                  ",\n 　メッセージ内のいずれかのURLをタップした人数：　". $ov['uniqueClick'] .
+                  ",\n 　メッセージが配信された時刻 ：　".  $ovTime .
+                  ",\n 　メッセージ内のいずれかのURLをタップした人数：　". $ov['uniqueClick'] .
+                  ",\n 　メッセージ内のいずれかのURLをタップした人数：　". $ov['uniqueClick'] 
                           
-      //         ],
-      //         [
+              ],
+              [
 
-      //           'type' => 'text',
-      //           'text' => '吹き出し単位ごとの統計' .
-      //           ",\n 　吹き出しが表示された回数：　"//. $m['impression'] 
-      //           // ",\n 　吹き出し内の動画または音声を再生開始し、75%再生した人数：　". $m['uniqueMediaPlayed75Percent'] .
-      //           // ",\n 　メッセージ内のいずれかのURLをタップした人数：　". $m['mediaPlayed50Percent'] .
-      //           // ",\n 　吹き出し内の動画または音声が再生開始された回数：　". $m['mediaPlayed'] 
+                'type' => 'text',
+                'text' => '吹き出し単位ごとの統計' .
+                ",\n 　吹き出しが表示された回数：　"//. $m['impression'] 
+                // ",\n 　吹き出し内の動画または音声を再生開始し、75%再生した人数：　". $m['uniqueMediaPlayed75Percent'] .
+                // ",\n 　メッセージ内のいずれかのURLをタップした人数：　". $m['mediaPlayed50Percent'] .
+                // ",\n 　吹き出し内の動画または音声が再生開始された回数：　". $m['mediaPlayed'] 
 
-      //         ],
-      //         [
-      //           'type' => 'text',
-      //           'text' => 'タップしたURLに関する情報' 
-      //           // ",\n 　吹き出しが表示された回数：　". $m['impression'] .
-      //           // ",\n 　吹き出し内の動画または音声を再生開始し、75%再生した人数：　". $m['uniqueMediaPlayed75Percent'] .
-      //           // ",\n 　メッセージ内のいずれかのURLをタップした人数：　". $m['mediaPlayed50Percent'] .
-      //           // ",\n 　吹き出し内の動画または音声が再生開始された回数：　". $m['mediaPlayed'] 
+              ],
+              [
+                'type' => 'text',
+                'text' => 'タップしたURLに関する情報' 
+                // ",\n 　吹き出しが表示された回数：　". $m['impression'] .
+                // ",\n 　吹き出し内の動画または音声を再生開始し、75%再生した人数：　". $m['uniqueMediaPlayed75Percent'] .
+                // ",\n 　メッセージ内のいずれかのURLをタップした人数：　". $m['mediaPlayed50Percent'] .
+                // ",\n 　吹き出し内の動画または音声が再生開始された回数：　". $m['mediaPlayed'] 
 
 
-      //         ]
+              ]
               
-      //     ]
-      // ]);
+          ]
+      ]);
 
 
     }
