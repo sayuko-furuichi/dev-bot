@@ -25,9 +25,9 @@ private $event;
 
     public function getData($rqMsgId){
 
-      $rqMsgId=  str_replace('ID:','',$rqMsgId);
+      $rqMsg=  str_replace('ID:','',$rqMsgId);
 
-       $requestId = SentMessage::where('id',$rqMsgId)->first();
+       $requestId = SentMessage::where('id',$rqMsg)->first();
        if($requestId==null || !isset($requestId)){
         $client->replyMessage([
           'replyToken' => $event['replyToken'],
