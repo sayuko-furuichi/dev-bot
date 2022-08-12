@@ -85,15 +85,15 @@ private $event;
                   ",\n メッセージの送信数　：　". $ov['delivered'] .
                   ",\n 　メッセージ内のいずれかのURLをタップした人数：　". $ov['uniqueClick'] .
                   ",\n 　メッセージが配信された時刻 ：　".  $ovTime .
-                  ",\n 　メッセージ内のいずれかのURLをタップした人数：　". $ov['uniqueClick'] .
-                  ",\n 　メッセージ内のいずれかのURLをタップした人数：　". $ov['uniqueClick'] 
+                  ",\n 　メッセージ内のいずれかの動画または音声の再生を開始した人数：　". $ov['uniqueMediaPlayed'] .
+                  ",\n 　メッセージ内のいずれかの動画または音声を最後まで視聴した人数：　". $ov['uniqueMediaPlayed100Percent'] 
                           
               ],
               [
 
                 'type' => 'text',
                 'text' => '吹き出し単位ごとの統計' .       
-                         ",\n 　吹き出しが表示された回数：　". $m['impression'] // .
+                         ",\n 　吹き出しが表示された回数：　"//. $m['impression'] // .
                 // ",\n 　吹き出し内の動画または音声を再生開始し、75%再生した人数：　". $m['uniqueMediaPlayed75Percent'] .
                 // ",\n 　メッセージ内のいずれかのURLをタップした人数：　". $m['mediaPlayed50Percent'] .
                 // ",\n 　吹き出し内の動画または音声が再生開始された回数：　". $m['mediaPlayed'] 
