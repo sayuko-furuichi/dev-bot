@@ -71,7 +71,7 @@ private $event;
           'messages' => [
               [
                   'type' => 'text',
-                  'text' => "　OK!\n 20人未満へ送信した場合は取得できる値が限られます"
+                  'text' => "　OK!\n ！！取得するイベントを発生させた実人数が20人未満だった場合は取得できる値が限られます！！"
                 //   'emojis' =>[[
                 //     'index' => 0,
                 //     'productId' => '5ac21b4f031a6752fb806d59',
