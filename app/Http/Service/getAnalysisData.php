@@ -56,7 +56,7 @@ private $event;
 
         $ov= $rs['overview'];
         $ms=$rs['messages'];
-     //   $m=$ms['0'];
+        $m=$ms['0'];
         $cl=$rs['clicks'];
 
         date_default_timezone_set('Asia/Tokyo');
@@ -69,7 +69,7 @@ private $event;
           'messages' => [
               [
                   'type' => 'text',
-                  'text' => "　OK!\n "
+                  'text' => "　OK!\n 20人以下へ送信した場合は取得できる値が限られます"
                 //   'emojis' =>[[
                 //     'index' => 0,
                 //     'productId' => '5ac21b4f031a6752fb806d59',
