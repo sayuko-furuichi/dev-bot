@@ -129,12 +129,12 @@ class SendMessage extends Controller
         'messages' => [
             [
                 'type' => 'text',
-                'text' =>$storeId . '　OK!'
+                'text' => '　OK!'
             ],
             
             [
                 'type' => 'text',
-                'text' => 'OK　　：'.  $msgId
+                'text' => 'This　Message ID　is　：' . $msgId->id
             ]
             
         ]
