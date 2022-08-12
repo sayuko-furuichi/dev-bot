@@ -57,7 +57,7 @@ private $event;
         $ov= $rs['overview'];
         $ms=$rs['messages'];
        
-       
+       $m =(String)print_r($ms);
 
         $cl=$rs['clicks'];
 
@@ -70,7 +70,7 @@ private $event;
           'messages' => [
               [
                   'type' => 'text',
-                  'text' => "　OK!\n 20人以下へ送信した場合は取得できる値が限られます"
+                  'text' => "　OK!\n 20人未満へ送信した場合は取得できる値が限られます"
                 //   'emojis' =>[[
                 //     'index' => 0,
                 //     'productId' => '5ac21b4f031a6752fb806d59',
@@ -94,7 +94,7 @@ private $event;
 
                 'type' => 'text',
                 'text' => '吹き出し単位ごとの統計' .       
-                         ",\n 　吹き出しが表示された回数：　"  .print_r($ms) . 
+                         ",\n 　吹き出しが表示された回数：　"  .$m . 
                  ",\n 　吹き出し内の動画または音声を再生開始し、75%再生した人数：　".// $m['uniqueMediaPlayed75Percent'] .
                  ",\n 　メッセージ内のいずれかのURLをタップした人数：　".// $m['mediaPlayed50Percent'] .
                  ",\n 　吹き出し内の動画または音声が再生開始された回数：　"// . $m['mediaPlayed'] 
