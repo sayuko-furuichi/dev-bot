@@ -111,7 +111,7 @@ class sendNarrow
                 ]
               ]]]);
 
-              $msg = new SentMessages;
+              $msg = new SentMessage;
               $msg->request_id=$res;
               $msg->save();
             
