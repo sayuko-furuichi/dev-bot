@@ -33,10 +33,10 @@ class sendNarrow
 
         $imgUrl ='https://dev-bot0722.herokuapp.com/storage/app/public/img/roll3.jpg';
         $imgUrl2 ='https://dev-bot0722.herokuapp.com/storage/app/public/img/al3.jpg';
-        $title='自家製ロールケーキ';
-        $text='1番人気の商品です';
-        $title2='カクテル';
-        $text2='まったりしませんか(*´ω｀)';
+        $title='※テスト配信です※自家製ロールケーキ';
+        $text='※テスト配信です※1番人気の商品です';
+        $title2='※テスト配信です※カクテル';
+        $text2='※テスト配信です※まったりしませんか(*´ω｀)';
 
         //$resに、requestidが入る
         $res = $this->client->sendBroad([
