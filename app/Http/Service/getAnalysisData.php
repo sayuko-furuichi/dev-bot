@@ -44,7 +44,7 @@ private $event;
 
       }else{
 
-        $res=$this->client->analys($requestId);
+        $res=$this->client->analys($requestId->id);
 
         $rs= json_decode($res,true);
 
