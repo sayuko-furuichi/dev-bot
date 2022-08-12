@@ -26,26 +26,25 @@ private $event;
 
       $rqMsgId=  str_replace('ID:','',$rqMsgId);
 
-      //  $requestId = SentMessage::where('id',$rqMsgId)->first();
-      //  if($requestId==null){
-      //   $client->replyMessage([
-      //     'replyToken' => $event['replyToken'],
-      //     'messages' => [
-      //         [
-      //             'type' => 'text',
-      //             'text' => 'sorry'
-      //         ],
-      //         [
-      //             'type' => 'text',
-      //             'text' => 'NotFound ID:' . $rqMsgId
-      //         ]
-      //     ]
-      //         ]);
+       $requestId = SentMessage::where('id',$rqMsgId)->first();
+       if($requestId==null){
+        $client->replyMessage([
+          'replyToken' => $event['replyToken'],
+          'messages' => [
+              [
+                  'type' => 'text',
+                  'text' => 'sorry'
+              ],
+              [
+                  'type' => 'text',
+                  'text' => 'NotFound ID:' . $rqMsgId
+              ]
+          ]
+              ]);
 
-      // }
+      }
       
- return $rqMsgId;
-
+ 
         $res=$this->client->analys($requestId);
 
         $rs= json_decode($res,true);
