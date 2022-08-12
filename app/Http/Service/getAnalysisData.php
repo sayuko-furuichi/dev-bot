@@ -93,19 +93,19 @@ private $event;
 
                 'type' => 'text',
                 'text' => '吹き出し単位ごとの統計' .       
-                         ",\n 　吹き出しが表示された回数：　" // .
-                // ",\n 　吹き出し内の動画または音声を再生開始し、75%再生した人数：　". $m['uniqueMediaPlayed75Percent'] .
-                // ",\n 　メッセージ内のいずれかのURLをタップした人数：　". $m['mediaPlayed50Percent'] .
-                // ",\n 　吹き出し内の動画または音声が再生開始された回数：　". $m['mediaPlayed'] 
+                         ",\n 　吹き出しが表示された回数：　"  .
+                 ",\n 　吹き出し内の動画または音声を再生開始し、75%再生した人数：　".// $m['uniqueMediaPlayed75Percent'] .
+                 ",\n 　メッセージ内のいずれかのURLをタップした人数：　".// $m['mediaPlayed50Percent'] .
+                 ",\n 　吹き出し内の動画または音声が再生開始された回数：　"// . $m['mediaPlayed'] 
 
              ],
              [
                'type' => 'text',
-               'text' => 'タップしたURLに関する情報'// .
-                // ",\n 　吹き出しが表示された回数：　". $m['impression'] .
-                // ",\n 　吹き出し内の動画または音声を再生開始し、75%再生した人数：　". $m['uniqueMediaPlayed75Percent'] .
-                // ",\n 　メッセージ内のいずれかのURLをタップした人数：　". $m['mediaPlayed50Percent'] .
-                // ",\n 　吹き出し内の動画または音声が再生開始された回数：　". $m['mediaPlayed'] 
+               'text' => 'タップしたURLに関する情報' .
+                 ",\n 　吹き出しが表示された回数：　".// $m['impression'] .
+                 ",\n 　吹き出し内の動画または音声を再生開始し、75%再生した人数：　". // $m['uniqueMediaPlayed75Percent'] .
+                 ",\n 　メッセージ内のいずれかのURLをタップした人数：　".// $m['mediaPlayed50Percent'] .
+                 ",\n 　吹き出し内の動画または音声が再生開始された回数：　"// . $m['mediaPlayed'] 
 
 
 
