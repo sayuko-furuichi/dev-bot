@@ -71,7 +71,7 @@ private $event;
           'messages' => [
               [
                   'type' => 'text',
-                  'text' => "　OK!\n主に以下のような値が取得できます\n ！！イベントを発生させた実人数が20人未満だった場合は取得できる値が限られます！！"
+                  'text' => "　OK!\n主に以下のような値が取得できます\n※ イベントを発生させた実人数が20人未満だった場合は取得できる値が限られます"
                 //   'emojis' =>[[
                 //     'index' => 0,
                 //     'productId' => '5ac21b4f031a6752fb806d59',
@@ -114,7 +114,7 @@ private $event;
               ],
               [
                 'type' => 'text',
-                'text' => "その他の取得可能な値は、以下のURLから確認出来ます\nhttps://developers.line.biz/ja/reference/messaging-api/#get-insight-message-event-response" 
+                'text' => "その他の取得可能な値は、以下のURLから確認が出来ます\nhttps://developers.line.biz/ja/reference/messaging-api/#get-insight-message-event-response" 
               ]
               
           ]
