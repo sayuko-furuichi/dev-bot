@@ -25,12 +25,12 @@ private $event;
 
     public function getData($rqMsgId){
 
-      $rqMsg=  str_replace('ID:','',$rqMsgId);
+      $rqMsgId=  str_replace('ID:','',$rqMsgId);
 
-       $requestId = SentMessage::where('id',$rqMsg)->first();
+       $requestId = SentMessage::where('id',$rqMsgId)->first();
        if($requestId==null || !isset($requestId)){
-        $client->replyMessage([
-          'replyToken' => $event['replyToken'],
+        $this->client->replyMessage([
+          'replyToken' => $this->event['replyToken'],
           'messages' => [
               [
                   'type' => 'text',
