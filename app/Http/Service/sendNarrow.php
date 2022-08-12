@@ -4,6 +4,7 @@ namespace App\Http\Service;
 
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\LINEBotTiny;
+use App\Models\SentMessage;
 
 class sendNarrow
 {
@@ -35,6 +36,8 @@ class sendNarrow
         $text='1番人気の商品です';
         $title2='カクテル';
         $text2='まったりしませんか(*´ω｀)';
+
+        //$resに、requestidが入る
         $res = $this->client->sendBroad([
 
         'messages' => [
