@@ -114,7 +114,8 @@ class SendMessage extends Controller
                     $param ->getParam($sId, $client, $event);
 
 
-                    //ブロードキャスト
+                    //ブロードキャスト送信する。
+                    //送信したMsgのRequestIdをDBに格納し、IDを返却する
                 } elseif ($message['text'] == 'ブロキャス') {
                     $param = new sendNarrow($channelAccessToken, $channelSecret, $client);
                     $msgId = $param->sendMessage();
@@ -164,6 +165,8 @@ class SendMessage extends Controller
                     $sId =$storeId;
                     $param ->getParam($sId, $client, $event);
 
+
+                    //送信したMsgのIDを、ID:　という形で入力してもらい、IDからRequestIdを持ってきて分析に回す
                 } elseif (preg_match('/ID:/',$message['text'])) {
                     $rqMsgId = $message['text'];
                     $param = new getAnalysisData($client,$event);

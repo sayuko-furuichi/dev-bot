@@ -25,9 +25,13 @@ private $event;
 
     public function getData($rqMsgId){
 
+      //messageから、ID:を切り落とす
       $rqMsgId=  str_replace('ID:','',$rqMsgId);
 
+      //Idで検索する
        $requestId = SentMessage::where('id',$rqMsgId)->first();
+
+       //HITしない場合
        if($requestId==null || !isset($requestId)){
         $this->client->replyMessage([
           'replyToken' => $this->event['replyToken'],
@@ -43,8 +47,9 @@ private $event;
           ]
               ]);
 
+              
       }else{
-
+        //HITする場合分析に回す
         $res=$this->client->analys($requestId->request_id);
 
         $rs= json_decode($res,true);
