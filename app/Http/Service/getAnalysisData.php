@@ -27,7 +27,7 @@ private $event;
       $rqMsgId=  str_replace('ID:','',$rqMsgId);
 
        $requestId = SentMessage::where('id',$rqMsgId)->first();
-       if($requestId==null){
+       if($requestId==null || !isset($requestId)){
         $client->replyMessage([
           'replyToken' => $event['replyToken'],
           'messages' => [
