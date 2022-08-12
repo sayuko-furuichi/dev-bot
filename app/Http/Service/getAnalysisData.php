@@ -56,8 +56,11 @@ private $event;
 
         $ov= $rs['overview'];
         $ms=$rs['messages'];
+      
+      //  $m=$ms[0];
 
         $cl=$rs['clicks'];
+      //  $c = $cl[0];
 
         date_default_timezone_set('Asia/Tokyo');
         $ovTime= date('Y/m/d H:i:s', $ov['timestamp']);
@@ -92,7 +95,7 @@ private $event;
 
                 'type' => 'text',
                 'text' => '吹き出し単位ごとの統計' .       
-                         ",\n 　吹き出しが表示された回数：　"  .$ms . 
+                         ",\n 　吹き出しが表示された回数：　"   . 
                  ",\n 　吹き出し内の動画または音声を再生開始し、75%再生した人数：　".// $m['uniqueMediaPlayed75Percent'] .
                  ",\n 　メッセージ内のいずれかのURLをタップした人数：　".// $m['mediaPlayed50Percent'] .
                  ",\n 　吹き出し内の動画または音声が再生開始された回数：　"// . $m['mediaPlayed'] 
