@@ -57,7 +57,7 @@ private $event;
         $ov= $rs['overview'];
         $ms=$rs['messages'];
        
-       $m =(String)print_r($ms);
+       $m =(String)var_dump($ms);
 
         $cl=$rs['clicks'];
 
