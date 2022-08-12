@@ -167,7 +167,7 @@ class SendMessage extends Controller
                 } elseif (preg_match('/ID:/',$message['text'])) {
                     $rqMsgId = $message['text'];
                     $param = new getAnalysisData($client,$event);
-                 //   $param->getData($rqMsgId);
+                   $qr= $param->getData($rqMsgId);
                     
 
                     $client->replyMessage([
@@ -175,11 +175,11 @@ class SendMessage extends Controller
                         'messages' => [
                             [
                                 'type' => 'text',
-                                'text' => 'text'
+                                'text' => 'true'
                             ],
                             [
                                 'type' => 'text',
-                                'text' => 'まねしないで！'
+                                'text' => $qr
                             ]
                         ]
                             ]);

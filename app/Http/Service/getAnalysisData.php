@@ -21,7 +21,11 @@ private $event;
         }
     
 
-    public function getData($requestId){
+    public function getData($rqMsgId){
+
+      $requestId=  str_replece('ID:','',$rqMsgId);
+
+      return $requestId;
 
         $res=$this->client->analys($requestId);
 
