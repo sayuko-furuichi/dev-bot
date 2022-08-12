@@ -134,7 +134,7 @@ class SendMessage extends Controller
             
             [
                 'type' => 'text',
-                'text' => 'OK　　：'.  $msgId->id 
+                'text' => 'OK　　：'.  $msgId
             ]
             
         ]
