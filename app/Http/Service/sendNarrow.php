@@ -36,34 +36,6 @@ class sendNarrow
         $title2='カクテル';
         $text2='まったりしませんか(*´ω｀)';
         $res = $this->client->sendBroad([
-    //         'messages' => [
-    //             [
-    // 'type' => 'text',
-    // 'text' =>'　OK!'
-    //             ],
-
-    //             [
-    // 'type' => 'text',
-    // 'text' => ' OK 3'
-    //             ],
-    //                                 [
-    // 'type' => 'text',
-    // 'text' => 'OK  2'
-    //             ],
-    //                                 [
-    // 'type' => 'text',
-    // 'text' => 'OK  1'
-    //             ],
-    //                                 [
-    // 'type' => 'text',
-    // 'text' => 'fire!!'
-    //             ]
-
-    //         ]
-    //     ]);
-
-    //     return $res;
-
 
         'messages' => [
 
