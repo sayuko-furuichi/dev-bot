@@ -24,7 +24,7 @@ private $event;
 
     public function getData($rqMsgId){
 
-      $rqMsg=  str_replece('ID:','',$rqMsgId);
+      $rqMsgId=  str_replace('ID:','',$rqMsgId);
 
       //  $requestId = SentMessage::where('id',$rqMsgId)->first();
       //  if($requestId==null){
@@ -44,7 +44,7 @@ private $event;
 
       // }
       
- return $rqMsg;
+ return $rqMsgId;
 
         $res=$this->client->analys($requestId);
 
