@@ -17,7 +17,9 @@ use App\Http\Service\getAnalysisData;
 
 class SendMessage extends Controller
 {
-    //
+    //postbackアクションについて
+    //ユーザが、メッセージを送信せずにデータのみ送信できる機能。
+    //botは、if($pt['data']＝action=***)　などで判定したらよい。
 
     public function send($channelAccessToken, $channelSecret, $storeId)
     {
