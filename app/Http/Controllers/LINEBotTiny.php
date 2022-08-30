@@ -104,14 +104,12 @@ class LINEBotTiny
         }
 
         //ハッシュ値が署名と一致するかどうか
-        if (!hash_equals($this->sign($entityBody), $_SERVER['HTTP_X_LINE_SIGNATURE'])) {
+        if (!hash_equals($this->sign($entityBody), $_SERVER['HTTP_X_LINE_SIGNATURE']) && !$_SERVER['x_demo_signature'] == 'demo') {
+          
+          //  exit();
+           //他サイトから操作するための処理
             http_response_code(400);
             error_log('Invalid signature value');
-          //  exit();
-          
-          //他サイトから操作するための処理
-        }else if(!$_SERVER['x_demo_signature'] == 'demo'){
-
             exit();
         }
         
