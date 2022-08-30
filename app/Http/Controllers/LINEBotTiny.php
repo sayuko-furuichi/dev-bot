@@ -102,16 +102,21 @@ class LINEBotTiny
             error_log('Missing request body');
             exit();
         }
+if (isset($_SERVER['HTTP_X_LINE_SIGNATURE']) && !hash_equals($this->sign($entityBody), $_SERVER['HTTP_X_LINE_SIGNATURE'])) {
+    //ハッシュ値が署名と一致するかどうか
+  
+        http_response_code(400);
+        error_log('Invalid signature value');
+        exit();
 
-        //ハッシュ値が署名と一致するかどうか
-        if (!hash_equals($this->sign($entityBody), $_SERVER['HTTP_X_LINE_SIGNATURE']) && !$_SERVER['x_demo_signature'] == 'demo') {
-          
-          //  exit();
-           //他サイトから操作するための処理
-            http_response_code(400);
-            error_log('Invalid signature value');
-            exit();
-        }
+}elseif(isset($_SERVER['x_demo_signature']) && !$_SERVER['x_demo_signature'] == 'demo'){
+    http_response_code(400);
+    error_log('Invalid signature value');
+
+    exit();
+
+}
+          //他サイトから操作するための処理
         
         //requestBodyに、Eventオブジェクトが含まれているかどうか
         $data = json_decode($entityBody, true);
