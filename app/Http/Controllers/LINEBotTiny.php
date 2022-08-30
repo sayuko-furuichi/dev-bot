@@ -93,7 +93,8 @@ class LINEBotTiny
             error_log('Method not allowed');
             exit();
         }
-
+        
+        //requestBodyの中身が存在するか
         $entityBody = file_get_contents('php://input');
 
         if ($entityBody === false || strlen($entityBody) === 0) {
@@ -102,16 +103,19 @@ class LINEBotTiny
             exit();
         }
 
+        //ハッシュ値が署名と一致するかどうか
         if (!hash_equals($this->sign($entityBody), $_SERVER['HTTP_X_LINE_SIGNATURE'])) {
             http_response_code(400);
             error_log('Invalid signature value');
           //  exit();
+          
+          //他サイトから操作するための処理
         }else if(!$_SERVER['x_demo_signature'] == 'demo'){
 
             exit();
         }
         
-
+        //requestBodyに、Eventオブジェクトが含まれているかどうか
         $data = json_decode($entityBody, true);
         if (!isset($data['events'])) {
             http_response_code(400);
