@@ -481,7 +481,7 @@ public function analys($requestId){
 }
 
 
-public function sendPush(){
+public function sendPush($param){
 
 
     $dheader = array(
