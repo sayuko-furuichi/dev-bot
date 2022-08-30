@@ -57,9 +57,9 @@ class SendPushMassage{
             ]
               ]]);
 
-              $msg = new SentMessage;
-              $msg->request_id=$res;
-              $msg->save();
+            //   $msg = new SentMessage;
+            //   $msg->request_id=$res;
+            //   $msg->save();
             
               return $msg;
 
