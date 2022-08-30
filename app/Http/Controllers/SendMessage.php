@@ -44,6 +44,8 @@ class SendMessage extends Controller
             //eventtypeがmessageで、messagetypeがtextの時起動
 
             if ($event['type'] == 'message') {
+                $us = $event['source'];
+
                 $message = $event['message'];
                 //"ID"と入力されたら、ユーザIDを返す
 
@@ -51,7 +53,7 @@ class SendMessage extends Controller
 
                     //ユーザID取得のために、event配列からsoureを代入
                     //　$us['userId']　でユーザIDを持ってこれる。
-                    $us = $event['source'];
+                    
 
                     $use=$us['userId'];
 
@@ -70,6 +72,9 @@ class SendMessage extends Controller
 
             ]
         ]);
+ //   } elseif ($us['type']=='web') {
+
+
                 // メニュー　と言われたら、返す　OK！
                 } elseif ($message['text'] == 'create Rich Menu') {
                     //__construct　は、newした時に実行されるので、これが正解？
@@ -105,7 +110,7 @@ class SendMessage extends Controller
 
             [
 'type' => 'text',
-'text' => $flag . ' is richmenuID'   . $res . $imres['message']
+'text' => $flag . ' is richmenuID'   . $res
             ]
         ]
     ]);
