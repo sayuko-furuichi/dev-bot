@@ -72,6 +72,15 @@ class getRichMenu
         $res= $this->createRmA();
         $rs= json_decode($res, true);
         $this->rmIdA=$rs['richMenuId'];
+        return $res;
+
+        // if(isset($rs['richMenuId'])){
+           
+        // }elseif(isset($rs['RichMenuId'])){
+
+
+        // }
+      
 
         //create rich menu B
         $res= $this->createRmB();
@@ -88,7 +97,7 @@ class getRichMenu
         $res= $this->createAliasRmB($this->rmIdB);
 
 
-        return $res;
+     
 
 
         // $response=$this->client->validateRm([
