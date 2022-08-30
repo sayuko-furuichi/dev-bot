@@ -72,7 +72,7 @@ class getRichMenu
         $res= $this->createRmA();
         $rs= json_decode($res, true);
         $this->rmIdA=$rs['richMenuId'];
-        return $res;
+       
 
         // if(isset($rs['richMenuId'])){
            
@@ -92,11 +92,13 @@ class getRichMenu
         $res= $this->client->upRmImgA($this->rmIdA);
         $res= $this->client->upRmImgB($this->rmIdB);
 
+        return $res;
+
         $res= $this->client->defaultRm($this->rmIdA);
         $res= $this->createAliasRmA($this->rmIdA);
         $res= $this->createAliasRmB($this->rmIdB);
 
-
+     //   return $res;
      
 
 
