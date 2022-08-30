@@ -14,6 +14,7 @@ use App\Http\Service\getOrgMenuParam;
 use App\Http\Service\getRichMenu;
 use App\Http\Service\sendNarrow;
 use App\Http\Service\getAnalysisData;
+use  App\Http\Service\SendPushMassage;
 
 class SendMessage extends Controller
 {
@@ -72,8 +73,12 @@ class SendMessage extends Controller
 
             ]
         ]);
- //   } elseif ($us['type']=='web') {
-
+  } elseif ($us['type']=='web') {
+    $webMsg= $message['text'];
+    $uid=$us['userid'];
+    $msg = new SendPushMassage($channelAccessToken, $channelSecret, $client,$webMsg,$uid);
+    $res = $msg->sendPushMessage();
+ 
 
                 // メニュー　と言われたら、返す　OK！
                 } elseif ($message['text'] == 'create Rich Menu') {

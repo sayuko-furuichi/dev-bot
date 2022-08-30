@@ -481,6 +481,27 @@ public function analys($requestId){
 }
 
 
+public function sendPush(){
+
+
+    $dheader = array(
+        'Content-Type: application/json',
+        'Authorization: Bearer ' . $this->channelAccessToken,
+    );
+    $dcontext = stream_context_create([
+        'http' => [
+            'ignore_errors' => true,
+            'method' => 'POST',
+            'header' => $dheader,
+           'content' => json_encode($param),
+        ],
+    ]);
+
+    file_get_contents('https://api.line.me/v2/bot/message/push', false, $dcontext);
+
+}
+
+
     //署名をハッシュ化
     /**
      * @param string $body
