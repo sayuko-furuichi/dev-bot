@@ -57,11 +57,13 @@ class SendPushMassage{
             ]
               ]]);
 
+
+              //TODO:DBにINSERTするのも実装するかな
             //   $msg = new SentMessage;
             //   $msg->request_id=$res;
             //   $msg->save();
             
-              return $msg;
+              return $res;
 
 
 
