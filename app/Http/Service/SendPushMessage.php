@@ -44,8 +44,6 @@ class SendPushMessage{
             'to' => $this->uid,
 
         'messages' => [
-
-            
                 [
     'type' => 'text',
     'text' =>$this->webMsg
