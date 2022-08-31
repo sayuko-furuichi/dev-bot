@@ -45,7 +45,7 @@ class SendPushMessage{
 
         'messages' => [
 
-            'messages' => [
+            
                 [
     'type' => 'text',
     'text' =>$this->webMsg
@@ -56,7 +56,7 @@ class SendPushMessage{
                 ]
 
             ]
-              ]]);
+              ]);
 
 
               //TODO:DBにINSERTするのも実装するかな
