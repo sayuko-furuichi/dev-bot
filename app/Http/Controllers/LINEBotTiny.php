@@ -414,6 +414,7 @@ $response= $head['x-line-request-id'];
 
  
 }
+//メッセージのリクエストID取得のために
 //$http_response_headerを連想配列にする
 public function parseHeaders( $headers )
 {
