@@ -156,7 +156,7 @@ if (isset($_SERVER['HTTP_X_LINE_SIGNATURE']) && !hash_equals($this->sign($entity
         }
     }
 
-        //OK!!!
+        //create　richmenu
     public function rtRichMenu($rmDetail)
     {
 
@@ -207,6 +207,7 @@ if (isset($_SERVER['HTTP_X_LINE_SIGNATURE']) && !hash_equals($this->sign($entity
     }
 
 
+    //TODO:ファイル名変数にしたら１つで行けそう
     //リッチメニューに画像添付
     public function upRmImgA($rmId)
     {
