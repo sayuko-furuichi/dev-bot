@@ -386,7 +386,7 @@ class getRichMenu
     ],
     'selected'=> false,
     'name'=> $this->rmNmA,
-    'chatBarText'=> 'リッチメニュー1',
+    'chatBarText'=> 'リッチメニュー3',
     //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
     'areas'=> [[
 
@@ -400,7 +400,7 @@ class getRichMenu
     'action'=> [
         'type'=> 'uri',
         //ext_app
-        'uri'=> 'https://dev-ext-app.herokuapp.com/public/login'
+        'uri'=> 'https://dev-liff.herokuapp.com/public/send'
     ]
     ],
     // B
@@ -412,9 +412,9 @@ class getRichMenu
         'height'=> 437
     ],
     'action'=> [
-        'type'=> 'uri',
+        'type'=> 'message',
         //LIFF
-        'uri'=> 'https://liff.line.me/1657181787-2vrnwwlj'
+        'text'=> 'ID'
         ]
     ],
 
