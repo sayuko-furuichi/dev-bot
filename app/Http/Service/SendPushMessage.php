@@ -38,6 +38,8 @@ class SendPushMessage{
     public function sendPushMessage()
     {
 
+        return $this->uid;
+
         //$resに、requestidが入る
         $res = $this->client->sendPush([
             'to' => $this->uid,
