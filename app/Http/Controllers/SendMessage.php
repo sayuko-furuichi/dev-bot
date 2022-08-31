@@ -80,6 +80,22 @@ class SendMessage extends Controller
     $uid=$us['userId'];
     $msg = new SendPushMassage($channelAccessToken, $channelSecret, $client,$webMsg,$uid);
     $res = $msg->sendPushMessage();
+
+    $client->replyMessage([
+        'replyToken' => $event['replyToken'],
+        'messages' => [
+            [
+'type' => 'text',
+'text' => '　OK!'
+            ],
+
+            [
+'type' => 'text',
+'text' => ' is  '   . $res
+            ]
+        ]
+    ]);
+
  
 
                 // メニュー　と言われたら、返す　OK！
