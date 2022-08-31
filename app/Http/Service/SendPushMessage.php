@@ -48,10 +48,10 @@ class SendPushMessage{
     'type' => 'text',
     'text' =>$this->webMsg
                 ],
-                [
-    'type' => 'text',
-    'text' =>'OK!!'
-                ]
+    //             [
+    // 'type' => 'text',
+    // 'text' =>'OK!!'
+    //             ]
 
             ]
               ]);
