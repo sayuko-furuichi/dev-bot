@@ -7,7 +7,7 @@ use App\Http\Controllers\LINEBotTiny;
 use App\Models\SentMessage;
 use Illuminate\Support\Facades\DB;
 
-class SendPushMassage{
+class SendPushMessage{
     //chanell_access_token
     private $channelAccessToken;
     //chanell_secret

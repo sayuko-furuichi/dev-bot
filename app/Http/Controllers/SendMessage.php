@@ -78,7 +78,7 @@ class SendMessage extends Controller
   } elseif ($us['type']=='web' || $message['text']=='push!') {
     $webMsg= $message['text'];
     $uid=$us['userId'];
-    $msg = new SendPushMassage($channelAccessToken, $channelSecret, $client,$webMsg,$uid);
+    $msg = new SendPushMessage($channelAccessToken, $channelSecret, $client,$webMsg,$uid);
     $res = $msg->sendPushMessage();
 
     $client->replyMessage([
