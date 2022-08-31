@@ -37,6 +37,7 @@ class SendPushMessage{
     //送信後、ヘッダーからrequestIDを貰う
     public function sendPushMessage()
     {
+        return $this->webMsg;
 
         //$resに、requestidが入る
         $res = $this->client->sendPush([
