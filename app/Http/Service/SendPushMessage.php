@@ -18,18 +18,20 @@ class SendPushMessage{
 
     //sent message from web 
     private $webMsg;
+    private $webMsg2;
 
     //送信先のユーザID
     private $uid;
 
 
-    public function __construct(String $channelAccessToken, String $channelSecret, $client,$webMsg,$uid)
+    public function __construct(String $channelAccessToken, String $channelSecret, $client,$webMsg,$webMsg2,$uid)
     {
         // $this->userId= $userId;
         $this->channelAccessToken= $channelAccessToken;
         $this->channelSecret= $channelSecret;
         $this->client=$client;
         $this->webMsg =$webMsg;
+        $this->webMsg2 =$webMsg2;
         $this-> uid=$uid;
     }
 
@@ -50,7 +52,7 @@ class SendPushMessage{
                 ],
                  [
      'type' => 'text',
-     'text' =>'OK!!'
+     'text' =>$this->webMsg2
                  ]
 
             ]
