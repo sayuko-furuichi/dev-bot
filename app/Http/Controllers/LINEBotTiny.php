@@ -484,20 +484,20 @@ public function analys($requestId){
 public function sendPush($param){
 
 
-    $dheader = array(
+    $header = array(
         'Content-Type: application/json',
         'Authorization: Bearer ' . $this->channelAccessToken,
     );
-    $dcontext = stream_context_create([
+    $context = stream_context_create([
         'http' => [
             'ignore_errors' => true,
             'method' => 'POST',
-            'header' => $dheader,
+            'header' => $header,
            'content' => json_encode($param),
         ],
     ]);
 
-    file_get_contents('https://api.line.me/v2/bot/message/push', false, $dcontext);
+    file_get_contents('https://api.line.me/v2/bot/message/push', false, $context);
 
 }
 
