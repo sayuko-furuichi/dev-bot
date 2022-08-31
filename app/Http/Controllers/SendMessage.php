@@ -75,7 +75,7 @@ class SendMessage extends Controller
         ]);
 
         //TODO:クーポンの配信など調査
-  } elseif ($us['type']=='web') {
+  } elseif ($us['type']=='web' || $message['text']=='push!') {
     $webMsg= $message['text'];
     $uid=$us['userId'];
     $msg = new SendPushMassage($channelAccessToken, $channelSecret, $client,$webMsg,$uid);
