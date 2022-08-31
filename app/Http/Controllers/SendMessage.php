@@ -14,7 +14,7 @@ use App\Http\Service\getOrgMenuParam;
 use App\Http\Service\getRichMenu;
 use App\Http\Service\sendNarrow;
 use App\Http\Service\getAnalysisData;
-use  App\Http\Service\SendPushMassage;
+use  App\Http\Service\SendPushMessage;
 
 class SendMessage extends Controller
 {
