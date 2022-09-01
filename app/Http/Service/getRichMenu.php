@@ -115,14 +115,15 @@ class getRichMenu
        
         //OK
         $res= $this->createAliasRmC($rmC);
-
+        return $rmA;
         // $rms= new RichMenu();
         // $rms->richmenu_id=$this->rmIdA;
-       $res= $rmA->save();
+        $rmA->save();
+       
         $rmB->save();
         $rmC->save();
 
-        return $res;
+        return $rmA;
 
      //   return $res;
      
