@@ -146,7 +146,7 @@ if (isset($_SERVER['HTTP_X_LINE_SIGNATURE']) && !hash_equals($this->sign($entity
                 'ignore_errors' => true,
                 'method' => 'POST',
                 'header' => implode("\r\n", $header),
-                'content' => json_encode($message, JSON_UNESCAPED_UNICODE),
+                'content' => json_encode($message),
             ],
         ]);
 
@@ -170,7 +170,7 @@ if (isset($_SERVER['HTTP_X_LINE_SIGNATURE']) && !hash_equals($this->sign($entity
                 'ignore_errors' => true,
                 'method' => 'POST',
                 'header' => implode("\r\n", $rmheader),
-                'content' => json_encode($rmDetail,)
+                'content' => json_encode($rmDetail,true)
             ],
         ]);
 
@@ -195,7 +195,7 @@ if (isset($_SERVER['HTTP_X_LINE_SIGNATURE']) && !hash_equals($this->sign($entity
                 'ignore_errors' => true,
                 'method' => 'POST',
                 'header' => implode("\r\n", $header),
-                'content' => json_encode($rmDetail, JSON_UNESCAPED_UNICODE),
+                'content' => json_encode($rmDetail),
             ],
         ]);
 
@@ -401,7 +401,7 @@ if (isset($_SERVER['HTTP_X_LINE_SIGNATURE']) && !hash_equals($this->sign($entity
                 'ignore_errors' => true,
                 'method' => 'POST',
                 'header' => implode("\r\n", $alheader),
-               'content' => json_encode($param, JSON_UNESCAPED_UNICODE),
+               'content' => json_encode($param)
             ],
         ]);
 
@@ -428,7 +428,7 @@ if (isset($_SERVER['HTTP_X_LINE_SIGNATURE']) && !hash_equals($this->sign($entity
             'ignore_errors' => true,
             'method' => 'POST',
             'header' => implode("\r\n", $header),
-           'content' => json_encode($param, JSON_UNESCAPED_UNICODE),
+           'content' => json_encode($param),
         ],
     ]);
 
@@ -531,7 +531,7 @@ public function sendPush($param){
             'ignore_errors' => true,
             'method' => 'POST',
             'header' => $header,
-            // JSON_UNESCAPED_UNICODE が多分必要
+            // JSON_UNESCAPED_UNICODE？
            'content' => json_encode($param,),
         ],
     ]);
