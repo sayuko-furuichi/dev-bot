@@ -20,17 +20,17 @@ class getRichMenu
     private $client;
 
     //rich menu id
-    private $rmIdA;
-    private $rmIdB;
-    private $rmIdC;
+    // private $rmIdA;
+    // private $rmIdB;
+    // private $rmIdC;
 
-    private $rmNmA;
-    private $rmNmB;
-    private $rmNmC;
+    // private $rmNmA;
+    // private $rmNmB;
+    // private $rmNmC;
 
-    private $rmAlIdA;
-    private $rmAlIdB;
-    private $rmAlIdC;
+    // private $rmAlIdA;
+    // private $rmAlIdB;
+    // private $rmAlIdC;
 
     /**
      * Undocumented __construct
@@ -52,54 +52,64 @@ class getRichMenu
 
         //TODO:各フィードバッグ後の、trueなら続行、falseなら中断の分岐(trycatchでもいいかも？)
 
+        $rmA= new RichMenu();
+        $rmB= new RichMenu();
+        $rmC= new RichMenu();
+
       //  $strAl= date('Y-m-d-H-i-s');
      // $strs=date('Y-m-d-s');
      $strs=uniqid('');
-        $this->rmAlIdA=  $strs . '_a';
-        $this->rmAlIdB=  $strs . '_b';
-        $this->rmAlIdC=  $strs . '_c';
+       $rmA ->richMenuAliasId =  $strs . '_a';
+       $rmB ->richMenuAliasId=  $strs . '_b';
+       $rmC ->richMenuAliasId=  $strs . '_c';
 
         // $this->rmAlIdA='Al_'. $strAl . '_a';
         // $this->rmAlIdB='Al_'. $strAl . '_b';
      //   $str=date('Y-m-d-s');
      $str=uniqid('');
-        $this->rmNmA=$str . '_a';
-        $this->rmNmB=$str . '_b';
-        $this->rmNmC=$str . '_c';
+        $rmA->name = $str . '_a';
+        $rmB->name=$str . '_b';
+        $rmC->name=$str . '_c';
 
         //create rich menu A
-        $res= $this->createRmA();
+        $res= $this->createRmA($rmA,$rmB,$rmC);
         $rs= json_decode($res, true);
-        $this->rmIdA=$rs['richMenuId'];
+        $rmA->richmenu_id=$rs['richMenuId'];
        
         //create rich menu B
-        $res= $this->createRmB();
+        $res= $this->createRmB($rmA,$rmB,$rmC);
         $rs= json_decode($res, true);
-        $this->rmIdB=$rs['richMenuId'];
+        $rmB->richmenu_id=$rs['richMenuId'];
 
 
          //OK
-         $res= $this->createRmC();
+         $res= $this->createRmC($rmA,$rmB,$rmC);
          $rs= json_decode($res, true);
-         $this->rmIdC=$rs['richMenuId'];
+         $rmC->richmenu_id=$rs['richMenuId'];
 
         //画像UP
-        $res= $this->client->upRmImgA($this->rmIdA);
-        $res= $this->client->upRmImgB($this->rmIdB);
-            //OK
-        $res= $this->client->upRmImgC($this->rmIdC);
+        $res= $this->client->upRmImgA($rmA->richmenu_id);
+        $rmA->img='demo_a.png';
 
+        $res= $this->client->upRmImgB($rmB->richmenu_id);
+        $rmB->img='demo_b.png';
+            //OK
+        $res= $this->client->upRmImgC($rmC->richmenu_id);
+        $rmC->img='demo_c.png';
        
 
-        $res= $this->client->defaultRm($this->rmIdA);
-        $res= $this->createAliasRmA($this->rmIdA);
-        $res= $this->createAliasRmB($this->rmIdB);
+        $res= $this->client->defaultRm($rmA->richmenu_id);
+        $rmA->is_default=1;
+        $res= $this->createAliasRmA($rmA);
+        $res= $this->createAliasRmB($rmB);
         //OK
-        $res= $this->createAliasRmC($this->rmIdC);
+        $res= $this->createAliasRmC($rmC);
 
         // $rms= new RichMenu();
         // $rms->richmenu_id=$this->rmIdA;
-
+        $rmA->save();
+        $rmB->save();
+        $rmC->save();
 
         return $res;
 
@@ -116,7 +126,7 @@ class getRichMenu
 
 
 
-    public function createRmA()
+    public function createRmA($rmA,$rmB,$rmC)
     {
 
 
@@ -129,7 +139,7 @@ class getRichMenu
     'height'=>1686
     ],
     'selected'=> false,
-    'name'=> $this->rmNmA,
+    'name'=> $rmA->name,
     'chatBarText'=> 'リッチメニュー1',
     //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
     'areas'=> [[
@@ -214,7 +224,7 @@ class getRichMenu
                  'action'=> [
                      'type'=> 'richmenuswitch',
                     // 切り替え先設定
-                     'richMenuAliasId'=>$this->rmAlIdB,
+                     'richMenuAliasId'=>$rmB ->richMenuAliasId,
                      'data'=> 'richmenu-changed-to-b'
                  ]
                  ],
@@ -229,7 +239,7 @@ class getRichMenu
                      'action'=> [
                          'type'=> 'richmenuswitch',
                         // 切り替え先設定
-                         'richMenuAliasId'=>$this->rmAlIdC,
+                         'richMenuAliasId'=>$rmC->richMenuAliasId,
                          'data'=> 'richmenu-changed-to-c'
                      ]
                      ],
@@ -240,7 +250,7 @@ class getRichMenu
         return $res;
     }
 
-    public function createRmB()
+    public function createRmB($rmA,$rmB,$rmC)
     {
         $res=$this->client->rtRichMenu([
 
@@ -249,7 +259,7 @@ class getRichMenu
                 'height'=>1686
             ],
             'selected'=> false,
-            'name'=> $this->rmNmB,
+            'name'=> $rmB->name,
             'chatBarText'=> 'リッチメニュー2',
             //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
             'areas'=> [[
@@ -335,7 +345,7 @@ class getRichMenu
                                  'action'=> [
                                      'type'=> 'richmenuswitch',
                                     // 切り替え[先]設定
-                                     'richMenuAliasId'=> $this->rmAlIdA,
+                                     'richMenuAliasId'=> $rmA ->richMenuAliasId,
                                      'data'=> 'richmenu-changed-to-a'
                                  ]
                                  ], 
@@ -350,7 +360,7 @@ class getRichMenu
                                      'action'=> [
                                          'type'=> 'richmenuswitch',
                                         // 切り替え先設定
-                                         'richMenuAliasId'=>$this->rmAlIdC,
+                                         'richMenuAliasId'=>$rmC->richMenuAliasId,
                                          'data'=> 'richmenu-changed-to-c'
                                      ]
                                      ],
@@ -361,7 +371,7 @@ class getRichMenu
     }
 
     //C作成
-    public function createRmC()
+    public function createRmC($rmA,$rmB,$rmC)
     {
 
 
@@ -374,7 +384,7 @@ class getRichMenu
     'height'=>1686
     ],
     'selected'=> false,
-    'name'=> $this->rmNmA,
+    'name'=> $this-> $rmC->name,
     'chatBarText'=> 'リッチメニュー3',
     //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
     'areas'=> [[
@@ -459,7 +469,7 @@ class getRichMenu
                  'action'=> [
                      'type'=> 'richmenuswitch',
                     // 切り替え先設定
-                     'richMenuAliasId'=>$this->rmAlIdB,
+                     'richMenuAliasId'=>$rmB ->richMenuAliasId,
                      'data'=> 'richmenu-changed-to-b'
                  ]
                  ],  
@@ -474,7 +484,7 @@ class getRichMenu
                      'action'=> [
                          'type'=> 'richmenuswitch',
                         // 切り替え[先]設定
-                         'richMenuAliasId'=> $this->rmAlIdA,
+                         'richMenuAliasId'=> $rmA ->richMenuAliasId,
                          'data'=> 'richmenu-changed-to-a'
                      ]
                      ], 
@@ -487,38 +497,38 @@ class getRichMenu
     }
 
 
-    public function createAliasRmA()
+    public function createAliasRmA($rmA)
     {
 
 
         //エイリアス作成
 
         $res= $this->client->createAlias([
-    'richMenuAliasId'=>$this->rmAlIdA,
-   'richMenuId'=>$this->rmIdA,
+    'richMenuAliasId'=>$rmA ->richMenuAliasId,
+   'richMenuId'=>$rmA->richmenu_id,
   ]);
 
         return $res;
     }
 
-    public function createAliasRmB()
+    public function createAliasRmB($rmB)
     {
         //エイリアス作成
 
         $res= $this->client->createAlias([
-    'richMenuAliasId'=> $this->rmAlIdB,
-   'richMenuId'=>$this->rmIdB,
+    'richMenuAliasId'=> $rmB ->richMenuAliasId,
+   'richMenuId'=>$rmB->richmenu_id,
   ]);
 
         return $res;
     }
-    public function createAliasRmC()
+    public function createAliasRmC($rmC)
     {
         //エイリアス作成
 
         $res= $this->client->createAlias([
-    'richMenuAliasId'=> $this->rmAlIdC,
-   'richMenuId'=>$this->rmIdC,
+    'richMenuAliasId'=> $rmC ->richMenuAliasId,
+   'richMenuId'=>$rmC->richmenu_id,
   ]);
 
         return $res;
