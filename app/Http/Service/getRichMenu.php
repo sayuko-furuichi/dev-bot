@@ -59,9 +59,9 @@ class getRichMenu
       //  $strAl= date('Y-m-d-H-i-s');
      // $strs=date('Y-m-d-s');
      $strs=uniqid('');
-       $rmA ->richMenuAliasId =  $strs . '_a';
-       $rmB ->richMenuAliasId=  $strs . '_b';
-       $rmC ->richMenuAliasId=  $strs . '_c';
+       $rmA ->richmenu_alias_id =  $strs . '_a';
+       $rmB ->richmenu_alias_id=  $strs . '_b';
+       $rmC ->richmenu_alias_id=  $strs . '_c';
 
        
         // $this->rmAlIdA='Al_'. $strAl . '_a';
@@ -118,7 +118,6 @@ class getRichMenu
         // $rms= new RichMenu();
         // $rms->richmenu_id=$this->rmIdA;
         $rmA->save();
-        return $rmA;
         $rmB->save();
         $rmC->save();
 
@@ -235,7 +234,7 @@ class getRichMenu
                  'action'=> [
                      'type'=> 'richmenuswitch',
                     // 切り替え先設定
-                     'richMenuAliasId'=>$rmB ->richMenuAliasId,
+                     'richMenuAliasId'=>$rmB ->richmenu_alias_id,
                      'data'=> 'richmenu-changed-to-b'
                  ]
                  ],
@@ -250,7 +249,7 @@ class getRichMenu
                      'action'=> [
                          'type'=> 'richmenuswitch',
                         // 切り替え先設定
-                         'richMenuAliasId'=>$rmC->richMenuAliasId,
+                         'richMenuAliasId'=>$rmC->richmenu_alias_id,
                          'data'=> 'richmenu-changed-to-c'
                      ]
                      ],
@@ -356,7 +355,7 @@ class getRichMenu
                                  'action'=> [
                                      'type'=> 'richmenuswitch',
                                     // 切り替え[先]設定
-                                     'richMenuAliasId'=> $rmA ->richMenuAliasId,
+                                     'richMenuAliasId'=> $rmA ->richmenu_alias_id,
                                      'data'=> 'richmenu-changed-to-a'
                                  ]
                                  ], 
@@ -371,7 +370,7 @@ class getRichMenu
                                      'action'=> [
                                          'type'=> 'richmenuswitch',
                                         // 切り替え先設定
-                                         'richMenuAliasId'=>$rmC->richMenuAliasId,
+                                         'richMenuAliasId'=>$rmC->richmenu_alias_id,
                                          'data'=> 'richmenu-changed-to-c'
                                      ]
                                      ],
@@ -480,7 +479,7 @@ class getRichMenu
                  'action'=> [
                      'type'=> 'richmenuswitch',
                     // 切り替え先設定
-                     'richMenuAliasId'=>$rmB ->richMenuAliasId,
+                     'richMenuAliasId'=>$rmB ->richmenu_alias_id,
                      'data'=> 'richmenu-changed-to-b'
                  ]
                  ],  
@@ -495,7 +494,7 @@ class getRichMenu
                      'action'=> [
                          'type'=> 'richmenuswitch',
                         // 切り替え[先]設定
-                         'richMenuAliasId'=> $rmA ->richMenuAliasId,
+                         'richMenuAliasId'=> $rmA ->richmenu_alias_id,
                          'data'=> 'richmenu-changed-to-a'
                      ]
                      ], 
@@ -515,7 +514,7 @@ class getRichMenu
         //エイリアス作成
 
         $res= $this->client->createAlias([
-    'richMenuAliasId'=>$rmA ->richMenuAliasId,
+    'richMenuAliasId'=>$rmA ->richmenu_alias_id,
    'richMenuId'=>$rmA->richmenu_id,
   ]);
 
@@ -527,7 +526,7 @@ class getRichMenu
         //エイリアス作成
 
         $res= $this->client->createAlias([
-    'richMenuAliasId'=> $rmB ->richMenuAliasId,
+    'richMenuAliasId'=> $rmB ->richmenu_alias_id,
    'richMenuId'=>$rmB->richmenu_id,
   ]);
 
@@ -538,7 +537,7 @@ class getRichMenu
         //エイリアス作成
 
         $res= $this->client->createAlias([
-    'richMenuAliasId'=> $rmC ->richMenuAliasId,
+    'richMenuAliasId'=> $rmC ->richmenu_alias_id,
    'richMenuId'=>$rmC->richmenu_id,
   ]);
 
