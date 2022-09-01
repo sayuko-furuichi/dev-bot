@@ -73,9 +73,9 @@ class getRichMenu
         $rmB->name=$str . '_b';
         $rmC->name=$str . '_c';
 
-        $rmA->chat_bar='リッチメニュー1';
-        $rmB->chat_bar='リッチメニュー2';
-        $rmC->chat_bar='リッチメニュー3';
+        $rmA->chat_bar="リッチメニュー1";
+        $rmB->chat_bar="リッチメニュー2";
+        $rmC->chat_bar="リッチメニュー3";
 
         //create rich menu A
         $res= $this->createRmA($rmA,$rmB,$rmC);
