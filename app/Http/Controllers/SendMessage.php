@@ -75,7 +75,7 @@ class SendMessage extends Controller
         ]);
 
   // メニュー　と言われたら、返す　OK！
-} elseif ($message['text'] == 'create Rich Menu' ) {
+} elseif ($message['text'] == 'create Rich Menu') {
     //__construct　は、newした時に実行されるので、これが正解？
 
     $rmDetail = new getRichMenu($channelAccessToken, $channelSecret, $client);
