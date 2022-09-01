@@ -13,13 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('richmenus', function (Blueprint $table) {
+        Schema::create('richmenu_areas', function (Blueprint $table) {
             $table->id();
-            $table->string('richmenu_id');
-            $table->string('name');
-            $table->string('chat_bar');
-            $table->string('img');
-            $table->string('richMenuAliasId');
             $table->timestamps();
         });
     }
@@ -31,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('richmenus');
+        Schema::dropIfExists('richmenu_areas');
     }
 };
