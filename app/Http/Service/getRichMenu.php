@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use LINE\LINEBot\HTTPClient\CurlHTTPClient;
 use LINE\LINEBot\HTTPClient;
 use App\Models\RichMenu;
+use Illuminate\Support\Facades\DB;
 
 class getRichMenu
 {
