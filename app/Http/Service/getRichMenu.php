@@ -105,7 +105,6 @@ class getRichMenu
         $res= $this->client->upRmImgC($rmC->richmenu_id);
         $rmC->img='demo_c.png';
 
-        return $rmC;
         $res= $this->client->defaultRm($rmA->richmenu_id);
         $rmA->is_default='1';
         $rmB->is_default='0';
@@ -119,9 +118,8 @@ class getRichMenu
 
         // $rms= new RichMenu();
         // $rms->richmenu_id=$this->rmIdA;
-        return $rmC;
         $rmA->save();
-
+return $rmC;
         $rmB->save();
         $rmC->save();
 
