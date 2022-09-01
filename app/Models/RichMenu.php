@@ -9,5 +9,5 @@ class RichMenu extends Model
 {
     use HasFactory;
 
-    protected $guarded  = [''];
+    protected $fillable  = ['id','richmenu_id','name','chat_bar','img','richMenuAliasId'];
 }
