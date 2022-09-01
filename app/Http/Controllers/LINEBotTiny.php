@@ -170,7 +170,7 @@ if (isset($_SERVER['HTTP_X_LINE_SIGNATURE']) && !hash_equals($this->sign($entity
                 'ignore_errors' => true,
                 'method' => 'POST',
                 'header' => implode("\r\n", $rmheader),
-                'content' => json_encode($rmDetail, JSON_UNESCAPED_UNICODE)
+                'content' => json_encode($rmDetail,)
             ],
         ]);
 
