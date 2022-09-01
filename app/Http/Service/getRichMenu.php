@@ -5,16 +5,9 @@ namespace App\Http\Service;
 use LINE\LINEBot;
 use App\Http\Controllers\LINEBotTiny;
 use Illuminate\Http\Request;
-use LINE\LINEBot\Constant\ActionType;
-use LINE\LINEBot\RichMenuBuilder;
-use LINE\LINEBot\RichMenuBuilder\RichMenuSizeBuilder;
-use LINE\LINEBot\RichMenuBuilder\RichMenuAreaBuilder;
-use LINE\LINEBot\RichMenuBuilder\RichMenuAreaBoundsBuilder;
-use LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder;
 use LINE\LINEBot\HTTPClient\CurlHTTPClient;
 use LINE\LINEBot\HTTPClient;
-use PHPUnit\Framework\TestCase;
-use App\Models\UserProf;
+use App\Models\RichMenu;
 
 class getRichMenu
 {
