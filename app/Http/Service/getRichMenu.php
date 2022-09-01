@@ -109,6 +109,7 @@ class getRichMenu
         $rmB->is_default=0;
         $rmC->is_default=0;
         $res= $this->createAliasRmA($rmA);
+        return $res;
         $res= $this->createAliasRmB($rmB);
         //OK
         $res= $this->createAliasRmC($rmC);
