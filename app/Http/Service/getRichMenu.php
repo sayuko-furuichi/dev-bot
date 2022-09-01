@@ -7,7 +7,7 @@ use App\Http\Controllers\LINEBotTiny;
 use Illuminate\Http\Request;
 use LINE\LINEBot\HTTPClient\CurlHTTPClient;
 use LINE\LINEBot\HTTPClient;
-use App\Models\RichMenu;
+use App\Models\Richmenu;
 use Illuminate\Support\Facades\DB;
 
 class getRichMenu
@@ -52,9 +52,9 @@ class getRichMenu
     {
         //TODO:各フィードバッグ後の、trueなら続行、falseなら中断の分岐(trycatchでもいいかも？)
 
-        $rmA= new RichMenu();
-        $rmB= new RichMenu();
-        $rmC= new RichMenu();
+        $rmA= new Richmenu();
+        $rmB= new Richmenu();
+        $rmC= new Richmenu();
 
         //  $strAl= date('Y-m-d-H-i-s');
         // $strs=date('Y-m-d-s');
