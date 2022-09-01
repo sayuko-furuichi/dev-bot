@@ -63,7 +63,7 @@ class getRichMenu
        $rmB ->richMenuAliasId=  $strs . '_b';
        $rmC ->richMenuAliasId=  $strs . '_c';
 
-       return $rmC ->richMenuAliasId;
+       
         // $this->rmAlIdA='Al_'. $strAl . '_a';
         // $this->rmAlIdB='Al_'. $strAl . '_b';
      //   $str=date('Y-m-d-s');
@@ -81,6 +81,7 @@ class getRichMenu
         $rs= json_decode($res, true);
         $rmA->richmenu_id=$rs['richMenuId'];
        
+        return $rmA->richmenu_id;
         //create rich menu B
         $res= $this->createRmB($rmA,$rmB,$rmC);
         $rs= json_decode($res, true);
