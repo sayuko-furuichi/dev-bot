@@ -138,7 +138,6 @@ class getRichMenu
 //３枚作成する
 
 
-
     public function createRmA($rmA, $rmB, $rmC)
     {
         //作成
