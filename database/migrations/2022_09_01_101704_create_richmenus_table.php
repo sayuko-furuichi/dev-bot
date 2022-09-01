@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('chat_bar');
             $table->string('img');
-            $table->string('richMenuAliasId');
+            $table->string('richmenu_alias_id');
             $table->boolean('is_default');
             $table->timestamps();
         });
