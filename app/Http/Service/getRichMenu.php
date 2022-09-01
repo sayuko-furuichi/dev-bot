@@ -50,25 +50,24 @@ class getRichMenu
 
     public function creater()
     {
-
         //TODO:各フィードバッグ後の、trueなら続行、falseなら中断の分岐(trycatchでもいいかも？)
 
-        $rmA= new RichMenu;
-        $rmB= new RichMenu;
-        $rmC= new RichMenu;
+        $rmA= new RichMenu();
+        $rmB= new RichMenu();
+        $rmC= new RichMenu();
 
-      //  $strAl= date('Y-m-d-H-i-s');
-     // $strs=date('Y-m-d-s');
-     $strs=uniqid('');
-       $rmA ->richmenu_alias_id =  $strs . '_a';
-       $rmB ->richmenu_alias_id=  $strs . '_b';
-       $rmC ->richmenu_alias_id=  $strs . '_c';
+        //  $strAl= date('Y-m-d-H-i-s');
+        // $strs=date('Y-m-d-s');
+        $strs=uniqid('');
+        $rmA ->richmenu_alias_id =  $strs . '_a';
+        $rmB ->richmenu_alias_id=  $strs . '_b';
+        $rmC ->richmenu_alias_id=  $strs . '_c';
 
-       
+
         // $this->rmAlIdA='Al_'. $strAl . '_a';
         // $this->rmAlIdB='Al_'. $strAl . '_b';
-     //   $str=date('Y-m-d-s');
-     $str=uniqid('');
+        //   $str=date('Y-m-d-s');
+        $str=uniqid('');
         $rmA->name = $str . '_a';
         $rmB->name=$str . '_b';
         $rmC->name=$str . '_c';
@@ -76,25 +75,25 @@ class getRichMenu
         $rmA->chat_bar='rich Menu 1';
         $rmB->chat_bar="rich Menu 2";
         $rmC->chat_bar="rich Menu 3";
-        
+
 
 
         //create rich menu A
-        $res= $this->createRmA($rmA,$rmB,$rmC);
+        $res= $this->createRmA($rmA, $rmB, $rmC);
         $rs= json_decode($res, true);
         $rmA->richmenu_id=$rs['richMenuId'];
-       
-     
+
+
         //create rich menu B
-        $res= $this->createRmB($rmA,$rmB,$rmC);
+        $res= $this->createRmB($rmA, $rmB, $rmC);
         $rs= json_decode($res, true);
         $rmB->richmenu_id=$rs['richMenuId'];
 
 
-         //OK
-         $res= $this->createRmC($rmA,$rmB,$rmC);
-         $rs= json_decode($res, true);
-         $rmC->richmenu_id=$rs['richMenuId'];
+        //OK
+        $res= $this->createRmC($rmA, $rmB, $rmC);
+        $rs= json_decode($res, true);
+        $rmC->richmenu_id=$rs['richMenuId'];
 
         //画像UP
         $res= $this->client->upRmImgA($rmA->richmenu_id);
@@ -102,33 +101,33 @@ class getRichMenu
 
         $res= $this->client->upRmImgB($rmB->richmenu_id);
         $rmB->img='demo_b.png';
-            //OK
+        //OK
         $res= $this->client->upRmImgC($rmC->richmenu_id);
         $rmC->img='demo_c.png';
-       
+
 
         $res= $this->client->defaultRm($rmA->richmenu_id);
-        $rmA->is_default=1;
-        $rmB->is_default=0;
-        $rmC->is_default=0;
+        $rmA->is_default='1';
+        $rmB->is_default='0';
+        $rmC->is_default='0';
         $res= $this->createAliasRmA($rmA);
-         
+
         $res= $this->createAliasRmB($rmB);
-       
+
         //OK
         $res= $this->createAliasRmC($rmC);
-     
+
         // $rms= new RichMenu();
         // $rms->richmenu_id=$this->rmIdA;
-       
+
         $rmA->save();
-     
+
         $rmB->save();
         $rmC->save();
 
 
         return $res;
-     
+
 
 
         // $response=$this->client->validateRm([
@@ -140,10 +139,8 @@ class getRichMenu
 
 
 
-    public function createRmA($rmA,$rmB,$rmC)
+    public function createRmA($rmA, $rmB, $rmC)
     {
-
-
         //作成
 
         $res=$this->client->rtRichMenu([
@@ -264,7 +261,7 @@ class getRichMenu
         return $res;
     }
 
-    public function createRmB($rmA,$rmB,$rmC)
+    public function createRmB($rmA, $rmB, $rmC)
     {
         $res=$this->client->rtRichMenu([
 
@@ -362,7 +359,7 @@ class getRichMenu
                                      'richMenuAliasId'=> $rmA ->richmenu_alias_id,
                                      'data'=> 'richmenu-changed-to-a'
                                  ]
-                                 ], 
+                                 ],
                                  [
                                     //  Cの 切り替えアクション
                                        'bounds'=> [
@@ -385,10 +382,8 @@ class getRichMenu
     }
 
     //C作成
-    public function createRmC($rmA,$rmB,$rmC)
+    public function createRmC($rmA, $rmB, $rmC)
     {
-
-
         //作成
 
         $res=$this->client->rtRichMenu([
@@ -486,7 +481,7 @@ class getRichMenu
                      'richMenuAliasId'=>$rmB ->richmenu_alias_id,
                      'data'=> 'richmenu-changed-to-b'
                  ]
-                 ],  
+                 ],
                  [
                     //   Aへの 切り替えアクション
                        'bounds'=> [
@@ -501,8 +496,8 @@ class getRichMenu
                          'richMenuAliasId'=> $rmA ->richmenu_alias_id,
                          'data'=> 'richmenu-changed-to-a'
                      ]
-                     ], 
-                 
+                     ],
+
 
     ],
     ]);
@@ -513,8 +508,6 @@ class getRichMenu
 
     public function createAliasRmA($rmA)
     {
-
-
         //エイリアス作成
 
         $res= $this->client->createAlias([
