@@ -9,6 +9,7 @@ use LINE\LINEBot\HTTPClient\CurlHTTPClient;
 use LINE\LINEBot\HTTPClient;
 use App\Models\Richmenu;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Collection;
 
 class getRichMenu
 {
