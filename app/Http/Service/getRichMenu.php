@@ -81,7 +81,7 @@ class getRichMenu
         $res= $this->createRmA($rmA, $rmB, $rmC);
         $rs= json_decode($res, true);
         $rmA->richmenu_id=$rs['richMenuId'];
-        return $rmA->richmenu_id;
+   
 
         //create rich menu B
         $res= $this->createRmB($rmA, $rmB, $rmC);
@@ -125,7 +125,7 @@ class getRichMenu
         $rmC->save();
 
 
-    //    return $res;
+        return $res;
 
 
 
