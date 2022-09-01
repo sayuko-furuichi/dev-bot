@@ -52,9 +52,9 @@ class getRichMenu
 
         //TODO:各フィードバッグ後の、trueなら続行、falseなら中断の分岐(trycatchでもいいかも？)
 
-        $rmA= new RichMenu();
-        $rmB= new RichMenu();
-        $rmC= new RichMenu();
+        $rmA= new RichMenu;
+        $rmB= new RichMenu;
+        $rmC= new RichMenu;
 
       //  $strAl= date('Y-m-d-H-i-s');
      // $strs=date('Y-m-d-s');
