@@ -63,6 +63,7 @@ class getRichMenu
        $rmB ->richMenuAliasId=  $strs . '_b';
        $rmC ->richMenuAliasId=  $strs . '_c';
 
+       return $rmC ->richMenuAliasId;
         // $this->rmAlIdA='Al_'. $strAl . '_a';
         // $this->rmAlIdB='Al_'. $strAl . '_b';
      //   $str=date('Y-m-d-s');
