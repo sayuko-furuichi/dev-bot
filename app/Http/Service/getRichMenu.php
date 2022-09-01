@@ -71,6 +71,10 @@ class getRichMenu
         $rmB->name=$str . '_b';
         $rmC->name=$str . '_c';
 
+        $rmA->chat_bar='リッチメニュー1';
+        $rmB->chat_bar='リッチメニュー2';
+        $rmC->chat_bar='リッチメニュー3';
+
         //create rich menu A
         $res= $this->createRmA($rmA,$rmB,$rmC);
         $rs= json_decode($res, true);
@@ -142,7 +146,7 @@ class getRichMenu
     ],
     'selected'=> false,
     'name'=> $rmA->name,
-    'chatBarText'=> 'リッチメニュー1',
+    'chatBarText'=> $rmA->chat_bar,
     //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
     'areas'=> [[
 
@@ -262,7 +266,7 @@ class getRichMenu
             ],
             'selected'=> false,
             'name'=> $rmB->name,
-            'chatBarText'=> 'リッチメニュー2',
+            'chatBarText'=> $rmB->chat_bar,
             //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
             'areas'=> [[
 
@@ -387,7 +391,7 @@ class getRichMenu
     ],
     'selected'=> false,
     'name'=> $this-> $rmC->name,
-    'chatBarText'=> 'リッチメニュー3',
+    'chatBarText'=> $rmC->chat_bar,
     //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
     'areas'=> [[
 
