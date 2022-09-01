@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('chat_bar');
             $table->string('img');
             $table->string('richMenuAliasId');
+            $table->boolean('is_default');
             $table->timestamps();
         });
     }
