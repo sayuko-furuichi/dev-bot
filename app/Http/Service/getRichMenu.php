@@ -75,7 +75,7 @@ class getRichMenu
         $rmA->chat_bar='rich Menu 1';
         $rmB->chat_bar="rich Menu 2";
         $rmC->chat_bar="rich Menu 3";
-        return $res;
+        return $rmC->chat_bar;
 
 
         //create rich menu A
