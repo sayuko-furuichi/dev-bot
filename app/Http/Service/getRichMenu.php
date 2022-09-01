@@ -81,7 +81,7 @@ class getRichMenu
         $rs= json_decode($res, true);
         $rmA->richmenu_id=$rs['richMenuId'];
        
-        return $rmA->richmenu_id;
+     
         //create rich menu B
         $res= $this->createRmB($rmA,$rmB,$rmC);
         $rs= json_decode($res, true);
@@ -392,7 +392,7 @@ class getRichMenu
     'height'=>1686
     ],
     'selected'=> false,
-    'name'=> $this-> $rmC->name,
+    'name'=> $rmC->name,
     'chatBarText'=> $rmC->chat_bar,
     //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
     'areas'=> [[
