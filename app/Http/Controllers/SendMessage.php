@@ -74,6 +74,49 @@ class SendMessage extends Controller
             ]
         ]);
 
+  // メニュー　と言われたら、返す　OK！
+} elseif ($message['text'] == 'create Rich Menu' ||( $us['type']=='web' && $message['text']=='laravel カラム名 id')) {
+    //__construct　は、newした時に実行されるので、これが正解？
+
+    $rmDetail = new getRichMenu($channelAccessToken, $channelSecret, $client);
+    $res = $rmDetail->creater();
+
+    $imres=json_decode($res, true);
+
+    if ($res==false || $res== null ||$res== 'undefine' || isset($res['message'])) {
+        $flag='false';
+     
+    } elseif(!isset($imres['message']))  {
+        $flag='true';
+      //  $imres['message']='true';
+    
+    }
+
+    //$ss = new getRichMenu($channelAccessToken, $channelSecret);
+
+
+    //    $mId = $ss->createRichMenu();
+
+    //      $imres['richMenuId']
+
+    $client->replyMessage([
+'replyToken' => $event['replyToken'],
+'messages' => [
+[
+'type' => 'text',
+'text' =>$storeId . '　OK!'
+],
+
+[
+'type' => 'text',
+'text' => $flag . ' is richmenuID'   . $res
+]
+]
+]);
+
+
+
+
         //TODO:クーポンの配信など調査
   } elseif ($us['type']=='web' || $message['text']=='push!') {
     $webMsg= $message['text'];
@@ -99,45 +142,7 @@ class SendMessage extends Controller
 
  
 
-                // メニュー　と言われたら、返す　OK！
-                } elseif ($message['text'] == 'create Rich Menu' ||( $us['type']=='web' && $message['text']=='laravel カラム名 id')) {
-                    //__construct　は、newした時に実行されるので、これが正解？
-
-                    $rmDetail = new getRichMenu($channelAccessToken, $channelSecret, $client);
-                    $res = $rmDetail->creater();
-
-                    $imres=json_decode($res, true);
-
-                    if ($res==false || $res== null ||$res== 'undefine' || isset($res['message'])) {
-                        $flag='false';
-                     
-                    } elseif(!isset($imres['message']))  {
-                        $flag='true';
-                      //  $imres['message']='true';
-                    
-                    }
-
-                    //$ss = new getRichMenu($channelAccessToken, $channelSecret);
-
-
-                    //    $mId = $ss->createRichMenu();
-
-                    //      $imres['richMenuId']
-
-                    $client->replyMessage([
-        'replyToken' => $event['replyToken'],
-        'messages' => [
-            [
-'type' => 'text',
-'text' =>$storeId . '　OK!'
-            ],
-
-            [
-'type' => 'text',
-'text' => $flag . ' is richmenuID'   . $res
-            ]
-        ]
-    ]);
+              
                 //限定メニューを要求されたとき
                 } elseif ($message['text'] == '限定メニュー') {
                     $param =new getOrgMenuParam();
