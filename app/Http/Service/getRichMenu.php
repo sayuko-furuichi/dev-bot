@@ -60,7 +60,8 @@ class getRichMenu
         //TODO:各フィードバッグ後の、trueなら続行、falseなら中断の分岐(trycatchでもいいかも？)
 
       //  $strAl= date('Y-m-d-H-i-s');
-      $strs=date('Y-m-d-s');
+     // $strs=date('Y-m-d-s');
+     $strs=uniqid('');
         $this->rmAlIdA=  $strs . '_a';
         $this->rmAlIdB=  $strs . '_b';
         $this->rmAlIdC=  $strs . '_c';
@@ -111,6 +112,8 @@ class getRichMenu
         $res= $this->createAliasRmB($this->rmIdB);
         //OK
         $res= $this->createAliasRmC($this->rmIdC);
+
+
 
         return $res;
 
