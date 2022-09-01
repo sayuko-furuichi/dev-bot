@@ -118,8 +118,9 @@ class getRichMenu
 
         // $rms= new RichMenu();
         // $rms->richmenu_id=$this->rmIdA;
+        return $rmC;
         $rmA->save();
-return $rmC;
+
         $rmB->save();
         $rmC->save();
 
