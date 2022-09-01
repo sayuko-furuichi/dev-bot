@@ -107,9 +107,9 @@ class getRichMenu
 
 
         $res= $this->client->defaultRm($rmA->richmenu_id);
-        $rmA->is_default=1;
-        $rmB->is_default=0;
-        $rmC->is_default=0;
+        $rmA->is_default='1';
+        $rmB->is_default='0';
+        $rmC->is_default='0';
         $res= $this->createAliasRmA($rmA);
 
         $res= $this->createAliasRmB($rmB);
