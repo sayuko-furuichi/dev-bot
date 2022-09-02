@@ -54,7 +54,7 @@ class getRichMenu
         // $this->rmAlIdB='Al_'. $strAl . '_b';
         //   $str=date('Y-m-d-s');
        // $str=uniqid('');
-       $str='非会員';
+       $str='会員';
         $rmA->name = $str . '_a';
         $rmB->name=$str . '_b';
         $rmC->name=$str . '_c';
@@ -220,7 +220,7 @@ class getRichMenu
              ],
              'action'=> [
                  'type'=> 'message',
-                 'text'=> '普請中です',
+                 'text'=> '退会する',
              ]
              ],
              [
