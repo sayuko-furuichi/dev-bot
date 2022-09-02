@@ -48,7 +48,7 @@ class getRichMenu
         $this->client=$client;
     }
 
-    public function creater()
+    public function creater($storeId)
     {
         //TODO:各フィードバッグ後の、trueなら続行、falseなら中断の分岐(trycatchでもいいかも？)
 
@@ -122,7 +122,11 @@ class getRichMenu
         //OK
         $res= $this->createAliasRmC($rmC);
     
-
+        //store_idを入れる
+       
+        $rmA->store_id= $storeId;
+        $rmB->store_id= $storeId;
+        $rmC->store_id= $storeId;
         // $rms= new RichMenu();
         // $rms->richmenu_id=$this->rmIdA;
     //    return $rmC;
