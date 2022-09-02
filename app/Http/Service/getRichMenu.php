@@ -106,6 +106,8 @@ class getRichMenu
 
         $res= $this->client->defaultRm($rmA->richmenu_id);
          
+        //前のデフォルトをDBで更新
+        //TODO:もっと効率よく参照したい
         $old = RichMenu::where('is_default',1)->first();
         $old->is_default=0;
         $old->save();
