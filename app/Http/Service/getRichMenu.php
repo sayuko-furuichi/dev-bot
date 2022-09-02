@@ -109,9 +109,11 @@ class getRichMenu
         //前のデフォルトをDBで更新
         //TODO:もっと効率よく参照したい
         $old = RichMenu::where('is_default',1)->first();
-        $old->is_default=0;
-        $old->save();
-
+        if(isset($old)){
+            $old->is_default=0;
+            $old->save();
+        }
+      
         $rmA->is_default=1;
         $rmB->is_default=0;
         $rmC->is_default=0;
