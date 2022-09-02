@@ -44,6 +44,7 @@ class SendMessage extends Controller
 
             //eventtypeがmessageで、messagetypeがtextの時起動
 
+
             if ($event['type'] == 'message') {
                 $us = $event['source'];
 
@@ -74,6 +75,10 @@ class SendMessage extends Controller
             ]
         ]);
 
+
+
+
+        
   // メニュー　と言われたら、返す　OK！
 } elseif ($message['text'] == 'create Rich Menu') {
     //__construct　は、newした時に実行されるので、これが正解？
@@ -113,6 +118,10 @@ class SendMessage extends Controller
 ]
 ]
 ]);
+
+} elseif ($message['text'] == '会員ステータス確認') {
+    //TODO:確認
+
 
 } elseif ($us['type']=='web' && $message['text']=='plz RichMenus') {
     //DBからひっぱってくる
