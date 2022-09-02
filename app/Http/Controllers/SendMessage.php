@@ -121,7 +121,20 @@ class SendMessage extends Controller
 
 } elseif ($message['text'] == '会員ステータス確認') {
     //TODO:確認
+    $client->replyMessage([
+        'replyToken' => $event['replyToken'],
+        'messages' => [
+            [
+'type' => 'text',
+'text' => '　OK!'
+            ],
 
+            [
+'type' => 'text',
+'text' => ' is  確認中'   
+            ]
+        ]
+    ]);
 
 } elseif ($us['type']=='web' && $message['text']=='plz RichMenus') {
     //DBからひっぱってくる
