@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('img');
             $table->string('richmenu_alias_id');
             $table->boolean('is_default');
+            $table->string('store_id');
             $table->timestamps();
 
         });
