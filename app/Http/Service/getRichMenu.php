@@ -20,19 +20,6 @@ class getRichMenu
     //LINEBotTiny client
     private $client;
 
-    //rich menu id
-    // private $rmIdA;
-    // private $rmIdB;
-    // private $rmIdC;
-
-    // private $rmNmA;
-    // private $rmNmB;
-    // private $rmNmC;
-
-    // private $rmAlIdA;
-    // private $rmAlIdB;
-    // private $rmAlIdC;
-
     /**
      * Undocumented __construct
      *

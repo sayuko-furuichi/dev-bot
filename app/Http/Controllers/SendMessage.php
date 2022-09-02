@@ -15,6 +15,7 @@ use App\Http\Service\getRichMenu;
 use App\Http\Service\sendNarrow;
 use App\Http\Service\getAnalysisData;
 use  App\Http\Service\SendPushMessage;
+use  App\Http\Service\getMember;
 
 class SendMessage extends Controller
 {
@@ -121,6 +122,9 @@ class SendMessage extends Controller
 
 } elseif ($message['text'] == '会員ステータス確認') {
     //TODO:確認
+    $mm = new getMember($channelAccessToken, $channelSecret, $client);
+    $res=$mm->index($us['userId']);
+
     $client->replyMessage([
         'replyToken' => $event['replyToken'],
         'messages' => [
@@ -131,7 +135,7 @@ class SendMessage extends Controller
 
             [
 'type' => 'text',
-'text' => ' is  確認中'   
+'text' => ' あなたは'. $res . '　です！'   
             ]
         ]
     ]);
