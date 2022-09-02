@@ -105,9 +105,14 @@ class getRichMenu
         $rmC->img='demo_c.png';
 
         $res= $this->client->defaultRm($rmA->richmenu_id);
-        $rmA->is_default='1';
-        $rmB->is_default='0';
-        $rmC->is_default='0';
+         
+        $old = RichMenu::where('is_default',1)->first();
+        $old->is_default=0;
+        $old->save();
+
+        $rmA->is_default=1;
+        $rmB->is_default=0;
+        $rmC->is_default=0;
         $res= $this->createAliasRmA($rmA);
 
         $res= $this->createAliasRmB($rmB);
