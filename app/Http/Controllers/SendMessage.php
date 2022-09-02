@@ -114,7 +114,7 @@ class SendMessage extends Controller
 ]
 ]);
 
-} elseif ($us['type']=='web' && $message['text']=='plz RichMenu') {
+} elseif ($us['type']=='web' && $message['text']=='plz RichMenus') {
     //DBからひっぱってくる
 
 
