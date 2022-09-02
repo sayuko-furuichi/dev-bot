@@ -40,7 +40,7 @@ class getMember
         $mem = Member::where('line_user_id',$uid)->first();
         
         if (isset($mem)) {
-            $res='会員';
+            $res='会員'. $storeId;
             $rm='richmenu-17e16582cd159c844fa3d85d6f71967a';
            
             
