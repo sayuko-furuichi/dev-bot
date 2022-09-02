@@ -557,6 +557,8 @@ class getRichMenu
         //DBから持ってきて、POSTする
         //TODO:Jsonで送る？
         $list=RichMenu::where('store_id',$storeId)->get();
+        return $list;
+        
         $header = array(
             'Content-Type: application/json',
         );
