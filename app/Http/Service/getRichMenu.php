@@ -573,7 +573,7 @@ class getRichMenu
          ]);
          //   var_dump($detail);
     
-         $res = file_get_contents('https://dev-ext-app.herokuapp.com/public/richlist', false, $context);
+         $res = file_get_contents('https://dev-ext-app.herokuapp.com/public/rich', false, $context);
 
          if (strpos($http_response_header[0], '200') === false) {
              $res = 'false';
