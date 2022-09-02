@@ -114,7 +114,8 @@ class SendMessage extends Controller
 ]
 ]);
 
-
+} elseif ($us['type']=='web' && $message['text']=='plz RichMenu') {
+    //DBからひっぱってくる
 
 
         //TODO:クーポンの配信など調査
@@ -141,6 +142,8 @@ class SendMessage extends Controller
     ]);
 
  
+
+
 
               
                 //限定メニューを要求されたとき
