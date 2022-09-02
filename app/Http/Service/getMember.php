@@ -35,7 +35,8 @@ class getMember
         $this->client=$client;
     }
 
-    public function index($uid){
+    public function index($uid,$storeId){
+        //会員は店舗関係無くしている(あかんか)
         $mem = Member::where('line_user_id',$uid)->first();
         
         if (isset($mem)) {

@@ -215,7 +215,8 @@ if (isset($_SERVER['HTTP_X_LINE_SIGNATURE']) && !hash_equals($this->sign($entity
        // $richmenuId="richmenu-b56771c2cf5b359b8c182d7de6f9e2c8";
 
        //画像URL
-        $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/demo_a.png';
+       //TODO:非会員メニューに変更済み
+        $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/memberdemo/1.png';
         $img = file_get_contents($imgurl);
         $imgheader = array(
             'Content-Type: image/png',
@@ -251,7 +252,7 @@ if (isset($_SERVER['HTTP_X_LINE_SIGNATURE']) && !hash_equals($this->sign($entity
         // $richmenuId="richmenu-b56771c2cf5b359b8c182d7de6f9e2c8";
  
         //画像URL
-         $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/demo_b.png';
+         $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/memberdemo/3.png';
          $img = file_get_contents($imgurl);
          $imgheader = array(
              'Content-Type: image/png',
@@ -287,7 +288,7 @@ if (isset($_SERVER['HTTP_X_LINE_SIGNATURE']) && !hash_equals($this->sign($entity
          // $richmenuId="richmenu-b56771c2cf5b359b8c182d7de6f9e2c8";
   
          //画像URL
-          $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/demo_c.png';
+          $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/memberdemo/5.png';
           $img = file_get_contents($imgurl);
           $imgheader = array(
               'Content-Type: image/png',

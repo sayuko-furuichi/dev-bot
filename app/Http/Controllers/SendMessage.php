@@ -124,7 +124,7 @@ class SendMessage extends Controller
 } elseif ($message['text'] == '会員ステータス確認') {
     //TODO:確認
     $mm = new getMember($channelAccessToken, $channelSecret, $client);
-    $res=$mm->index($us['userId']);
+    $res=$mm->index($us['userId'],$storeId);
 
     $client->replyMessage([
         'replyToken' => $event['replyToken'],
