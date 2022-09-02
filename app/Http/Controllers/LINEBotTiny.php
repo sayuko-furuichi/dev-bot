@@ -536,9 +536,9 @@ public function linkUser($uid,$rm){
         ],
     ]);
 
-    $alresponse = file_get_contents('https://api.line.me/v2/bot/user/'. $uid . '\/richmenu\/' . $rm, false, $alcontext);
+    $alresponse = file_get_contents('https://api.line.me/v2/bot/user/'. $uid . '/richmenu/' . $rm, false, $alcontext);
     if (strpos($http_response_header[0], '200') === false) {
-        $alresponse= 'Request failed';
+      //  $alresponse= 'Request failed';
     }
 
     return $alresponse;
