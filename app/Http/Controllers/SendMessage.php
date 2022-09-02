@@ -116,7 +116,8 @@ class SendMessage extends Controller
 
 } elseif ($us['type']=='web' && $message['text']=='plz RichMenus') {
     //DBからひっぱってくる
-
+    $gm = new getRichMenu($channelAccessToken, $channelSecret, $client);
+    $gm->getList($storeId);
 
         //TODO:クーポンの配信など調査
   } elseif ($us['type']=='web' || $message['text']=='push!') {

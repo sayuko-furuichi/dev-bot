@@ -551,4 +551,36 @@ class getRichMenu
 
         return $res;
     }
-}
+
+    public function getList($storeId){
+
+        //DBから持ってきて、POSTする
+
+        $list=RichMenu::where('store_id',$storeId)->all();
+         $context = stream_context_create([
+             'http' => [
+                 'ignore_errors' => true,
+                 'method' => 'POST',
+                 'header' => implode("\r\n", $header),
+                 'content' =>$list
+             ],
+         ]);
+         //   var_dump($detail);
+    
+         $res = file_get_contents('https://dev-ext-app.herokuapp.com/public/rich', false, $context);
+         var_dump($rmList);
+         if (strpos($http_response_header[0], '200') === false) {
+             $rmList = 'false';
+         }
+
+        return $res;
+    }
+
+    }
+
+
+
+
+
+
+    
