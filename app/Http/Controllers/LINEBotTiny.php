@@ -535,8 +535,9 @@ public function linkUser($uid,$rm){
           // 'content' => json_encode($param)
         ],
     ]);
+    $url=urlencode('https://api.line.me/v2/bot/user/'. $uid . '/richmenu/' . $rm);
 
-    $alresponse = file_get_contents('https://api.line.me/v2/bot/user/'. $uid . '/richmenu/' . $rm, false, $alcontext);
+    $alresponse = file_get_contents($url, false, $alcontext);
     if (strpos($http_response_header[0], '200') === false) {
       //  $alresponse= 'Request failed';
     }
