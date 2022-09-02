@@ -568,9 +568,9 @@ class getRichMenu
          //   var_dump($detail);
     
          $res = file_get_contents('https://dev-ext-app.herokuapp.com/public/rich', false, $context);
-         var_dump($rmList);
+
          if (strpos($http_response_header[0], '200') === false) {
-             $rmList = 'false';
+             $res = 'false';
          }
 
         return $res;
