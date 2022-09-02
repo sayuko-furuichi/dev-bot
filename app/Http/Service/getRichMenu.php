@@ -556,12 +556,12 @@ class getRichMenu
 
         //DBから持ってきて、POSTする
         //TODO:Jsonで送る？
-
+        $list=RichMenu::where('store_id',$storeId)->get();
         $header = array(
             'Content-Type: application/json',
         );
 
-        $list=RichMenu::where('store_id',$storeId)->get();
+       
          $context = stream_context_create([
              'http' => [
                  'ignore_errors' => true,
