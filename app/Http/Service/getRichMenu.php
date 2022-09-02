@@ -556,7 +556,7 @@ class getRichMenu
 
         //DBから持ってきて、POSTする
 
-        $list=RichMenu::where('store_id',$storeId)->all();
+        $list=RichMenu::where('store_id',$storeId)->get();
          $context = stream_context_create([
              'http' => [
                  'ignore_errors' => true,
