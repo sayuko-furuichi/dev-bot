@@ -557,8 +557,7 @@ class getRichMenu
         //DBから持ってきて、POSTする
         //TODO:Jsonで送る？
         $list=RichMenu::where('store_id',$storeId)->get();
-        return $list;
-        
+
         $header = array(
             'Content-Type: application/json',
         );
@@ -574,7 +573,7 @@ class getRichMenu
          ]);
          //   var_dump($detail);
     
-         $res = file_get_contents('https://dev-ext-app.herokuapp.com/public/rich', false, $context);
+         $res = file_get_contents('https://dev-ext-app.herokuapp.com/public/richlist', false, $context);
 
          if (strpos($http_response_header[0], '200') === false) {
              $res = 'false';
