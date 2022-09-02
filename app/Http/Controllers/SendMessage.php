@@ -114,10 +114,26 @@ class SendMessage extends Controller
 ]
 ]);
 
-} elseif ($us['type']=='web' && $message['text']=='plz RichMenus') {
+} elseif ($us['type']=='web' && $message['text']=='plz RichMenus' || $message['text']=='よこせ') {
     //DBからひっぱってくる
     $gm = new getRichMenu($channelAccessToken, $channelSecret, $client);
-    $gm->getList($storeId);
+    $res= $gm->getList($storeId);
+   
+    $client->replyMessage([
+        'replyToken' => $event['replyToken'],
+        'messages' => [
+            [
+'type' => 'text',
+'text' => '　OK!'
+            ],
+
+            [
+'type' => 'text',
+'text' => ' is  '   . $res
+            ]
+        ]
+    ]);
+
 
         //TODO:クーポンの配信など調査
   } elseif ($us['type']=='web' || $message['text']=='push!') {
