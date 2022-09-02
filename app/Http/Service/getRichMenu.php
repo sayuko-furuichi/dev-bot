@@ -555,14 +555,19 @@ class getRichMenu
     public function getList($storeId){
 
         //DBから持ってきて、POSTする
+        //TODO:Jsonで送る？
+
+        $header = array(
+            'Content-Type: application/json',
+        );
 
         $list=RichMenu::where('store_id',$storeId)->get();
          $context = stream_context_create([
              'http' => [
                  'ignore_errors' => true,
                  'method' => 'POST',
-             //    'header' => implode("\r\n", $header),
-                 'content' =>$list
+                 'header' => implode("\r\n", $header),
+                 'content' =>json_encode($list)
              ],
          ]);
          //   var_dump($detail);
