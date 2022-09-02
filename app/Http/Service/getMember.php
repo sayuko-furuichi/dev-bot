@@ -41,13 +41,17 @@ class getMember
         
         if (isset($mem)) {
             $res='会員';
+            $rm='richmenu-17e16582cd159c844fa3d85d6f71967a';
+           
             
         }else{
             $res='非会員';
+            $rm='richmenu-abb034aefaca6179f59627b52a6e0f43';
         }
-
+        $res= $client->linkUser($uid,$rm);
         return $res;
     }
 
-
+//非会員　richmenu-abb034aefaca6179f59627b52a6e0f43
+//会員　richmenu-17e16582cd159c844fa3d85d6f71967a
 }
