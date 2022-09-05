@@ -84,7 +84,7 @@ class getMember
 
             $this->client->replyMessage([
                 'replyToken' => $event['replyToken'],
-                'messages' =>  [
+                'messages' =>  [[
                     'type'=> 'template',
                     'altText'=> 'this is a confirm template',
                     'template'=> [
@@ -95,16 +95,16 @@ class getMember
                           'type'=> 'postback',
                           'label'=> 'yes',
                           'data'=> 'yes',
-                          //'displayText'=>'会員登録する'
+                          'displayText'=>'会員登録する'
                         ],
                         [
                           'type'=> 'postback',
                           'label'=> 'No',
                           'data'=> 'no',
-                          // 'displayText'=>'しない'
+                           'displayText'=>'しない'
                         ]
                       ]
-                    ]]]);
+                      ]]]]);
                             
 
 
