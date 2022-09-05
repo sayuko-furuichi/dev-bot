@@ -32,6 +32,7 @@ class SendMessage extends Controller
             if ($event['type'] == 'postback'){
                 $pt=$event['postback'];
                 $ptD = $pt['data'];
+           
                 if($pt['data']=='yes'){
                     $client->replyMessage([
                         'replyToken' => $event['replyToken'],
