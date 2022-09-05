@@ -146,22 +146,9 @@ class SendMessage extends Controller
     //TODO:確認
     $mm = new getMember($channelAccessToken, $channelSecret, $client);
     $uid=$us['userId'];
-    $res=$mm->index($uid,$storeId);
+    $res=$mm->addMember($uid,$event);
 
-    $client->replyMessage([
-        'replyToken' => $event['replyToken'],
-        'messages' => [
-            [
-'type' => 'text',
-'text' => '　OK!'
-            ],
-
-            [
-'type' => 'text',
-'text' => ' あなたは'. $res . '　です！'   
-            ]
-        ]
-    ]);
+   
 
 } elseif ($message['text'] == '退会する') {
     //TODO:確認

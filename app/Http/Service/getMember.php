@@ -41,15 +41,13 @@ class getMember
         
         if (isset($mem)) {
             $resp='会員'. $storeId;
-           
-          
             $rm='richmenu-17e16582cd159c844fa3d85d6f71967a';
-           
-            
         }else{
             $resp='非会員';
          //   $rm='richmenu-abb034aefaca6179f59627b52a6e0f43';
         $rm= 'richmenu-b63a368440e5008ca8e3293ea6f7c795';
+
+
         }
         $res= $this->client->linkUser($uid,$rm);
 
@@ -58,4 +56,48 @@ class getMember
 
 //非会員　richmenu-abb034aefaca6179f59627b52a6e0f43
 //会員　richmenu-17e16582cd159c844fa3d85d6f71967a
+
+
+    function addMember($uid,$event){
+
+        $mem = Member::where('line_user_id',$uid)->first();
+        
+        if (isset($mem)){ 
+            $this->client->replyMessage([
+                'replyToken' => $event['replyToken'],
+                'messages' => [
+                    [
+        'type' => 'text',
+        'text' => '　OK!'
+                    ],
+        
+                    [
+        'type' => 'text',
+        'text' => ' あなたは'. 'すでに会員です'   
+                    ]
+                ]
+            ]);
+       
+        }else{
+            $this->client->replyMessage([
+                'replyToken' => $event['replyToken'],
+                'messages' => [
+                    [
+        'type' => 'text',
+        'text' => '　OK!'
+                    ],
+        
+                    [
+        'type' => 'text',
+        'text' => ' あなたは'. 'すでに会員です'   
+                    ]
+                ]
+            ]);
+
+         //   $member = new Member;
+          //  $member->line_user_id=$uid;
+
+        }
+
+    }
 }
