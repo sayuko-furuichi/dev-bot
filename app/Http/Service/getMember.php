@@ -80,7 +80,7 @@ class getMember
        
         }else{
            $res= $this->client->userProf($uid);
-            $res=json_decode($res,true);
+            $resp=json_decode($res,true);
 
             $this->client->replyMessage([
                 'replyToken' => $event['replyToken'],
@@ -89,7 +89,7 @@ class getMember
                     'altText'=> 'this is a confirm template',
                     'template'=> [
                       'type'=> 'confirm',
-                      'text'=> '登録しますか？\n'.$res['displayName'],
+                      'text'=> '登録しますか？\n'.$resp['displayName'],
                       'actions'=> [
                         [
                           'type'=> 'postback',
