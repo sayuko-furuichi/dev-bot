@@ -59,8 +59,8 @@ class getMember
 
 
     function addMember($uid,$event){
-
-        $mem = Member::where('line_user_id',$uid)->first();
+//
+        $mem = Member::where('line_user_id',$uid)->and('attribute',1)->first();
         
         if (isset($mem)){ 
             $this->client->replyMessage([
