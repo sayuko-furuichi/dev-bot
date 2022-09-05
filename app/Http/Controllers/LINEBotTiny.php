@@ -546,7 +546,7 @@ public function linkUser($uid,$rm){
 function userProf($uid){
 
     //TODO:ユーザーのプロフィールを取得
-    $api_url ='https://api.line.me/v2/bot/profile/{userId}'. $uid;
+    $api_url ='https://api.line.me/v2/bot/profile/'. $uid;
 
     //エンコードされたURLでPOST通信する
     $headers = [ 'Authorization: Bearer ' . $this->channelAccessToken,];
