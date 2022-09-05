@@ -546,21 +546,23 @@ public function linkUser($uid,$rm){
 function userProf($uid){
 
     //TODO:ユーザーのプロフィールを取得
-    $header = array(
-        'Authorization: Bearer ' . $this->channelAccessToken,
-    );
-    $context = stream_context_create([
-        'http' => [
-            'ignore_errors' => true,
-            'method' => 'GET',
-            'header' => $header,
-        ],
-    ]);
+    $api_url ='https://api.line.me/v2/bot/profile/{userId}'. $uid;
 
-   $res=file_get_contents('https://api.line.me/v2/bot/profile/'. $uid, false, $context);
-   if (strpos($http_response_header[0], '200') === false) {
- //   $res='request failed';
-}
+    //エンコードされたURLでPOST通信する
+    $headers = [ 'Authorization: Bearer ' . $this->channelAccessToken,];
+
+    $curl_handle = curl_init();
+
+  //  curl_setopt($curl_handle, CURLOPT_POST, true);
+    curl_setopt($curl_handle, CURLOPT_URL, $api_url);
+    curl_setopt($curl_handle, CURLOPT_HTTPHEADER, $headers);
+            // curl_exec()の結果を文字列にする
+    curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, true);
+    //実行
+    $res = curl_exec($curl_handle);
+
+    //close
+    curl_close($curl_handle);
 
     return $res;
 
