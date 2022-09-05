@@ -48,7 +48,8 @@ class getMember
             
         }else{
             $resp='非会員';
-            $rm='richmenu-abb034aefaca6179f59627b52a6e0f43';
+         //   $rm='richmenu-abb034aefaca6179f59627b52a6e0f43';
+        $rm= 'richmenu-b63a368440e5008ca8e3293ea6f7c795';
         }
         $res= $this->client->linkUser($uid,$rm);
 
