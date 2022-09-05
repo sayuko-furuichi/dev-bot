@@ -35,23 +35,9 @@ class SendMessage extends Controller
            
                 if(preg_match('/name=/',$pt['data'])){
                    
-                //   $member = new getMember($channelAccessToken, $channelSecret,$client);
+                   $member = new getMember($channelAccessToken, $channelSecret,$client);
+                   $member->createMember($event,$pt);
                    
-                   
-                    $client->replyMessage([
-                        'replyToken' => $event['replyToken'],
-                        'messages' => [
-                            [
-                'type' => 'text',
-                'text' => 'This is ' 
-                            ],
-                            [
-                'type' => 'text',
-                'text' =>  'ああああ'
-                            ]
-            
-                        ]
-                    ]);
 
                 }
                 $pra = new getAnalysisData($client,$event);

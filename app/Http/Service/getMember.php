@@ -92,7 +92,7 @@ class getMember
                     'altText'=> 'this is a confirm template',
                     'template'=> [
                       'type'=> 'confirm',
-                      'text'=> 'name:'. $resp['displayName']."\n以上で登録しました",
+                      'text'=> 'name:'. $resp['displayName']."\n以上で登録します",
                       'actions'=> [
                         [
                           'type'=> 'postback',
@@ -118,9 +118,33 @@ class getMember
 
     }
 
-    // function createMember(){
+     function createMember($event,$pt){
 
-    //     $mem = new 
+        $name=  str_replace('name=','',$pt['data']);
+        $ev=$event['source'];
+        $mem = new Member;
 
-    // }
+        $mem->line_user_id=$ev['userId'];
+        $mem->name = $name;
+        $mem->attribute = 1;
+        $mem->save();
+
+        $this->client->replyMessage([
+            'replyToken' => $event['replyToken'],
+            'messages' => [
+                [
+    'type' => 'text',
+    'text' => '登録されました！' 
+                ],
+                [
+    'type' => 'text',
+    'text' =>  'Thanks！'
+                ]
+
+            ]
+        ]);
+
+        
+
+     }
 }
