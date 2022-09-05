@@ -80,7 +80,7 @@ class getMember
        
         }else{
            $res= $this->client->userProf($uid);
-            $res=json_decode($res,true);
+        //    $res=json_decode($res,true);
 
             $this->client->replyMessage([
                 'replyToken' => $event['replyToken'],
