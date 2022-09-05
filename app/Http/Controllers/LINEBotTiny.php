@@ -553,7 +553,7 @@ public function userProf($uid){
 
     $curl_handle = curl_init();
 
-    curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'GET');
+    curl_setopt($curl, CURLOPT_HTTPGET, true);
  //   curl_setopt($curl_handle, CURLOPT_POST, true);
     curl_setopt($curl_handle, CURLOPT_URL, $api_url);
     curl_setopt($curl_handle, CURLOPT_HTTPHEADER, $headers);
