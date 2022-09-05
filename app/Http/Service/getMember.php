@@ -82,43 +82,30 @@ class getMember
            $res= $this->client->userProf($uid);
             $resp=json_decode($res,true);
 
-            // $this->client->replyMessage([
-            //     'replyToken' => $event['replyToken'],
-            //     'messages' =>  [
-            //         'type'=> 'template',
-            //         'altText'=> 'this is a confirm template',
-            //         'template'=> [
-            //           'type'=> 'confirm',
-            //           'text'=> '登録しますか？\n',
-            //           'actions'=> [
-            //             [
-            //               'type'=> 'postback',
-            //               'label'=> 'yes',
-            //               'data'=> 'yes',
-            //               'displayText'=>'会員登録する'
-            //             ],
-            //             [
-            //               'type'=> 'postback',
-            //               'label'=> 'No',
-            //               'data'=> 'no',
-            //                'displayText'=>'しない'
-            //             ]
-            //           ]
-            //         ]]]);
-                    $this->client->replyMessage([
-                        'replyToken' => $event['replyToken'],
-                        'messages' => [
-                            [
-                'type' => 'text',
-                'text' => '　OK!'
-                            ],
-                
-                            [
-                'type' => 'text',
-                'text' => ' あなたは'. 'すでに会員です'  .$resp['displayName']
-                            ]
+            $this->client->replyMessage([
+                'replyToken' => $event['replyToken'],
+                'messages' =>  [
+                    'type'=> 'template',
+                    'altText'=> 'this is a confirm template',
+                    'template'=> [
+                      'type'=> 'confirm',
+                      'text'=> '登録しますか?',
+                      'actions'=> [
+                        [
+                          'type'=> 'postback',
+                          'label'=> 'yes',
+                          'data'=> 'yes',
+                          //'displayText'=>'会員登録する'
+                        ],
+                        [
+                          'type'=> 'postback',
+                          'label'=> 'No',
+                          'data'=> 'no',
+                          // 'displayText'=>'しない'
                         ]
-                    ]);
+                      ]
+                    ]]]);
+                            
 
 
          //   $member = new Member;
