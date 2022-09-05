@@ -271,7 +271,7 @@ class getRichMenu
             'selected'=> false,
             'name'=> $rmB->name,
             'chatBarText'=> $rmB->chat_bar,
-            //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
+            //ここで[]を使用しないと配列になってくれない。JSONで[]なってるところ。
             'areas'=> [[
 
                 //A
