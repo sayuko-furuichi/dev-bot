@@ -494,28 +494,6 @@ public function analys($requestId){
 
      return $response;
 
-//     $api_url ='https://api.line.me/v2/bot/insight/message/event?requestId='. $requestId ;
-
-//     //エンコードされたURLでPOST通信する
-//     $headers = [ 'Authorization: Bearer ' . $this->channelAccessToken,];
-
-//     $curl_handle = curl_init();
-
-//     curl_setopt($curl_handle, CURLOPT_HTTPGET, true);
-//     curl_setopt($curl_handle, CURLOPT_URL, $api_url);
-//     curl_setopt($curl_handle, CURLOPT_HTTPHEADER, $headers);
-//             // curl_exec()の結果を文字列にする
-//     curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, true);
-//     //実行
-//     $res = curl_exec($curl_handle);
-
-//     //close
-//     curl_close($curl_handle);
-
-//     //デコード
-//   //  $res = json_decode($json_response, true);
-//     return $res;
-
 
 }
 
@@ -523,28 +501,45 @@ public function analys($requestId){
 //会員　richmenu-17e16582cd159c844fa3d85d6f71967a
 
 public function linkUser($uid,$rm){
-    $header = array(
-        'Authorization: Bearer ' . $this->channelAccessToken,
-    );
+    // $header = array(
+    //     'Authorization: Bearer ' . $this->channelAccessToken,
+    // );
 
-    $context = stream_context_create([
-        'http' => [
-            'ignore_errors' => true,
-            'method' => 'POST',
-            'header' => implode("\r\n", $header),
-          // 'content' => json_encode($param)
-        ],
-    ]);
-    $url=urlencode('https://api.line.me/v2/bot/user/'. $uid . '/richmenu/' . $rm);
+    // $context = stream_context_create([
+    //     'http' => [
+    //         'ignore_errors' => true,
+    //         'method' => 'POST',
+    //         'header' => implode("\r\n", $header),
+    //       // 'content' => json_encode($param)
+    //     ],
+    // ]);
+    // $url=urlencode('https://api.line.me/v2/bot/user/'. $uid . '/richmenu/' . $rm);
 
-    $response = file_get_contents($url, false, $context);
-    if (strpos($http_response_header[0], '200') === false) {
-        $response= 'Request failed';
-    }
+    // $response = file_get_contents($url, false, $context);
+    // if (strpos($http_response_header[0], '200') === false) {
+    //     $response= 'Request failed';
+    // }
 
-    return $response;
+ 
+    $api_url ='https://api.line.me/v2/bot/user/'. $uid . '/richmenu/' . $rm;
 
+    //エンコードされたURLでPOST通信する
+    $headers = [ 'Authorization: Bearer ' . $this->channelAccessToken,];
 
+    $curl_handle = curl_init();
+
+    curl_setopt($curl_handle, CURLOPT_POST, true);
+    curl_setopt($curl_handle, CURLOPT_URL, $api_url);
+    curl_setopt($curl_handle, CURLOPT_HTTPHEADER, $headers);
+            // curl_exec()の結果を文字列にする
+    curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, true);
+    //実行
+    $res = curl_exec($curl_handle);
+
+    //close
+    curl_close($curl_handle);
+
+    return $res;
 
 }
 

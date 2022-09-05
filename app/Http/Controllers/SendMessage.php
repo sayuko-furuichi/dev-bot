@@ -142,6 +142,52 @@ class SendMessage extends Controller
         ]
     ]);
 
+} elseif ($message['text'] == '会員登録する') {
+    //TODO:確認
+    $mm = new getMember($channelAccessToken, $channelSecret, $client);
+    $uid=$us['userId'];
+    $res=$mm->index($uid,$storeId);
+
+    $client->replyMessage([
+        'replyToken' => $event['replyToken'],
+        'messages' => [
+            [
+'type' => 'text',
+'text' => '　OK!'
+            ],
+
+            [
+'type' => 'text',
+'text' => ' あなたは'. $res . '　です！'   
+            ]
+        ]
+    ]);
+
+} elseif ($message['text'] == '退会する') {
+    //TODO:確認
+    $mm = new getMember($channelAccessToken, $channelSecret, $client);
+    $uid=$us['userId'];
+    $res=$mm->index($uid,$storeId);
+
+    $client->replyMessage([
+        'replyToken' => $event['replyToken'],
+        'messages' => [
+            [
+'type' => 'text',
+'text' => '　OK!'
+            ],
+
+            [
+'type' => 'text',
+'text' => ' あなたは'. $res . '　です！'   
+            ]
+        ]
+    ]);
+
+
+
+    
+
 } elseif ($us['type']=='web' && $message['text']=='plz RichMenus') {
     //DBからひっぱってくる
     $gm = new getRichMenu($channelAccessToken, $channelSecret, $client);
