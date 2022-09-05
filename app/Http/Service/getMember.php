@@ -37,10 +37,10 @@ class getMember
 
     public function index($uid,$storeId){
         //会員は店舗関係無くしている(あかんか)
-        $mem = Member::where('line_user_id',$uid)->first();
+        $mem = Member::where('line_user_id',$uid)->where('attribute',1)->first();
         
         if (isset($mem)) {
-            $resp='会員'. $storeId;
+            $resp=$mem->name . ' 　さんは会員です'. 
             $rm='richmenu-17e16582cd159c844fa3d85d6f71967a';
         }else{
             $resp='非会員';
