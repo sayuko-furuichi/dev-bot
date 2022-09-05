@@ -144,7 +144,7 @@ class SendMessage extends Controller
 
             [
 'type' => 'text',
-'text' => ' あなたは'. $res . '　です！'   
+'text' =>  $res . '　です！'   
             ]
         ]
     ]);

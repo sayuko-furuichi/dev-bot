@@ -40,7 +40,7 @@ class getMember
         $mem = Member::where('line_user_id',$uid)->where('attribute',1)->first();
         
         if (isset($mem)) {
-            $resp=$mem->name . ' 　さんは会員です'. 
+            $resp=$mem->name . ' 　さんは会員'. 
             $rm='richmenu-17e16582cd159c844fa3d85d6f71967a';
         }else{
             $resp='非会員';
@@ -51,7 +51,7 @@ class getMember
         }
         $res= $this->client->linkUser($uid,$rm);
 
-        return $res. $resp;
+        return $res;
     }
 
 //非会員　richmenu-abb034aefaca6179f59627b52a6e0f43
