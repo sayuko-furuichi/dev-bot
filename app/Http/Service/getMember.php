@@ -84,7 +84,7 @@ class getMember
 
             $this->client->replyMessage([
                 'replyToken' => $event['replyToken'],
-                [
+                'messages' =>  [
                     'type'=> 'template',
                     'altText'=> 'this is a confirm template',
                     'template'=> [
