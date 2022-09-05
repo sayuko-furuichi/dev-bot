@@ -51,7 +51,7 @@ class getMember
         }
         $res= $this->client->linkUser($uid,$rm);
 
-        return $res;
+        return $res. $resp;
     }
 
 //非会員　richmenu-abb034aefaca6179f59627b52a6e0f43
