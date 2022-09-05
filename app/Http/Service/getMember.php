@@ -80,7 +80,7 @@ class getMember
        
         }else{
            $res= $this->client->userProf($uid);
-            $res=json_decode($res);
+            $res=json_decode($res,true);
 
             $this->client->replyMessage([
                 'replyToken' => $event['replyToken'],
@@ -96,7 +96,7 @@ class getMember
                     ],
                     [
                         'type' => 'text',
-                        'text' => ' 登録します'.$res   
+                        'text' => ' 登録します'.$res
                                     ]
                 ]
             ]);
