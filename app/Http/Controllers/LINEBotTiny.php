@@ -523,26 +523,26 @@ public function analys($requestId){
 //会員　richmenu-17e16582cd159c844fa3d85d6f71967a
 
 public function linkUser($uid,$rm){
-    $alheader = array(
+    $header = array(
         'Authorization: Bearer ' . $this->channelAccessToken,
     );
 
-    $alcontext = stream_context_create([
+    $context = stream_context_create([
         'http' => [
             'ignore_errors' => true,
             'method' => 'POST',
-            'header' => implode("\r\n", $alheader),
+            'header' => implode("\r\n", $header),
           // 'content' => json_encode($param)
         ],
     ]);
     $url=urlencode('https://api.line.me/v2/bot/user/'. $uid . '/richmenu/' . $rm);
 
-    $alresponse = file_get_contents($url, false, $alcontext);
+    $response = file_get_contents($url, false, $context);
     if (strpos($http_response_header[0], '200') === false) {
       //  $alresponse= 'Request failed';
     }
 
-    return $alresponse;
+    return $response;
 
 
 
