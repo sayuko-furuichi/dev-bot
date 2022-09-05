@@ -59,7 +59,7 @@ class getMember
 
 
     function addMember($uid,$event){
-//
+//今はランクは設定してない
         $mem = Member::where('line_user_id',$uid)->where('attribute',1)->first();
         
         if (isset($mem)){ 
@@ -89,7 +89,7 @@ class getMember
         
                     [
         'type' => 'text',
-        'text' => ' あなたは'. 'すでに会員です'   
+        'text' => ' あなたは'. '非会員です'   
                     ]
                 ]
             ]);
