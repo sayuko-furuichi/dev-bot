@@ -79,6 +79,9 @@ class getMember
             ]);
        
         }else{
+
+
+
            $res= $this->client->userProf($uid);
             $resp=json_decode($res,true);
 
@@ -89,12 +92,12 @@ class getMember
                     'altText'=> 'this is a confirm template',
                     'template'=> [
                       'type'=> 'confirm',
-                      'text'=> 'name:'. $resp['displayName']."/n以上で登録しますか?",
+                      'text'=> 'name:'. $resp['displayName']."\n以上で登録しました",
                       'actions'=> [
                         [
                           'type'=> 'postback',
                           'label'=> 'yes',
-                          'data'=> 'yes',
+                          'data'=> 'name='.$resp['displayName'],
                           'displayText'=>'会員登録する'
                         ],
                         [
@@ -114,4 +117,10 @@ class getMember
         }
 
     }
+
+    // function createMember(){
+
+    //     $mem = new 
+
+    // }
 }

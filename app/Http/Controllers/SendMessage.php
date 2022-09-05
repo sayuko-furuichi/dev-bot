@@ -33,7 +33,11 @@ class SendMessage extends Controller
                 $pt=$event['postback'];
                 $ptD = $pt['data'];
            
-                if($pt['data']=='yes'){
+                if(preg_match('/name=/',$pt['data'])){
+                   
+                //   $member = new getMember($channelAccessToken, $channelSecret,$client);
+                   
+                   
                     $client->replyMessage([
                         'replyToken' => $event['replyToken'],
                         'messages' => [
