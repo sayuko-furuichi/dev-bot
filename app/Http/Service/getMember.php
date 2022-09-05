@@ -89,7 +89,7 @@ class getMember
                     'altText'=> 'this is a confirm template',
                     'template'=> [
                       'type'=> 'confirm',
-                      'text'=> '登録しますか？\n'.$res['displyName'],
+                      'text'=> '登録しますか？\n'.$res['displayName'],
                       'actions'=> [
                         [
                           'type'=> 'postback',
