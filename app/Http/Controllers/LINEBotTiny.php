@@ -543,7 +543,7 @@ public function linkUser($uid,$rm){
 
 }
 
-function userProf($uid){
+public function userProf($uid){
 
     //TODO:ユーザーのプロフィールを取得
     $api_url ='https://api.line.me/v2/bot/profile/'. $uid;
