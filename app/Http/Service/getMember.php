@@ -80,26 +80,31 @@ class getMember
        
         }else{
            $res= $this->client->userProf($uid);
-        //    $resj=json_decode($res,true);
+            $res=json_decode($res,true);
 
             $this->client->replyMessage([
                 'replyToken' => $event['replyToken'],
-                'messages' => [
-                    [
-        'type' => 'text',
-        'text' => '　OK!'
-                    ],
-        
-                    [
-        'type' => 'text',
-        'text' => ' あなたは'. '非会員です'   
-                    ],
-                    [
-                        'type' => 'text',
-                        'text' => ' 登録します'.$res
-                                    ]
-                ]
-            ]);
+                [
+                    'type'=> 'template',
+                    'altText'=> 'this is a confirm template',
+                    'template'=> [
+                      'type'=> 'confirm',
+                      'text'=> '登録しますか？\n'.$res['displyName'],
+                      'actions'=> [
+                        [
+                          'type'=> 'postback',
+                          'label'=> 'yes',
+                          'data'=> 'yes',
+                          'displayText'=>'会員登録する'
+                        ],
+                        [
+                          'type'=> 'postback',
+                          'label'=> 'No',
+                          'data'=> 'no',
+                           'displayText'=>'しない'
+                        ]
+                      ]
+                    ]]]);
 
 
 
