@@ -543,7 +543,29 @@ public function linkUser($uid,$rm){
 
 }
 
+function userProf($uid){
 
+    //TODO:ユーザーのプロフィールを取得
+    $header = array(
+        'Authorization: Bearer ' . $this->channelAccessToken,
+    );
+    $context = stream_context_create([
+        'http' => [
+            'ignore_errors' => true,
+            'method' => 'GET',
+            'header' => $header,
+        ],
+    ]);
+
+   $res=file_get_contents('https://api.line.me/v2/bot/profile/'. $uid, false, $context);
+   if (strpos($http_response_header[0], '200') === false) {
+ //   $res='request failed';
+}
+
+    return $res;
+
+
+}
 
 
 public function sendPush($param){

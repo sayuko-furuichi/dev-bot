@@ -79,6 +79,9 @@ class getMember
             ]);
        
         }else{
+           $res= $this->client->userProf($uid);
+            $res=json_decode($res);
+
             $this->client->replyMessage([
                 'replyToken' => $event['replyToken'],
                 'messages' => [
@@ -90,7 +93,11 @@ class getMember
                     [
         'type' => 'text',
         'text' => ' あなたは'. '非会員です'   
-                    ]
+                    ],
+                    [
+                        'type' => 'text',
+                        'text' => ' 登録します'.$res['displayName']   
+                                    ]
                 ]
             ]);
 
