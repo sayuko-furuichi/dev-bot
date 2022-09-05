@@ -32,7 +32,21 @@ class SendMessage extends Controller
             if ($event['type'] == 'postback'){
                 $pt=$event['postback'];
                 $ptD = $pt['data'];
-                if($pt['data']=='addMember'){
+                if($pt['data']=='yes'){
+                    $client->replyMessage([
+                        'replyToken' => $event['replyToken'],
+                        'messages' => [
+                            [
+                'type' => 'text',
+                'text' => 'This is ' 
+                            ],
+                            [
+                'type' => 'text',
+                'text' =>  'ああああ'
+                            ]
+            
+                        ]
+                    ]);
 
                 }
                 $pra = new getAnalysisData($client,$event);
