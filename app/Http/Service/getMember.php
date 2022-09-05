@@ -96,10 +96,12 @@ class getMember
                     ],
                     [
                         'type' => 'text',
-                        'text' => ' 登録します'.$res['displayName']   
+                        'text' => ' 登録します'.$res   
                                     ]
                 ]
             ]);
+
+
 
          //   $member = new Member;
           //  $member->line_user_id=$uid;
