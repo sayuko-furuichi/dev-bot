@@ -206,7 +206,7 @@ class getRichMenu
          ],
          'action'=> [
             'type'=> 'message',
-            'text'=> '会員ステータス確認',
+            'text'=> '会員登録する',
         ]
          ],
 
@@ -220,7 +220,7 @@ class getRichMenu
              ],
              'action'=> [
                  'type'=> 'message',
-                 'text'=> '退会する',
+                 'text'=> '会員ステータス確認',
              ]
              ],
              [
