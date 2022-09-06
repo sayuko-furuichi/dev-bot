@@ -170,15 +170,18 @@ class SendMessage extends Controller
     
 //TODO:idで受け渡しする
 } elseif ($us['type']=='web' && $message['text']=='change_df_rich_menu' && isset($message['text2']) ) {
-   $res= $client->defaultRm($message['text2']);
+    $new = RichMenu::where('id',$message['text2'])->where('store_id',$storeId)->get();
+
+   $res= $client->defaultRm($new->richmenu_id);
    $old = RichMenu::where('is_default',1)->where('store_id',$storeId)->first();
    if(isset($old)){
        $old->is_default=0;
        $old->save();
    }
-   $new = RichMenu::where('rich_menu_id',$message['text2'])->where('store_id',$storeId)->get();
-   $new->is_default=1;
    
+   $new->is_default=1;
+   $new->save();
+
    return $res;
 
         //TODO:クーポンの配信など調査
