@@ -80,8 +80,6 @@ class getMember
        
         }else{
 
-
-
            $res= $this->client->userProf($uid);
             $resp=json_decode($res,true);
 
@@ -144,7 +142,59 @@ class getMember
             ]
         ]);
 
-        
+     }
+
+     function removeMember($uid,$event){
+        $mem = Member::where('line_user_id',$uid)->where('attribute',1)->first();
+
+        if(isset($mem)){
+            
+            $this->client->replyMessage([
+                'replyToken' => $event['replyToken'],
+                'messages' =>  [[
+                    'type'=> 'template',
+                    'altText'=> 'this is a confirm template',
+                    'template'=> [
+                      'type'=> 'confirm',
+                      'text'=> '会員番号:'.$mem->id. "\n".
+                      'name:'. $mem->name . 'さん　退会しますか？',
+                      'actions'=> [
+                        [
+                          'type'=> 'postback',
+                          'label'=> 'yes',
+                          'data'=> 'removeMember',
+                          'displayText'=>'退会する'
+                        ],
+                        [
+                          'type'=> 'postback',
+                          'label'=> 'No',
+                          'data'=> 'no',
+                           'displayText'=>'しない'
+                        ]
+                      ]
+                      ]]]]);
+
+
+    
+        }else{
+            $this->client->replyMessage([
+                'replyToken' => $event['replyToken'],
+                'messages' => [
+                    [
+        'type' => 'text',
+        'text' => 'Sorry,あなたは会員ではありません' 
+                    ],
+                    [
+        'type' => 'text',
+        'text' =>  'Thanks！'
+                    ]
+    
+                ]
+            ]);
+
+        }
+
 
      }
+
 }
