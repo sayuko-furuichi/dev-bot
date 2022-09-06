@@ -40,7 +40,20 @@ class SendMessage extends Controller
                    
 
                 }else if($pt['data']=='removeMember'){
-
+                    $client->replyMessage([
+                        'replyToken' => $event['replyToken'],
+                        'messages' => [
+                            [
+                'type' => 'text',
+                'text' => '退会処理'
+                            ],
+                            [
+                'type' => 'text',
+                'text' =>  'あなたのユーザID：'
+                            ]
+            
+                        ]
+                    ]);
 
 
                 }
