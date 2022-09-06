@@ -90,9 +90,17 @@ class SendMessage extends Controller
             ]
         ]);
 
+    } elseif ($message['text'] == 'ああああ') {
+        $client->defaultRm('richmenu-1cf3b08b8e1ffec0e5448a4119fa2e6d');
 
-
-
+        $client->replyMessage([
+            'replyToken' => $event['replyToken'],
+            'messages' => [
+            [
+            'type' => 'text',
+            'text' =>$storeId . '　OK!'
+            ],
+        ]]);            
         
   // メニュー　と言われたら、返す　OK！
 } elseif ($message['text'] == 'create Rich Menu') {
