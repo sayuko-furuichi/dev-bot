@@ -173,8 +173,6 @@ class getMember
                         ]
                       ]
                       ]]]]);
-
-
     
         }else{
             $this->client->replyMessage([
@@ -186,7 +184,7 @@ class getMember
                     ],
                     [
         'type' => 'text',
-        'text' =>  'Thanks！'
+        'text' =>  '(\'・ω・`)'
                     ]
     
                 ]

@@ -39,9 +39,13 @@ class SendMessage extends Controller
                    $member->createMember($event,$pt);
                    
 
+                }else if($pt['data']=='removeMember'){
+
+
+
                 }
-                $pra = new getAnalysisData($client,$event);
-                   $param->getData($ptD); 
+                // $pra = new getAnalysisData($client,$event);
+                //    $param->getData($ptD);
 
 
                 // if($pt['data'] ==''){
@@ -161,24 +165,7 @@ class SendMessage extends Controller
     //TODO:確認
     $mm = new getMember($channelAccessToken, $channelSecret, $client);
     $uid=$us['userId'];
-    $res=$mm->index($uid,$storeId);
-
-    $client->replyMessage([
-        'replyToken' => $event['replyToken'],
-        'messages' => [
-            [
-'type' => 'text',
-'text' => '　OK!'
-            ],
-
-            [
-'type' => 'text',
-'text' => ' あなたは'. $res . '　です！'   
-            ]
-        ]
-    ]);
-
-
+    $res=$mm->removeMember($uid,$storeId);
 
     
 
