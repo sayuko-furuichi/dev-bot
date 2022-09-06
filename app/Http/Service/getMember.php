@@ -126,7 +126,7 @@ class getMember
 
     }
 
-     function createMember($event,$pt){
+     function createMember($event,$pt,$storeId){
 
         $name=  str_replace('name=','',$pt['data']);
         $ev=$event['source'];
@@ -211,7 +211,7 @@ class getMember
 
 
      }
-     function remove($event,$pt){
+     function remove($event,$pt,$storeId){
         $id=str_replace('removeMember&id=','',$pt['data']);
         $mem=Member::where('id',$id)->first();
         $mem->attribute=0;

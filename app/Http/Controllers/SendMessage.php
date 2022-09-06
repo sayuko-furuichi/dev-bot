@@ -36,14 +36,14 @@ class SendMessage extends Controller
                 if(preg_match('/name=/',$pt['data'])){
                    
                    $member = new getMember($channelAccessToken, $channelSecret,$client);
-                   $member->createMember($event,$pt);
+                   $member->createMember($event,$pt,$storeId);
                    
                    
                 }else if (preg_match('/removeMember&id=/',$pt['data'])){
 
                     
                     $member = new getMember($channelAccessToken, $channelSecret,$client);
-                   $member->remove($event,$pt);
+                   $member->remove($event,$pt,$storeId);
 
                 }
                 // $pra = new getAnalysisData($client,$event);
