@@ -204,7 +204,7 @@ class getMember
         $mem->save();
 
 //リッチメニュー変更
-$rm='richmenu-abb034aefaca6179f59627b52a6e0f43';
+$rm='richmenu-b63a368440e5008ca8e3293ea6f7c795';
        $this->client->linkUser($mem->line_user_id,$rm);
 
         $this->client->replyMessage([
