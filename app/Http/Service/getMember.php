@@ -40,15 +40,24 @@ class getMember
         //会員は店舗関係無くしている(あかんか)
         $mem = Member::where('line_user_id',$uid)->where('attribute',1)->first();
         
+        
         if (isset($mem)) {
             $resp=$mem->name . ' 　さんは会員';
-            $rm='richmenu-c9cb25b501e7efc84acda2ef9e96d183';
+            if($storeId==1){
+                $rm='richmenu-e31236ca44856f8610743dd3ed50d3a4';        
+            }else if($storeId==3){
+                $rm='richmenu-c9cb25b501e7efc84acda2ef9e96d183';
+            }
+            
         }else{
+            if($storeId==1){
+                $rm='richmenu-1cf3b08b8e1ffec0e5448a4119fa2e6d';
+            }else if($storeId==3){
+                $rm= 'richmenu-f4de7ea6cafa216a65e54fe73a66a427';
+
+            }
             $resp='非会員';
          //   $rm='richmenu-abb034aefaca6179f59627b52a6e0f43';
-        $rm= 'richmenu-f4de7ea6cafa216a65e54fe73a66a427';
-
-
         }
         $res= $this->client->linkUser($uid,$rm);
 
@@ -128,7 +137,11 @@ class getMember
         $mem->attribute = 1;
         $mem->save();
 
-        $rm='richmenu-c9cb25b501e7efc84acda2ef9e96d183';
+        if($storeId==1){
+            $rm='richmenu-e31236ca44856f8610743dd3ed50d3a4';        
+        }else if($storeId==3){
+            $rm='richmenu-c9cb25b501e7efc84acda2ef9e96d183';
+        }
         $this->client->linkUser($mem->line_user_id,$rm);
 
         $this->client->replyMessage([
@@ -205,7 +218,12 @@ class getMember
         $mem->save();
 
 //リッチメニュー変更
-$rm='richmenu-f4de7ea6cafa216a65e54fe73a66a427';
+if($storeId==1){
+    $rm='richmenu-1cf3b08b8e1ffec0e5448a4119fa2e6d';
+}else if($storeId==3){
+    $rm= 'richmenu-f4de7ea6cafa216a65e54fe73a66a427';
+
+}
        $this->client->linkUser($mem->line_user_id,$rm);
 
         $this->client->replyMessage([
