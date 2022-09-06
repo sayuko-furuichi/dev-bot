@@ -54,7 +54,7 @@ class getRichMenu
         // $this->rmAlIdB='Al_'. $strAl . '_b';
         //   $str=date('Y-m-d-s');
        // $str=uniqid('');
-       $str='会員';
+       $str='非会員';
         $rmA->name = $str . '_a';
         $rmB->name=$str . '_b';
         $rmC->name=$str . '_c';
@@ -84,7 +84,7 @@ class getRichMenu
 
         //画像UP
         $res= $this->client->upRmImgA($rmA->richmenu_id);
-        $rmA->img='/memberdemo/y2.png';
+        $rmA->img='/memberdemo/n1.png';
 
         $res= $this->client->upRmImgB($rmB->richmenu_id);
         $rmB->img='demo_b.png';

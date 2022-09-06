@@ -216,7 +216,7 @@ if (isset($_SERVER['HTTP_X_LINE_SIGNATURE']) && !hash_equals($this->sign($entity
 
        //画像URL
        //TODO:会員メニューに変更すること
-        $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/memberdemo/y2.png';
+        $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/memberdemo/n1.png';
         $img = file_get_contents($imgurl);
         $imgheader = array(
             'Content-Type: image/png',
@@ -320,7 +320,7 @@ if (isset($_SERVER['HTTP_X_LINE_SIGNATURE']) && !hash_equals($this->sign($entity
 //リッチメニューAをデフォルトで表示
     public function defaultRm($rmId){
         //デフォルト解除しておく
-    //    $this->dltDefaultRm();
+        $this->dltDefaultRm();
 
         $api_url ='https://api.line.me/v2/bot/user/all/richmenu/'. $rmId;
 
