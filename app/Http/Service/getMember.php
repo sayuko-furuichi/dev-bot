@@ -33,6 +33,7 @@ class getMember
         $this->channelAccessToken= $channelAccessToken;
         $this->channelSecret= $channelSecret;
         $this->client=$client;
+        
     }
 
     public function index($uid,$storeId){
@@ -45,7 +46,7 @@ class getMember
         }else{
             $resp='非会員';
          //   $rm='richmenu-abb034aefaca6179f59627b52a6e0f43';
-        $rm= 'richmenu-6ac30e47db949106999c5cb60d76871e';
+        $rm= 'richmenu-f4de7ea6cafa216a65e54fe73a66a427';
 
 
         }
@@ -204,7 +205,7 @@ class getMember
         $mem->save();
 
 //リッチメニュー変更
-$rm='richmenu-6ac30e47db949106999c5cb60d76871e';
+$rm='richmenu-f4de7ea6cafa216a65e54fe73a66a427';
        $this->client->linkUser($mem->line_user_id,$rm);
 
         $this->client->replyMessage([
