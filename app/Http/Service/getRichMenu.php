@@ -84,7 +84,7 @@ class getRichMenu
 
         //画像UP
         $res= $this->client->upRmImgA($rmA->richmenu_id);
-        $rmA->img='/memberdemo/n1.png';
+        $rmA->img='/memberdemo/y1.png';
 
         $res= $this->client->upRmImgB($rmB->richmenu_id);
         $rmB->img='demo_b.png';
