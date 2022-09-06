@@ -157,7 +157,7 @@ class getMember
                     'template'=> [
                       'type'=> 'confirm',
                       'text'=> '会員番号:'.$mem->id. "\n".
-                      'name:'. $mem->name . 'さん　退会しますか？',
+                      'name:'. $mem->name . "さん\n退会しますか？",
                       'actions'=> [
                         [
                           'type'=> 'postback',
