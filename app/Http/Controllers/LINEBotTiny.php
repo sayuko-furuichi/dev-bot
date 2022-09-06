@@ -320,7 +320,7 @@ if (isset($_SERVER['HTTP_X_LINE_SIGNATURE']) && !hash_equals($this->sign($entity
 //リッチメニューAをデフォルトで表示
     public function defaultRm($rmId){
         //デフォルト解除しておく
-        $this->dltDefaultRm();
+    //    $this->dltDefaultRm();
 
         $api_url ='https://api.line.me/v2/bot/user/all/richmenu/'. $rmId;
 
