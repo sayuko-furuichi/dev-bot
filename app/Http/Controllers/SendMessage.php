@@ -165,7 +165,7 @@ class SendMessage extends Controller
     //TODO:確認
     $mm = new getMember($channelAccessToken, $channelSecret, $client);
     $uid=$us['userId'];
-    $res=$mm->removeMember($uid,$storeId);
+    $mm->removeMember($uid,$event);
 
     
 
