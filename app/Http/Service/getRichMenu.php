@@ -84,7 +84,7 @@ class getRichMenu
 
         //画像UP
         $res= $this->client->upRmImgA($rmA->richmenu_id);
-        $rmA->img='demo_a.png';
+        $rmA->img='/memberdemo/n1.png';
 
         $res= $this->client->upRmImgB($rmB->richmenu_id);
         $rmB->img='demo_b.png';
@@ -206,7 +206,7 @@ class getRichMenu
          ],
          'action'=> [
             'type'=> 'message',
-            'text'=> '会員ステータス確認',
+            'text'=> '会員登録する',
         ]
          ],
 
@@ -220,7 +220,7 @@ class getRichMenu
              ],
              'action'=> [
                  'type'=> 'message',
-                 'text'=> '会員登録する',
+                 'text'=> '会員ステータス確認',
              ]
              ],
              [
