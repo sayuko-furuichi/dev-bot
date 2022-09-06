@@ -127,6 +127,9 @@ class getMember
         $mem->attribute = 1;
         $mem->save();
 
+        $rm='richmenu-17e16582cd159c844fa3d85d6f71967a';
+        $this->client->linkUser($mem->line_user_id,$rm);
+
         $this->client->replyMessage([
             'replyToken' => $event['replyToken'],
             'messages' => [
@@ -199,6 +202,10 @@ class getMember
         $mem=Member::where('id',$id)->first();
         $mem->attribute=0;
         $mem->save();
+
+//リッチメニュー変更
+$rm='richmenu-abb034aefaca6179f59627b52a6e0f43';
+        $res= $this->client->linkUser($id,$rm);
 
         $this->client->replyMessage([
             'replyToken' => $event['replyToken'],
