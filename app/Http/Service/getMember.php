@@ -45,7 +45,7 @@ class getMember
         }else{
             $resp='非会員';
          //   $rm='richmenu-abb034aefaca6179f59627b52a6e0f43';
-        $rm= 'richmenu-b63a368440e5008ca8e3293ea6f7c795';
+        $rm= 'richmenu-80b56e0914b91cabcb76439581351406';
 
 
         }
@@ -204,7 +204,7 @@ class getMember
         $mem->save();
 
 //リッチメニュー変更
-$rm='richmenu-b63a368440e5008ca8e3293ea6f7c795';
+$rm='richmenu-80b56e0914b91cabcb76439581351406';
        $this->client->linkUser($mem->line_user_id,$rm);
 
         $this->client->replyMessage([
