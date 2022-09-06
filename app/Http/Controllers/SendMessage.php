@@ -17,6 +17,9 @@ use App\Http\Service\getAnalysisData;
 use  App\Http\Service\SendPushMessage;
 use  App\Http\Service\getMember;
 
+//あとで消す
+use App\Model\RichMenu;
+
 class SendMessage extends Controller
 {
     //postbackアクションについて
@@ -152,7 +155,6 @@ class SendMessage extends Controller
     ]);
 
 } elseif ($message['text'] == '会員登録する') {
-    //TODO:確認
     $mm = new getMember($channelAccessToken, $channelSecret, $client);
     $uid=$us['userId'];
     $mm->addMember($uid,$event);
@@ -160,17 +162,23 @@ class SendMessage extends Controller
    
 
 } elseif ($message['text'] == '退会する') {
-    //TODO:確認
+
     $mm = new getMember($channelAccessToken, $channelSecret, $client);
     $uid=$us['userId'];
     $mm->removeMember($uid,$event);
 
     
-
-} elseif ($us['type']=='web' && $message['text']=='plz RichMenus') {
-    //DBからひっぱってくる
-    $gm = new getRichMenu($channelAccessToken, $channelSecret, $client);
-    $res= $gm->getList($storeId);
+//TODO:idで受け渡しする
+} elseif ($us['type']=='web' && $message['text']=='change_df_rich_menu' && isset($message['text2']) ) {
+   $res= $client->defaultRm($message['text2']);
+   $old = RichMenu::where('is_default',1)->where('store_id',$storeId)->first();
+   if(isset($old)){
+       $old->is_default=0;
+       $old->save();
+   }
+   $new = RichMenu::where('rich_menu_id',$message['text2'])->where('store_id',$storeId)->get();
+   $new->is_default=1;
+   
    return $res;
 
         //TODO:クーポンの配信など調査
