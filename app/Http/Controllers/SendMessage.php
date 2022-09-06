@@ -38,23 +38,12 @@ class SendMessage extends Controller
                    $member = new getMember($channelAccessToken, $channelSecret,$client);
                    $member->createMember($event,$pt);
                    
+                   
+                }else if (preg_match('/removeMember&id=/',$pt['data'])){
 
-                }else if($pt['data']=='removeMember'){
-                    $client->replyMessage([
-                        'replyToken' => $event['replyToken'],
-                        'messages' => [
-                            [
-                'type' => 'text',
-                'text' => '退会処理'
-                            ],
-                            [
-                'type' => 'text',
-                'text' =>  'あなたのユーザID：'
-                            ]
-            
-                        ]
-                    ]);
-
+                    
+                    $member = new getMember($channelAccessToken, $channelSecret,$client);
+                   $member->remove($event,$pt);
 
                 }
                 // $pra = new getAnalysisData($client,$event);

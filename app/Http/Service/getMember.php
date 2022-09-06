@@ -162,7 +162,7 @@ class getMember
                         [
                           'type'=> 'postback',
                           'label'=> 'yes',
-                          'data'=> 'removeMember',
+                          'data'=> 'removeMember&id='.$mem->id,
                           'displayText'=>'退会する'
                         ],
                         [
@@ -194,5 +194,28 @@ class getMember
 
 
      }
+     function remove($event,$pt){
+        $id=  str_replace('removeMember&id=','',$pt['data']);
+        $mem=Member::where('id',$id)->first();
+        $mem->attribute=0;
+        $mem->save();
+
+        $this->client->replyMessage([
+            'replyToken' => $event['replyToken'],
+            'messages' => [
+                [
+    'type' => 'text',
+    'text' => '退会が完了しました' 
+                ],
+                [
+    'type' => 'text',
+    'text' =>  'thanks'
+                ]
+
+            ]
+        ]);
+     }
+
 
 }
+
