@@ -41,11 +41,11 @@ class getMember
         
         if (isset($mem)) {
             $resp=$mem->name . ' 　さんは会員';
-            $rm='richmenu-17e16582cd159c844fa3d85d6f71967a';
+            $rm='richmenu-c9cb25b501e7efc84acda2ef9e96d183';
         }else{
             $resp='非会員';
          //   $rm='richmenu-abb034aefaca6179f59627b52a6e0f43';
-        $rm= 'richmenu-6cc7f73e064f4a72699e3aa1c7d59e1c';
+        $rm= 'richmenu-6ac30e47db949106999c5cb60d76871e';
 
 
         }
@@ -127,7 +127,7 @@ class getMember
         $mem->attribute = 1;
         $mem->save();
 
-        $rm='richmenu-17e16582cd159c844fa3d85d6f71967a';
+        $rm='richmenu-c9cb25b501e7efc84acda2ef9e96d183';
         $this->client->linkUser($mem->line_user_id,$rm);
 
         $this->client->replyMessage([
@@ -204,7 +204,7 @@ class getMember
         $mem->save();
 
 //リッチメニュー変更
-$rm='richmenu-6cc7f73e064f4a72699e3aa1c7d59e1c';
+$rm='richmenu-6ac30e47db949106999c5cb60d76871e';
        $this->client->linkUser($mem->line_user_id,$rm);
 
         $this->client->replyMessage([
