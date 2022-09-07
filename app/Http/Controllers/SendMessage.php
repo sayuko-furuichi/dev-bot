@@ -18,7 +18,7 @@ use  App\Http\Service\SendPushMessage;
 use  App\Http\Service\getMember;
 
 //あとで消す
-use App\Model\RichMenu;
+use App\Models\RichMenu;
 
 class SendMessage extends Controller
 {
