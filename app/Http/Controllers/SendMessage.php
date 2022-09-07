@@ -173,7 +173,7 @@ class SendMessage extends Controller
 } elseif ($us['type']=='web' && $message['text']=='change_df_rich_menu' && isset($message['text2']) ) {
  //   $new = RichMenu::where('id',$message['text2'])->where('store_id',$storeId)->get();
 
- $new = RichMenu::where('richmenu_id',$message['text2'])->where('store_id',$storeId)->get();
+ $new = RichMenu::where('richmenu_id',$message['text2'])->where('store_id',$storeId)->first();
    $res= $client->defaultRm($new->richmenu_id);
    $old = RichMenu::where('is_default',1)->where('store_id',$storeId)->first();
    if(isset($old)){
