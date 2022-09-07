@@ -73,7 +73,8 @@ class SendMessage extends Controller
 
                     //ユーザID取得のために、event配列からsoureを代入
                     //　$us['userId']　でユーザIDを持ってこれる。
-                    
+                    //TODO:!!!!!
+                    $client->dltDefaultRm();
 
                     $use=$us['userId'];
 
