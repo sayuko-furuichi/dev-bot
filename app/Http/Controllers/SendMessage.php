@@ -198,7 +198,7 @@ class SendMessage extends Controller
                     
                 } elseif ($message['text'] == 'audience') {
                     $us = new getAudience($channelAccessToken, $channelSecret, $client);
-                   $res= $us->createAud();
+                   $res= $us->createAud($storeId);
 
  $client->replyMessage([
                         'replyToken' => $event['replyToken'],

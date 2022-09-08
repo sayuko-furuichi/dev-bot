@@ -35,7 +35,7 @@ class getAudience
         $this->client=$client;
     }
 
-    public function createAud(){
+    public function createAud($storeId){
 
         $us = UserProf::where('id',4)->first(['line_user_id']);
         $aud=UserProf::all(['line_user_id']);
@@ -53,7 +53,7 @@ class getAudience
         //  $newaud->store_id=$storeId;
         //  $res;
         // }
-        return $res;
+        return $us;
         //
 
     }
