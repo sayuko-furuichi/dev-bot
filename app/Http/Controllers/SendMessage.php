@@ -195,7 +195,24 @@ class SendMessage extends Controller
                     ]);
 
                     
+                } elseif ($message['text'] == 'audience') {
 
+
+ $client->replyMessage([
+                        'replyToken' => $event['replyToken'],
+                        'messages' => [
+                            [
+                                'type' => 'text',
+                                'text' => "　OK!\n"
+                            ],
+
+                            [
+                                'type' => 'text',
+                                'text' => 'plz create !'
+                            ]
+
+                        ]
+                    ]);
 
 
 
