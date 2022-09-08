@@ -53,7 +53,7 @@ class getAudience
              $res='ok!';
           $newaud = new Audience;
           $newaud ->group_id=$res->audienceGroupId;
-          $newaud ->createRoute='';
+          $newaud ->createRoute=$res->createRoute;
           $newaud ->description=$res->description;
           $newaud->store_id=$storeId;
           $newaud->save();
