@@ -43,6 +43,9 @@ class getAudience
             'description'=>'liff_user',
             'audiences'=>[
                 $aud,
+                'id'=>[
+                    $us
+                ]
             ] 
         ]);
 
