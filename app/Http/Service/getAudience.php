@@ -41,7 +41,7 @@ class getAudience
         $us = UserProf::where('id',4)->first(['line_user_id']);
         $aud=UserProf::all(['line_user_id']);
        $res= $this->client->crtAud([
-            'description'=>'liff_userss',
+            'description'=>'liff_users',
             // 'audiences'=>[
             //     $aud,
             //     'id'=>[
@@ -51,16 +51,16 @@ class getAudience
         ]);
 
          if($res!='request failed'){
-            $res = json_decode($res,true);
+            $ress = json_decode($res,true);
           $newaud = new Audience;
-          $newaud ->group_id=$res->audienceGroupId;
-          $newaud ->create_route=$res->createRoute;
-          $newaud ->description=$res->description;
+          $newaud ->group_id=$ress->audienceGroupId;
+          $newaud ->create_route=$ress->createRoute;
+          $newaud ->description=$ress->description;
           $newaud->store_id=$storeId;
           $newaud->save();
-          $res='ok!';
+          $resp='ok!';
          }
-        return $res;
+        return $resp;
         //
 
     }
