@@ -49,16 +49,16 @@ class getAudience
             // ] 
         ]);
 
-        //  if($res!='request failed'){
-        //      $res='ok!';
-        //   $newaud = new Audience;
-        //   $newaud ->group_id=$res->audienceGroupId;
-        //   $newaud ->createRoute=$res->createRoute;
-        //   $newaud ->description=$res->description;
-        //   $newaud->store_id=$storeId;
-        //   $newaud->save();
+         if($res!='request failed'){
+             $res='ok!';
+          $newaud = new Audience;
+          $newaud ->group_id=$res->audienceGroupId;
+          $newaud ->createRoute='';
+          $newaud ->description=$res->description;
+          $newaud->store_id=$storeId;
+          $newaud->save();
          
-        //  }
+         }
         return $res;
         //
 
