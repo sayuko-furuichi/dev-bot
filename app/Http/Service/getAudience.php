@@ -36,8 +36,18 @@ class getAudience
     }
 
     public function createAud(){
+
         $us = UserProf::where('id',4)->first();
-        return $us;
+        $aud=UserProf::all();
+       $res= $this->client->crtAud([
+            'description'=>'liff_users',
+            'audiences'=> $aud
+        ]);
+
+        if($res!='request failed'){
+            $res='ok!';
+        }
+        return $res;
         //
 
     }

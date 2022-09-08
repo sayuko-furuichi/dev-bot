@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-
 /**
  * Copyright 2016 LINE Corporation
  *
@@ -37,7 +36,7 @@ if (!function_exists('hash_equals')) {
      * @return bool
      */
 
-     //ハッシュの検証
+    //ハッシュの検証
     function hash_equals($knownString, $userString)
     {
         $strlen = function ($string) {
@@ -76,7 +75,6 @@ class LINEBotTiny
      */
     public function __construct($channelAccessToken, $channelSecret)
     {
-      
         $this->channelAccessToken = $channelAccessToken;
         $this->channelSecret = $channelSecret;
     }
@@ -93,7 +91,7 @@ class LINEBotTiny
             error_log('Method not allowed');
             exit();
         }
-        
+
         //requestBodyの中身が存在するか
         $entityBody = file_get_contents('php://input');
 
@@ -102,22 +100,20 @@ class LINEBotTiny
             error_log('Missing request body');
             exit();
         }
-if (isset($_SERVER['HTTP_X_LINE_SIGNATURE']) && !hash_equals($this->sign($entityBody), $_SERVER['HTTP_X_LINE_SIGNATURE'])) {
-    //ハッシュ値が署名と一致するかどうか
-  
-        http_response_code(400);
-        error_log('Invalid signature value');
-        exit();
+        if (isset($_SERVER['HTTP_X_LINE_SIGNATURE']) && !hash_equals($this->sign($entityBody), $_SERVER['HTTP_X_LINE_SIGNATURE'])) {
+            //ハッシュ値が署名と一致するかどうか
 
-}elseif(isset($_SERVER['x_demo_signature']) && !$_SERVER['x_demo_signature'] == 'demo'){
-    http_response_code(400);
-    error_log('Invalid signature value');
+            http_response_code(400);
+            error_log('Invalid signature value');
+            exit();
+        } elseif (isset($_SERVER['x_demo_signature']) && !$_SERVER['x_demo_signature'] == 'demo') {
+            http_response_code(400);
+            error_log('Invalid signature value');
 
-    exit();
+            exit();
+        }
+        //他サイトから操作するための処理
 
-}
-          //他サイトから操作するための処理
-        
         //requestBodyに、Eventオブジェクトが含まれているかどうか
         $data = json_decode($entityBody, true);
         if (!isset($data['events'])) {
@@ -159,7 +155,6 @@ if (isset($_SERVER['HTTP_X_LINE_SIGNATURE']) && !hash_equals($this->sign($entity
         //create　richmenu
     public function rtRichMenu($rmDetail)
     {
-
         $rmheader = array(
             'Content-Type: application/json',
             'Authorization: Bearer ' . $this->channelAccessToken,
@@ -170,7 +165,7 @@ if (isset($_SERVER['HTTP_X_LINE_SIGNATURE']) && !hash_equals($this->sign($entity
                 'ignore_errors' => true,
                 'method' => 'POST',
                 'header' => implode("\r\n", $rmheader),
-                'content' => json_encode($rmDetail,true)
+                'content' => json_encode($rmDetail, true)
             ],
         ]);
 
@@ -179,7 +174,6 @@ if (isset($_SERVER['HTTP_X_LINE_SIGNATURE']) && !hash_equals($this->sign($entity
             $rmresponse = 'false';
         }
         return $rmresponse;
-
     }
 
 
@@ -211,11 +205,10 @@ if (isset($_SERVER['HTTP_X_LINE_SIGNATURE']) && !hash_equals($this->sign($entity
     //リッチメニューに画像添付
     public function upRmImgA($rmId)
     {
-   
-       // $richmenuId="richmenu-b56771c2cf5b359b8c182d7de6f9e2c8";
+        // $richmenuId="richmenu-b56771c2cf5b359b8c182d7de6f9e2c8";
 
-       //画像URL
-       //TODO:会員メニューに変更すること
+        //画像URL
+        //TODO:会員メニューに変更すること
         $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/memberdemo/y2.png';
         $img = file_get_contents($imgurl);
         $imgheader = array(
@@ -235,23 +228,21 @@ if (isset($_SERVER['HTTP_X_LINE_SIGNATURE']) && !hash_equals($this->sign($entity
         ]);
 
         $imgresponse = file_get_contents('https://api-data.line.me/v2/bot/richmenu/'.$rmId.'/content', false, $imgcontext);
-           if (strpos($http_response_header[0], '200') === false) {
-               $imgresponse= 'Request failed: ';
-           }else{
+        if (strpos($http_response_header[0], '200') === false) {
+            $imgresponse= 'Request failed: ';
+        } else {
             $imgresponse= 'OK';
-           }
+        }
 
         return $imgresponse;
-
     }
 
      //リッチメニューに画像添付
      public function upRmImgB($rmId)
      {
-    
-        // $richmenuId="richmenu-b56771c2cf5b359b8c182d7de6f9e2c8";
- 
-        //画像URL
+         // $richmenuId="richmenu-b56771c2cf5b359b8c182d7de6f9e2c8";
+
+         //画像URL
          $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/demo_b.png';
          $img = file_get_contents($imgurl);
          $imgheader = array(
@@ -259,8 +250,8 @@ if (isset($_SERVER['HTTP_X_LINE_SIGNATURE']) && !hash_equals($this->sign($entity
              'Authorization: Bearer ' . $this->channelAccessToken,
          //    "Content-Length: ".strlen($img),
          );
- 
- 
+
+
          $imgcontext = stream_context_create([
              'http' => [
                  'ignore_errors' => true,
@@ -269,25 +260,23 @@ if (isset($_SERVER['HTTP_X_LINE_SIGNATURE']) && !hash_equals($this->sign($entity
                 'content' => $img
              ],
          ]);
- 
+
          $imgresponse = file_get_contents('https://api-data.line.me/v2/bot/richmenu/'. $rmId. '/content', false, $imgcontext);
-            if (strpos($http_response_header[0], '200') === false) {
-                $imgresponse= 'Request failed: ';
-            }else{
+         if (strpos($http_response_header[0], '200') === false) {
+             $imgresponse= 'Request failed: ';
+         } else {
              $imgresponse= 'OK';
-            }
- 
+         }
+
          return $imgresponse;
- 
      }
 
       //リッチメニューに画像添付
       public function upRmImgC($rmId)
       {
-     
-         // $richmenuId="richmenu-b56771c2cf5b359b8c182d7de6f9e2c8";
-  
-         //画像URL
+          // $richmenuId="richmenu-b56771c2cf5b359b8c182d7de6f9e2c8";
+
+          //画像URL
           $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/demo_c.png';
           $img = file_get_contents($imgurl);
           $imgheader = array(
@@ -295,8 +284,8 @@ if (isset($_SERVER['HTTP_X_LINE_SIGNATURE']) && !hash_equals($this->sign($entity
               'Authorization: Bearer ' . $this->channelAccessToken,
           //    "Content-Length: ".strlen($img),
           );
-  
-  
+
+
           $imgcontext = stream_context_create([
               'http' => [
                   'ignore_errors' => true,
@@ -305,20 +294,20 @@ if (isset($_SERVER['HTTP_X_LINE_SIGNATURE']) && !hash_equals($this->sign($entity
                  'content' => $img
               ],
           ]);
-  
+
           $imgresponse = file_get_contents('https://api-data.line.me/v2/bot/richmenu/'. $rmId. '/content', false, $imgcontext);
-             if (strpos($http_response_header[0], '200') === false) {
-                 $imgresponse= 'Request failed: ';
-             }else{
+          if (strpos($http_response_header[0], '200') === false) {
+              $imgresponse= 'Request failed: ';
+          } else {
               $imgresponse= 'OK';
-             }
-  
+          }
+
           return $imgresponse;
-  
       }
 
 //リッチメニューAをデフォルトで表示
-    public function defaultRm($rmId){
+    public function defaultRm($rmId)
+    {
         //デフォルト解除しておく
         $this->dltDefaultRm();
 
@@ -332,7 +321,7 @@ if (isset($_SERVER['HTTP_X_LINE_SIGNATURE']) && !hash_equals($this->sign($entity
         curl_setopt($curl_handle, CURLOPT_POST, true);
         curl_setopt($curl_handle, CURLOPT_URL, $api_url);
         curl_setopt($curl_handle, CURLOPT_HTTPHEADER, $headers);
-                // curl_exec()の結果を文字列にする
+        // curl_exec()の結果を文字列にする
         curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, true);
         //実行
         $res = curl_exec($curl_handle);
@@ -341,15 +330,14 @@ if (isset($_SERVER['HTTP_X_LINE_SIGNATURE']) && !hash_equals($this->sign($entity
         curl_close($curl_handle);
 
         //デコード
-      //  $res = json_decode($json_response, true);
+        //  $res = json_decode($json_response, true);
         return $res;
-
     }
 
         //デフォルト解除
 
-        public function dltDefaultRm(){
-
+        public function dltDefaultRm()
+        {
             $dfheader = array(
                 'Authorization: Bearer ' . $this->channelAccessToken,
             );
@@ -361,7 +349,7 @@ if (isset($_SERVER['HTTP_X_LINE_SIGNATURE']) && !hash_equals($this->sign($entity
                   // 'content' => $imgurl,
                 ],
             ]);
-    
+
             file_get_contents('https://api.line.me/v2/bot/user/all/richmenu', false, $dfcontext);
 
             $dheader = array(
@@ -375,7 +363,7 @@ if (isset($_SERVER['HTTP_X_LINE_SIGNATURE']) && !hash_equals($this->sign($entity
                   // 'content' => $imgurl,
                 ],
             ]);
-    
+
             file_get_contents('https://api.line.me/v2/bot/user/Uffd4dd52c580e1d2bb7b0a66e0ef1951/richmenu', false, $dcontext);
 
 
@@ -389,7 +377,8 @@ if (isset($_SERVER['HTTP_X_LINE_SIGNATURE']) && !hash_equals($this->sign($entity
 
 
         //エイリアスを作成
-    public function createAlias($param){
+    public function createAlias($param)
+    {
         //
 
         $alheader = array(
@@ -416,56 +405,53 @@ if (isset($_SERVER['HTTP_X_LINE_SIGNATURE']) && !hash_equals($this->sign($entity
 
     //ブロードキャスト responceヘッダーの
 
-    public function sendBroad($param){
+    public function sendBroad($param)
+    {
         //
 
-    $header = array(
-        'Authorization: Bearer ' . $this->channelAccessToken,
-        'Content-Type: application/json',
-    );
+        $header = array(
+            'Authorization: Bearer ' . $this->channelAccessToken,
+            'Content-Type: application/json',
+        );
 
-    $context = stream_context_create([
-        'http' => [
-            'ignore_errors' => true,
-            'method' => 'POST',
-            'header' => implode("\r\n", $header),
-           'content' => json_encode($param),
-        ],
-    ]);
+        $context = stream_context_create([
+            'http' => [
+                'ignore_errors' => true,
+                'method' => 'POST',
+                'header' => implode("\r\n", $header),
+               'content' => json_encode($param),
+            ],
+        ]);
 
-    $response = file_get_contents('https://api.line.me/v2/bot/message/broadcast', false, $context);
-    if (strpos($http_response_header[0], '200') === false) {
-        $response='request failed';
-    }else{
-$head= $this->parseHeaders($http_response_header);
-//$response= $hds['X-Line-Request-Id'];
+        $response = file_get_contents('https://api.line.me/v2/bot/message/broadcast', false, $context);
+        if (strpos($http_response_header[0], '200') === false) {
+            $response='request failed';
+        } else {
+            $head= $this->parseHeaders($http_response_header);
+            //$response= $hds['X-Line-Request-Id'];
 
-//小文字で指定しないと出なかった！
-$response= $head['x-line-request-id'];
+            //小文字で指定しないと出なかった！
+            $response= $head['x-line-request-id'];
 
-//$response= $http_response_header[5];
-
-}
+            //$response= $http_response_header[5];
+        }
 
         return $response;
-
- 
-}
+    }
 //メッセージのリクエストID取得のために
 //$http_response_headerを連想配列にする
-public function parseHeaders( $headers )
+public function parseHeaders($headers)
 {
     $head = array();
-    foreach( $headers as $k=>$v )
-    {
-        $t = explode( ':', $v, 2 );
-if (isset($t[1])) {
-    $head[ trim($t[0]) ] = trim($t[1]);
-}else
-        {
+    foreach ($headers as $k=>$v) {
+        $t = explode(':', $v, 2);
+        if (isset($t[1])) {
+            $head[ trim($t[0]) ] = trim($t[1]);
+        } else {
             $head[] = $v;
-            if( preg_match( "#HTTP/[0-9\.]+\s+([0-9]+)#",$v, $out ) )
+            if (preg_match("#HTTP/[0-9\.]+\s+([0-9]+)#", $v, $out)) {
                 $head['reponse_code'] = intval($out[1]);
+            }
         }
     }
     return $head;
@@ -473,34 +459,33 @@ if (isset($t[1])) {
 
 //分析結果
 
-public function analys($requestId){
-    
- $header = array(
-     'Authorization: Bearer ' . $this->channelAccessToken,
+public function analys($requestId)
+{
+    $header = array(
+        'Authorization: Bearer ' . $this->channelAccessToken,
 );
 
- $context = stream_context_create([
-     'http' => [
-         'ignore_errors' => true,
-         'method' => 'GET',
-        'header' => implode("\r\n", $header),
-     ],
- ]);
+    $context = stream_context_create([
+        'http' => [
+            'ignore_errors' => true,
+            'method' => 'GET',
+           'header' => implode("\r\n", $header),
+        ],
+    ]);
 
- $response = file_get_contents('https://api.line.me/v2/bot/insight/message/event?requestId='. $requestId , false, $context);
- if (strpos($http_response_header[0], '200') === false) {
-     $response='request failed';
- }
+    $response = file_get_contents('https://api.line.me/v2/bot/insight/message/event?requestId='. $requestId, false, $context);
+    if (strpos($http_response_header[0], '200') === false) {
+        $response='request failed';
+    }
 
-     return $response;
-
-
+    return $response;
 }
 
 //非会員　richmenu-abb034aefaca6179f59627b52a6e0f43
 //会員　richmenu-17e16582cd159c844fa3d85d6f71967a
 
-public function linkUser($uid,$rm){
+public function linkUser($uid, $rm)
+{
     // $header = array(
     //     'Authorization: Bearer ' . $this->channelAccessToken,
     // );
@@ -520,7 +505,7 @@ public function linkUser($uid,$rm){
     //     $response= 'Request failed';
     // }
 
- 
+
     $api_url ='https://api.line.me/v2/bot/user/'. $uid . '/richmenu/' . $rm;
 
     //エンコードされたURLでPOST通信する
@@ -531,7 +516,7 @@ public function linkUser($uid,$rm){
     curl_setopt($curl_handle, CURLOPT_POST, true);
     curl_setopt($curl_handle, CURLOPT_URL, $api_url);
     curl_setopt($curl_handle, CURLOPT_HTTPHEADER, $headers);
-            // curl_exec()の結果を文字列にする
+    // curl_exec()の結果を文字列にする
     curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, true);
     //実行
     $res = curl_exec($curl_handle);
@@ -540,11 +525,10 @@ public function linkUser($uid,$rm){
     curl_close($curl_handle);
 
     return $res;
-
 }
 
-public function userProf($uid){
-
+public function userProf($uid)
+{
     //TODO:ユーザーのプロフィールを取得
 //     $api_url ='https://api.line.me/v2/bot/profile/'. $uid;
 
@@ -554,7 +538,7 @@ public function userProf($uid){
 //     $curl_handle = curl_init();
 
 //     curl_setopt($curl, CURLOPT_HTTPGET, true);
-//  //   curl_setopt($curl_handle, CURLOPT_POST, true);
+    //  //   curl_setopt($curl_handle, CURLOPT_POST, true);
 //     curl_setopt($curl_handle, CURLOPT_URL, $api_url);
 //     curl_setopt($curl_handle, CURLOPT_HTTPHEADER, $headers);
 //             // curl_exec()の結果を文字列にする
@@ -579,20 +563,17 @@ public function userProf($uid){
         ],
     ]);
 
-   $res=file_get_contents('https://api.line.me/v2/bot/profile/'. $uid, false, $context);
-   if (strpos($http_response_header[0], '200') === false) {
-    $res='request failed';
-}
+    $res=file_get_contents('https://api.line.me/v2/bot/profile/'. $uid, false, $context);
+    if (strpos($http_response_header[0], '200') === false) {
+        $res='request failed';
+    }
 
     return $res;
-
-
 }
 
 
-public function sendPush($param){
-
-
+public function sendPush($param)
+{
     $header = array(
         'Content-Type: application/json',
         'Authorization: Bearer ' . $this->channelAccessToken,
@@ -603,18 +584,42 @@ public function sendPush($param){
             'method' => 'POST',
             'header' => $header,
             // JSON_UNESCAPED_UNICODE？
-           'content' => json_encode($param,),
+           'content' => json_encode($param, ),
         ],
     ]);
 
-   $res=file_get_contents('https://api.line.me/v2/bot/message/push', false, $context);
-   if (strpos($http_response_header[0], '200') === false) {
- //   $res='request failed';
-}
+    $res=file_get_contents('https://api.line.me/v2/bot/message/push', false, $context);
+    if (strpos($http_response_header[0], '200') === false) {
+        //   $res='request failed';
+    }
 
     return $res;
-
 }
+
+public function crtAud($param){
+    $header = array(
+        'Content-Type: application/json',
+        'Authorization: Bearer ' . $this->channelAccessToken,
+    );
+    $context = stream_context_create([
+        'http' => [
+            'ignore_errors' => true,
+            'method' => 'POST',
+            'header' => $header,
+            // JSON_UNESCAPED_UNICODE？
+           'content' => json_encode($param, ),
+        ],
+    ]);
+
+    $res=file_get_contents('https://api.line.me/v2/bot/message/push', false, $context);
+    if (strpos($http_response_header[0], '200') === false) {
+           $res='request failed';
+    }
+
+    return $res;
+}
+
+
 
 
     //署名をハッシュ化
