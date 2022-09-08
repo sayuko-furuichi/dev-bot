@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('audiences', function (Blueprint $table) {
             $table->id();
             $table->string('group_id');
-            $table->string('createRoute');
+            $table->string('create_route');
             $table->string('description');
             $table->string('store_id');
             $table->timestamps();
