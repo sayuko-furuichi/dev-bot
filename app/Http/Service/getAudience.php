@@ -36,7 +36,7 @@ class getAudience
     }
 
     public function createAud(){
-        $us = UserProf::all();
+        $us = UserProf::all()->get();
         return $us;
         //
 
