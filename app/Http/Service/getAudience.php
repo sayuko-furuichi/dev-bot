@@ -40,7 +40,7 @@ class getAudience
         $us = UserProf::where('id',4)->first(['line_user_id']);
         $aud=UserProf::all(['line_user_id']);
        $res= $this->client->crtAud([
-            'description'=>'liff_users',
+            'description'=>'liff_user',
             'audiences'=> $us
         ]);
 
@@ -53,7 +53,7 @@ class getAudience
         //  $newaud->store_id=$storeId;
         //  $res;
         // }
-        return $us;
+        return $res;
         //
 
     }
