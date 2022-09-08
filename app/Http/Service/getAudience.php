@@ -54,6 +54,7 @@ class getAudience
             
           $newaud = new Audience;
           $newaud ->group_id=$res->audienceGroupId;
+          return $res->audienceGroupId;
           $newaud ->create_route=$res->createRoute;
           $newaud ->description=$res->description;
           $newaud->store_id=$storeId;
