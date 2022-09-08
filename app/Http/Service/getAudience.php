@@ -46,12 +46,12 @@ class getAudience
 
         // if($res!='request failed'){
         //     $res='ok!';
-         $newaud = new Audience;
-         $newaud ->group_id=$res->audienceGroupId;
-         $newaud ->createRoute=$res->createRoute;
-         $newaud ->description=
-         $newaud->store_id=$storeId;
-         $res;
+        //  $newaud = new Audience;
+        //  $newaud ->group_id=$res->audienceGroupId;
+        //  $newaud ->createRoute=$res->createRoute;
+        //  $newaud ->description=
+        //  $newaud->store_id=$storeId;
+        //  $res;
         // }
         return $res;
         //
