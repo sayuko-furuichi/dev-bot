@@ -51,6 +51,7 @@ class getAudience
           $newaud ->createRoute=$res->createRoute;
           $newaud ->description=$res->description;
           $newaud->store_id=$storeId;
+          $newaud->save();
          
          }
         return $res;
