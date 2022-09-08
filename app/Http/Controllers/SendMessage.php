@@ -33,10 +33,13 @@ class SendMessage extends Controller
             if ($event['type'] == 'postback') {
                 $pt=$event['postback'];
                 $ptD = $pt['data'];
-
+                
+                //会員登録するユーザ
                 if (preg_match('/name=/', $pt['data'])) {
                     $member = new getMember($channelAccessToken, $channelSecret, $client);
                     $member->createMember($event, $pt, $storeId);
+                
+                //退会するユーザ
                 } elseif (preg_match('/removeMember&id=/', $pt['data'])) {
                     $member = new getMember($channelAccessToken, $channelSecret, $client);
                     $member->remove($event, $pt, $storeId);
