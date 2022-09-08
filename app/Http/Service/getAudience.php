@@ -37,19 +37,21 @@ class getAudience
 
     public function createAud(){
 
-        $us = UserProf::where('id',4)->first();
+        $us = UserProf::where('id',4)->first(['line_user_id']);
         $aud=UserProf::all(['line_user_id']);
        $res= $this->client->crtAud([
             'description'=>'liff_users',
-            'audiences'=> $aud
+            'audiences'=> $us
         ]);
 
         // if($res!='request failed'){
         //     $res='ok!';
-        // $newaud = new Audience;
-        // $newaud ->group_id=$res->audienceGroupId;
-        // $newaud ->createRoute=$res->audienceGroupId;
-        // $res;
+         $newaud = new Audience;
+         $newaud ->group_id=$res->audienceGroupId;
+         $newaud ->createRoute=$res->createRoute;
+         $newaud ->description=
+         $newaud->store_id=$storeId;
+         $res;
         // }
         return $res;
         //
