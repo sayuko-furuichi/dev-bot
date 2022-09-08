@@ -16,6 +16,7 @@ use App\Http\Service\sendNarrow;
 use App\Http\Service\getAnalysisData;
 use  App\Http\Service\SendPushMessage;
 use  App\Http\Service\getMember;
+use  App\Http\Service\getAudience;
 
 //あとで消す
 use App\Models\RichMenu;
@@ -196,7 +197,8 @@ class SendMessage extends Controller
 
                     
                 } elseif ($message['text'] == 'audience') {
-
+                    $us = new getAudience($channelAccessToken, $channelSecret, $client);
+                    $us->createAu();
 
  $client->replyMessage([
                         'replyToken' => $event['replyToken'],
