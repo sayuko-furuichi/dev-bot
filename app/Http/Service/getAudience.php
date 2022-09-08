@@ -44,15 +44,15 @@ class getAudience
             'audiences'=> $us
         ]);
 
-        // if($res!='request failed'){
-        //     $res='ok!';
-        //  $newaud = new Audience;
-        //  $newaud ->group_id=$res->audienceGroupId;
-        //  $newaud ->createRoute=$res->createRoute;
-        //  $newaud ->description=
-        //  $newaud->store_id=$storeId;
-        //  $res;
-        // }
+         if($res!='request failed'){
+             $res='ok!';
+          $newaud = new Audience;
+          $newaud ->group_id=$res->audienceGroupId;
+          $newaud ->createRoute=$res->createRoute;
+          $newaud ->description=$res->description;
+          $newaud->store_id=$storeId;
+         
+         }
         return $res;
         //
 
