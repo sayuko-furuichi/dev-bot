@@ -36,7 +36,7 @@ class getAudience
     }
 
     public function createAud(){
-        $us = UserProf::where('line_user_name','いっさ')->first();
+        $us = UserProf::where('id',4)->first();
         return $us;
         //
 
