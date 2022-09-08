@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('group_id');
             $table->string('createRoute');
             $table->string('description');
+            $table->string('store_id');
             $table->timestamps();
         });
     }
