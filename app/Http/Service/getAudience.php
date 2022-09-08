@@ -50,16 +50,16 @@ class getAudience
             // ] 
         ]);
 
-        //  if($res!='request failed'){
-            
-        //   $newaud = new Audience;
-        //   $newaud ->group_id=$res->audienceGroupId;
-        //   $newaud ->create_route=$res->createRoute;
-        //   $newaud ->description=$res->description;
-        //   $newaud->store_id=$storeId;
-        //   $newaud->save();
-        //   $res='ok!';
-        //  }
+         if($res!='request failed'){
+            $res = json_decode($res,true);
+          $newaud = new Audience;
+          $newaud ->group_id=$res->audienceGroupId;
+          $newaud ->create_route=$res->createRoute;
+          $newaud ->description=$res->description;
+          $newaud->store_id=$storeId;
+          $newaud->save();
+          $res='ok!';
+         }
         return $res;
         //
 
