@@ -210,7 +210,7 @@ class SendMessage extends Controller
 
                             [
                                 'type' => 'text',
-                                'text' => 'plz create !'.$res
+                                'text' => 'plz create !'.$res->line_user_name
                             ]
 
                         ]
