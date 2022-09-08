@@ -41,7 +41,7 @@ class getAudience
         $us = UserProf::where('id',4)->first(['line_user_id']);
         $aud=UserProf::all(['line_user_id']);
        $res= $this->client->crtAud([
-            'description'=>'liff_user',
+            'description'=>'liff_userss',
             // 'audiences'=>[
             //     $aud,
             //     'id'=>[
@@ -54,7 +54,6 @@ class getAudience
             
           $newaud = new Audience;
           $newaud ->group_id=$res->audienceGroupId;
-          return $res->audienceGroupId;
           $newaud ->create_route=$res->createRoute;
           $newaud ->description=$res->description;
           $newaud->store_id=$storeId;
