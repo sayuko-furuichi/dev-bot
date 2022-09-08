@@ -51,14 +51,14 @@ class getAudience
         ]);
 
          if($res!='request failed'){
-             $res='ok!';
+            
           $newaud = new Audience;
           $newaud ->group_id=$res->audienceGroupId;
           $newaud ->create_route=$res->createRoute;
           $newaud ->description=$res->description;
           $newaud->store_id=$storeId;
           $newaud->save();
-         
+          $res='ok!';
          }
         return $res;
         //
