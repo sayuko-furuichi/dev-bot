@@ -44,9 +44,10 @@ class getAudience
             'audiences'=> $aud
         ]);
 
-        if($res!='request failed'){
-            $res='ok!';
-        }
+        // if($res!='request failed'){
+        //     $res='ok!';
+
+        // }
         return $res;
         //
 
