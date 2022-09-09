@@ -46,7 +46,11 @@ class getAudience
         $aud=UserProf::all(['line_user_id']);
        
         foreach($aud as $au){
-            $targets += array('id'=>$au->line_user_id);
+if (!isset($targets)) {
+    $targets=[];
+}
+            $ar = array('id'=>$au->line_user_id);
+            $targets =arraymerge($targets,$ar);
         }
        // $auds =array('audiences'=>$targets);
 
@@ -69,11 +73,12 @@ class getAudience
             } else {
                 $newaud ->expire='';
             }
-
+            $resp= $this->getdetail($ress['audienceGroupId']);
+            $newaud->count=$resp;
             $newaud->store_id=$storeId;
             $newaud->save();
             $resp='ok!!';
-           $resp= $this->getdetail($ress['audienceGroupId']);
+          
         }
         return $resp;
 
