@@ -241,19 +241,20 @@ class SendMessage extends Controller
                 //    $rs=json_decode($res,true);
 
             } elseif ($message['text'] == '利用状況') {
-                    
+                   $resq= $client->getQuota();
+                   $ress= $client->getSent();
 
                     $client->replyMessage([
                         'replyToken' => $event['replyToken'],
                         'messages' => [
                             [
                                 'type' => 'text',
-                                'text' => "　OK!\nあ"
+                                'text' => "　当月の送信数：".$ress
                             ],
 
                             [
                                 'type' => 'text',
-                                'text' => 'ああ'
+                                'text' => '当月の送信可能数：'.$resq
                             ]
 
                         ]
