@@ -51,6 +51,8 @@ class getAudience
         ]);
 
          if($res!='request failed'){
+            $resp='ok!';
+            return $resp;
             $ress = json_decode($res,true);
           $newaud = new Audience();
           $newaud ->group_id=$ress->audienceGroupId;
@@ -58,7 +60,7 @@ class getAudience
           $newaud ->description=$ress->description;
           $newaud->store_id=$storeId;
           $newaud->save();
-          $resp='ok!';
+        
          }
         return $resp;
         //
