@@ -58,6 +58,7 @@ class getAudience
           $newaud ->description=$ress['description'];
           $newaud->store_id=$storeId;
           $newaud->save();
+          $resp='ok!!';
         
          }
         return $resp;
