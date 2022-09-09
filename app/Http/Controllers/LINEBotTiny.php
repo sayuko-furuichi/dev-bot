@@ -584,7 +584,7 @@ public function sendPush($param)
             'method' => 'POST',
             'header' => $header,
             // JSON_UNESCAPED_UNICODE？
-           'content' => json_encode($param, ),
+           'content' => json_encode($param ),
         ],
     ]);
 

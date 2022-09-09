@@ -178,7 +178,7 @@ class SendMessage extends Controller
                     if(isset($message['text2'])){
                         $webMsg2= $message['text2'];
                     }else{
-                        $webMsg2='';
+                        $webMsg2='プッシュメッセージ';
                     }
                    
                     $uid=$us['userId'];
