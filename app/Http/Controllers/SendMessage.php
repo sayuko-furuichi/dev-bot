@@ -183,22 +183,7 @@ class SendMessage extends Controller
                    
                     $uid=$us['userId'];
                     $msg = new SendPushMessage($channelAccessToken, $channelSecret, $client, $webMsg, $webMsg2, $uid);
-                    $res = $msg->sendPushMessage();
-
-                    $client->replyMessage([
-                        'replyToken' => $event['replyToken'],
-                        'messages' => [
-                            [
-    'type' => 'text',
-    'text' => '　OK!'
-                            ],
-
-                            [
-    'type' => 'text',
-    'text' => ' is  '   . $res
-                            ]
-                        ]
-                    ]);
+                    $msg->sendPushMessage();
 
                     
                 } elseif ($message['text'] == 'audience') {
