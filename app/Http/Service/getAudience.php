@@ -73,8 +73,17 @@ class getAudience
             $newaud->store_id=$storeId;
             $newaud->save();
             $resp='ok!!';
+           $resp= $this->getdetail($resp);
         }
         return $resp;
-        //
+
+
+    }
+
+    public function getdetail($resp){
+        $resp = $resp.'get!';
+
+        return $resp;
+            
     }
 }
