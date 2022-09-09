@@ -74,6 +74,7 @@ if (!isset($targets)) {
                 $newaud ->expire='';
             }
             $resp= $this->getdetail($ress['audienceGroupId']);
+            return $resp;
             $newaud->count=$resp['audienceCount'];
             $newaud->store_id=$storeId;
             $newaud->save();
