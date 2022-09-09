@@ -50,7 +50,7 @@ if (!isset($targets)) {
     $targets=[];
 }
             $ar = array('id'=>$au->line_user_id);
-            $targets =arraymerge($targets,$ar);
+            $targets =array_merge($targets,$ar);
         }
        // $auds =array('audiences'=>$targets);
 
