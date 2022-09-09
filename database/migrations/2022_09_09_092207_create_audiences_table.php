@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('create_route');
             $table->string('description');
             $table->string('store_id');
-            $table->timestamp('expire');
+            $table->timestamp('expire')->nullable(true)->change();
             $table->timestamps();
         });
     }
