@@ -39,22 +39,22 @@ class getAudience
     public function createAud($storeId)
     {
         $us = UserProf::where('id', 4)->first(['line_user_id']);
-        
-     //   $targets = array_combine(['id'],$us->line_user_id);
+
+        //   $targets = array_combine(['id'],$us->line_user_id);
 
         //全件取得
-        $aud=UserProf::where('user_os','android')->get();
+        $aud=UserProf::all();
 
-        foreach($aud as $au){
-if (!isset($targets)) {
-    $targets=[];
-}
+        foreach ($aud as $au) {
+            if (!isset($targets)) {
+                $targets=[];
+            }
             $ar = array('id'=>$au->line_user_id);
-            $targets =array_merge($targets,$ar);
+            $targets += $ar;
         }
-    $tt=json_encode($targets);
-    return $tt;
-       // $auds =array('audiences'=>$targets);
+        $tt=json_encode($targets);
+        return $tt;
+        // $auds =array('audiences'=>$targets);
 
         //カラムを指定してやらないともってこれない
         $res= $this->client->crtAud([
@@ -62,7 +62,7 @@ if (!isset($targets)) {
                'audiences'=>[
                     $targets
          ]]);
-        
+
         if ($res!='request failed') {
             $ress = json_decode($res, true);
             $newaud = new Audience();
@@ -81,20 +81,17 @@ if (!isset($targets)) {
             $newaud->store_id=$storeId;
             $newaud->save();
             $resp='ok!!';
-          
         }
         return $resp;
-
-
     }
 
-    public function getdetail($gId){
-      $res=  $this->client->detAud($gId);
-      return $res;
-      $res=json_decode($res,true);
-     $gp= $res['audienceGroup'];
-     
+    public function getdetail($gId)
+    {
+        $res=  $this->client->detAud($gId);
+        return $res;
+        $res=json_decode($res, true);
+        $gp= $res['audienceGroup'];
+
         return $gp;
-            
     }
 }
