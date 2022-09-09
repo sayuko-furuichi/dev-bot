@@ -60,7 +60,7 @@ class getAudience
           $newaud->save();
           $resp='ok!';
          }
-        return $res;
+        return $resp;
         //
 
     }
