@@ -45,13 +45,7 @@ class getAudience
                'audiences'=>[
                 [
                 'id'=>$us
-               ],
-               [
-
-                'id'=>$us
-               ]
-                 
-                               
+               ],  
                ]
          ]);
         return $res;
