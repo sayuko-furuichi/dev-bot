@@ -52,7 +52,7 @@ class getAudience
             }
             $ar = ['id'=> $au->line_user_id];
            
-            $targets[] = array_push($targets,$ar);
+            $targets[0] = array_push($targets,$ar);
         }
         
         // $auds =array('audiences'=>$targets);
@@ -61,7 +61,7 @@ class getAudience
         $res= $this->client->crtAud([
              'description'=>'liff_users',
                'audiences'=>[
-                    $targets
+                    $targets[0]
          ]]);
 
         if ($res!='request failed') {
