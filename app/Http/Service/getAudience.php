@@ -73,8 +73,8 @@ if (!isset($targets)) {
             } else {
                 $newaud ->expire='';
             }
-            //$resp= $this->getdetail($ress['audienceGroupId']);
-            $newaud->count=0;
+            $resp= $this->getdetail($ress['audienceGroupId']);
+            $newaud->count=$resp['audienceCount'];
             $newaud->store_id=$storeId;
             $newaud->save();
             $resp='ok!!';
@@ -91,7 +91,7 @@ if (!isset($targets)) {
       $res=json_decode($res,true);
      $gp= $res['audienceGroup'];
      
-        return $gp['audienceCount'];
+        return $gp;
             
     }
 }
