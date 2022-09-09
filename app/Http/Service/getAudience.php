@@ -45,7 +45,8 @@ class getAudience
         
                'audiences'=>[
                 
-                'id'=> $us
+                'id'=> $us,
+                'id'=>$us
                ],  
                
                
