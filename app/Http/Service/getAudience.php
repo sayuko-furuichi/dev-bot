@@ -52,9 +52,9 @@ class getAudience
 
          if($res!='request failed'){
             $ress = json_decode($res,true);
-            $resp='ok!';
-            return $resp;
           $newaud = new Audience();
+          $resp='ok!';
+          return $resp;
           $newaud ->group_id=$ress->audienceGroupId;
           $newaud ->create_route=$ress->createRoute;
           $newaud ->description=$ress->description;
