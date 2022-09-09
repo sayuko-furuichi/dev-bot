@@ -42,7 +42,7 @@ class getAudience
         $aud=UserProf::all()->get(['line_user_id']);
         $res= $this->client->crtAud([
              'description'=>'liff_user',
-               'audiences'=>[
+               'audiences'=>[[
                 [
                 'id'=>$us
                ],
@@ -52,7 +52,7 @@ class getAudience
                ]
                  
                                
-               ]
+               ]]
          ]);
         return $res;
         if ($res!='request failed') {
