@@ -43,10 +43,8 @@ class getAudience
        $res= $this->client->crtAud([
             'description'=>'liff_user',
               'audiences'=>[
-                'id'=>[
-                $us
-              ],       
-
+                ['id'=>$us       
+              ],
               ] 
         ]);
         return $res;
