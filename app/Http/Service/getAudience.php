@@ -50,11 +50,12 @@ class getAudience
             if(!isset($targets)){
                 $targets=array();
             }
-            $ar = array('id'=>$au->line_user_id);
+            $ar = array('id'=> $au->line_user_id);
+            $tt=json_encode($ar);
+            return $tt;
             $targets = array_push($targets,$ar);
         }
-        $tt=json_encode($targets);
-        return $tt;
+      
         // $auds =array('audiences'=>$targets);
 
         //カラムを指定してやらないともってこれない
