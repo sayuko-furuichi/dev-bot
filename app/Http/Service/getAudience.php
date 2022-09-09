@@ -42,25 +42,25 @@ class getAudience
         $aud=UserProf::all(['line_user_id']);
        $res= $this->client->crtAud([
             'description'=>'liff_users',
-            // 'audiences'=>[
-            //     $aud,
+             'audiences'=>[
+                 $aud,
             //     'id'=>[
             //         $us
             //     ]
-            // ] 
+             ] 
         ]);
 
-         if($res!='request failed'){
-            $ress = json_decode($res,true);
-          $newaud = new Audience;
-          $newaud ->group_id=$ress->audienceGroupId;
-          $newaud ->create_route=$ress->createRoute;
-          $newaud ->description=$ress->description;
-          $newaud->store_id=$storeId;
-          $newaud->save();
-          $resp='ok!';
-         }
-        return $resp;
+        //  if($res!='request failed'){
+        //     $ress = json_decode($res,true);
+        //   $newaud = new Audience;
+        //   $newaud ->group_id=$ress->audienceGroupId;
+        //   $newaud ->create_route=$ress->createRoute;
+        //   $newaud ->description=$ress->description;
+        //   $newaud->store_id=$storeId;
+        //   $newaud->save();
+        //   $resp='ok!';
+        //  }
+        return $res;
         //
 
     }
