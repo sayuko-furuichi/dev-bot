@@ -642,29 +642,50 @@ public function detAud($gId){
       //     $res='request failed';
     }
 
-    // $api_url ='https://api.line.me/v2/bot/audienceGroup/'.$gId;
+    return $res;
+}
 
-    // //エンコードされたURLでPOST通信する
-    // $headers = [ 'Authorization: Bearer ' . $this->channelAccessToken,];
+//利用状況確認
+public function getSent(){
+    $header = array(
+        'Authorization: Bearer ' . $this->channelAccessToken,
+    );
+    $context = stream_context_create([
+        'http' => [
+            'ignore_errors' => true,
+            'method' => 'GET',
+            'header' => $header,
+        ],
+    ]);
 
-    // $curl_handle = curl_init();
-
-    // curl_setopt($curl_handle, CURLOPT_POST, true);
-    // curl_setopt($curl_handle, CURLOPT_URL, $api_url);
-    // curl_setopt($curl_handle, CURLOPT_HTTPHEADER, $headers);
-    // // curl_exec()の結果を文字列にする
-    // curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, true);
-    // //実行
-    // $res = curl_exec($curl_handle);
-
-    // //close
-    // curl_close($curl_handle);
-
-
-
+    $res=file_get_contents('https://api.line.me/v2/bot/message/quota/consumption', false, $context);
+    if (strpos($http_response_header[0], '200') === false) {
+      //     $res='request failed';
+    }
 
     return $res;
 }
+
+public function getQuota(){
+    $header = array(
+        'Authorization: Bearer ' . $this->channelAccessToken,
+    );
+    $context = stream_context_create([
+        'http' => [
+            'ignore_errors' => true,
+            'method' => 'GET',
+            'header' => $header,
+        ],
+    ]);
+
+    $res=file_get_contents('https://api.line.me/v2/bot/message/quota', false, $context);
+    if (strpos($http_response_header[0], '200') === false) {
+      //     $res='request failed';
+    }
+
+    return $res;
+}
+
 
 
     //署名をハッシュ化

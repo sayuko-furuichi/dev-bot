@@ -241,7 +241,7 @@ class SendMessage extends Controller
                 //    $rs=json_decode($res,true);
 
             } elseif ($message['text'] == '利用状況') {
-
+                    
 
                     $client->replyMessage([
                         'replyToken' => $event['replyToken'],
