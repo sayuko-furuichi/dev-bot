@@ -40,7 +40,7 @@ class getAudience
     {
         $us = UserProf::where('id', 4)->first(['line_user_id']);
         
-        $targets = array_combine(['id'],$us->line_user_id);
+     //   $targets = array_combine(['id'],$us->line_user_id);
 
 
         $aud=UserProf::all(['line_user_id']);
