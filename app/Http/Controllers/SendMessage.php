@@ -242,19 +242,23 @@ class SendMessage extends Controller
 
             } elseif ($message['text'] == '利用状況') {
                    $resq= $client->getQuota();
+                   $resq=json_decode($resq,true);
+
                    $ress= $client->getSent();
+                $ress=json_decode($ress,true);
+
 
                     $client->replyMessage([
                         'replyToken' => $event['replyToken'],
                         'messages' => [
                             [
                                 'type' => 'text',
-                                'text' => "　当月の送信数：".$ress
+                                'text' => "　当月の送信数：".$ress['totalUsage']
                             ],
 
                             [
                                 'type' => 'text',
-                                'text' => '当月の送信可能数：'.$resq
+                                'text' => '当月の送信可能数：'.$resq['value']
                             ]
 
                         ]
