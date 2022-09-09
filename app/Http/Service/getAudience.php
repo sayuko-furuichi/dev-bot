@@ -44,7 +44,6 @@ class getAudience
 
         //全件取得
         $aud=UserProf::all();
-        $aud=json_decode($aud,true);
         return $aud;
         foreach($aud as $au){
 if (!isset($targets)) {
