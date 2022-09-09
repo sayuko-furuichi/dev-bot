@@ -633,7 +633,7 @@ public function detAud($gId){
             'method' => 'POST',
             'header' => $header,
             // JSON_UNESCAPED_UNICODE？
-           'content' => '',
+         //  'content' => '',
         ],
     ]);
 
