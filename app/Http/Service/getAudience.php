@@ -69,7 +69,7 @@ class getAudience
           $resp='ok!!';
         
          }
-        return $res;
+        return $resp;
         //
 
     }
