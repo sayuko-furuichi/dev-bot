@@ -258,7 +258,7 @@ class SendMessage extends Controller
 
                             [
                                 'type' => 'text',
-                                'text' => '当月の送信可能数：'.$resq['value']
+                                'text' => '当月の送信上限目安：'.$resq['value']
                             ]
 
                         ]
