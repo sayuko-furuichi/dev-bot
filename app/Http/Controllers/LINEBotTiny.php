@@ -630,7 +630,7 @@ public function detAud($gId){
     $context = stream_context_create([
         'http' => [
             'ignore_errors' => true,
-            'method' => 'POST',
+            'method' => 'GET',
             'header' => $header,
             // JSON_UNESCAPED_UNICODE？
          //  'content' => '',
@@ -641,6 +641,27 @@ public function detAud($gId){
     if (strpos($http_response_header[0], '200') === false) {
       //     $res='request failed';
     }
+
+    // $api_url ='https://api.line.me/v2/bot/audienceGroup/'.$gId;
+
+    // //エンコードされたURLでPOST通信する
+    // $headers = [ 'Authorization: Bearer ' . $this->channelAccessToken,];
+
+    // $curl_handle = curl_init();
+
+    // curl_setopt($curl_handle, CURLOPT_POST, true);
+    // curl_setopt($curl_handle, CURLOPT_URL, $api_url);
+    // curl_setopt($curl_handle, CURLOPT_HTTPHEADER, $headers);
+    // // curl_exec()の結果を文字列にする
+    // curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, true);
+    // //実行
+    // $res = curl_exec($curl_handle);
+
+    // //close
+    // curl_close($curl_handle);
+
+
+
 
     return $res;
 }
