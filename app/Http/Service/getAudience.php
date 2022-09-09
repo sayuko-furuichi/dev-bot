@@ -36,44 +36,37 @@ class getAudience
         $this->client=$client;
     }
 
-    public function createAud($storeId){
-
-        $us = UserProf::where('id',4)->first(['line_user_id']);
+    public function createAud($storeId)
+    {
+        $us = UserProf::where('id', 4)->first(['line_user_id']);
         $aud=UserProf::all()->get(['line_user_id']);
-       $res= $this->client->crtAud([
-            'description'=>'liff_user',
-              'audiences'=>[
-                ['id'=>$us       
-              ],
-              ] 
-        ]);
+        $res= $this->client->crtAud([
+             'description'=>'liff_user',
+               'audiences'=>[
+                 [
+                     //'id'=>$us
+               ],
+               ]
+         ]);
         return $res;
-         if($res!='request failed'){
-            $ress = json_decode($res,true);
-          $newaud = new Audience();
-          $newaud ->group_id=$ress['audienceGroupId'];
-          $newaud ->create_route=$ress['createRoute'];
-          $newaud ->description=$ress['description'];
-          if(isset($ress['expireTimestamp'])){
-            //UNIXtimeを変換して格納
-            $newaud ->expire=date("Y/m/d H:i:s",$ress['expireTimestamp']);
-          }else{
-            $newaud ->expire='';
-          }
-          
-          $newaud->store_id=$storeId;
-          $newaud->save();
-          $resp='ok!!';
-        
-         }
+        if ($res!='request failed') {
+            $ress = json_decode($res, true);
+            $newaud = new Audience();
+            $newaud ->group_id=$ress['audienceGroupId'];
+            $newaud ->create_route=$ress['createRoute'];
+            $newaud ->description=$ress['description'];
+            if (isset($ress['expireTimestamp'])) {
+                //UNIXtimeを変換して格納
+                $newaud ->expire=date("Y/m/d H:i:s", $ress['expireTimestamp']);
+            } else {
+                $newaud ->expire='';
+            }
+
+            $newaud->store_id=$storeId;
+            $newaud->save();
+            $resp='ok!!';
+        }
         return $resp;
         //
-
     }
-
-
-
 }
-
-
-
