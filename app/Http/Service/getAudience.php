@@ -52,7 +52,8 @@ if (!isset($targets)) {
             $ar = array('id'=>$au->line_user_id);
             $targets =array_merge($targets,$ar);
         }
-        dd($targets);
+    $tt=json_encode($targets);
+    return $tt;
        // $auds =array('audiences'=>$targets);
 
         //カラムを指定してやらないともってこれない
