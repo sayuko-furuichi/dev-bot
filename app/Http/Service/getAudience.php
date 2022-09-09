@@ -53,11 +53,9 @@ class getAudience
          if($res!='request failed'){
             $ress = json_decode($res,true);
           $newaud = new Audience();
-          $newaud ->group_id=$ress->audienceGroupId;
-          $resp='ok!';
-          return $resp;
-          $newaud ->create_route=$ress->createRoute;
-          $newaud ->description=$ress->description;
+          $newaud ->group_id=$ress['audienceGroupId'];
+          $newaud ->create_route=$ress['createRoute'];
+          $newaud ->description=$ress['description'];
           $newaud->store_id=$storeId;
           $newaud->save();
         
