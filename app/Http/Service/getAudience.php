@@ -43,8 +43,7 @@ class getAudience
      //   $targets = array_combine(['id'],$us->line_user_id);
 
         //全件取得
-        $aud=UserProf::all(['line_user_id']);
-       
+        $aud=UserProf::all();
         foreach($aud as $au){
 if (!isset($targets)) {
     $targets=[];
