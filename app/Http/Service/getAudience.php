@@ -46,7 +46,7 @@ class getAudience
         $aud=UserProf::all(['line_user_id']);
        
         foreach($aud as $au){
-            $targets = array('id'=>$au->line_user_id);
+            $targets += array('id'=>$au->line_user_id);
         }
        // $auds =array('audiences'=>$targets);
 
