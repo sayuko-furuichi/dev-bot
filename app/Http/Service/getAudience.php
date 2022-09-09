@@ -47,7 +47,7 @@ class getAudience
 
               ] 
         ]);
-
+        return $res;
          if($res!='request failed'){
             $ress = json_decode($res,true);
           $newaud = new Audience();
