@@ -41,7 +41,7 @@ class getAudience
         $us = UserProf::where('id',4)->first(['line_user_id']);
         $aud=UserProf::all(['line_user_id']);
        $res= $this->client->crtAud([
-            'description'=>'liff_users',
+            'description'=>'nulls',
             //  'audiences'=>[
             //    //  $aud,
             //     'id'=>[
@@ -56,6 +56,12 @@ class getAudience
           $newaud ->group_id=$ress['audienceGroupId'];
           $newaud ->create_route=$ress['createRoute'];
           $newaud ->description=$ress['description'];
+          if(isset($ress['expireTimestamp'])){
+            $newaud ->expire=$ress['expireTimestamp'];
+          }else{
+            $newaud ->expire='';
+          }
+          
           $newaud->store_id=$storeId;
           $newaud->save();
           $resp='ok!!';
