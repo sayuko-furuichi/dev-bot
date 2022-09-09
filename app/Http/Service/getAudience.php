@@ -45,7 +45,7 @@ class getAudience
         
                'audiences'=>[
                 [
-                'id'=> 'Uffd4dd52c580e1d2bb7b0a66e0ef1951',
+                'id'=> $us->line_user_id,
                ],  
                ]
                
