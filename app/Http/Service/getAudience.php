@@ -48,9 +48,9 @@ class getAudience
     //array_mergeだと上書きされてしまう
         foreach ($aud as $au) {
             if(!isset($targets)){
-                $targets=array();
+                $targets=[];
             }
-            $ar = array('id'=> $au->line_user_id);
+            $ar = ['id'=> $au->line_user_id];
            
             $targets = array_push($targets,$ar);
         }
