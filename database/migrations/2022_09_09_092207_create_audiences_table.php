@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('store_id');
             $table->timestamp('expire')->nullable(true);
+            $table->integer('count');
             $table->timestamps();
         });
     }
