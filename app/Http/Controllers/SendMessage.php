@@ -262,7 +262,7 @@ class SendMessage extends Controller
                             ],
                             [
                                 'type' => 'text',
-                                'text' => '当月の送信可能数：'. $resq['value'] - $ress['totalUsage']
+                                'text' => '当月の送信可能数： 約'. $resq['value'] - $ress['totalUsage']
                             ]
 
                         ]
