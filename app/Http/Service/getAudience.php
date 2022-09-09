@@ -42,8 +42,10 @@ class getAudience
         $aud=UserProf::all()->get(['line_user_id']);
        $res= $this->client->crtAud([
             'description'=>'liff_user',
-              'audiences'=>[
-                      $us
+              'audiences'=>[[
+                'id'=> $us
+              ]
+                     
 
               ] 
         ]);
@@ -55,6 +57,7 @@ class getAudience
           $newaud ->create_route=$ress['createRoute'];
           $newaud ->description=$ress['description'];
           if(isset($ress['expireTimestamp'])){
+            //UNIXtimeを変換して格納
             $newaud ->expire=date("Y/m/d H:i:s",$ress['expireTimestamp']);
           }else{
             $newaud ->expire='';
