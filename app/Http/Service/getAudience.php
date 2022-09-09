@@ -57,7 +57,7 @@ class getAudience
           $newaud ->create_route=$ress['createRoute'];
           $newaud ->description=$ress['description'];
           if(isset($ress['expireTimestamp'])){
-            $newaud ->expire=$ress['expireTimestamp'];
+            $newaud ->expire=date("Y/m/d H:i:s",$ress['expireTimestamp']);
           }else{
             $newaud ->expire='';
           }
