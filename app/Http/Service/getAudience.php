@@ -46,14 +46,13 @@ class getAudience
         $aud=UserProf::all(['line_user_id']);
        
         foreach($aud as $au){
-            $targets = array('id'=>$aud->line_user_id);
+            $targets = array('id'=>$au->line_user_id);
         }
        // $auds =array('audiences'=>$targets);
 
         //カラムを指定してやらないともってこれない
         $res= $this->client->crtAud([
              'description'=>'liff_users',
-        
                'audiences'=>[
                     $targets
          ]]);
