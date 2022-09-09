@@ -39,17 +39,24 @@ class getAudience
     public function createAud($storeId)
     {
         $us = UserProf::where('id', 4)->first(['line_user_id']);
+        
+        $targets = array_combine(['id'],$us->line_user_id);
+
+
         $aud=UserProf::all(['line_user_id']);
+       
+        foreach($aud as $au){
+            $targets = array('id'=>$aud->line_user_id);
+        }
+       // $auds =array('audiences'=>$targets);
+
+        //カラムを指定してやらないともってこれない
         $res= $this->client->crtAud([
              'description'=>'liff_users',
         
                'audiences'=>[
-                [
-                'id'=> $us->line_user_id,
-               ],  
-               ]
-               
-         ]);
+                    $targets
+         ]]);
         
         if ($res!='request failed') {
             $ress = json_decode($res, true);
