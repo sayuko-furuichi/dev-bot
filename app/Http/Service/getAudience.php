@@ -47,7 +47,7 @@ class getAudience
         $targets=[];
         foreach ($aud as $au) {
             $ar = array('id'=>$au->line_user_id);
-            $targets = arraypush($targets,$ar);
+            $targets = array_push($targets,$ar);
         }
         $tt=json_encode($targets);
         return $tt;
