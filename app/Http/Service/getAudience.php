@@ -81,9 +81,11 @@ class getAudience
     }
 
     public function getdetail($gId){
-        $resp = $resp.'get!';
-
-        return $resp;
+      $res=  $this->client->detAud($gId);
+      $res=json_decode($res,true);
+     $gp= $res['audienceGroup'];
+     
+        return $gp['audienceCount'];
             
     }
 }

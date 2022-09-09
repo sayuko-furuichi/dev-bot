@@ -596,6 +596,9 @@ public function sendPush($param)
     return $res;
 }
 
+//オーディエンス管理
+
+//作成
 public function crtAud($param){
     $header = array(
         'Content-Type: application/json',
@@ -619,7 +622,28 @@ public function crtAud($param){
     return $res;
 }
 
+//情報取得
+public function detAud($gId){
+    $header = array(
+        'Authorization: Bearer ' . $this->channelAccessToken,
+    );
+    $context = stream_context_create([
+        'http' => [
+            'ignore_errors' => true,
+            'method' => 'POST',
+            'header' => $header,
+            // JSON_UNESCAPED_UNICODE？
+           'content' => '',
+        ],
+    ]);
 
+    $res=file_get_contents('https://api.line.me/v2/bot/audienceGroup/'.$gId, false, $context);
+    if (strpos($http_response_header[0], '200') === false) {
+      //     $res='request failed';
+    }
+
+    return $res;
+}
 
 
     //署名をハッシュ化
