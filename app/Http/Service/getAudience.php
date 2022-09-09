@@ -44,14 +44,14 @@ class getAudience
 
         //全件取得
         $aud=UserProf::all();
-        $targets=[];
+        $targets=array();
         foreach ($aud as $au) {
             $ar = array('id'=>$au->line_user_id);
             $targets = array_push($targets,$ar);
         }
-        // $tt=json_encode($targets);
-        // return $tt;
-        // // $auds =array('audiences'=>$targets);
+        $tt=json_encode($targets);
+        return $tt;
+        // $auds =array('audiences'=>$targets);
 
         //カラムを指定してやらないともってこれない
         $res= $this->client->crtAud([
