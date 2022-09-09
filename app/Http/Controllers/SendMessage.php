@@ -189,13 +189,13 @@ class SendMessage extends Controller
                         'replyToken' => $event['replyToken'],
                         'messages' => [
                             [
-'type' => 'text',
-'text' => '　OK!'
+    'type' => 'text',
+    'text' => '　OK!'
                             ],
 
                             [
-'type' => 'text',
-'text' => ' is  '   . $res
+    'type' => 'text',
+    'text' => ' is  '   . $res
                             ]
                         ]
                     ]);
