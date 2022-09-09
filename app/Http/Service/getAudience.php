@@ -50,7 +50,7 @@ class getAudience
                 $targets=[];
             }
             $ar = array('id'=>$au->line_user_id);
-            $targets += $ar;
+            $targets = arraypush($targets,$ar);
         }
         $tt=json_encode($targets);
         return $tt;
