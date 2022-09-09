@@ -41,7 +41,7 @@ class getAudience
         $us = UserProf::where('id',4)->first(['line_user_id']);
         $aud=UserProf::all(['line_user_id']);
        $res= $this->client->crtAud([
-            'description'=>'nulls',
+            'description'=>'liff_user',
               'audiences'=>[
             //    //  $aud,
                  'id'=>[
