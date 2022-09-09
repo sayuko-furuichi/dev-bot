@@ -52,7 +52,7 @@ class getAudience
             }
             $ar = ['id'=> $au->line_user_id];
            
-            $targets[0] = array_push($targets,$ar);
+            $targets = array_push($targets,$ar);
         }
         
         // $auds =array('audiences'=>$targets);
