@@ -52,6 +52,7 @@ if (!isset($targets)) {
             $ar = array('id'=>$au->line_user_id);
             $targets =array_merge($targets,$ar);
         }
+        dd($targets);
        // $auds =array('audiences'=>$targets);
 
         //カラムを指定してやらないともってこれない
