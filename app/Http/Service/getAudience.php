@@ -42,12 +42,12 @@ class getAudience
         $aud=UserProf::all(['line_user_id']);
        $res= $this->client->crtAud([
             'description'=>'liff_users',
-             'audiences'=>[
-               //  $aud,
-                'id'=>[
-                     $us
-                 ]
-             ] 
+            //  'audiences'=>[
+            //    //  $aud,
+            //     'id'=>[
+            //          $us
+            //      ]
+            //  ] 
         ]);
 
         //  if($res!='request failed'){
