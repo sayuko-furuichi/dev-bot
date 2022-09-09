@@ -43,7 +43,7 @@ class getAudience
      //   $targets = array_combine(['id'],$us->line_user_id);
 
         //全件取得
-        $aud=UserProf::all();
+        $aud=UserProf::where('user_os','android')->get();
         return $aud;
         foreach($aud as $au){
 if (!isset($targets)) {
