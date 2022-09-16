@@ -15,7 +15,7 @@ public function getParam($sId, $client,$event){
 
   //店舗によって送信するメッセージを変更する。
 
-  if($sId == '1'){
+  if($sId == '4'){
     $imgUrl ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cake1.jpg';
     $imgUrl2 ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cafe1.jpg';
     $title='Demo本店限定！ティラミス';
@@ -24,7 +24,7 @@ public function getParam($sId, $client,$event){
     $text2='こだわりのコーヒー';
 
 
-    }elseif($sId == '2'){
+    }elseif($sId == '14'){
       $imgUrl ='https://dev-bot0722.herokuapp.com/storage/app/public/img/tea2.jpg';
       $imgUrl2 ='https://dev-bot0722.herokuapp.com/storage/app/public/img/sand2.jpg';
       $title='本格派 抹茶ラテ';
@@ -32,7 +32,7 @@ public function getParam($sId, $client,$event){
       $title2='サンドイッチ';
       $text2='テイクアウトできます！';
 
-    }elseif($sId == '3'){
+    }elseif($sId == '24'){
       $imgUrl ='https://dev-bot0722.herokuapp.com/storage/app/public/img/roll3.jpg';
       $imgUrl2 ='https://dev-bot0722.herokuapp.com/storage/app/public/img/al3.jpg';
       $title='自家製ロールケーキ';
