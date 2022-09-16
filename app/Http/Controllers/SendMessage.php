@@ -18,6 +18,8 @@ use  App\Http\Service\SendPushMessage;
 use  App\Http\Service\getMember;
 use  App\Http\Service\getAudience;
 
+
+
 //あとで消す
 use App\Models\RichMenu;
 
@@ -34,12 +36,12 @@ class SendMessage extends Controller
             if ($event['type'] == 'postback') {
                 $pt=$event['postback'];
                 $ptD = $pt['data'];
-                
+
                 //会員登録するユーザ
                 if (preg_match('/name=/', $pt['data'])) {
                     $member = new getMember($channelAccessToken, $channelSecret, $client);
                     $member->createMember($event, $pt, $storeId);
-                
+
                 //退会するユーザ
                 } elseif (preg_match('/removeMember&id=/', $pt['data'])) {
                     $member = new getMember($channelAccessToken, $channelSecret, $client);
@@ -125,6 +127,7 @@ class SendMessage extends Controller
 ]
 ]
 ]);
+
                 } elseif ($message['text'] == '会員ステータス確認') {
                     //TODO:確認
                     $mm = new getMember($channelAccessToken, $channelSecret, $client);
@@ -175,36 +178,34 @@ class SendMessage extends Controller
                 //TODO:クーポンの配信など調査
                 } elseif ($us['type']=='web' || $message['text']=='push!') {
                     $webMsg= $message['text'];
-                    if(isset($message['text2'])){
+                    if (isset($message['text2'])) {
                         $webMsg2= $message['text2'];
-                    }else{
+                    } else {
                         $webMsg2='プッシュメッセージ';
                     }
-                   
+
                     $uid=$us['userId'];
                     $msg = new SendPushMessage($channelAccessToken, $channelSecret, $client, $webMsg, $webMsg2, $uid);
                     $msg->sendPushMessage();
-
-                    
                 } elseif ($message['text'] == 'audience') {
                     $us = new getAudience($channelAccessToken, $channelSecret, $client);
-                   $res= $us->createAud($storeId);
+                    $res= $us->createAud($storeId);
 
- $client->replyMessage([
-                        'replyToken' => $event['replyToken'],
-                        'messages' => [
-                            [
-                                'type' => 'text',
-                                'text' => "　OK!\n"
-                            ],
+                    $client->replyMessage([
+                                           'replyToken' => $event['replyToken'],
+                                           'messages' => [
+                                               [
+                                                   'type' => 'text',
+                                                   'text' => "　OK!\n"
+                                               ],
 
-                            [
-                                'type' => 'text',
-                                'text' => 'plz create !'. $res
-                            ]
+                                               [
+                                                   'type' => 'text',
+                                                   'text' => 'plz create !'. $res
+                                               ]
 
-                        ]
-                    ]);
+                                           ]
+                                       ]);
 
 
 
@@ -221,16 +222,15 @@ class SendMessage extends Controller
                     $param = new sendNarrow($channelAccessToken, $channelSecret, $client);
                     $msgId = $param->sendMessage();
                 //     $params = new getAnalysisData($client,$event);
-                    // $params->getData($requestId);
+                // $params->getData($requestId);
 
                 //    $rs=json_decode($res,true);
+                } elseif ($message['text'] == '利用状況') {
+                    $resq= $client->getQuota();
+                    $resq=json_decode($resq, true);
 
-            } elseif ($message['text'] == '利用状況') {
-                   $resq= $client->getQuota();
-                   $resq=json_decode($resq,true);
-
-                   $ress= $client->getSent();
-                $ress=json_decode($ress,true);
+                    $ress= $client->getSent();
+                    $ress=json_decode($ress, true);
 
 
                     $client->replyMessage([
