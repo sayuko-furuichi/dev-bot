@@ -66,7 +66,7 @@ public function getParam($sId, $client,$event){
           'defaultAction'=> [
             'type'=> 'uri',
             'label'=> 'View detail',
-            'uri'=> secure_asset('/img/cake1.jpg')
+            'uri'=> $imgUrl
             //'https://dev-ext-app.herokuapp.com/public/login'
           ],
           'actions'=> [
