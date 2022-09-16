@@ -17,8 +17,8 @@ public function getParam($sId, $client,$event){
 
   if($sId == '4'){
    
-   // $imgUrl ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cake1.jpg';
-   $imgUrl = secure_asset('/storage/img/cake1.jpg');  
+    $imgUrl ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cake1.jpg';
+  // $imgUrl = ''. secure_asset('/storage/img/cake1.jpg');  
     $imgUrl2 ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cafe1.jpg';
     $title='Demo本店限定！ティラミス';
     $title2='カプチーノ';
@@ -66,8 +66,7 @@ public function getParam($sId, $client,$event){
           'defaultAction'=> [
             'type'=> 'uri',
             'label'=> 'View detail',
-            'uri'=> $imgUrl
-            //'https://dev-ext-app.herokuapp.com/public/login'
+            'uri'=> 'https://dev-ext-app.herokuapp.com/public/login'
           ],
           'actions'=> [
             [
