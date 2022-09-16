@@ -137,9 +137,9 @@ class getMember
         $mem->attribute = 1;
         $mem->save();
 
-        if($storeId==1){
+        if($storeId==4){
             $rm='richmenu-e31236ca44856f8610743dd3ed50d3a4';        
-        }else if($storeId==3){
+        }else if($storeId==14){
             $rm='richmenu-c9cb25b501e7efc84acda2ef9e96d183';
         }
         $this->client->linkUser($mem->line_user_id,$rm);
