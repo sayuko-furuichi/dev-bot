@@ -18,7 +18,7 @@ public function getParam($sId, $client,$event){
   if($sId == '4'){
    
    // $imgUrl ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cake1.jpg';
-   $imgUrl = asset('img/cake1.jpg','');  
+   $imgUrl = secure_asset('img/cake1.jpg',);  
     $imgUrl2 ='https://dev-bot0722.herokuapp.com/storage/app/public/img/cafe1.jpg';
     $title='Demo本店限定！ティラミス';
     $title2='カプチーノ';
