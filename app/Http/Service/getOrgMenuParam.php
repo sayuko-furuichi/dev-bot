@@ -62,7 +62,7 @@ public function getParam($sId, $client,$event){
           'thumbnailImageUrl'=> $imgUrl,
           'imageBackgroundColor'=> '#FFFFFF',
           'title'=>  $title,
-          'text'=>  $text,
+          'text'=>  $text. "\n". secure_asset('/img/cake1.jpg'),
           'defaultAction'=> [
             'type'=> 'uri',
             'label'=> 'View detail',
