@@ -62,11 +62,12 @@ public function getParam($sId, $client,$event){
           'thumbnailImageUrl'=> $imgUrl,
           'imageBackgroundColor'=> '#FFFFFF',
           'title'=>  $title,
-          'text'=>  $text. "\n". secure_asset('/img/cake1.jpg'),
+          'text'=>  $text,
           'defaultAction'=> [
             'type'=> 'uri',
             'label'=> 'View detail',
-            'uri'=> 'https://dev-ext-app.herokuapp.com/public/login'
+            'uri'=> secure_asset('/img/cake1.jpg')
+            //'https://dev-ext-app.herokuapp.com/public/login'
           ],
           'actions'=> [
             [
