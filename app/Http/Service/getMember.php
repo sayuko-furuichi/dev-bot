@@ -218,9 +218,9 @@ class getMember
         $mem->save();
 
 //リッチメニュー変更
-if($storeId==1){
+if($storeId==4){
     $rm='richmenu-1cf3b08b8e1ffec0e5448a4119fa2e6d';
-}else if($storeId==3){
+}else if($storeId==14){
     $rm= 'richmenu-f4de7ea6cafa216a65e54fe73a66a427';
 
 }
