@@ -80,7 +80,7 @@ class getEnisRm
 
         //画像UP
         $res= $this->client->upRmImgA($rmA->richmenu_id);
-        $rmA->img='/memberdemo/base_1.png';
+        $rmA->img='/memberdemo/base_y1.png';
 
         $res= $this->client->upRmImgB($rmB->richmenu_id);
         $rmB->img='/memberdemo/base_y2.png';
@@ -166,14 +166,14 @@ class getEnisRm
         'height'=> 666
     ],
     'action'=> [
-        'type'=> 'uri',
+        'type'=> 'message',
         //LIFF
-        'uri'=> $simg->liff_url
+        'uri'=> '会員ステータス確認'
         ]
     ],
 
     [
-       //  C 注文する
+       //  C 予約する
       'bounds'=> [
         'x'=>73,
         'y'=> 971,
@@ -187,7 +187,7 @@ class getEnisRm
     ]
     ],
     [
-        //   D
+        //   D 注文する
            'bounds'=> [
              'x'=>1275,
              'y'=> 960,
@@ -196,7 +196,7 @@ class getEnisRm
          ],
          'action'=> [
             'type'=> 'message',
-            'text'=> '会員ステータス確認',
+            'text'=> '注文する',
         ]
          ],
 
@@ -224,7 +224,6 @@ class getEnisRm
 
     public function createRmB($rmA, $rmB,$simg)
     {
-   
         $res=$this->client->rtRichMenu([
 
             'size'=>[
@@ -232,64 +231,67 @@ class getEnisRm
             'height'=>1686
             ],
             'selected'=> false,
-            'name'=> $rmB->name,
-            'chatBarText'=> $rmB->chat_bar,
+            'name'=> $rmA->name,
+            'chatBarText'=> $rmA->chat_bar,
             //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
             'areas'=> [[
         
-            //A クーポン
+            //A shop_card
             'bounds'=> [
-                'x'=> 78,
-                'y'=> 83,
-                'width'=> 755,
-                'height'=> 730
+                'x'=> 47,
+                'y'=> 236,
+                'width'=> 1175,
+                'height'=> 693
             ],
             'action'=> [
-                'type'=> 'uri',
+                'type'=> 'url',
                 //ext_app
-                'uri'=> $simg->coupon_url
+                'url'=> $simg->card_url
             ]
             ],
-            // B shop_card
+            // B LIFF 会員証
             [
             'bounds'=> [
-                'x'=>893,
-                'y'=> 65,
-                'width'=> 1558,
-                'height'=> 773
+                'x'=>1275,
+                'y'=> 247,
+                'width'=> 1149,
+                'height'=> 666
             ],
             'action'=> [
-                'type'=> 'uri',
-                'uri'=> $simg->card_url
+                'type'=> 'message',
+                //LIFF
+                'uri'=> '会員ステータス確認'
                 ]
             ],
         
             [
-               //  C
+               //  C 予約する
               'bounds'=> [
-                'x'=>72,
-                'y'=> 880,
-                 'width'=> 749,
-                'height'=>755
+                'x'=>73,
+                'y'=> 971,
+                 'width'=> 1155,
+                'height'=>661
             ],
             'action'=> [
                 'type'=> 'message',
-               'text'=>'限定メニュー'
+               // 切り替え先設定
+               'text'=>'予約確認'
             ]
             ],
             [
-                //   D
+                //   D 注文する
                    'bounds'=> [
-                     'x'=>887,
-                     'y'=> 898,
-                     'width'=> 749,
-                     'height'=>737
+                     'x'=>1275,
+                     'y'=> 960,
+                     'width'=> 1159,
+                     'height'=>661
                  ],
                  'action'=> [
                     'type'=> 'message',
-                    'text'=> '会員ステータス確認',
+                    'text'=> '注文する',
                 ]
                  ],
+        
         
                  [
                     //   E 1へ切り替え
