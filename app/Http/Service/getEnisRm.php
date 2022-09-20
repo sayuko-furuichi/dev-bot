@@ -9,6 +9,7 @@ use LINE\LINEBot\HTTPClient\CurlHTTPClient;
 use LINE\LINEBot\HTTPClient;
 use App\Models\RichMenu;
 use Illuminate\Support\Facades\DB;
+use App\Models\Store;
 
 class getEnisRm
 {
@@ -59,28 +60,23 @@ class getEnisRm
         $rmB->name=$str . '_b';
     
 
-        $rmA->chat_bar='機能一覧を閉じる・開く';
-        $rmB->chat_bar="機能一覧を閉じる・開く";
+        $rmA->chat_bar='メニュー/ON/OFF';
+        $rmB->chat_bar="メニュー/ON/OFF";
     
-       
+       $simg =Store::where('id',$storeId)->first();
 
 
         //create rich menu A
-        $res= $this->createRmA($rmA, $rmB);
+        $res= $this->createRmA($rmA, $rmB,$simg);
         $rs= json_decode($res, true);
         $rmA->richmenu_id=$rs['richMenuId'];
    
 
         //create rich menu B
-        $res= $this->createRmB($rmA, $rmB);
+        $res= $this->createRmB($rmA, $rmB,$simg);
         $rs= json_decode($res, true);
         $rmB->richmenu_id=$rs['richMenuId'];
 
-
-        //OK
-        $res= $this->createRmC($rmA, $rmB);
-        $rs= json_decode($res, true);
-        $rmC->richmenu_id=$rs['richMenuId'];
 
         //画像UP
         $res= $this->client->upRmImgA($rmA->richmenu_id);
@@ -132,7 +128,7 @@ class getEnisRm
 //３枚作成する
 
 
-    public function createRmA($rmA, $rmB)
+    public function createRmA($rmA, $rmB,$simg)
     {
         //作成
 
@@ -148,31 +144,31 @@ class getEnisRm
     //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
     'areas'=> [[
 
-    //A 問い合わせ
+    //A shop_card
     'bounds'=> [
-        'x'=> 78,
-        'y'=> 83,
-        'width'=> 755,
-        'height'=> 730
+        'x'=> 47,
+        'y'=> 236,
+        'width'=> 1175,
+        'height'=> 693
     ],
     'action'=> [
-        'type'=> 'message',
+        'type'=> 'url',
         //ext_app
-        'text'=> '問い合わせ'
+        'url'=> $simg->card_url
     ]
     ],
-    // B LIFF
+    // B LIFF 会員証
     [
     'bounds'=> [
-        'x'=>893,
-        'y'=> 65,
-        'width'=> 1558,
-        'height'=> 773
+        'x'=>1275,
+        'y'=> 247,
+        'width'=> 1149,
+        'height'=> 666
     ],
     'action'=> [
         'type'=> 'uri',
         //LIFF
-        'uri'=> 'https://liff.line.me/1657181787-2vrnwwlj'
+        'uri'=> $simg->liff_url
         ]
     ],
 
@@ -226,7 +222,7 @@ class getEnisRm
         return $res;
     }
 
-    public function createRmB($rmA, $rmB)
+    public function createRmB($rmA, $rmB,$simg)
     {
    
         $res=$this->client->rtRichMenu([
@@ -241,7 +237,7 @@ class getEnisRm
             //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
             'areas'=> [[
         
-            //A
+            //A クーポン
             'bounds'=> [
                 'x'=> 78,
                 'y'=> 83,
@@ -251,10 +247,10 @@ class getEnisRm
             'action'=> [
                 'type'=> 'uri',
                 //ext_app
-                'uri'=> 'https://dev-ext-app.herokuapp.com/public/login'
+                'uri'=> $simg->coupon_url
             ]
             ],
-            // B
+            // B shop_card
             [
             'bounds'=> [
                 'x'=>893,
@@ -264,8 +260,7 @@ class getEnisRm
             ],
             'action'=> [
                 'type'=> 'uri',
-                //LIFF
-                'uri'=> 'https://liff.line.me/1657181787-2vrnwwlj'
+                'uri'=> $simg->card_url
                 ]
             ],
         
@@ -308,7 +303,7 @@ class getEnisRm
                         'type'=> 'richmenuswitch',
                        // 切り替え先設定
                         'richMenuAliasId'=>$rmA ->richmenu_alias_id,
-                        'data'=> 'richmenu-changed-to-b'
+                        'data'=> 'richmenu-changed-to-a'
                     ]
                      ],
         
