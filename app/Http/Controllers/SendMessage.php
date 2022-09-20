@@ -333,11 +333,7 @@ class SendMessage extends Controller
                                     'messages' => [
                                         [
                                             'type' => 'text',
-                                            'text' => $message['text']
-                                        ],
-                                        [
-                                            'type' => 'text',
-                                            'text' => 'まねしないで！'
+                                            'text' => "メッセージありがとうございます\n大変申し訳ありませんが、こちらのアカウントでは個別に返信を行うことができません。"
                                         ]
                                     ]
                                         ]);
