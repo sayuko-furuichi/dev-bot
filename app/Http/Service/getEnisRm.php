@@ -294,12 +294,12 @@ class getEnisRm
         
         
                  [
-                    //   E 1へ切り替え
+                    //   F 1へ切り替え
                        'bounds'=> [
-                         'x'=>1690,
-                         'y'=> 880,
-                         'width'=> 743,
-                         'height'=>749
+                         'x'=>31,
+                         'y'=> 26,
+                         'width'=> 1191,
+                         'height'=>121
                      ],
                      'action'=> [
                         'type'=> 'richmenuswitch',
