@@ -148,7 +148,7 @@ class getEnisRm
     //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
     'areas'=> [[
 
-    //A
+    //A 問い合わせ
     'bounds'=> [
         'x'=> 78,
         'y'=> 83,
@@ -156,12 +156,12 @@ class getEnisRm
         'height'=> 730
     ],
     'action'=> [
-        'type'=> 'uri',
+        'type'=> 'message',
         //ext_app
-        'uri'=> 'https://dev-ext-app.herokuapp.com/public/login'
+        'text'=> '問い合わせ'
     ]
     ],
-    // B
+    // B LIFF
     [
     'bounds'=> [
         'x'=>893,
@@ -177,7 +177,7 @@ class getEnisRm
     ],
 
     [
-       //  C
+       //  C 予約確認
       'bounds'=> [
         'x'=>72,
         'y'=> 880,
@@ -187,7 +187,7 @@ class getEnisRm
     'action'=> [
         'type'=> 'message',
        // 切り替え先設定
-       'text'=>'限定メニュー'
+       'text'=>'予約確認'
     ]
     ],
     [
