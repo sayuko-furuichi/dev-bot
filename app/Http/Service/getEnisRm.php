@@ -73,10 +73,11 @@ class getEnisRm
    
         //create rich menu B
         $res= $this->createRmB($rmA, $rmB,$simg);
-     
+        return $res;
         $rs= json_decode($res, true);
         $rmB->richmenu_id=$rs['richMenuId'];
 
+    
 
         //画像UP
         $res= $this->client->upRmImgA($rmA->richmenu_id);
