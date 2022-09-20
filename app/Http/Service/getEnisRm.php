@@ -169,7 +169,7 @@ class getEnisRm
     'action'=> [
         'type'=> 'message',
         //LIFF
-        'uri'=> '会員ステータス確認'
+        'text'=> '会員ステータス確認'
         ]
     ],
 
@@ -261,7 +261,7 @@ class getEnisRm
             'action'=> [
                 'type'=> 'message',
                 //LIFF
-                'uri'=> '会員ステータス確認'
+                'text'=> '会員ステータス確認'
                 ]
             ],
         
