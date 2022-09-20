@@ -81,10 +81,10 @@ class getEnisRm
 
         //画像UP
         $res= $this->client->upRmImgA($rmA->richmenu_id);
-        $rmA->img='/memberdemo/base_y1.png';
+        $rmA->img='/memberdemo/base_y1.jpg';
 
         $res= $this->client->upRmImgB($rmB->richmenu_id);
-        $rmB->img='/memberdemo/base_y2.png';
+        $rmB->img='/memberdemo/base_y2.jpg';
 
         $res= $this->client->defaultRm($rmA->richmenu_id);
          
