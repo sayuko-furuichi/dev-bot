@@ -153,9 +153,9 @@ class getEnisRm
         'height'=> 693
     ],
     'action'=> [
-        'type'=> 'url',
+        'type'=> 'uri',
         //ext_app
-        'url'=> $simg->card_url
+        'uri'=> $simg->card_url
     ]
     ],
     // B LIFF 会員証
@@ -245,9 +245,9 @@ class getEnisRm
                 'height'=> 693
             ],
             'action'=> [
-                'type'=> 'url',
+                'type'=> 'uri',
                 //ext_app
-                'url'=> $simg->card_url
+                'uri'=> $simg->card_url
             ]
             ],
             // B LIFF 会員証
