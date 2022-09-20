@@ -133,14 +133,14 @@ class SendMessage extends Controller
                     $rmDetail = new getEnisRm($channelAccessToken, $channelSecret, $client);
                     $res = $rmDetail->creater($storeId);
 
-                    $imres=json_decode($res, true);
+                 //   $imres=json_decode($res, true);
 
-                    if ($res==false || $res== null ||$res== 'undefine' || isset($res['message'])) {
-                        $flag='false';
-                    } elseif (!isset($imres['message'])) {
-                        $flag='true';
-                        //  $imres['message']='true';
-                    }
+                    // if ($res==false || $res== null ||$res== 'undefine' || isset($res['message'])) {
+                    //     $flag='false';
+                    // } elseif (!isset($imres['message'])) {
+                    //     $flag='true';
+                    //     //  $imres['message']='true';
+                    // }
 
                     $client->replyMessage([
 'replyToken' => $event['replyToken'],
@@ -152,7 +152,7 @@ class SendMessage extends Controller
 
 [
 'type' => 'text',
-'text' => $flag . ' is richmenuID'   . $res
+'text' =>  ' is richmenuID'   . $res
 ]
 ]
 ]);
