@@ -86,6 +86,7 @@ class getEnisRm
         $rmB->img='/memberdemo/base_n2.png';
 
         $res= $this->client->defaultRm($rmA->richmenu_id);
+        return $res;
          
         //前のデフォルトをDBで更新
         //TODO:もっと効率よく参照したい
