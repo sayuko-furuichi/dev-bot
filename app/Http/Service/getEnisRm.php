@@ -72,7 +72,7 @@ class getEnisRm
         $rmA->richmenu_id=$rs['richMenuId'];
    
         //create rich menu B
-        $res= $this->createRmB($rmA);
+        $res= $this->createRmB($rmA,$rmB);
         $rs= json_decode($res, true);
         $rmB->richmenu_id=$rs['richMenuId'];
 
@@ -223,7 +223,7 @@ class getEnisRm
         return $res;
     }
 
-    public function createRmB($rmA)
+    public function createRmB($rmA,$rmB)
     {
         $res=$this->client->rtRichMenu([
 
@@ -232,8 +232,8 @@ class getEnisRm
             'height'=>1686
             ],
             'selected'=> false,
-            'name'=> $rmA->name,
-            'chatBarText'=> $rmA->chat_bar,
+            'name'=> $rmB->name,
+            'chatBarText'=> $rmB->chat_bar,
             //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
             'areas'=> [[
         
