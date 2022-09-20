@@ -171,7 +171,7 @@ class LINEBotTiny
 
         $rmresponse = file_get_contents('https://api.line.me/v2/bot/richmenu', false, $rmcontext);
         if (strpos($http_response_header[0], '200') === false) {
-            $rmresponse = 'false';
+          //  $rmresponse = 'false';
         }
         return $rmresponse;
     }
