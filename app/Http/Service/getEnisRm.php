@@ -65,13 +65,13 @@ class getEnisRm
     
        $simg =Store::where('id',$storeId)->first();
 
-       return $simg->id;
+      
         //create rich menu A
         $res= $this->createRmA($rmA, $rmB,$simg);
         $rs= json_decode($res, true);
         $rmA->richmenu_id=$rs['richMenuId'];
    
-
+        return $rs['richMenuId'];
         //create rich menu B
         $res= $this->createRmB($rmA, $rmB,$simg);
         $rs= json_decode($res, true);
