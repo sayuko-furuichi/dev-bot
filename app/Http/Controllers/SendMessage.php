@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 
 use App\Http\Service\getOrgMenuParam;
 use App\Http\Service\getRichMenu;
+use App\Http\Service\getEnisRm;
 use App\Http\Service\sendNarrow;
 use App\Http\Service\getAnalysisData;
 use  App\Http\Service\SendPushMessage;
@@ -127,7 +128,34 @@ class SendMessage extends Controller
 ]
 ]
 ]);
+                } elseif ($message['text'] == 'create Enis Menu') {
 
+                    $rmDetail = new getEnisRm($channelAccessToken, $channelSecret, $client);
+                    $res = $rmDetail->creater($storeId);
+
+                    $imres=json_decode($res, true);
+
+                    if ($res==false || $res== null ||$res== 'undefine' || isset($res['message'])) {
+                        $flag='false';
+                    } elseif (!isset($imres['message'])) {
+                        $flag='true';
+                        //  $imres['message']='true';
+                    }
+
+                    $client->replyMessage([
+'replyToken' => $event['replyToken'],
+'messages' => [
+[
+'type' => 'text',
+'text' =>$storeId . '　OK!'
+],
+
+[
+'type' => 'text',
+'text' => $flag . ' is richmenuID'   . $res
+]
+]
+]);
                 } elseif ($message['text'] == '会員ステータス確認') {
                     //TODO:確認
                     $mm = new getMember($channelAccessToken, $channelSecret, $client);
