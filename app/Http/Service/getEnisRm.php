@@ -132,7 +132,7 @@ class getEnisRm
 //３枚作成する
 
 
-    public function createRmA($rmA, $rmB, $rmC)
+    public function createRmA($rmA, $rmB)
     {
         //作成
 
@@ -226,123 +226,94 @@ class getEnisRm
         return $res;
     }
 
-    public function createRmB($rmA, $rmB, $rmC)
+    public function createRmB($rmA, $rmB)
     {
+   
         $res=$this->client->rtRichMenu([
 
             'size'=>[
-                'width'=>2500,
-                'height'=>1686
+            'width'=>2500,
+            'height'=>1686
             ],
             'selected'=> false,
             'name'=> $rmB->name,
             'chatBarText'=> $rmB->chat_bar,
-            //ここで[]を使用しないと配列になってくれない。JSONで[]なってるところ。
+            //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
             'areas'=> [[
-
-                //A
-                'bounds'=> [
-                    'x'=> 13,
-                    'y'=> 223,
-                    'width'=> 1227,
-                    'height'=> 478
-                ],
-                'action'=> [
-                    'type'=> 'uri',
-                    //ext_app
-                    'uri'=> 'https://dev-ext-app.herokuapp.com/public/login'
-                ]
+        
+            //A
+            'bounds'=> [
+                'x'=> 78,
+                'y'=> 83,
+                'width'=> 755,
+                'height'=> 730
+            ],
+            'action'=> [
+                'type'=> 'uri',
+                //ext_app
+                'uri'=> 'https://dev-ext-app.herokuapp.com/public/login'
+            ]
             ],
             // B
             [
-                'bounds'=> [
-                    'x'=>1300,
-                    'y'=> 246,
-                    'width'=> 1158,
-                    'height'=> 437
-                ],
-                'action'=> [
-                    'type'=> 'uri',
-                    //LIFF
-                    'uri'=> 'https://liff.line.me/1657181787-2vrnwwlj'
-                    ]
-                ],
-
-                [
-               //  C
-                  'bounds'=> [
-                    'x'=>32,
-                    'y'=> 756,
-                     'width'=> 1176,
-                    'height'=>441
-                ],
-                'action'=> [
-                    'type'=> 'message',
-                   // 切り替え[先]設定
-                   'text'=>'限定メニュー'
+            'bounds'=> [
+                'x'=>893,
+                'y'=> 65,
+                'width'=> 1558,
+                'height'=> 773
+            ],
+            'action'=> [
+                'type'=> 'uri',
+                //LIFF
+                'uri'=> 'https://liff.line.me/1657181787-2vrnwwlj'
                 ]
-                ],
-                [
-                    //   D
+            ],
+        
+            [
+               //  C
+              'bounds'=> [
+                'x'=>72,
+                'y'=> 880,
+                 'width'=> 749,
+                'height'=>755
+            ],
+            'action'=> [
+                'type'=> 'message',
+               'text'=>'限定メニュー'
+            ]
+            ],
+            [
+                //   D
+                   'bounds'=> [
+                     'x'=>887,
+                     'y'=> 898,
+                     'width'=> 749,
+                     'height'=>737
+                 ],
+                 'action'=> [
+                    'type'=> 'message',
+                    'text'=> '会員ステータス確認',
+                ]
+                 ],
+        
+                 [
+                    //   E 1へ切り替え
                        'bounds'=> [
-                         'x'=>1300,
-                         'y'=> 756,
-                         'width'=> 1144,
-                         'height'=>892
+                         'x'=>1690,
+                         'y'=> 880,
+                         'width'=> 743,
+                         'height'=>749
                      ],
                      'action'=> [
-                        'type'=> 'message',
-                        'text'=> '普請中です',
+                        'type'=> 'richmenuswitch',
+                       // 切り替え先設定
+                        'richMenuAliasId'=>$rmA ->richmenu_alias_id,
+                        'data'=> 'richmenu-changed-to-b'
                     ]
                      ],
-
-                     [
-                        //   E
-                           'bounds'=> [
-                             'x'=>82,
-                             'y'=> 1276,
-                             'width'=> 1108,
-                             'height'=>386
-                         ],
-                         'action'=> [
-                             'type'=> 'message',
-                             'text'=> '普請中です',
-                         ]
-                         ],
-
-                             [
-                                //   Aへの 切り替えアクション
-                                   'bounds'=> [
-                                     'x'=>0,
-                                     'y'=> 0,
-                                     'width'=> 974,
-                                     'height'=>170
-                                 ],
-                                 'action'=> [
-                                     'type'=> 'richmenuswitch',
-                                    // 切り替え[先]設定
-                                     'richMenuAliasId'=> $rmA ->richmenu_alias_id,
-                                     'data'=> 'richmenu-changed-to-a'
-                                 ]
-                                 ],
-                                 [
-                                    //  Cの 切り替えアクション
-                                       'bounds'=> [
-                                         'x'=>1022,
-                                         'y'=> 34,
-                                         'width'=> 433,
-                                         'height'=>152
-                                     ],
-                                     'action'=> [
-                                         'type'=> 'richmenuswitch',
-                                        // 切り替え先設定
-                                         'richMenuAliasId'=>$rmC->richmenu_alias_id,
-                                         'data'=> 'richmenu-changed-to-c'
-                                     ]
-                                     ],
-
-                ],
-                ]);
+        
+            ],
+            ]);
         return $res;
     }
 
