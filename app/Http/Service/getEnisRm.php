@@ -54,7 +54,7 @@ class getEnisRm
         // $this->rmAlIdB='Al_'. $strAl . '_b';
         //   $str=date('Y-m-d-s');
        // $str=uniqid('');
-       $str='会員';
+       $str='縁会員';
         $rmA->name = $str . '_a';
         $rmB->name=$str . '_b';
     
@@ -84,10 +84,10 @@ class getEnisRm
 
         //画像UP
         $res= $this->client->upRmImgA($rmA->richmenu_id);
-        $rmA->img='/memberdemo/y2.png';
+        $rmA->img='/memberdemo/enis_y.png';
 
         $res= $this->client->upRmImgB($rmB->richmenu_id);
-        $rmB->img='demo_b.png';
+        $rmB->img='/memberdemo/enis_2.png';
 
         $res= $this->client->defaultRm($rmA->richmenu_id);
          
@@ -101,26 +101,23 @@ class getEnisRm
       
         $rmA->is_default=1;
         $rmB->is_default=0;
-        $rmC->is_default=0;
+
         $res= $this->createAliasRmA($rmA);
 
         $res= $this->createAliasRmB($rmB);
 
-        //OK
-        $res= $this->createAliasRmC($rmC);
     
         //store_idを入れる
        
         $rmA->store_id= $storeId;
         $rmB->store_id= $storeId;
-        $rmC->store_id= $storeId;
+
         // $rms= new RichMenu();
         // $rms->richmenu_id=$this->rmIdA;
     //    return $rmC;
         $rmA->save();
 
         $rmB->save();
-        $rmC->save();
 
 
         return $res;
