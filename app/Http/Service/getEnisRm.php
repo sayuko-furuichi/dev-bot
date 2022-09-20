@@ -42,7 +42,7 @@ class getEnisRm
 
         $rmA= new RichMenu;
         $rmB= new RichMenu;
-        $rmC= new RichMenu;
+      //  $rmC= new RichMenu;
 
         //  $strAl= date('Y-m-d-H-i-s');
         // $strs=date('Y-m-d-s');
