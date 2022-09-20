@@ -150,10 +150,10 @@ class getEnisRm
 
     //A
     'bounds'=> [
-        'x'=> 13,
-        'y'=> 223,
-        'width'=> 1227,
-        'height'=> 478
+        'x'=> 78,
+        'y'=> 83,
+        'width'=> 755,
+        'height'=> 730
     ],
     'action'=> [
         'type'=> 'uri',
@@ -164,10 +164,10 @@ class getEnisRm
     // B
     [
     'bounds'=> [
-        'x'=>1300,
-        'y'=> 246,
-        'width'=> 1158,
-        'height'=> 437
+        'x'=>893,
+        'y'=> 65,
+        'width'=> 1558,
+        'height'=> 773
     ],
     'action'=> [
         'type'=> 'uri',
@@ -179,10 +179,10 @@ class getEnisRm
     [
        //  C
       'bounds'=> [
-        'x'=>32,
-        'y'=> 756,
-         'width'=> 1176,
-        'height'=>441
+        'x'=>72,
+        'y'=> 880,
+         'width'=> 749,
+        'height'=>755
     ],
     'action'=> [
         'type'=> 'message',
@@ -193,10 +193,10 @@ class getEnisRm
     [
         //   D
            'bounds'=> [
-             'x'=>1300,
-             'y'=> 756,
-             'width'=> 1144,
-             'height'=>892
+             'x'=>887,
+             'y'=> 898,
+             'width'=> 749,
+             'height'=>737
          ],
          'action'=> [
             'type'=> 'message',
@@ -205,48 +205,20 @@ class getEnisRm
          ],
 
          [
-            //   E
+            //   E 2へ切り替え
                'bounds'=> [
-                 'x'=>82,
-                 'y'=> 1276,
-                 'width'=> 1108,
-                 'height'=>386
+                 'x'=>1690,
+                 'y'=> 880,
+                 'width'=> 743,
+                 'height'=>749
              ],
              'action'=> [
-                 'type'=> 'message',
-                 'text'=> '退会する',
-             ]
+                'type'=> 'richmenuswitch',
+               // 切り替え先設定
+                'richMenuAliasId'=>$rmB ->richmenu_alias_id,
+                'data'=> 'richmenu-changed-to-b'
+            ]
              ],
-             [
-                //   Bへの 切り替えアクション
-                   'bounds'=> [
-                     'x'=>1507,
-                     'y'=> 0,
-                     'width'=> 937,
-                     'height'=>152
-                 ],
-                 'action'=> [
-                     'type'=> 'richmenuswitch',
-                    // 切り替え先設定
-                     'richMenuAliasId'=>$rmB ->richmenu_alias_id,
-                     'data'=> 'richmenu-changed-to-b'
-                 ]
-                 ],
-                 [
-                    //  Cへの 切り替えアクション
-                       'bounds'=> [
-                         'x'=>1022,
-                         'y'=> 34,
-                         'width'=> 433,
-                         'height'=>152
-                     ],
-                     'action'=> [
-                         'type'=> 'richmenuswitch',
-                        // 切り替え先設定
-                         'richMenuAliasId'=>$rmC->richmenu_alias_id,
-                         'data'=> 'richmenu-changed-to-c'
-                     ]
-                     ],
 
     ],
     ]);
