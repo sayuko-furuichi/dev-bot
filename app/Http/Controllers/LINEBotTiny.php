@@ -209,7 +209,7 @@ class LINEBotTiny
 
         //画像URL
         //TODO:会員メニューに変更すること
-        $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/memberdemo/base_y1.jpg';
+        $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/memberdemo/base_n1.png';
         $img = file_get_contents($imgurl);
         $imgheader = array(
             'Content-Type: image/png',
@@ -243,7 +243,7 @@ class LINEBotTiny
          // $richmenuId="richmenu-b56771c2cf5b359b8c182d7de6f9e2c8";
 
          //画像URL
-         $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/memberdemo/base_y2.jpg';
+         $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/memberdemo/base_n2.png';
          $img = file_get_contents($imgurl);
          $imgheader = array(
              'Content-Type: image/png',

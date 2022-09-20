@@ -55,7 +55,7 @@ class getEnisRm
         // $this->rmAlIdB='Al_'. $strAl . '_b';
         //   $str=date('Y-m-d-s');
        // $str=uniqid('');
-       $str='縁会員';
+       $str='縁_非会員';
         $rmA->name = $str . '_a';
         $rmB->name=$str . '_b';
     
@@ -80,10 +80,10 @@ class getEnisRm
 
         //画像UP
         $res= $this->client->upRmImgA($rmA->richmenu_id);
-        $rmA->img='/memberdemo/base_y1.jpg';
+        $rmA->img='/memberdemo/base_n1.png';
 
         $res= $this->client->upRmImgB($rmB->richmenu_id);
-        $rmB->img='/memberdemo/base_y2.jpg';
+        $rmB->img='/memberdemo/base_n2.png';
 
         $res= $this->client->defaultRm($rmA->richmenu_id);
          
@@ -236,61 +236,74 @@ class getEnisRm
             //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
             'areas'=> [[
         
-            //A shop_card
+                   //A shop_card
             'bounds'=> [
-                'x'=> 47,
-                'y'=> 236,
-                'width'=> 1175,
-                'height'=> 693
-            ],
-            'action'=> [
-                'type'=> 'uri',
-                //ext_app
-                'uri'=> $simg->card_url
-            ]
-            ],
-            // B LIFF 会員証
-            [
-            'bounds'=> [
-                'x'=>1275,
-                'y'=> 247,
-                'width'=> 1149,
+                'x'=> 58,
+                'y'=> 971,
+                'width'=> 2382,
                 'height'=> 666
             ],
             'action'=> [
                 'type'=> 'message',
-                //LIFF
-                'text'=> '会員ステータス確認'
-                ]
-            ],
-        
-            [
-               //  C 予約する
-              'bounds'=> [
-                'x'=>73,
-                'y'=> 971,
-                 'width'=> 1155,
-                'height'=>661
-            ],
-            'action'=> [
-                'type'=> 'message',
-               // 切り替え先設定
-               'text'=>'予約確認'
+                //ext_app
+                'text'=> '会員登録する'
             ]
             ],
-            [
-                //   D 注文する
-                   'bounds'=> [
-                     'x'=>1275,
-                     'y'=> 960,
-                     'width'=> 1159,
-                     'height'=>661
-                 ],
-                 'action'=> [
-                    'type'=> 'message',
-                    'text'=> '注文する',
-                ]
-                 ],
+            // //A shop_card
+            // 'bounds'=> [
+            //     'x'=> 47,
+            //     'y'=> 236,
+            //     'width'=> 1175,
+            //     'height'=> 693
+            // ],
+            // 'action'=> [
+            //     'type'=> 'uri',
+            //     //ext_app
+            //     'uri'=> $simg->card_url
+            // ]
+            // ],
+            // B LIFF 会員証
+            // [
+            // 'bounds'=> [
+            //     'x'=>1275,
+            //     'y'=> 247,
+            //     'width'=> 1149,
+            //     'height'=> 666
+            // ],
+            // 'action'=> [
+            //     'type'=> 'message',
+            //     //LIFF
+            //     'text'=> '会員ステータス確認'
+            //     ]
+            // ],
+        
+            // [
+            //    //  C 予約する
+            //   'bounds'=> [
+            //     'x'=>73,
+            //     'y'=> 971,
+            //      'width'=> 1155,
+            //     'height'=>661
+            // ],
+            // 'action'=> [
+            //     'type'=> 'message',
+            //    // 切り替え先設定
+            //    'text'=>'予約確認'
+            // ]
+            // ],
+            // [
+            //     //   D 注文する
+            //        'bounds'=> [
+            //          'x'=>1275,
+            //          'y'=> 960,
+            //          'width'=> 1159,
+            //          'height'=>661
+            //      ],
+            //      'action'=> [
+            //         'type'=> 'message',
+            //         'text'=> '注文する',
+            //     ]
+            //      ],
         
         
                  [
