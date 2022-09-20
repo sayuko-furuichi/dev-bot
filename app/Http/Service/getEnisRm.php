@@ -80,10 +80,10 @@ class getEnisRm
 
         //画像UP
         $res= $this->client->upRmImgA($rmA->richmenu_id);
-        $rmA->img='/memberdemo/enis_y.png';
+        $rmA->img='/memberdemo/base_1.png';
 
         $res= $this->client->upRmImgB($rmB->richmenu_id);
-        $rmB->img='/memberdemo/enis_2.png';
+        $rmB->img='/memberdemo/base_y2.png';
 
         $res= $this->client->defaultRm($rmA->richmenu_id);
          
@@ -173,12 +173,12 @@ class getEnisRm
     ],
 
     [
-       //  C 予約確認
+       //  C 注文する
       'bounds'=> [
-        'x'=>72,
-        'y'=> 880,
-         'width'=> 749,
-        'height'=>755
+        'x'=>73,
+        'y'=> 971,
+         'width'=> 1155,
+        'height'=>661
     ],
     'action'=> [
         'type'=> 'message',
@@ -189,10 +189,10 @@ class getEnisRm
     [
         //   D
            'bounds'=> [
-             'x'=>887,
-             'y'=> 898,
-             'width'=> 749,
-             'height'=>737
+             'x'=>1275,
+             'y'=> 960,
+             'width'=> 1159,
+             'height'=>661
          ],
          'action'=> [
             'type'=> 'message',
@@ -203,10 +203,10 @@ class getEnisRm
          [
             //   E 2へ切り替え
                'bounds'=> [
-                 'x'=>1690,
-                 'y'=> 880,
-                 'width'=> 743,
-                 'height'=>749
+                 'x'=>1275,
+                 'y'=> 21,
+                 'width'=> 1201,
+                 'height'=>142
              ],
              'action'=> [
                 'type'=> 'richmenuswitch',
