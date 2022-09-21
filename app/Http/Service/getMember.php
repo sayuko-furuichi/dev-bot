@@ -135,6 +135,7 @@ class getMember
         $mem->line_user_id=$ev['userId'];
         $mem->name = $name;
         $mem->attribute = 1;
+        $mem->store_id=$storeId;
         $mem->save();
 
         if($storeId==4){
