@@ -72,7 +72,7 @@ class getEnisRm
         $rmA->richmenu_id=$rs['richMenuId'];
    
         //create rich menu B
-        $res= $this->createRmB($rmA,$rmB);
+        $res= $this->createRmB($rmA,$rmB,$simg);
         $rs= json_decode($res, true);
         $rmB->richmenu_id=$rs['richMenuId'];
 
