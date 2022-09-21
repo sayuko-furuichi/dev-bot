@@ -131,11 +131,13 @@ class getMember
         $mem->store_id=$storeId;
         $mem->save();
 
-        if($storeId==4){
-            $rm='richmenu-e31236ca44856f8610743dd3ed50d3a4';        
-        }else if($storeId==14){
-            $rm='richmenu-c9cb25b501e7efc84acda2ef9e96d183';
-        }
+        $store = Store::find($storeId)->first();
+        $rm = $store->member_menu;
+        // if($storeId==4){
+        //     $rm='richmenu-e31236ca44856f8610743dd3ed50d3a4';        
+        // }else if($storeId==14){
+        //     $rm='richmenu-c9cb25b501e7efc84acda2ef9e96d183';
+        // }
         $this->client->linkUser($mem->line_user_id,$rm);
 
         $this->client->replyMessage([
