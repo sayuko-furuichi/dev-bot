@@ -47,7 +47,7 @@ class getMember
             $store = Store::where('id',$storeId)->first();
             $rm = $store->member_menu;
         }else{
-            $store = Store::find($storeId)->first();
+            $store = Store::where('id',$storeId)->first();
             $rm = $store->non_member_menu;
             $resp='非会員';
          //   $rm='richmenu-abb034aefaca6179f59627b52a6e0f43';
@@ -131,7 +131,7 @@ class getMember
         $mem->store_id=$storeId;
         $mem->save();
 
-        $store = Store::find($storeId)->first();
+        $store = Store::where('id',$storeId)->first();
         $rm = $store->member_menu;
         // if($storeId==4){
         //     $rm='richmenu-e31236ca44856f8610743dd3ed50d3a4';        
@@ -213,7 +213,7 @@ class getMember
         $mem->attribute=0;
         $mem->save();
 
-        $store = Store::find($storeId)->first();
+        $store = Store::where('id',$storeId)->first();
         $rm = $store->non_member_menu;
 //リッチメニュー変更
 // if($storeId==4){
