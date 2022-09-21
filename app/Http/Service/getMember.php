@@ -37,8 +37,8 @@ class getMember
     }
 
     public function index($uid,$storeId){
-        //会員は店舗関係無くしている(あかんか)
-        $mem = Member::where('line_user_id',$uid)->where('attribute',1)->first();
+        //会員に店舗の概念追加
+        $mem = Member::where('line_user_id',$uid)->where('attribute',1)->where('store_id',$storeId)->first();
         
         
         if (isset($mem)) {
@@ -68,9 +68,9 @@ class getMember
 //会員　richmenu-17e16582cd159c844fa3d85d6f71967a
 
 
-    function addMember($uid,$event){
+    function addMember($uid,$event,$storeId){
 //今はランクは設定してない
-        $mem = Member::where('line_user_id',$uid)->where('attribute',1)->first();
+        $mem = Member::where('line_user_id',$uid)->where('store_id',$storeId)->where('attribute',1)->first();
         
         if (isset($mem)){ 
             $this->client->replyMessage([
@@ -161,8 +161,8 @@ class getMember
 
      }
 
-     function removeMember($uid,$event){
-        $mem = Member::where('line_user_id',$uid)->where('attribute',1)->first();
+     function removeMember($uid,$event,$storeId){
+        $mem = Member::where('line_user_id',$uid)->where('attribute',1)->where('store_id',$storeId)->first();
 
         if(isset($mem)){
             
