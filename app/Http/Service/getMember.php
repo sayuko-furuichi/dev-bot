@@ -44,7 +44,7 @@ class getMember
         
         if (isset($mem)) {
             $resp=$mem->name . ' 　さんは会員';
-            $store = Store::find($storeId)->first();
+            $store = Store::where('id',$storeId)->first();
             $rm = $store->member_menu;
         }else{
             $store = Store::find($storeId)->first();
