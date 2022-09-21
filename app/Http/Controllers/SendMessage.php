@@ -179,11 +179,11 @@ class SendMessage extends Controller
                 } elseif ($message['text'] == '会員登録する') {
                     $mm = new getMember($channelAccessToken, $channelSecret, $client);
                     $uid=$us['userId'];
-                    $mm->addMember($uid, $event);
+                    $mm->addMember($uid, $event,$storeId);
                 } elseif ($message['text'] == '退会する') {
                     $mm = new getMember($channelAccessToken, $channelSecret, $client);
                     $uid=$us['userId'];
-                    $mm->removeMember($uid, $event);
+                    $mm->removeMember($uid, $event,$storeId);
 
 
                 //TODO:idで受け渡しする
