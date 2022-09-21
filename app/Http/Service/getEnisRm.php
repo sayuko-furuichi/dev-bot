@@ -55,7 +55,7 @@ class getEnisRm
         // $this->rmAlIdB='Al_'. $strAl . '_b';
         //   $str=date('Y-m-d-s');
        // $str=uniqid('');
-       $str='縁_非会員';
+       $str='まる_会員';
         $rmA->name = $str . '_a';
         $rmB->name=$str . '_b';
     
@@ -80,10 +80,10 @@ class getEnisRm
 
         //画像UP
         $res= $this->client->upRmImgA($rmA->richmenu_id);
-        $rmA->img='/memberdemo/base_n1.png';
+        $rmA->img='img/1.png';
 
         $res= $this->client->upRmImgB($rmB->richmenu_id);
-        $rmB->img='/memberdemo/base_n2.png';
+        $rmB->img='img/y2.png';
 
         $res= $this->client->defaultRm($rmA->richmenu_id);
 
@@ -147,10 +147,10 @@ class getEnisRm
 
     //A shop_card
     'bounds'=> [
-        'x'=> 47,
-        'y'=> 236,
-        'width'=> 1175,
-        'height'=> 693
+        'x'=> 85,
+        'y'=> 370,
+        'width'=> 1140,
+        'height'=> 530
     ],
     'action'=> [
         'type'=> 'uri',
@@ -158,14 +158,14 @@ class getEnisRm
         'uri'=> $simg->card_url
     ]
     ],
-    // B LIFF 会員証
+    // B LIFF マイページ
     [
-    'bounds'=> [
-        'x'=>1275,
-        'y'=> 247,
-        'width'=> 1149,
-        'height'=> 666
-    ],
+        'bounds'=> [
+            'x'=> 1300,
+            'y'=> 370,
+            'width'=> 1140,
+            'height'=> 530
+        ],
     'action'=> [
         'type'=> 'message',
         //LIFF
@@ -174,40 +174,40 @@ class getEnisRm
     ],
 
     [
-       //  C 予約する
-      'bounds'=> [
-        'x'=>73,
-        'y'=> 971,
-         'width'=> 1155,
-        'height'=>661
+       //  C 注文する
+       'bounds'=> [
+        'x'=> 85,
+        'y'=> 1020,
+        'width'=> 1140,
+        'height'=> 530
     ],
     'action'=> [
         'type'=> 'message',
        // 切り替え先設定
-       'text'=>'予約確認'
+       'text'=>'注文する'
     ]
     ],
     [
-        //   D 注文する
-           'bounds'=> [
-             'x'=>1275,
-             'y'=> 960,
-             'width'=> 1159,
-             'height'=>661
-         ],
+        //   D 予約確認
+        'bounds'=> [
+            'x'=> 1300,
+            'y'=> 1020,
+            'width'=> 1140,
+            'height'=> 530
+        ],
          'action'=> [
             'type'=> 'message',
-            'text'=> '注文する',
+            'text'=> '予約確認',
         ]
          ],
 
          [
             //   E 2へ切り替え
                'bounds'=> [
-                 'x'=>1275,
-                 'y'=> 21,
-                 'width'=> 1201,
-                 'height'=>142
+                 'x'=>1305,
+                 'y'=> 80,
+                 'width'=> 1175,
+                 'height'=>175
              ],
              'action'=> [
                 'type'=> 'richmenuswitch',
@@ -237,25 +237,12 @@ class getEnisRm
             //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
             'areas'=> [[
         
-                   //A shop_card
-            'bounds'=> [
-                'x'=> 58,
-                'y'=> 971,
-                'width'=> 2382,
-                'height'=> 666
-            ],
-            'action'=> [
-                'type'=> 'message',
-                //ext_app
-                'text'=> '会員登録する'
-            ]
-            ],
             //A shop_card
             'bounds'=> [
-                'x'=> 47,
-                'y'=> 236,
-                'width'=> 1175,
-                'height'=> 693
+                'x'=> 85,
+                'y'=> 370,
+                'width'=> 1140,
+                'height'=> 530
             ],
             'action'=> [
                 'type'=> 'uri',
@@ -263,14 +250,14 @@ class getEnisRm
                 'uri'=> $simg->card_url
             ]
             ],
-          //  B LIFF 会員証
+            // B LIFF マイページ
             [
-            'bounds'=> [
-                'x'=>1275,
-                'y'=> 247,
-                'width'=> 1149,
-                'height'=> 666
-            ],
+                'bounds'=> [
+                    'x'=> 1300,
+                    'y'=> 370,
+                    'width'=> 1140,
+                    'height'=> 530
+                ],
             'action'=> [
                 'type'=> 'message',
                 //LIFF
@@ -279,30 +266,30 @@ class getEnisRm
             ],
         
             [
-               //  C 予約する
-              'bounds'=> [
-                'x'=>73,
-                'y'=> 971,
-                 'width'=> 1155,
-                'height'=>661
+               //  C 注文する
+               'bounds'=> [
+                'x'=> 85,
+                'y'=> 1020,
+                'width'=> 1140,
+                'height'=> 530
             ],
             'action'=> [
                 'type'=> 'message',
                // 切り替え先設定
-               'text'=>'予約確認'
+               'text'=>'注文する'
             ]
             ],
             [
-                //   D 注文する
-                   'bounds'=> [
-                     'x'=>1275,
-                     'y'=> 960,
-                     'width'=> 1159,
-                     'height'=>661
-                 ],
+                //   D 予約確認
+                'bounds'=> [
+                    'x'=> 1300,
+                    'y'=> 1020,
+                    'width'=> 1140,
+                    'height'=> 530
+                ],
                  'action'=> [
                     'type'=> 'message',
-                    'text'=> '注文する',
+                    'text'=> '予約確認',
                 ]
                  ],
         
@@ -323,9 +310,9 @@ class getEnisRm
                     ]
                      ],
         
-            ]
             
-        );
+            
+                    ],] );
         return $res;
     }
 
