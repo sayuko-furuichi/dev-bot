@@ -167,9 +167,9 @@ class getEnisRm
             'height'=> 530
         ],
     'action'=> [
-        'type'=> 'message',
+        'type'=> 'uri',
         //LIFF
-        'text'=> '会員ステータス確認'
+        'uri'=> $simg->liff_url
         ]
     ],
 
@@ -259,9 +259,9 @@ class getEnisRm
                     'height'=> 530
                 ],
             'action'=> [
-                'type'=> 'message',
+                'type'=> 'uri',
                 //LIFF
-                'text'=> '会員ステータス確認'
+                'uri'=> $simg->liff_url
                 ]
             ],
         
@@ -297,10 +297,10 @@ class getEnisRm
                  [
                     //   F 1へ切り替え
                        'bounds'=> [
-                         'x'=>31,
-                         'y'=> 26,
-                         'width'=> 1191,
-                         'height'=>121
+                         'x'=>55,
+                         'y'=> 80,
+                         'width'=> 1175,
+                         'height'=>175
                      ],
                      'action'=> [
                         'type'=> 'richmenuswitch',
