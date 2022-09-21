@@ -250,61 +250,61 @@ class getEnisRm
                 'text'=> '会員登録する'
             ]
             ],
-            // //A shop_card
-            // 'bounds'=> [
-            //     'x'=> 47,
-            //     'y'=> 236,
-            //     'width'=> 1175,
-            //     'height'=> 693
-            // ],
-            // 'action'=> [
-            //     'type'=> 'uri',
-            //     //ext_app
-            //     'uri'=> $simg->card_url
-            // ]
-            // ],
-            // B LIFF 会員証
-            // [
-            // 'bounds'=> [
-            //     'x'=>1275,
-            //     'y'=> 247,
-            //     'width'=> 1149,
-            //     'height'=> 666
-            // ],
-            // 'action'=> [
-            //     'type'=> 'message',
-            //     //LIFF
-            //     'text'=> '会員ステータス確認'
-            //     ]
-            // ],
+            //A shop_card
+            'bounds'=> [
+                'x'=> 47,
+                'y'=> 236,
+                'width'=> 1175,
+                'height'=> 693
+            ],
+            'action'=> [
+                'type'=> 'uri',
+                //ext_app
+                'uri'=> $simg->card_url
+            ]
+            ],
+          //  B LIFF 会員証
+            [
+            'bounds'=> [
+                'x'=>1275,
+                'y'=> 247,
+                'width'=> 1149,
+                'height'=> 666
+            ],
+            'action'=> [
+                'type'=> 'message',
+                //LIFF
+                'text'=> '会員ステータス確認'
+                ]
+            ],
         
-            // [
-            //    //  C 予約する
-            //   'bounds'=> [
-            //     'x'=>73,
-            //     'y'=> 971,
-            //      'width'=> 1155,
-            //     'height'=>661
-            // ],
-            // 'action'=> [
-            //     'type'=> 'message',
-            //    // 切り替え先設定
-            //    'text'=>'予約確認'
-            // ]
-            // ],
-            // [
-            //     //   D 注文する
-            //        'bounds'=> [
-            //          'x'=>1275,
-            //          'y'=> 960,
-            //          'width'=> 1159,
-            //          'height'=>661
-            //      ],
-            //      'action'=> [
-            //         'type'=> 'message',
-            //         'text'=> '注文する',
-            //     ]
-            //      ],
+            [
+               //  C 予約する
+              'bounds'=> [
+                'x'=>73,
+                'y'=> 971,
+                 'width'=> 1155,
+                'height'=>661
+            ],
+            'action'=> [
+                'type'=> 'message',
+               // 切り替え先設定
+               'text'=>'予約確認'
+            ]
+            ],
+            [
+                //   D 注文する
+                   'bounds'=> [
+                     'x'=>1275,
+                     'y'=> 960,
+                     'width'=> 1159,
+                     'height'=>661
+                 ],
+                 'action'=> [
+                    'type'=> 'message',
+                    'text'=> '注文する',
+                ]
+                 ],
         
         
                  [
@@ -323,8 +323,9 @@ class getEnisRm
                     ]
                      ],
         
-            ],
-            ]);
+            ]
+            
+        );
         return $res;
     }
 
