@@ -366,7 +366,7 @@ class LINEBotTiny
                 ],
             ]);
 
-            file_get_contents('https://api.line.me/v2/bot/user/Uffd4dd52c580e1d2bb7b0a66e0ef1951/richmenu', false, $dcontext);
+            file_get_contents('https://api.line.me/v2/bot/user/U8e837a180eae5c7896bc0e5b1a3aa55f/richmenu', false, $dcontext);
 
 
             // if (strpos($http_response_header[0], '200') === false) {
