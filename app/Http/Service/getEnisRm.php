@@ -223,7 +223,7 @@ class getEnisRm
         return $res;
     }
 
-    public function createRmB($rmA,$rmB)
+    public function createRmB($rmA,$rmB,$simg)
     {
         $res=$this->client->rtRichMenu([
 
