@@ -44,20 +44,9 @@ class getMember
         
         if (isset($mem)) {
             $resp=$mem->name . ' 　さんは会員';
-            // if($storeId==4){
-            //     $rm='richmenu-e31236ca44856f8610743dd3ed50d3a4';        
-            // }else if($storeId==24){
-            //     $rm='richmenu-c9cb25b501e7efc84acda2ef9e96d183';
-            // }
             $store = Store::find($storeId)->first();
             $rm = $store->member_menu;
         }else{
-            // if($storeId==4){
-            //     $rm='richmenu-1cf3b08b8e1ffec0e5448a4119fa2e6d';
-            // }else if($storeId==24){
-            //     $rm= 'richmenu-f4de7ea6cafa216a65e54fe73a66a427';
-
-            // }
             $store = Store::find($storeId)->first();
             $rm = $store->non_member_menu;
             $resp='非会員';
