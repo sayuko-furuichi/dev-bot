@@ -213,7 +213,7 @@ class getEnisRm
                 'type'=> 'richmenuswitch',
                // 切り替え先設定
                 'richMenuAliasId'=>$rmB ->richmenu_alias_id,
-                'data'=> 'richmenu-changed-to-b'
+                'data'=> 'changed=nonMember_b'
             ]
              ],
 
@@ -246,7 +246,7 @@ class getEnisRm
                 'action'=> [
                     'type'=> 'uri',
                     //ext_app
-                    'uri'=> $simg->liff_url
+                    'uri'=> $simg->liff_url . '/addMember'
                 ]
             //A shop_card
             // 'bounds'=> [

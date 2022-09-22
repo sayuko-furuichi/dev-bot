@@ -53,10 +53,27 @@ class SendMessage extends Controller
 
 
                 // if($pt['data'] ==''){
-
-
+                    
                 // }
             }
+
+if ($event['type'] == 'richmenuswitch') {
+    $client->replyMessage([
+        'replyToken' => $event['replyToken'],
+        'messages' => [
+            [
+'type' => 'text',
+'text' => 'This is ' . $storeId . '号店'
+            ],
+            [
+'type' => 'text',
+'text' =>  'あなたのユーザID：'
+            ]
+
+        ]
+    ]);
+
+}
 
             //eventtypeがmessageで、messagetypeがtextの時起動
 
