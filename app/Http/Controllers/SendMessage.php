@@ -47,33 +47,27 @@ class SendMessage extends Controller
                 } elseif (preg_match('/removeMember&id=/', $pt['data'])) {
                     $member = new getMember($channelAccessToken, $channelSecret, $client);
                     $member->remove($event, $pt, $storeId);
+                } elseif (preg_match('/changed=/', $pt['data'])) {
+                 
+                 
+                    $client->replyMessage([
+                        'replyToken' => $event['replyToken'],
+                        'messages' => [
+                            [
+                'type' => 'text',
+                'text' => 'This is ' . $storeId . '号店'
+                            ],
+                            [
+                'type' => 'text',
+                'text' =>  'あなたのユーザID：'
+                            ]
+            
+                        ]
+                    ]);
+
                 }
-                // $pra = new getAnalysisData($client,$event);
-                //    $param->getData($ptD);
-
-
-                // if($pt['data'] ==''){
-                    
-                // }
             }
 
-if ($event['type'] == 'richmenuswitch') {
-    $client->replyMessage([
-        'replyToken' => $event['replyToken'],
-        'messages' => [
-            [
-'type' => 'text',
-'text' => 'This is ' . $storeId . '号店'
-            ],
-            [
-'type' => 'text',
-'text' =>  'あなたのユーザID：'
-            ]
-
-        ]
-    ]);
-
-}
 
             //eventtypeがmessageで、messagetypeがtextの時起動
 
@@ -146,11 +140,10 @@ if ($event['type'] == 'richmenuswitch') {
 ]
 ]);
                 } elseif ($message['text'] == 'create Enis Menu') {
-
                     $rmDetail = new getEnisRm($channelAccessToken, $channelSecret, $client);
                     $res = $rmDetail->creater($storeId);
 
-                 //   $imres=json_decode($res, true);
+                    //   $imres=json_decode($res, true);
 
                     // if ($res==false || $res== null ||$res== 'undefine' || isset($res['message'])) {
                     //     $flag='false';
@@ -196,11 +189,11 @@ if ($event['type'] == 'richmenuswitch') {
                 } elseif ($message['text'] == '会員登録する') {
                     $mm = new getMember($channelAccessToken, $channelSecret, $client);
                     $uid=$us['userId'];
-                    $mm->addMember($uid, $event,$storeId);
+                    $mm->addMember($uid, $event, $storeId);
                 } elseif ($message['text'] == '退会する') {
                     $mm = new getMember($channelAccessToken, $channelSecret, $client);
                     $uid=$us['userId'];
-                    $mm->removeMember($uid, $event,$storeId);
+                    $mm->removeMember($uid, $event, $storeId);
 
 
                 //TODO:idで受け渡しする
