@@ -47,9 +47,10 @@ class SendMessage extends Controller
                 } elseif (preg_match('/removeMember&id=/', $pt['data'])) {
                     $member = new getMember($channelAccessToken, $channelSecret, $client);
                     $member->remove($event, $pt, $storeId);
+
                 } elseif (preg_match('/changed=/', $pt['data'])) {
-                 
-                 
+                    
+                    
                     $client->replyMessage([
                         'replyToken' => $event['replyToken'],
                         'messages' => [
