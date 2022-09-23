@@ -53,7 +53,20 @@ if ($event['type'] == 'postback') {
     } elseif (preg_match('/changed=/', $pt['data'])) {
         $mm = new getMember($channelAccessToken, $channelSecret, $client);
         $uid=$us['userId'];
-        $mm->index($uid, $storeId);
+        $res=$mm->index($uid, $storeId);
+        if(isset($res)){
+
+            $client->replyMessage([
+                'replyToken' => $event['replyToken'],
+                'messages' => [
+                    [
+        'type' => 'text',
+        'text' => "会員登録後にご利用頂けます"
+                    ],
+                ]
+            ]);
+        }
+
     }
 }
                 //eventtypeがmessageで、messagetypeがtextの時起動

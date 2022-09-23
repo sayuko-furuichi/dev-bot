@@ -57,6 +57,21 @@ class getMember
         return $resp;
     }
 
+    public function changeMenu($uid,$storeId){
+        //会員に店舗の概念追加
+        $mem = Member::where('line_user_id',$uid)->where('attribute',1)->where('store_id',$storeId)->first();
+        
+        
+if (!isset($mem)) {
+    $store = Store::where('id', $storeId)->first();
+    $rm = $store->non_member_menu;
+    $res= $this->client->linkUser($uid,$rm);
+    return $res;
+}
+       
+    }
+
+
 //非会員　richmenu-abb034aefaca6179f59627b52a6e0f43
 //会員　richmenu-17e16582cd159c844fa3d85d6f71967a
 
@@ -222,7 +237,9 @@ class getMember
 //     $rm= 'richmenu-f4de7ea6cafa216a65e54fe73a66a427';
 
 // }
-       $this->client->linkUser($mem->line_user_id,$rm);
+     
+//TODO:デバッグ
+//  $this->client->linkUser($mem->line_user_id,$rm);
 
         $this->client->replyMessage([
             'replyToken' => $event['replyToken'],
