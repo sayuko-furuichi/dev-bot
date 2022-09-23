@@ -54,7 +54,7 @@ if ($event['type'] == 'postback') {
         $mm = new getMember($channelAccessToken, $channelSecret, $client);
         $uid=$us['userId'];
         $res=$mm->index($uid, $storeId);
-        if(isset($res)){
+        if($res !=null || $res !=''){
 
             $client->replyMessage([
                 'replyToken' => $event['replyToken'],
