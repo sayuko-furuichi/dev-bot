@@ -83,7 +83,7 @@ class getEnisRm
         $rmA->img='img/1.png';
 
         $res= $this->client->upRmImgB($rmB->richmenu_id);
-        $rmB->img='img/n2.png';
+        $rmB->img='img/y2.png';
 
         $res= $this->client->defaultRm($rmA->richmenu_id);
 
