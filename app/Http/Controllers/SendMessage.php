@@ -53,7 +53,7 @@ if ($event['type'] == 'postback') {
     } elseif (preg_match('/changed=/', $pt['data'])) {
         $mm = new getMember($channelAccessToken, $channelSecret, $client);
         $uid=$us['userId'];
-        $res=$mm->index($uid, $storeId);
+        $res=$mm->changeMenu($uid, $storeId);
         if($res !=null || $res !=''){
 
             $client->replyMessage([
