@@ -34,6 +34,9 @@ class SendMessage extends Controller
     {
         $client = new LINEBotTiny($channelAccessToken, $channelSecret);
         foreach ($client->parseEvents() as $event) {
+            $us = $event['source'];
+
+
             if ($event['type'] == 'postback') {
                 $pt=$event['postback'];
                 $ptD = $pt['data'];
@@ -50,6 +53,9 @@ class SendMessage extends Controller
 
                 } elseif (preg_match('/changed=/', $pt['data'])) {
                     
+                    $mm = new getMember($channelAccessToken, $channelSecret, $client);
+                    $uid=$us['userId'];
+                    $res=$mm->index($uid, $storeId);
                     
                     $client->replyMessage([
                         'replyToken' => $event['replyToken'],
@@ -74,8 +80,7 @@ class SendMessage extends Controller
 
 
             if ($event['type'] == 'message') {
-                $us = $event['source'];
-
+              
                 $message = $event['message'];
                 //"ID"と入力されたら、ユーザIDを返す
 
