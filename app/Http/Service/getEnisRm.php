@@ -155,7 +155,7 @@ class getEnisRm
     'action'=> [
         'type'=> 'uri',
         //ext_app
-        'uri'=> $simg->card_url
+        'uri'=> $simg->liff_url .'/stamps?store='.$simg->id
     ]
     ],
     // B LIFF マイページ
@@ -169,7 +169,7 @@ class getEnisRm
     'action'=> [
         'type'=> 'uri',
         //LIFF
-        'uri'=> $simg->liff_url
+        'uri'=> $simg->liff_url . '/Member?store='.$simg->id
         ]
     ],
 
@@ -182,9 +182,8 @@ class getEnisRm
         'height'=> 530
     ],
     'action'=> [
-        'type'=> 'message',
-       // 切り替え先設定
-       'text'=>'注文する'
+        'type'=> 'uri',
+        'uri'=> $simg->liff_url .'/reserve?store='. $simg->id,
     ]
     ],
     [
@@ -213,7 +212,7 @@ class getEnisRm
                 'type'=> 'richmenuswitch',
                // 切り替え先設定
                 'richMenuAliasId'=>$rmB ->richmenu_alias_id,
-                'data'=> 'changed=nonMember_b'
+                'data'=> 'changed-to-nonMember_b'
             ]
              ],
 
@@ -246,7 +245,7 @@ class getEnisRm
                 'action'=> [
                     'type'=> 'uri',
                     //ext_app
-                    'uri'=> $simg->liff_url . '/addMember'
+                    'uri'=> $simg->liff_url . '/addMember?store='.$simg->id
                 ]
             //A shop_card
             // 'bounds'=> [
