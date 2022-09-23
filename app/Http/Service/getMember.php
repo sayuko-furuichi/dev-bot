@@ -66,6 +66,7 @@ if (!isset($mem)) {
     $store = Store::where('id', $storeId)->first();
     $rm = $store->non_member_menu;
     $res= $this->client->linkUser($uid,$rm);
+    $res=0;
     return $res;
 }
        

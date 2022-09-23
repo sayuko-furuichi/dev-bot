@@ -54,14 +54,14 @@ if ($event['type'] == 'postback') {
         $mm = new getMember($channelAccessToken, $channelSecret, $client);
         $uid=$us['userId'];
         $res=$mm->changeMenu($uid, $storeId);
-        if($res !=null || $res !=''){
+        if($res==0){
 
             $client->replyMessage([
                 'replyToken' => $event['replyToken'],
                 'messages' => [
                     [
         'type' => 'text',
-        'text' => "会員登録後にご利用頂けます".$res
+        'text' => "会員登録後にご利用頂けます"
                     ],
                 ]
             ]);
