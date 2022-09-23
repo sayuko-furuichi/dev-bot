@@ -54,7 +54,7 @@ if ($event['type'] == 'postback') {
         $mm = new getMember($channelAccessToken, $channelSecret, $client);
         $uid=$us['userId'];
         $res=$mm->changeMenu($uid, $storeId);
-        if($res==0){
+        if($res !=null || $res !=''){
 
             $client->replyMessage([
                 'replyToken' => $event['replyToken'],
