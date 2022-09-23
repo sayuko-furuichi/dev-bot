@@ -212,7 +212,7 @@ class getEnisRm
                 'type'=> 'richmenuswitch',
                // 切り替え先設定
                 'richMenuAliasId'=>$rmB ->richmenu_alias_id,
-                'data'=> 'changed-to-nonMember_b'
+                'data'=> 'changed=member_menu'
             ]
              ],
 
@@ -236,72 +236,72 @@ class getEnisRm
             //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
             'areas'=> [[
         
-                'bounds'=> [
-                    'x'=> 75,
-                    'y'=> 1000,
-                    'width'=> 2360,
-                    'height'=> 540
-                ],
-                'action'=> [
-                    'type'=> 'uri',
-                    //ext_app
-                    'uri'=> $simg->liff_url . '/addMember?store='.$simg->id
-                ]
-            //A shop_card
-            // 'bounds'=> [
-            //     'x'=> 85,
-            //     'y'=> 370,
-            //     'width'=> 1140,
-            //     'height'=> 530
-            // ],
-            // 'action'=> [
-            //     'type'=> 'uri',
-            //     //ext_app
-            //     'uri'=> $simg->card_url
-            // ]
+                // 'bounds'=> [
+                //     'x'=> 75,
+                //     'y'=> 1000,
+                //     'width'=> 2360,
+                //     'height'=> 540
+                // ],
+                // 'action'=> [
+                //     'type'=> 'uri',
+                //     //ext_app
+                //     'uri'=> $simg->liff_url . '/addMember?store='.$simg->id
+                // ]
+    //        A shop_card
+            'bounds'=> [
+                'x'=> 85,
+                'y'=> 370,
+                'width'=> 1140,
+                'height'=> 530
             ],
-            // B LIFF マイページ
-            // [
-            //     'bounds'=> [
-            //         'x'=> 1300,
-            //         'y'=> 370,
-            //         'width'=> 1140,
-            //         'height'=> 530
-            //     ],
-            // 'action'=> [
-            //     'type'=> 'uri',
-            //     //LIFF
-            //     'uri'=> $simg->liff_url
-            //     ]
-            // ],
+            'action'=> [
+                'type'=> 'uri',
+                //ext_app
+                'uri'=>$simg->liff_url .'/stamps?store='.$simg->id
+            ]
+           ],
+       //     B LIFF マイページ
+            [
+                'bounds'=> [
+                    'x'=> 1300,
+                    'y'=> 370,
+                    'width'=> 1140,
+                    'height'=> 530
+                ],
+            'action'=> [
+                'type'=> 'uri',
+                //LIFF
+                'uri'=> $simg->liff_url .'/Member?store='.$simg->id
+                ]
+            ],
         
-            // [
-            //    //  C 注文する
-            //    'bounds'=> [
-            //     'x'=> 85,
-            //     'y'=> 1020,
-            //     'width'=> 1140,
-            //     'height'=> 530
-            // ],
-            // 'action'=> [
-            //     'type'=> 'message',
-            //    // 切り替え先設定
-            //    'text'=>'注文する'
-            // ]
-            // ],
-            // [
-            //     //   D 予約確認
-            //     'bounds'=> [
-            //         'x'=> 1300,
-            //         'y'=> 1020,
-            //         'width'=> 1140,
-            //         'height'=> 530
-            //     ],
-            //      'action'=> [
-            //         'type'=> 'message',
-            //         'text'=> '予約確認',
-            //     ]
-            //      ],
+            [
+               //  C 注文する
+               'bounds'=> [
+                'x'=> 85,
+                'y'=> 1020,
+                'width'=> 1140,
+                'height'=> 530
+            ],
+            'action'=> [
+                'type'=> 'uri',
+               // 切り替え先設定
+               'uri'=>$simg->liff_url .'/reserve?store='.$simg->id
+            ]
+            ],
+            [
+                //   D 予約確認
+                'bounds'=> [
+                    'x'=> 1300,
+                    'y'=> 1020,
+                    'width'=> 1140,
+                    'height'=> 530
+                ],
+                 'action'=> [
+                    'type'=> 'message',
+                    'text'=> '予約確認',
+                ]
+                 ],
         
         
                  [
