@@ -238,8 +238,8 @@ if (!isset($mem)) {
 
 // }
      
-//TODO:デバッグ
-//  $this->client->linkUser($mem->line_user_id,$rm);
+
+  $this->client->linkUser($mem->line_user_id,$rm);
 
         $this->client->replyMessage([
             'replyToken' => $event['replyToken'],
