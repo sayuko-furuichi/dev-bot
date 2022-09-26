@@ -117,6 +117,7 @@ if ($message['text'] == 'ID') {
           'actions'=> [
             [
               'type'=> 'uri',
+              'label'=> 'yes',
               'uri'=> $store->liff_url .'/reserve?store='. $store->id,
             ],
             [
@@ -125,7 +126,7 @@ if ($message['text'] == 'ID') {
               'data'=> 'no',
                'displayText'=>'しない'
             ]
-            ],]]]]
+            ]]]]]
 );
 
 
