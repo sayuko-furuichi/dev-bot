@@ -90,6 +90,23 @@ if ($event['type'] == 'postback') {
         ]
     ]);
 }
+if ($event['type'] == 'unfollow') {
+                    
+    $client->replyMessage([
+        'replyToken' => $event['replyToken'],
+        'messages' => [
+            [
+'type' => 'text',
+'text' => 'This is ' . $storeId . '号店'
+            ],
+            [
+'type' => 'text',
+'text' =>  'あなたのユーザID：'.$us['userId']
+            ]
+
+        ]
+    ]);
+}
 
                 if ($event['type'] == 'message') {
                     $message = $event['message'];
