@@ -73,7 +73,7 @@ if ($event['type'] == 'postback') {
                 //eventtypeがmessageで、messagetypeがtextの時起動
 
     //友達登録画面
-                if ($event['type'] == 'join') {
+                if ($event['type'] == 'follow') {
                     
     $client->replyMessage([
         'replyToken' => $event['replyToken'],
