@@ -99,7 +99,7 @@ if ($message['text'] == 'ID') {
         ]);
 }else if ($message['text'] == '予約確認') {
 
-    $store = Store::where('id',$storeId);
+    $store = Store::where('id',$storeId)->first();
 
             $client->replyMessage([
 'replyToken' => $event['replyToken'],
