@@ -194,6 +194,7 @@ class getEnisRm
             'width'=> 1140,
             'height'=> 530
         ],
+        //postbackで店舗ID投げる
          'action'=> [
             'type'=> 'message',
             'text'=> '予約確認',

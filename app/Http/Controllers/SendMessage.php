@@ -72,6 +72,24 @@ if ($event['type'] == 'postback') {
 }
                 //eventtypeがmessageで、messagetypeがtextの時起動
 
+    //友達登録画面
+                if ($event['type'] == 'join') {
+                    
+    $client->replyMessage([
+        'replyToken' => $event['replyToken'],
+        'messages' => [
+            [
+'type' => 'text',
+'text' => 'This is ' . $storeId . '号店'
+            ],
+            [
+'type' => 'text',
+'text' =>  'あなたのユーザID：'.$us['userId']
+            ]
+
+        ]
+    ]);
+}
 
                 if ($event['type'] == 'message') {
                     $message = $event['message'];
