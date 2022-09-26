@@ -31,112 +31,109 @@ class SendMessage extends Controller
     //ユーザが、メッセージを送信せずにデータのみ送信できる機能。
     //botは、if($pt['data']＝action=***)　などで判定したらよい。
 
-    public function send($channelAccessToken, $channelSecret, $storeId)
+    public function send($channelAccessToken, $channelSecret, $storeId,$request)
     {
         $client = new LINEBotTiny($channelAccessToken, $channelSecret);
         foreach ($client->parseEvents() as $event) {
             $us = $event['source'];
 
 
-if ($event['type'] == 'postback') {
-    $pt=$event['postback'];
-    $ptD = $pt['data'];
+            if ($event['type'] == 'postback') {
+                $pt=$event['postback'];
+                $ptD = $pt['data'];
 
-    //会員登録するユーザ
-    if (preg_match('/name=/', $pt['data'])) {
-        $member = new getMember($channelAccessToken, $channelSecret, $client);
-        $member->createMember($event, $pt, $storeId);
+                //会員登録するユーザ
+                if (preg_match('/name=/', $pt['data'])) {
+                    $member = new getMember($channelAccessToken, $channelSecret, $client);
+                    $member->createMember($event, $pt, $storeId);
 
-    //退会するユーザ
-    } elseif (preg_match('/removeMember&id=/', $pt['data'])) {
-        $member = new getMember($channelAccessToken, $channelSecret, $client);
-        $member->remove($event, $pt, $storeId);
-    } elseif (preg_match('/changed=/', $pt['data'])) {
-        $mm = new getMember($channelAccessToken, $channelSecret, $client);
-        $uid=$us['userId'];
-        $res=$mm->changeMenu($uid, $storeId);
-        if($res !=null || $res !=''){
-
-            $client->replyMessage([
-                'replyToken' => $event['replyToken'],
-                'messages' => [
-                    [
+                //退会するユーザ
+                } elseif (preg_match('/removeMember&id=/', $pt['data'])) {
+                    $member = new getMember($channelAccessToken, $channelSecret, $client);
+                    $member->remove($event, $pt, $storeId);
+                } elseif (preg_match('/changed=/', $pt['data'])) {
+                    $mm = new getMember($channelAccessToken, $channelSecret, $client);
+                    $uid=$us['userId'];
+                    $res=$mm->changeMenu($uid, $storeId);
+                    if ($res !=null || $res !='') {
+                        $client->replyMessage([
+                            'replyToken' => $event['replyToken'],
+                            'messages' => [
+                                [
         'type' => 'text',
         'text' => "会員登録後にご利用頂けます"
-                    ],
-                ]
-            ]);
-        }
+                                ],
+                            ]
+                        ]);
+                    }
+                }
+            }
+            //eventtypeがmessageで、messagetypeがtextの時起動
 
-    }
-}
-                //eventtypeがmessageで、messagetypeがtextの時起動
-
-    //友達登録画面
-                if ($event['type'] == 'follow') {
-                    
-    $client->replyMessage([
-        'replyToken' => $event['replyToken'],
-        'messages' => [
-            [
+            //友達登録画面
+            if ($event['type'] == 'follow') {
+                $client->replyMessage([
+                    'replyToken' => $event['replyToken'],
+                    'messages' => [
+                        [
 'type' => 'text',
 'text' => 'This is ' . $storeId . '号店'
-            ],
-            [
+                        ],
+                        [
 'type' => 'text',
-'text' =>  'あなたのユーザID：'.$us['userId']
-            ]
+'text' =>  'あなたのユーザID：'.$request->store
+                        ]
 
-        ]
-    ]);
-}
-if ($event['type'] == 'unfollow') {
-                    
-    $client->replyMessage([
-        'replyToken' => $event['replyToken'],
-        'messages' => [
-            [
+                    ]
+                ]);
+            }
+            //ブロック時
+            if ($event['type'] == 'unfollow') {
+                $client->replyMessage([
+                    'replyToken' => $event['replyToken'],
+                    'messages' => [
+                        [
 'type' => 'text',
 'text' => 'This is ' . $storeId . '号店'
-            ],
-            [
+                        ],
+                        [
 'type' => 'text',
 'text' =>  'あなたのユーザID：'.$us['userId']
-            ]
+                        ]
 
-        ]
-    ]);
-}
+                    ]
+                ]);
+            }
 
-                if ($event['type'] == 'message') {
-                    $message = $event['message'];
-                    //"ID"と入力されたら、ユーザIDを返す
+            if ($event['type'] == 'message') {
+                $message = $event['message'];
+                //"ID"と入力されたら、ユーザIDを返す
 
-if ($message['text'] == 'ID') {
-    //ユーザID取得のために、event配列からsoureを代入
-    //　$us['userId']　でユーザIDを持ってこれる。
+                if ($message['text'] == 'ID') {
+                    //ユーザID取得のために、event配列からsoureを代入
+                    //　$us['userId']　でユーザIDを持ってこれる。
 
-    $use=$us['userId'];
+                    $use=$us['userId'];
 
-    $client->replyMessage([
-            'replyToken' => $event['replyToken'],
-            'messages' => [
-                [
-    'type' => 'text',
-    'text' => 'This is ' . $storeId . '号店'
-                ],
-                [
-    'type' => 'text',
-    'text' =>  'あなたのユーザID：'.$us['userId']
-                ]
+                    $client->replyMessage([
+                            'replyToken' => $event['replyToken'],
+                            'messages' => [
+                                [
+                    'type' => 'text',
+                    'text' => 'This is ' . $storeId . '号店'
+                                ],
+                                [
+                    'type' => 'text',
+                    'text' =>  'あなたのユーザID：'.$us['userId']
+                                ]
 
-            ]
-        ]);
-}else if ($message['text'] == '予約確認') {
+                            ]
+                        ]);
+                } elseif ($message['text'] == '予約確認') {
+                    $store = Store::where('id', $storeId)->first();
 
-    $store = Store::where('id',$storeId)->first();
-
-            $client->replyMessage([
+                    $client->replyMessage(
+                        [
 'replyToken' => $event['replyToken'],
 'messages' => [
     [
@@ -150,45 +147,45 @@ if ($message['text'] == 'ID') {
           'type'=> 'confirm',
           'text'=> 'ご予約を変更しますか？',
           'actions'=> [
-            [
-              'type'=> 'uri',
-              'label'=> 'yes',
-              'uri'=> $store->liff_url .'/reserve?store='. $store->id,
-            ],
-            [
-              'type'=> 'postback',
-              'label'=> 'No',
-              'data'=> 'no',
-               'displayText'=>'しない'
-            ]
-            ]]]]]
-);
+                    [
+                      'type'=> 'uri',
+                      'label'=> 'yes',
+                      'uri'=> $store->liff_url .'/reserve?store='. $store->id,
+                    ],
+                    [
+                      'type'=> 'postback',
+                      'label'=> 'No',
+                      'data'=> 'no',
+                       'displayText'=>'しない'
+                    ]
+                    ]]]]]
+                    );
 
 
-                    // メニュー　と言われたら、返す　OK！
-                    } elseif ($message['text'] == 'create Rich Menu') {
-                        //__construct　は、newした時に実行されるので、これが正解？
+                // メニュー　と言われたら、返す　OK！
+                } elseif ($message['text'] == 'create Rich Menu') {
+                    //__construct　は、newした時に実行されるので、これが正解？
 
-                        $rmDetail = new getRichMenu($channelAccessToken, $channelSecret, $client);
-                        $res = $rmDetail->creater($storeId);
+                    $rmDetail = new getRichMenu($channelAccessToken, $channelSecret, $client);
+                    $res = $rmDetail->creater($storeId);
 
-                        $imres=json_decode($res, true);
+                    $imres=json_decode($res, true);
 
-                        if ($res==false || $res== null ||$res== 'undefine' || isset($res['message'])) {
-                            $flag='false';
-                        } elseif (!isset($imres['message'])) {
-                            $flag='true';
-                            //  $imres['message']='true';
-                        }
+                    if ($res==false || $res== null ||$res== 'undefine' || isset($res['message'])) {
+                        $flag='false';
+                    } elseif (!isset($imres['message'])) {
+                        $flag='true';
+                        //  $imres['message']='true';
+                    }
 
-                        //$ss = new getRichMenu($channelAccessToken, $channelSecret);
+                    //$ss = new getRichMenu($channelAccessToken, $channelSecret);
 
 
     //    $mId = $ss->createRichMenu();
 
     //      $imres['richMenuId']
 
-                        $client->replyMessage([
+                    $client->replyMessage([
 'replyToken' => $event['replyToken'],
 'messages' => [
 [
@@ -202,20 +199,20 @@ if ($message['text'] == 'ID') {
 ]
 ]
 ]);
-                    } elseif ($message['text'] == 'create Enis Menu') {
-                        $rmDetail = new getEnisRm($channelAccessToken, $channelSecret, $client);
-                        $res = $rmDetail->creater($storeId);
+                } elseif ($message['text'] == 'create Enis Menu') {
+                    $rmDetail = new getEnisRm($channelAccessToken, $channelSecret, $client);
+                    $res = $rmDetail->creater($storeId);
 
-                        //   $imres=json_decode($res, true);
+                    //   $imres=json_decode($res, true);
 
-                        // if ($res==false || $res== null ||$res== 'undefine' || isset($res['message'])) {
+                    // if ($res==false || $res== null ||$res== 'undefine' || isset($res['message'])) {
                     //     $flag='false';
-                        // } elseif (!isset($imres['message'])) {
+                    // } elseif (!isset($imres['message'])) {
                     //     $flag='true';
                     //     //  $imres['message']='true';
-                        // }
+                    // }
 
-                        $client->replyMessage([
+                    $client->replyMessage([
 'replyToken' => $event['replyToken'],
 'messages' => [
 [
@@ -229,162 +226,162 @@ if ($message['text'] == 'ID') {
 ]
 ]
 ]);
-                    } elseif ($message['text'] == '会員ステータス確認') {
-                        //TODO:確認
-                        $mm = new getMember($channelAccessToken, $channelSecret, $client);
-                        $uid=$us['userId'];
-                        $res=$mm->index($uid, $storeId);
+                } elseif ($message['text'] == '会員ステータス確認') {
+                    //TODO:確認
+                    $mm = new getMember($channelAccessToken, $channelSecret, $client);
+                    $uid=$us['userId'];
+                    $res=$mm->index($uid, $storeId);
 
-                        $client->replyMessage([
-                            'replyToken' => $event['replyToken'],
-                            'messages' => [
-                                [
+                    $client->replyMessage([
+                        'replyToken' => $event['replyToken'],
+                        'messages' => [
+                            [
 'type' => 'text',
 'text' => '　OK!'
-                                ],
+                            ],
 
-                                [
+                            [
 'type' => 'text',
 'text' =>  $res . '　です！'
-                                ]
                             ]
-                        ]);
-                    } elseif ($message['text'] == '会員登録する') {
-                        $mm = new getMember($channelAccessToken, $channelSecret, $client);
-                        $uid=$us['userId'];
-                        $mm->addMember($uid, $event, $storeId);
-                    } elseif ($message['text'] == '退会する') {
-                        $mm = new getMember($channelAccessToken, $channelSecret, $client);
-                        $uid=$us['userId'];
-                        $mm->removeMember($uid, $event, $storeId);
+                        ]
+                    ]);
+                } elseif ($message['text'] == '会員登録する') {
+                    $mm = new getMember($channelAccessToken, $channelSecret, $client);
+                    $uid=$us['userId'];
+                    $mm->addMember($uid, $event, $storeId);
+                } elseif ($message['text'] == '退会する') {
+                    $mm = new getMember($channelAccessToken, $channelSecret, $client);
+                    $uid=$us['userId'];
+                    $mm->removeMember($uid, $event, $storeId);
 
 
-                    //TODO:idで受け渡しする
-                    } elseif ($us['type']=='web' && $message['text']=='change_df_rich_menu' && isset($message['text2'])) {
-                        //   $new = RichMenu::where('id',$message['text2'])->where('store_id',$storeId)->get();
+                //TODO:idで受け渡しする
+                } elseif ($us['type']=='web' && $message['text']=='change_df_rich_menu' && isset($message['text2'])) {
+                    //   $new = RichMenu::where('id',$message['text2'])->where('store_id',$storeId)->get();
 
-                        $new = RichMenu::where('richmenu_id', $message['text2'])->where('store_id', $storeId)->first();
-                        $res= $client->defaultRm($new->richmenu_id);
-                        $old = RichMenu::where('is_default', 1)->where('store_id', $storeId)->first();
-                        if (isset($old)) {
-                            $old->is_default=0;
-                            $old->save();
-                        }
+                    $new = RichMenu::where('richmenu_id', $message['text2'])->where('store_id', $storeId)->first();
+                    $res= $client->defaultRm($new->richmenu_id);
+                    $old = RichMenu::where('is_default', 1)->where('store_id', $storeId)->first();
+                    if (isset($old)) {
+                        $old->is_default=0;
+                        $old->save();
+                    }
 
-                        $new->is_default=1;
-                        $new->save();
+                    $new->is_default=1;
+                    $new->save();
 
-                        return $res;
+                    return $res;
 
-                    //TODO:クーポンの配信など調査
-                    } elseif ($us['type']=='web' || $message['text']=='push!') {
-                        $webMsg= $message['text'];
-                        if (isset($message['text2'])) {
-                            $webMsg2= $message['text2'];
-                        } else {
-                            $webMsg2='プッシュメッセージ';
-                        }
+                //TODO:クーポンの配信など調査
+                } elseif ($us['type']=='web' || $message['text']=='push!') {
+                    $webMsg= $message['text'];
+                    if (isset($message['text2'])) {
+                        $webMsg2= $message['text2'];
+                    } else {
+                        $webMsg2='プッシュメッセージ';
+                    }
 
-                        $uid=$us['userId'];
-                        $msg = new SendPushMessage($channelAccessToken, $channelSecret, $client, $webMsg, $webMsg2, $uid);
-                        $msg->sendPushMessage();
-                    } elseif ($message['text'] == 'audience') {
-                        $us = new getAudience($channelAccessToken, $channelSecret, $client);
-                        $res= $us->createAud($storeId);
+                    $uid=$us['userId'];
+                    $msg = new SendPushMessage($channelAccessToken, $channelSecret, $client, $webMsg, $webMsg2, $uid);
+                    $msg->sendPushMessage();
+                } elseif ($message['text'] == 'audience') {
+                    $us = new getAudience($channelAccessToken, $channelSecret, $client);
+                    $res= $us->createAud($storeId);
 
-                        $client->replyMessage([
-                                               'replyToken' => $event['replyToken'],
-                                               'messages' => [
-                                                   [
-                                                       'type' => 'text',
-                                                       'text' => "　OK!\n"
-                                                   ],
+                    $client->replyMessage([
+                                           'replyToken' => $event['replyToken'],
+                                           'messages' => [
+                                               [
+                                                   'type' => 'text',
+                                                   'text' => "　OK!\n"
+                                               ],
 
-                                                   [
-                                                       'type' => 'text',
-                                                       'text' => 'plz create !'. $res
-                                                   ]
-
+                                               [
+                                                   'type' => 'text',
+                                                   'text' => 'plz create !'. $res
                                                ]
-                                           ]);
+
+                                           ]
+                                       ]);
 
 
 
-                    //限定メニューを要求されたとき
-                    } elseif ($message['text'] == '限定メニュー') {
-                        $param =new getOrgMenuParam();
-                        $sId =$storeId;
-                        $param ->getParam($sId, $client, $event);
+                //限定メニューを要求されたとき
+                } elseif ($message['text'] == '限定メニュー') {
+                    $param =new getOrgMenuParam();
+                    $sId =$storeId;
+                    $param ->getParam($sId, $client, $event);
 
 
-                    //ブロードキャスト送信する。
-                    //送信したMsgのRequestIdをDBに格納し、IDを返却する
-                    } elseif ($message['text'] == 'ブロキャス') {
-                        $param = new sendNarrow($channelAccessToken, $channelSecret, $client);
-                        $msgId = $param->sendMessage();
+                //ブロードキャスト送信する。
+                //送信したMsgのRequestIdをDBに格納し、IDを返却する
+                } elseif ($message['text'] == 'ブロキャス') {
+                    $param = new sendNarrow($channelAccessToken, $channelSecret, $client);
+                    $msgId = $param->sendMessage();
                 //     $params = new getAnalysisData($client,$event);
-                    // $params->getData($requestId);
+                // $params->getData($requestId);
 
                 //    $rs=json_decode($res,true);
-                    } elseif ($message['text'] == '利用状況') {
-                        $resq= $client->getQuota();
-                        $resq=json_decode($resq, true);
+                } elseif ($message['text'] == '利用状況') {
+                    $resq= $client->getQuota();
+                    $resq=json_decode($resq, true);
 
-                        $ress= $client->getSent();
-                        $ress=json_decode($ress, true);
+                    $ress= $client->getSent();
+                    $ress=json_decode($ress, true);
 
 
-                        $client->replyMessage([
-                            'replyToken' => $event['replyToken'],
-                            'messages' => [
-                                [
-                                    'type' => 'text',
-                                    'text' => "　当月の送信数：".$ress['totalUsage']
-                                ],
+                    $client->replyMessage([
+                        'replyToken' => $event['replyToken'],
+                        'messages' => [
+                            [
+                                'type' => 'text',
+                                'text' => "　当月の送信数：".$ress['totalUsage']
+                            ],
 
-                                [
-                                    'type' => 'text',
-                                    'text' => '当月の送信上限目安：'.$resq['value']
-                                ],
-                                [
-                                    'type' => 'text',
-                                    'text' => '当月の送信可能数： 約'. $resq['value'] - $ress['totalUsage']
-                                ]
-
+                            [
+                                'type' => 'text',
+                                'text' => '当月の送信上限目安：'.$resq['value']
+                            ],
+                            [
+                                'type' => 'text',
+                                'text' => '当月の送信可能数： 約'. $resq['value'] - $ress['totalUsage']
                             ]
-                        ]);
+
+                        ]
+                    ]);
 
 
-                    //  $param =new getOrgMenuParam();
-                    // $sId =$storeId;
-                    // $param ->getParam($sId, $client, $event);
-                    } elseif ($message['text'] == '分析') {
-                        $param = new getAnalysisData($client, $event);
-                        $param->getData();
+                //  $param =new getOrgMenuParam();
+                // $sId =$storeId;
+                // $param ->getParam($sId, $client, $event);
+                } elseif ($message['text'] == '分析') {
+                    $param = new getAnalysisData($client, $event);
+                    $param->getData();
 
-                    //DB参照
-                    } elseif ($message['text'] == 'READ') {
-                        $us = $event['source'];
-                        $use=$us['userId'];
+                //DB参照
+                } elseif ($message['text'] == 'READ') {
+                    $us = $event['source'];
+                    $use=$us['userId'];
 
-                        $uP= new getUserProf();
-                        $uP->getProf($use, $client, $event);
+                    $uP= new getUserProf();
+                    $uP->getProf($use, $client, $event);
 
-                    //richメニュー画像
-                    } elseif ($message['text'] == '画像') {
-                        $param =new getOrgMenuParam();
-                        $sId =$storeId;
-                        $param ->getParam($sId, $client, $event);
-
-
-                    //送信したMsgのIDを、ID:　という形で入力してもらい、IDからRequestIdを持ってきて分析に回す
-                    } elseif (preg_match('/ID:/', $message['text'])) {
-                        $rqMsgId = $message['text'];
-                        $param = new getAnalysisData($client, $event);
-                        $param->getData($rqMsgId);
+                //richメニュー画像
+                } elseif ($message['text'] == '画像') {
+                    $param =new getOrgMenuParam();
+                    $sId =$storeId;
+                    $param ->getParam($sId, $client, $event);
 
 
-                    // $client->replyMessage([
+                //送信したMsgのIDを、ID:　という形で入力してもらい、IDからRequestIdを持ってきて分析に回す
+                } elseif (preg_match('/ID:/', $message['text'])) {
+                    $rqMsgId = $message['text'];
+                    $param = new getAnalysisData($client, $event);
+                    $param->getData($rqMsgId);
+
+
+                // $client->replyMessage([
                     //     'replyToken' => $event['replyToken'],
                     //     'messages' => [
                     //         [
@@ -399,26 +396,25 @@ if ($message['text'] == 'ID') {
                     //         ]);
 
 
-                    //ここから
-                    } elseif ($message['type']=='text') {
-                        $client->replyMessage([
-                                        'replyToken' => $event['replyToken'],
-                                        'messages' => [
-                                            [
-                                                'type' => 'text',
-                                                'text' => "メッセージありがとうございます\n大変申し訳ありませんが、こちらのアカウントでは個別に返信を行うことができません。"
-                                            ]
+                //ここから
+                } elseif ($message['type']=='text') {
+                    $client->replyMessage([
+                                    'replyToken' => $event['replyToken'],
+                                    'messages' => [
+                                        [
+                                            'type' => 'text',
+                                            'text' => "メッセージありがとうございます\n大変申し訳ありませんが、こちらのアカウントでは個別に返信を行うことができません。"
                                         ]
-                                            ]);
-                    } else {
-                        error_log('Unsupported message type: ' . $message['type']);
-                        break;
-                    }
+                                    ]
+                                        ]);
                 } else {
-                    error_log('Unsupported event type: ' . $event['type']);
+                    error_log('Unsupported message type: ' . $message['type']);
                     break;
                 }
+            } else {
+                error_log('Unsupported event type: ' . $event['type']);
+                break;
             }
         }
     }
-
+}

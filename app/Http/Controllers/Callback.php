@@ -36,7 +36,7 @@ class Callback extends Controller
 
 
         $send = new SendMessage();
-        $send->send($channelAccessToken, $channelSecret, $storeId);
+        $send->send($channelAccessToken, $channelSecret, $storeId,$request);
     }
 
 }
