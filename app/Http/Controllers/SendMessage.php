@@ -23,6 +23,7 @@ use  App\Http\Service\getAudience;
 
 //あとで消す
 use App\Models\RichMenu;
+use App\Models\Store;
 
 class SendMessage extends Controller
 {
@@ -76,16 +77,13 @@ if ($event['type'] == 'postback') {
                     $message = $event['message'];
                     //"ID"と入力されたら、ユーザIDを返す
 
-                    if ($message['text'] == 'ID') {
-                        //ユーザID取得のために、event配列からsoureを代入
-                        //　$us['userId']　でユーザIDを持ってこれる。
-                        //TODO:!!!!!
-                        $client->dltDefaultRm();
+if ($message['text'] == 'ID') {
+    //ユーザID取得のために、event配列からsoureを代入
+    //　$us['userId']　でユーザIDを持ってこれる。
 
-                        $use=$us['userId'];
+    $use=$us['userId'];
 
-
-                        $client->replyMessage([
+    $client->replyMessage([
             'replyToken' => $event['replyToken'],
             'messages' => [
                 [
@@ -99,6 +97,37 @@ if ($event['type'] == 'postback') {
 
             ]
         ]);
+}else if ($message['text'] == '予約確認') {
+
+    $store = Store::where('id',$storeId);
+
+            $client->replyMessage([
+'replyToken' => $event['replyToken'],
+'messages' => [
+    [
+'type' => 'text',
+'text' => "予約店舗：***\n予約日時：***\n予約商品：**コース\nお支払い:**\n"
+    ],
+    [
+        'type'=> 'template',
+        'altText'=> '予約修正テンプレート',
+        'template'=> [
+          'type'=> 'confirm',
+          'text'=> 'ご予約を変更しますか？',
+          'actions'=> [
+            [
+              'type'=> 'uri',
+              'uri'=> $store->liff_url .'/reserve?store='. $store->id,
+            ],
+            [
+              'type'=> 'postback',
+              'label'=> 'No',
+              'data'=> 'no',
+               'displayText'=>'しない'
+            ]
+            ],]]]]
+);
+
 
                     // メニュー　と言われたら、返す　OK！
                     } elseif ($message['text'] == 'create Rich Menu') {
