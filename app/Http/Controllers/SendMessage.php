@@ -144,7 +144,7 @@ if ($message['text'] == 'ID') {
                                         ],
                                         [
                             'type' => 'text',
-                            'text' =>  'https://dev-ext-app.herokuapp.com/public?user='.$us['userId']
+                            'text' =>  'https://dev-ext-app.herokuapp.com/public/addMember?user='.$us['userId']
                                         ]
         
                                     ]
