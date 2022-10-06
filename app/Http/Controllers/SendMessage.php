@@ -152,7 +152,7 @@ class SendMessage extends Controller
                 } elseif ($message['text'] == '申し込み完了' && $storeId==54 && $us['type']=='web') {
                     $us['useId'];
 
-                    $msg = new SendPushMessage($channelAccessToken, $channelSecret, $client, '登録','ありがとうございます！', $us['userId']);
+                    $msg = new SendPushMessage($channelAccessToken, $channelSecret, $client, '登録','ありがとうございます！', $message['text2']);
                     $msg->sendPushMessage();
 
                 } elseif ($message['text'] == '予約確認') {
