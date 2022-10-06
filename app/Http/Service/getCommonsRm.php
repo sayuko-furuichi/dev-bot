@@ -90,16 +90,16 @@ class getCommonsRm
          
         //前のデフォルトをDBで更新
         //TODO:もっと効率よく参照したい
-        $old = RichMenu::where('is_default',0)->where('store_id',$storeId)->first();
+        $old = RichMenu::where('is_default',1)->where('store_id',$storeId)->first();
         if(isset($old)){
             $old->is_default=0;
             $old->save();
         }
       
-        $rmA->is_default=1;
+        // $rmA->is_default=1;
         // $rmB->is_default=0;
 
-         $res= $this->createAliasRmA($rmA);
+        //  $res= $this->createAliasRmA($rmA);
 
         // $res= $this->createAliasRmB($rmB);
 
