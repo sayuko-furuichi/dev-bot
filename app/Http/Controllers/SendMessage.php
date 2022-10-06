@@ -199,20 +199,6 @@ class SendMessage extends Controller
                         $rmDetail = new getCommonsRm($channelAccessToken, $channelSecret, $client);
                         $res = $rmDetail->creater($storeId);
                         
-                    $client->replyMessage([
-                        'replyToken' => $event['replyToken'],
-                        'messages' => [
-                            [
-                'type' => 'text',
-                'text' => 'こちらからどうぞ'
-                            ],
-                            [
-                'type' => 'text',
-                'text' =>  'https://dev-ext-app.herokuapp.com/public/addMember?user='.$us['userId']
-                            ]
-
-                        ]
-                    ]);
                     }else{
                         $rmDetail = new getRichMenu($channelAccessToken, $channelSecret, $client);
                         $res = $rmDetail->creater($storeId);
