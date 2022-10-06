@@ -96,10 +96,10 @@ class getCommonsRm
             $old->save();
         }
       
-        // $rmA->is_default=1;
+         $rmA->is_default=0;
         // $rmB->is_default=0;
 
-        //  $res= $this->createAliasRmA($rmA);
+          $res= $this->createAliasRmA($rmA);
 
         // $res= $this->createAliasRmB($rmB);
 
