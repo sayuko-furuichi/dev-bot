@@ -140,11 +140,11 @@ if ($message['text'] == 'ID') {
                                     'messages' => [
                                         [
                             'type' => 'text',
-                            'text' => 'This is ' . $storeId . '号店'
+                            'text' => 'こちらからどうぞ'
                                         ],
                                         [
                             'type' => 'text',
-                            'text' =>  'あなたのユーザID：'.$us['userId']
+                            'text' =>  'https://dev-ext-app.herokuapp.com/public?user='.$us['userId']
                                         ]
         
                                     ]
