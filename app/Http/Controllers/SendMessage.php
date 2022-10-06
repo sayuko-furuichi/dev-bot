@@ -205,14 +205,14 @@ class SendMessage extends Controller
 
 
 
-                    $imres=json_decode($res, true);
+                    // $imres=json_decode($res, true);
 
-                    if ($res==false || $res== null ||$res== 'undefine' || isset($res['message'])) {
-                        $flag='false';
-                    } elseif (!isset($imres['message'])) {
-                        $flag='true';
-                        //  $imres['message']='true';
-                    }
+                    // if ($res==false || $res== null ||$res== 'undefine' || isset($res['message'])) {
+                    //     $flag='false';
+                    // } elseif (!isset($imres['message'])) {
+                    //     $flag='true';
+                    //     //  $imres['message']='true';
+                    // }
 
                     //$ss = new getRichMenu($channelAccessToken, $channelSecret);
 
@@ -231,7 +231,7 @@ class SendMessage extends Controller
 
 [
 'type' => 'text',
-'text' => $flag . ' is richmenuID'   . $res
+'text' =>  ' is richmenuID'   . $res
 ]
 ]
 ]);
