@@ -210,7 +210,7 @@ class LINEBotTiny
         //画像URL
         //TODO:会員メニューに変更すること
        // $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/memberdemo/base_n1.png';
-        $imgurl='https://dev-bot0722.herokuapp.com/public/img/1.png';
+        $imgurl='https://dev-bot0722.herokuapp.com/public/img/cm_rm_y.png';
         $img = file_get_contents($imgurl);
         $imgheader = array(
             'Content-Type: image/png',

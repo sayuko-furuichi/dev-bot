@@ -154,6 +154,8 @@ class SendMessage extends Controller
 
                     $msg = new SendPushMessage($channelAccessToken, $channelSecret, $client, '登録','ありがとうございます！', $message['text2']);
                     $msg->sendPushMessage();
+                    
+
 
                 } elseif ($message['text'] == '予約確認') {
                     $store = Store::where('id', $storeId)->first();
