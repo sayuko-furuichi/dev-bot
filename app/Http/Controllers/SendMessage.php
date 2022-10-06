@@ -18,6 +18,7 @@ use App\Http\Service\getAnalysisData;
 use  App\Http\Service\SendPushMessage;
 use  App\Http\Service\getMember;
 use  App\Http\Service\getAudience;
+use App\Http\Service\getCommonsRm;
 
 
 
