@@ -154,7 +154,7 @@ class SendMessage extends Controller
 
                     $msg = new SendPushMessage($channelAccessToken, $channelSecret, $client, '登録','ありがとうございます！', $message['text2']);
                     $msg->sendPushMessage();
-                    
+
 
 
                 } elseif ($message['text'] == '予約確認') {
@@ -194,8 +194,15 @@ class SendMessage extends Controller
                 } elseif ($message['text'] == 'create Rich Menu') {
                     //__construct　は、newした時に実行されるので、これが正解？
 
-                    $rmDetail = new getRichMenu($channelAccessToken, $channelSecret, $client);
-                    $res = $rmDetail->creater($storeId);
+                    if($storeId ==54){
+                        $rmDetail = new getCommonsRm($channelAccessToken, $channelSecret, $client);
+                        $res = $rmDetail->creater($storeId);
+                    }else{
+                        $rmDetail = new getRichMenu($channelAccessToken, $channelSecret, $client);
+                        $res = $rmDetail->creater($storeId);
+                    }
+
+
 
                     $imres=json_decode($res, true);
 
