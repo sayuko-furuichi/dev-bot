@@ -109,26 +109,48 @@ class SendMessage extends Controller
                 $message = $event['message'];
                 //"ID"と入力されたら、ユーザIDを返す
 
-                if ($message['text'] == 'ID') {
-                    //ユーザID取得のために、event配列からsoureを代入
-                    //　$us['userId']　でユーザIDを持ってこれる。
+if ($message['text'] == 'ID') {
+    //ユーザID取得のために、event配列からsoureを代入
+    //　$us['userId']　でユーザIDを持ってこれる。
 
-                    $use=$us['userId'];
+    $use=$us['userId'];
 
-                    $client->replyMessage([
-                            'replyToken' => $event['replyToken'],
-                            'messages' => [
-                                [
-                    'type' => 'text',
-                    'text' => 'This is ' . $storeId . '号店'
-                                ],
-                                [
-                    'type' => 'text',
-                    'text' =>  'あなたのユーザID：'.$us['userId']
-                                ]
+    $client->replyMessage([
+            'replyToken' => $event['replyToken'],
+            'messages' => [
+                [
+    'type' => 'text',
+    'text' => 'This is ' . $storeId . '号店'
+                ],
+                [
+    'type' => 'text',
+    'text' =>  'あなたのユーザID：'.$us['userId']
+                ]
 
-                            ]
-                        ]);
+            ]
+        ]);
+} elseif ($message['text'] == '申し込み' && $storeId==54) {
+                            //ユーザID取得のために、event配列からsoureを代入
+                            //　$us['userId']　でユーザIDを持ってこれる。
+        
+                            $use=$us['userId'];
+        
+                            $client->replyMessage([
+                                    'replyToken' => $event['replyToken'],
+                                    'messages' => [
+                                        [
+                            'type' => 'text',
+                            'text' => 'This is ' . $storeId . '号店'
+                                        ],
+                                        [
+                            'type' => 'text',
+                            'text' =>  'あなたのユーザID：'.$us['userId']
+                                        ]
+        
+                                    ]
+                                ]);
+
+
                 } elseif ($message['text'] == '予約確認') {
                     $store = Store::where('id', $storeId)->first();
 
