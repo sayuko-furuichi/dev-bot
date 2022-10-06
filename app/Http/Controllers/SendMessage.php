@@ -31,7 +31,7 @@ class SendMessage extends Controller
     //ユーザが、メッセージを送信せずにデータのみ送信できる機能。
     //botは、if($pt['data']＝action=***)　などで判定したらよい。
 
-    public function send($channelAccessToken, $channelSecret, $storeId,$request)
+    public function send($channelAccessToken, $channelSecret, $storeId, $request)
     {
         $client = new LINEBotTiny($channelAccessToken, $channelSecret);
         foreach ($client->parseEvents() as $event) {
@@ -109,47 +109,51 @@ class SendMessage extends Controller
                 $message = $event['message'];
                 //"ID"と入力されたら、ユーザIDを返す
 
-if ($message['text'] == 'ID') {
-    //ユーザID取得のために、event配列からsoureを代入
-    //　$us['userId']　でユーザIDを持ってこれる。
+                if ($message['text'] == 'ID') {
+                    //ユーザID取得のために、event配列からsoureを代入
+                    //　$us['userId']　でユーザIDを持ってこれる。
 
-    $use=$us['userId'];
+                    $use=$us['userId'];
 
-    $client->replyMessage([
-            'replyToken' => $event['replyToken'],
-            'messages' => [
-                [
-    'type' => 'text',
-    'text' => 'This is ' . $storeId . '号店'
-                ],
-                [
-    'type' => 'text',
-    'text' =>  'あなたのユーザID：'.$us['userId']
-                ]
+                    $client->replyMessage([
+                            'replyToken' => $event['replyToken'],
+                            'messages' => [
+                                [
+                    'type' => 'text',
+                    'text' => 'This is ' . $storeId . '号店'
+                                ],
+                                [
+                    'type' => 'text',
+                    'text' =>  'あなたのユーザID：'.$us['userId']
+                                ]
 
-            ]
-        ]);
-} elseif ($message['text'] == '申し込み' && $storeId==54) {
-                            //ユーザID取得のために、event配列からsoureを代入
-                            //　$us['userId']　でユーザIDを持ってこれる。
-        
-                            $use=$us['userId'];
-        
-                            $client->replyMessage([
-                                    'replyToken' => $event['replyToken'],
-                                    'messages' => [
-                                        [
-                            'type' => 'text',
-                            'text' => 'こちらからどうぞ'
-                                        ],
-                                        [
-                            'type' => 'text',
-                            'text' =>  'https://dev-ext-app.herokuapp.com/public/addMember?user='.$us['userId']
-                                        ]
-        
-                                    ]
-                                ]);
+                            ]
+                        ]);
+                } elseif ($message['text'] == '申し込み' && $storeId==54) {
+                    //ユーザID取得のために、event配列からsoureを代入
+                    //　$us['userId']　でユーザIDを持ってこれる。
 
+                    $use=$us['userId'];
+
+                    $client->replyMessage([
+                            'replyToken' => $event['replyToken'],
+                            'messages' => [
+                                [
+                    'type' => 'text',
+                    'text' => 'こちらからどうぞ'
+                                ],
+                                [
+                    'type' => 'text',
+                    'text' =>  'https://dev-ext-app.herokuapp.com/public/addMember?user='.$us['userId']
+                                ]
+
+                            ]
+                        ]);
+                } elseif ($message['text'] == '申し込み完了' && $storeId==54 && $us['type']=='web') {
+                    $us['useId'];
+
+                    $msg = new SendPushMessage($channelAccessToken, $channelSecret, $client, '登録','ありがとうございます！', $us['userId']);
+                    $msg->sendPushMessage();
 
                 } elseif ($message['text'] == '予約確認') {
                     $store = Store::where('id', $storeId)->first();
