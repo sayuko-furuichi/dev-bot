@@ -247,7 +247,7 @@ class getCommonsRm
 
     //        A 入会申し込み
             'bounds'=> [
-                'x'=> 735,
+                'x'=> 50,
                 'y'=> 120,
                 'width'=> 740,
                 'height'=> 600
