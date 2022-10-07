@@ -83,7 +83,7 @@ class SendMessage extends Controller
 'text' => "予約店舗：***\n予約日時：***\n予約商品：**コース\n人数：**\nお支払い:**\n"
     ],
     [
-        'type'=> 'template',
+        'type'=> 'buttons',
         'altText'=> '予約修正テンプレート',
         'template'=> [
           'type'=> 'confirm',
