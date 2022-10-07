@@ -25,6 +25,7 @@ use App\Http\Service\getCommonsRm;
 //あとで消す
 use App\Models\RichMenu;
 use App\Models\Store;
+use App\Models\Transition;
 
 class SendMessage extends Controller
 {
@@ -68,7 +69,11 @@ if ($event['type'] == 'postback') {
             ]);
         }
     } elseif (preg_match('/transition=/', $pt['data'])) {
-        //   $trans =new Transition;
+           $trans =new Transition;
+           $trans->lineuser_id=$us['userId'];
+           $trans->trantion=$name=  str_replace('transition=','',$pt['data']);
+           $trans->save();
+
         $client->replyMessage([
             'replyToken' => $event['replyToken'],
             'messages' => [
