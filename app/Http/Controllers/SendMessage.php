@@ -113,7 +113,39 @@ if ($event['type'] == 'follow') {
             'data'=> 'transition=introduction',
              'displayText'=>'知人からの紹介'
                       ]
-                    ]]]]]
+                    ]]],  [
+                        'type'=> 'template',
+                        'altText'=> 'きっかけテンプレート',
+                        'template'=> [
+                          'type'=> 'buttons',
+                          'text'=> '以下も選択できます',
+                          'actions'=> [
+                                    [
+                                      'type'=> 'postback',
+                                      'label'=> '検索サイト',
+                                      'data'=> 'transition=search',
+                                      'displayText'=>'検索サイト'
+                                    ],
+                                    [
+                                      'type'=> 'postback',
+                                      'label'=> '公式ホームページ',
+                                      'data'=> 'transition=HP',
+                                       'displayText'=>'公式ホームページ'
+                                    ],
+                                    [
+                            'type'=> 'postback',
+                            'label'=> '本や雑誌・メディア',
+                            'data'=> 'transition=media',
+                             'displayText'=>'本や雑誌・メディア'
+                                      ],
+                                      [
+                            'type'=> 'postback',
+                            'label'=> 'その他',
+                            'data'=> 'transition=other',
+                             'displayText'=>'その他'
+                                      ]
+                                    ]]],
+                    ]]
         );
     }
 }
