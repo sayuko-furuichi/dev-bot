@@ -137,7 +137,7 @@ if ($event['type'] == 'postback') {
                                     'altText'=> 'きっかけテンプレート',
                                     'template'=> [
                                       'type'=> 'buttons',
-                                      'text'=> '以下も選択できます',
+                                      'text'=> '　　　　　',
                                       'actions'=> [
                                                 [
                                                   'type'=> 'postback',
