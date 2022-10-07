@@ -70,15 +70,7 @@ class SendMessage extends Controller
                 }
             } elseif (preg_match('/transition=/', $pt['data'])) {
                 //   $trans =new Transition;
-                $client->replyMessage([
-                    'replyToken' => $event['replyToken'],
-                    'messages' => [
-                        [
-'type' => 'text',
-'text' => "ありがとうございました！"
-                        ],
-                    ]
-                ]);
+             
             }
 
             //eventtypeがmessageで、messagetypeがtextの時起動
