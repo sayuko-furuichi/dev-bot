@@ -74,20 +74,47 @@ class SendMessage extends Controller
             //友達登録画面
 if ($event['type'] == 'follow') {
     if ($storeId ==54) {
-        $client->replyMessage([
-            'replyToken' => $event['replyToken'],
-            'messages' => [
-                [
-    'type' => 'text',
-    'text' => 'This is ' . $storeId . '号店'
-                ],
-                [
-    'type' => 'text',
-    'text' =>  'あなたのユーザID：'.$us['userId']
-                ]
-
-            ]
-        ]);
+        $client->replyMessage(
+            [
+'replyToken' => $event['replyToken'],
+'messages' => [
+    [
+'type' => 'text',
+'text' => "予約店舗：***\n予約日時：***\n予約商品：**コース\n人数：**\nお支払い:**\n"
+    ],
+    [
+        'type'=> 'templete',
+        'altText'=> 'きっかけテンプレート',
+        'template'=> [
+          'type'=> 'buttons',
+          'text'=> '当アカウントを知ったきっかけを教えてください',
+          'actions'=> [
+                    [
+                      'type'=> 'postback',
+                      'label'=> 'LP',
+                      'data'=> 'transition=lp',
+                      'displayText'=>'LP'
+                    ],
+                    [
+                      'type'=> 'postback',
+                      'label'=> 'チラシ',
+                      'data'=> 'transition=paper',
+                       'displayText'=>'チラシ'
+                    ],
+                    [
+            'type'=> 'postback',
+            'label'=> 'セミナー',
+            'data'=> 'transition=paper',
+             'displayText'=>'セミナー'
+                      ],
+                      [
+            'type'=> 'postback',
+            'label'=> '知人からの紹介',
+            'data'=> 'transition=introduction',
+             'displayText'=>'知人からの紹介'
+                      ]
+                    ]]]]]
+        );
     }
 }
             //ブロック時
