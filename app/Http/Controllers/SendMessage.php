@@ -83,7 +83,7 @@ if ($event['type'] == 'follow') {
 'text' => "予約店舗：***\n予約日時：***\n予約商品：**コース\n人数：**\nお支払い:**\n"
     ],
     [
-        'type'=> 'templete',
+        'type'=> 'template',
         'altText'=> 'きっかけテンプレート',
         'template'=> [
           'type'=> 'buttons',
