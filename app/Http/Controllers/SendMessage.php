@@ -75,7 +75,7 @@ foreach ($client->parseEvents() as $event) {
             'messages' => [
                 [
 'type' => 'text',
-'text' => "会員登録後にご利用頂けます"
+'text' => "ありがとうございました！"
                 ],
             ]
         ]);
