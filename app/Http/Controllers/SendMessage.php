@@ -35,60 +35,60 @@ class SendMessage extends Controller
     public function send($channelAccessToken, $channelSecret, $storeId, $request)
     {
         $client = new LINEBotTiny($channelAccessToken, $channelSecret);
-foreach ($client->parseEvents() as $event) {
-    $us = $event['source'];
+        foreach ($client->parseEvents() as $event) {
+            $us = $event['source'];
 
 
-    if ($event['type'] == 'postback') {
-        $pt=$event['postback'];
-        $ptD = $pt['data'];
+            if ($event['type'] == 'postback') {
+                $pt=$event['postback'];
+                $ptD = $pt['data'];
 
-        //会員登録するユーザ
-        if (preg_match('/name=/', $pt['data'])) {
-            $member = new getMember($channelAccessToken, $channelSecret, $client);
-            $member->createMember($event, $pt, $storeId);
+                //会員登録するユーザ
+                if (preg_match('/name=/', $pt['data'])) {
+                    $member = new getMember($channelAccessToken, $channelSecret, $client);
+                    $member->createMember($event, $pt, $storeId);
 
-        //退会するユーザ
-        } elseif (preg_match('/removeMember&id=/', $pt['data'])) {
-            $member = new getMember($channelAccessToken, $channelSecret, $client);
-            $member->remove($event, $pt, $storeId);
-        } elseif (preg_match('/changed=/', $pt['data'])) {
-            $mm = new getMember($channelAccessToken, $channelSecret, $client);
-            $uid=$us['userId'];
-            $res=$mm->changeMenu($uid, $storeId);
-            if ($res !=null || $res !='') {
+                //退会するユーザ
+                } elseif (preg_match('/removeMember&id=/', $pt['data'])) {
+                    $member = new getMember($channelAccessToken, $channelSecret, $client);
+                    $member->remove($event, $pt, $storeId);
+                } elseif (preg_match('/changed=/', $pt['data'])) {
+                    $mm = new getMember($channelAccessToken, $channelSecret, $client);
+                    $uid=$us['userId'];
+                    $res=$mm->changeMenu($uid, $storeId);
+                    if ($res !=null || $res !='') {
+                        $client->replyMessage([
+                            'replyToken' => $event['replyToken'],
+                            'messages' => [
+                                [
+        'type' => 'text',
+        'text' => "会員登録後にご利用頂けます"
+                                ],
+                            ]
+                        ]);
+                    }
+                }
+            } elseif (preg_match('/transition=/', $pt['data'])) {
+                //   $trans =new Transition;
                 $client->replyMessage([
                     'replyToken' => $event['replyToken'],
                     'messages' => [
                         [
-        'type' => 'text',
-        'text' => "会員登録後にご利用頂けます"
+'type' => 'text',
+'text' => "ありがとうございました！"
                         ],
                     ]
                 ]);
             }
-        }
-    } elseif (preg_match('/transition=/', $pt['data'])) {
-        //   $trans =new Transition;
-        $client->replyMessage([
-            'replyToken' => $event['replyToken'],
-            'messages' => [
-                [
-'type' => 'text',
-'text' => "ありがとうございました！"
-                ],
-            ]
-        ]);
-    }
 
             //eventtypeがmessageで、messagetypeがtextの時起動
 
             //友達登録画面
-if ($event['type'] == 'follow') {
-    if ($storeId ==54) {
-        $imgUrl = secure_asset('img/Commands_logo.png');
-        $client->replyMessage(
-            [
+            if ($event['type'] == 'follow') {
+                if ($storeId ==54) {
+                    $imgUrl = secure_asset('img/Commands_logo.png');
+                    $client->replyMessage(
+                        [
 'replyToken' => $event['replyToken'],
 'messages' => [
     [
@@ -103,66 +103,66 @@ if ($event['type'] == 'follow') {
           'text'=> '当アカウントを知ったきっかけを教えてください',
           'thumbnailImageUrl'=> $imgUrl,
           'actions'=> [
-                    [
-                      'type'=> 'postback',
-                      'label'=> 'LP',
-                      'data'=> 'transition=lp',
-                      'displayText'=>'LP'
-                    ],
-                    [
-                      'type'=> 'postback',
-                      'label'=> 'チラシ',
-                      'data'=> 'transition=paper',
-                       'displayText'=>'チラシ'
-                    ],
-                    [
-            'type'=> 'postback',
-            'label'=> 'セミナー',
-            'data'=> 'transition=paper',
-             'displayText'=>'セミナー'
-                      ],
-                      [
-            'type'=> 'postback',
-            'label'=> '知人からの紹介',
-            'data'=> 'transition=introduction',
-             'displayText'=>'知人からの紹介'
-                      ]
-                    ]]],  [
-                        'type'=> 'template',
-                        'altText'=> 'きっかけテンプレート',
-                        'template'=> [
-                          'type'=> 'buttons',
-                          'text'=> '以下も選択できます',
-                          'actions'=> [
-                                    [
-                                      'type'=> 'postback',
-                                      'label'=> '検索サイト',
-                                      'data'=> 'transition=search',
-                                      'displayText'=>'検索サイト'
-                                    ],
-                                    [
-                                      'type'=> 'postback',
-                                      'label'=> '公式ホームページ',
-                                      'data'=> 'transition=HP',
-                                       'displayText'=>'公式ホームページ'
-                                    ],
-                                    [
-                            'type'=> 'postback',
-                            'label'=> '本や雑誌・メディア',
-                            'data'=> 'transition=media',
-                             'displayText'=>'本や雑誌・メディア'
-                                      ],
-                                      [
-                            'type'=> 'postback',
-                            'label'=> 'その他',
-                            'data'=> 'transition=other',
-                             'displayText'=>'その他'
-                                      ]
-                                    ]]],
-                    ]]
-        );
-    }
-}
+                                [
+                                  'type'=> 'postback',
+                                  'label'=> 'LP',
+                                  'data'=> 'transition=lp',
+                                  'displayText'=>'LP'
+                                ],
+                                [
+                                  'type'=> 'postback',
+                                  'label'=> 'チラシ',
+                                  'data'=> 'transition=paper',
+                                   'displayText'=>'チラシ'
+                                ],
+                                [
+                        'type'=> 'postback',
+                        'label'=> 'セミナー',
+                        'data'=> 'transition=paper',
+                         'displayText'=>'セミナー'
+                                  ],
+                                  [
+                        'type'=> 'postback',
+                        'label'=> '知人からの紹介',
+                        'data'=> 'transition=introduction',
+                         'displayText'=>'知人からの紹介'
+                                  ]
+                                ]]],  [
+                                    'type'=> 'template',
+                                    'altText'=> 'きっかけテンプレート',
+                                    'template'=> [
+                                      'type'=> 'buttons',
+                                      'text'=> '以下も選択できます',
+                                      'actions'=> [
+                                                [
+                                                  'type'=> 'postback',
+                                                  'label'=> '検索サイト',
+                                                  'data'=> 'transition=search',
+                                                  'displayText'=>'検索サイト'
+                                                ],
+                                                [
+                                                  'type'=> 'postback',
+                                                  'label'=> '公式ホームページ',
+                                                  'data'=> 'transition=HP',
+                                                   'displayText'=>'公式ホームページ'
+                                                ],
+                                                [
+                                        'type'=> 'postback',
+                                        'label'=> '本や雑誌・メディア',
+                                        'data'=> 'transition=media',
+                                         'displayText'=>'本や雑誌・メディア'
+                                                  ],
+                                                  [
+                                        'type'=> 'postback',
+                                        'label'=> 'その他',
+                                        'data'=> 'transition=other',
+                                         'displayText'=>'その他'
+                                                  ]
+                                                ]]],
+                                ]]
+                    );
+                }
+            }
             //ブロック時
             if ($event['type'] == 'unfollow') {
                 $client->replyMessage([
@@ -227,13 +227,10 @@ if ($event['type'] == 'follow') {
                         ]);
                 } elseif ($message['text'] == '完了' && $storeId==54 && $us['type']=='web') {
                     // $us['useId'];
-                    $store= Store::where('id',54)->first();
-                    $client->linkUser($message['text2'],$store->member_menu);
-                    $msg = new SendPushMessage($channelAccessToken, $channelSecret, $client, '登録','ありがとうございます！', $message['text2']);
+                    $store= Store::where('id', 54)->first();
+                    $client->linkUser($message['text2'], $store->member_menu);
+                    $msg = new SendPushMessage($channelAccessToken, $channelSecret, $client, '登録', 'ありがとうございます！', $message['text2']);
                     $msg->sendPushMessage();
-
-
-
                 } elseif ($message['text'] == '予約確認') {
                     $store = Store::where('id', $storeId)->first();
 
@@ -271,11 +268,10 @@ if ($event['type'] == 'follow') {
                 } elseif ($message['text'] == 'create Rich Menu') {
                     //__construct　は、newした時に実行されるので、これが正解？
 
-                    if($storeId ==54){
+                    if ($storeId ==54) {
                         $rmDetail = new getCommonsRm($channelAccessToken, $channelSecret, $client);
                         $res = $rmDetail->creater($storeId);
-                        
-                    }else{
+                    } else {
                         $rmDetail = new getRichMenu($channelAccessToken, $channelSecret, $client);
                         $res = $rmDetail->creater($storeId);
                     }
