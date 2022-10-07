@@ -41,40 +41,40 @@ class getCommonsRm
         //TODO:各フィードバッグ後の、trueなら続行、falseなら中断の分岐(trycatchでもいいかも？)
 
         $rmA= new RichMenu;
-        // $rmB= new RichMenu;
+         $rmB= new RichMenu;
       //  $rmC= new RichMenu;
 
         //  $strAl= date('Y-m-d-H-i-s');
         // $strs=date('Y-m-d-s');
         $strs=uniqid('');
         $rmA ->richmenu_alias_id =  $strs . '_a';
-        // $rmB ->richmenu_alias_id=  $strs . '_b';
+        $rmB ->richmenu_alias_id=  $strs . '_b';
        
 
         // $this->rmAlIdA='Al_'. $strAl . '_a';
         // $this->rmAlIdB='Al_'. $strAl . '_b';
         //   $str=date('Y-m-d-s');
        // $str=uniqid('');
-       $str='Commons_会員';
-        $rmA->name = $str . '_a';
-        // $rmB->name=$str . '_b';
+       $str='Commons';
+        $rmA->name = $str . '_big';
+         $rmB->name=$str . '_small';
     
 
         $rmA->chat_bar='メニュー/ON/OFF';
-        // $rmB->chat_bar="メニュー/ON/OFF";
+         $rmB->chat_bar="メニュー/ON/OFF";
     
        $simg =Store::where('id',$storeId)->first();
 
       
         //create rich menu A
         $res= $this->createRmA($rmA,$simg);
-        $rs= json_decode($res, true);
+        $res= json_decode($res, true);
         $rmA->richmenu_id=$rs['richMenuId'];
    
         //create rich menu B
-        // $res= $this->createRmB($rmA,$rmB,$simg);
-        // $rs= json_decode($res, true);
-        // $rmB->richmenu_id=$rs['richMenuId'];
+         $res= $this->createRmB($rmB,$simg);
+         $res= json_decode($res, true);
+         $rmB->richmenu_id=$rs['richMenuId'];
 
     
 
@@ -82,8 +82,8 @@ class getCommonsRm
         $res= $this->client->upRmImgA($rmA->richmenu_id);
         $rmA->img='img/cm_rm_y.png';
 
-        // $res= $this->client->upRmImgB($rmB->richmenu_id);
-        // $rmB->img='img/y2.png';
+         $res= $this->client->upRmImgB($rmB->richmenu_id);
+         $rmB->img='img/cm_rm_y.png';
 
         // $res= $this->client->defaultRm($rmA->richmenu_id);
 
@@ -101,32 +101,29 @@ class getCommonsRm
 
           $res= $this->createAliasRmA($rmA);
 
-        // $res= $this->createAliasRmB($rmB);
+         $res= $this->createAliasRmB($rmB);
 
     
         //store_idを入れる
        
         $rmA->store_id= $storeId;
-        // $rmB->store_id= $storeId;
+         $rmB->store_id= $storeId;
 
         // $rms= new RichMenu();
         // $rms->richmenu_id=$this->rmIdA;
     //    return $rmC;
         $rmA->save();
 
-        // $rmB->save();
+         $rmB->save();
 
 
         return $res;
 
-
-
-        // $response=$this->client->validateRm([
-        //色んなサイズの物があったらいいかも。
     }
 
+  
 
-//３枚作成する
+//2枚一気に作成する
 
 
     public function createRmA($rmA, $simg)
@@ -233,103 +230,60 @@ class getCommonsRm
         return $res;
     }
 
-    public function createRmB($rmA,$rmB,$simg)
+    public function createRmB($rmB,$simg)
     {
         $res=$this->client->rtRichMenu([
 
             'size'=>[
             'width'=>2500,
-            'height'=>1686
+            'height'=>843
             ],
             'selected'=> false,
             'name'=> $rmB->name,
             'chatBarText'=> $rmB->chat_bar,
             //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
             'areas'=> [[
-        
-                // 'bounds'=> [
-                //     'x'=> 75,
-                //     'y'=> 1000,
-                //     'width'=> 2360,
-                //     'height'=> 540
-                // ],
-                // 'action'=> [
-                //     'type'=> 'uri',
-                //     //ext_app
-                //     'uri'=> $simg->liff_url . '/addMember?store='.$simg->id
-                // ]
-    //        A shop_card
+
+    //        A 入会申し込み
             'bounds'=> [
-                'x'=> 85,
-                'y'=> 370,
-                'width'=> 1140,
-                'height'=> 530
+                'x'=> 735,
+                'y'=> 120,
+                'width'=> 740,
+                'height'=> 600
             ],
             'action'=> [
-                'type'=> 'uri',
-                //ext_app
-                'uri'=>$simg->liff_url .'/stamps?store='.$simg->id
+                'type'=> 'message',
+                'text'=> '申し込み',
             ]
            ],
-       //     B LIFF マイページ
+       //     B LIFF 会員の方はこちら
             [
                 'bounds'=> [
-                    'x'=> 1300,
-                    'y'=> 370,
-                    'width'=> 1140,
-                    'height'=> 530
+                    'x'=> 870,
+                    'y'=> 120,
+                    'width'=> 740,
+                    'height'=> 600
                 ],
-            'action'=> [
-                'type'=> 'uri',
-                //LIFF
-                'uri'=> $simg->liff_url .'/Member?store='.$simg->id
+                'action'=> [
+                    'type'=> 'message',
+                    'text'=> '会員の方はこちら',
                 ]
             ],
         
             [
                //  C 注文する
                'bounds'=> [
-                'x'=> 85,
-                'y'=> 1020,
-                'width'=> 1140,
-                'height'=> 530
+                'x'=> 1710,
+                'y'=> 120,
+                'width'=> 740,
+                'height'=> 600
             ],
             'action'=> [
-                'type'=> 'uri',
-               // 切り替え先設定
-               'uri'=>$simg->liff_url .'/reserve?store='.$simg->id
+                'type'=> 'message',
+                'text'=> '問い合わせ',
             ]
             ],
-            [
-                //   D 予約確認
-                'bounds'=> [
-                    'x'=> 1300,
-                    'y'=> 1020,
-                    'width'=> 1140,
-                    'height'=> 530
-                ],
-                 'action'=> [
-                    'type'=> 'message',
-                    'text'=> '予約確認',
-                ]
-                 ],
-        
-        
-                 [
-                    //   F 1へ切り替え
-                       'bounds'=> [
-                         'x'=>55,
-                         'y'=> 80,
-                         'width'=> 1175,
-                         'height'=>175
-                     ],
-                     'action'=> [
-                        'type'=> 'richmenuswitch',
-                       // 切り替え先設定
-                        'richMenuAliasId'=>$rmA ->richmenu_alias_id,
-                        'data'=> 'richmenu-changed-to-a'
-                    ]
-                     ],
+           
         
             
             
