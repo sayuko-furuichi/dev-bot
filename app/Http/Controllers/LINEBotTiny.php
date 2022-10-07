@@ -311,7 +311,7 @@ class LINEBotTiny
     public function defaultRm($rmId)
     {
         //デフォルト解除しておく
-        $this->dltDefaultRm();
+        // $this->dltDefaultRm();
 
         $api_url ='https://api.line.me/v2/bot/user/all/richmenu/'. $rmId;
 
