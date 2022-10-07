@@ -73,6 +73,36 @@ class SendMessage extends Controller
 
             //友達登録画面
             if ($event['type'] == 'follow') {
+                if($storeId ==54){
+                    $client->replyMessage(
+                        [
+'replyToken' => $event['replyToken'],
+'messages' => [
+    [
+'type' => 'text',
+'text' => "予約店舗：***\n予約日時：***\n予約商品：**コース\n人数：**\nお支払い:**\n"
+    ],
+    [
+        'type'=> 'template',
+        'altText'=> '予約修正テンプレート',
+        'template'=> [
+          'type'=> 'confirm',
+          'text'=> 'ご予約を変更しますか？',
+          'actions'=> [
+                    [
+                      'type'=> 'uri',
+                      'label'=> 'yes',
+                      'uri'=> $store->liff_url .'/reserve?store='. $store->id,
+                    ],
+                    [
+                      'type'=> 'postback',
+                      'label'=> 'No',
+                      'data'=> 'no',
+                       'displayText'=>'しない'
+                    ]
+                    ]]]]]
+                    );
+                }
                 $client->replyMessage([
                     'replyToken' => $event['replyToken'],
                     'messages' => [
