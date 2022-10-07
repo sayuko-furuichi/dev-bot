@@ -97,7 +97,7 @@ class getCommonsRm
         }
       
          $rmA->is_default=0;
-        // $rmB->is_default=0;
+         $rmB->is_default=0;
 
           $res= $this->createAliasRmA($rmA);
 
