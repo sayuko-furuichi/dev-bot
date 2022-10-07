@@ -68,12 +68,12 @@ class getCommonsRm
       
         //create rich menu A
         $res= $this->createRmA($rmA,$simg);
-        $res= json_decode($res, true);
+        $rs= json_decode($res, true);
         $rmA->richmenu_id=$rs['richMenuId'];
    
         //create rich menu B
          $res= $this->createRmB($rmB,$simg);
-         $res= json_decode($res, true);
+         $rs= json_decode($res, true);
          $rmB->richmenu_id=$rs['richMenuId'];
 
     
