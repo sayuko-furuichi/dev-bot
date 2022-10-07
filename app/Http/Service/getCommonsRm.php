@@ -85,7 +85,8 @@ class getCommonsRm
          $res= $this->client->upRmImgB($rmB->richmenu_id);
          $rmB->img='img/cm_rm_n.png';
 
-        // $res= $this->client->defaultRm($rmA->richmenu_id);
+         //非会員メニューをデフォルトに設定
+         $res= $this->client->defaultRm($rmB->richmenu_id);
 
          
         //前のデフォルトをDBで更新
@@ -97,7 +98,7 @@ class getCommonsRm
         }
       
          $rmA->is_default=0;
-         $rmB->is_default=0;
+         $rmB->is_default=1;
 
           $res= $this->createAliasRmA($rmA);
 
