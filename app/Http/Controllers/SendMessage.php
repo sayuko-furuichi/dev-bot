@@ -80,7 +80,7 @@ if ($event['type'] == 'follow') {
 'messages' => [
     [
 'type' => 'text',
-'text' => "予約店舗：***\n予約日時：***\n予約商品：**コース\n人数：**\nお支払い:**\n"
+'text' => "友達登録ありがとうございます！"
     ],
     [
         'type'=> 'template',
