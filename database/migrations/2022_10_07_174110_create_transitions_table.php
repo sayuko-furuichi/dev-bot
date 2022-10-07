@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('transitions', function (Blueprint $table) {
             $table->id();
+            $table->string('lineuser_id');
+            $table->string('transition');
             $table->timestamps();
         });
     }
