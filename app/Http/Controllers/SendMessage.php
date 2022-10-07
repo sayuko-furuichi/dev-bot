@@ -71,7 +71,7 @@ if ($event['type'] == 'postback') {
     } elseif (preg_match('/transition=/', $pt['data'])) {
            $trans =new Transition;
            $trans->lineuser_id=$us['userId'];
-           $trans->trantion=str_replace('transition=','',$pt['data']);
+           $trans->transition=str_replace('transition=','',$pt['data']);
            $trans->save();
 
         $client->replyMessage([
