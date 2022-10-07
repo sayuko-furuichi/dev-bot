@@ -72,10 +72,10 @@ class SendMessage extends Controller
             //eventtypeがmessageで、messagetypeがtextの時起動
 
             //友達登録画面
-            if ($event['type'] == 'follow') {
-                if($storeId ==54){
-                    $client->replyMessage(
-                        [
+if ($event['type'] == 'follow') {
+    if ($storeId ==54) {
+        $client->replyMessage(
+            [
 'replyToken' => $event['replyToken'],
 'messages' => [
     [
@@ -83,41 +83,40 @@ class SendMessage extends Controller
 'text' => "予約店舗：***\n予約日時：***\n予約商品：**コース\n人数：**\nお支払い:**\n"
     ],
     [
-        'type'=> 'buttons',
-        'altText'=> '予約修正テンプレート',
+        'type'=> 'templete',
+        'altText'=> 'きっかけテンプレート',
         'template'=> [
-          'type'=> 'confirm',
-          'text'=> 'ご予約を変更しますか？',
+          'type'=> 'buttons',
+          'text'=> '当アカウントを知ったきっかけを教えてください',
           'actions'=> [
                     [
-                      'type'=> 'uri',
-                      'label'=> 'yes',
-                      'uri'=> 'https://developers.line.biz/ja/reference/messaging-api/#template-messages'
+                      'type'=> 'postback',
+                      'label'=> 'LP',
+                      'data'=> 'transition=lp',
+                      'displayText'=>'LP'
                     ],
                     [
                       'type'=> 'postback',
-                      'label'=> 'No',
-                      'data'=> 'no',
-                       'displayText'=>'しない'
-                    ]
+                      'label'=> 'チラシ',
+                      'data'=> 'transition=paper',
+                       'displayText'=>'チラシ'
+                    ],
+                    [
+            'type'=> 'postback',
+            'label'=> 'セミナー',
+            'data'=> 'transition=paper',
+             'displayText'=>'セミナー'
+                      ],
+                      [
+            'type'=> 'postback',
+            'label'=> '知人からの紹介',
+            'data'=> 'transition=introduction',
+             'displayText'=>'知人からの紹介'
+                      ]
                     ]]]]]
-                    );
-                }
-                $client->replyMessage([
-                    'replyToken' => $event['replyToken'],
-                    'messages' => [
-                        [
-'type' => 'text',
-'text' => 'This is ' . $storeId . '号店'
-                        ],
-                        [
-'type' => 'text',
-'text' =>  'あなたのユーザID：'.$request->store
-                        ]
-
-                    ]
-                ]);
-            }
+        );
+    }
+}
             //ブロック時
             if ($event['type'] == 'unfollow') {
                 $client->replyMessage([
