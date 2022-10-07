@@ -35,40 +35,52 @@ class SendMessage extends Controller
     public function send($channelAccessToken, $channelSecret, $storeId, $request)
     {
         $client = new LINEBotTiny($channelAccessToken, $channelSecret);
-        foreach ($client->parseEvents() as $event) {
-            $us = $event['source'];
+foreach ($client->parseEvents() as $event) {
+    $us = $event['source'];
 
 
-            if ($event['type'] == 'postback') {
-                $pt=$event['postback'];
-                $ptD = $pt['data'];
+    if ($event['type'] == 'postback') {
+        $pt=$event['postback'];
+        $ptD = $pt['data'];
 
-                //会員登録するユーザ
-                if (preg_match('/name=/', $pt['data'])) {
-                    $member = new getMember($channelAccessToken, $channelSecret, $client);
-                    $member->createMember($event, $pt, $storeId);
+        //会員登録するユーザ
+        if (preg_match('/name=/', $pt['data'])) {
+            $member = new getMember($channelAccessToken, $channelSecret, $client);
+            $member->createMember($event, $pt, $storeId);
 
-                //退会するユーザ
-                } elseif (preg_match('/removeMember&id=/', $pt['data'])) {
-                    $member = new getMember($channelAccessToken, $channelSecret, $client);
-                    $member->remove($event, $pt, $storeId);
-                } elseif (preg_match('/changed=/', $pt['data'])) {
-                    $mm = new getMember($channelAccessToken, $channelSecret, $client);
-                    $uid=$us['userId'];
-                    $res=$mm->changeMenu($uid, $storeId);
-                    if ($res !=null || $res !='') {
-                        $client->replyMessage([
-                            'replyToken' => $event['replyToken'],
-                            'messages' => [
-                                [
+        //退会するユーザ
+        } elseif (preg_match('/removeMember&id=/', $pt['data'])) {
+            $member = new getMember($channelAccessToken, $channelSecret, $client);
+            $member->remove($event, $pt, $storeId);
+        } elseif (preg_match('/changed=/', $pt['data'])) {
+            $mm = new getMember($channelAccessToken, $channelSecret, $client);
+            $uid=$us['userId'];
+            $res=$mm->changeMenu($uid, $storeId);
+            if ($res !=null || $res !='') {
+                $client->replyMessage([
+                    'replyToken' => $event['replyToken'],
+                    'messages' => [
+                        [
         'type' => 'text',
         'text' => "会員登録後にご利用頂けます"
-                                ],
-                            ]
-                        ]);
-                    }
-                }
+                        ],
+                    ]
+                ]);
             }
+        }
+    } elseif (preg_match('/transition=/', $pt['data'])) {
+        //   $trans =new Transition;
+        $client->replyMessage([
+            'replyToken' => $event['replyToken'],
+            'messages' => [
+                [
+'type' => 'text',
+'text' => "会員登録後にご利用頂けます"
+                ],
+            ]
+        ]);
+    }
+
             //eventtypeがmessageで、messagetypeがtextの時起動
 
             //友達登録画面
