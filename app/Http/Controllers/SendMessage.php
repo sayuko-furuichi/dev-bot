@@ -92,7 +92,7 @@ class SendMessage extends Controller
                     [
                       'type'=> 'uri',
                       'label'=> 'yes',
-                      'uri'=> $store->liff_url .'/reserve?store='. $store->id,
+                      'uri'=> 'https://developers.line.biz/ja/reference/messaging-api/#template-messages'
                     ],
                     [
                       'type'=> 'postback',
