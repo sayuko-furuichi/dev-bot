@@ -145,77 +145,87 @@ class getCommonsRm
     //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
     'areas'=> [[
 
-    //A shop_card
+    //A mypage
     'bounds'=> [
-        'x'=> 85,
-        'y'=> 370,
-        'width'=> 1140,
-        'height'=> 530
+        'x'=> 30,
+        'y'=> 210,
+        'width'=> 750,
+        'height'=> 600
     ],
     'action'=> [
-        'type'=> 'uri',
-        //ext_app
-        'uri'=> $simg->liff_url .'/stamps?store='.$simg->id
+        'type'=> 'message',
+        'text'=> 'マイページ',
     ]
     ],
-    // B LIFF マイページ
+    // B 経営相談を投げる
     [
         'bounds'=> [
-            'x'=> 1300,
-            'y'=> 370,
-            'width'=> 1140,
-            'height'=> 530
+            'x'=> 870,
+            'y'=> 210,
+            'width'=> 750,
+            'height'=> 600
         ],
-    'action'=> [
-        'type'=> 'uri',
-        //LIFF
-        'uri'=> $simg->liff_url . '/Member?store='.$simg->id
+        'action'=> [
+            'type'=> 'message',
+            'text'=> '経営相談を投げる',
         ]
     ],
 
     [
-       //  C 注文する
+       //  C プロジェクトにjoin
        'bounds'=> [
-        'x'=> 85,
-        'y'=> 1020,
-        'width'=> 1140,
-        'height'=> 530
+        'x'=> 1720,
+        'y'=> 210,
+        'width'=> 750,
+        'height'=> 600
     ],
     'action'=> [
-        'type'=> 'uri',
-        'uri'=> $simg->liff_url .'/reserve?store='. $simg->id,
+        'type'=> 'message',
+        'text'=> 'プロジェクトにjoin',
     ]
     ],
     [
-        //   D 予約確認
+        //   D 議論する場に移動
         'bounds'=> [
-            'x'=> 1300,
-            'y'=> 1020,
-            'width'=> 1140,
-            'height'=> 530
+            'x'=> 30,
+            'y'=> 910,
+            'width'=> 750,
+                    'height'=> 600
         ],
         //postbackで店舗ID投げる
          'action'=> [
             'type'=> 'message',
-            'text'=> '予約確認',
+            'text'=> '議論する場に移動',
         ]
          ],
-
-        //  [
-        //     //   E 2へ切り替え
-        //        'bounds'=> [
-        //          'x'=>1305,
-        //          'y'=> 80,
-        //          'width'=> 1175,
-        //          'height'=>175
-        //      ],
-        //      'action'=> [
-        //         'type'=> 'richmenuswitch',
-        //        // 切り替え先設定
-        //         'richMenuAliasId'=>$rmB ->richmenu_alias_id,
-        //         'data'=> 'changed=member_menu'
-        //     ]
-        //      ],
+         [
+            //   E オフラインを購入
+            'bounds'=> [
+                'x'=> 870,
+                'y'=> 910,
+                'width'=> 750,
+                'height'=> 600
+            ],
+            //postbackで店舗ID投げる
+             'action'=> [
+                'type'=> 'message',
+                'text'=> 'オフラインを購入',
+            ]
+             ],
+             [
+                //   F 閲覧する
+                'bounds'=> [
+                    'x'=> 1720,
+                    'y'=> 910,
+                    'width'=> 750,
+                    'height'=> 600
+                ],
+                //postbackで店舗ID投げる
+                 'action'=> [
+                    'type'=> 'message',
+                    'text'=> '閲覧する',
+                ]
+                 ],
 
     ],
     ]);
