@@ -83,7 +83,7 @@ class getCommonsRm
         $rmA->img='img/cm_rm_y.png';
 
          $res= $this->client->upRmImgB($rmB->richmenu_id);
-         $rmB->img='img/cm_rm_y.png';
+         $rmB->img='img/cm_rm_n.png';
 
         // $res= $this->client->defaultRm($rmA->richmenu_id);
 
