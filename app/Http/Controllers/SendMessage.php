@@ -74,6 +74,7 @@ class SendMessage extends Controller
             //友達登録画面
 if ($event['type'] == 'follow') {
     if ($storeId ==54) {
+        $imgUrl = secure_asset('img/Commands_logo.png');
         $client->replyMessage(
             [
 'replyToken' => $event['replyToken'],
@@ -88,6 +89,7 @@ if ($event['type'] == 'follow') {
         'template'=> [
           'type'=> 'buttons',
           'text'=> '当アカウントを知ったきっかけを教えてください',
+          'thumbnailImageUrl'=> $imgUrl,
           'actions'=> [
                     [
                       'type'=> 'postback',
