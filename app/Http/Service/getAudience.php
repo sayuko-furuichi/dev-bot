@@ -48,7 +48,7 @@ class getAudience
 $targets=array();
     //array_mergeだと上書きされてしまう
         foreach ($aud as $au) {
-     for ($i=0; $i < count($aud); $i++) { 
+     for ($i=0; $i < count($aud)-1; $i++) { 
                 # code...
             
     // if (!isset($targets)) {
