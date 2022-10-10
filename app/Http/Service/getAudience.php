@@ -147,7 +147,7 @@ foreach ($aud as $au) {
          }
   
     }
-    return $response;
+    return $http_response_header[0];
 }
 // return $true_audience;
 
