@@ -40,7 +40,7 @@ class getTransition
      function insertData($userId,$data,$event){
         $oldTrans=$this->search($userId);
 
-        if(isset($oldTrans->id)){
+        if($oldTrans->id !=null){
             $this->client->replyMessage([
                 'replyToken' => $event['replyToken'],
                 'messages' => [
