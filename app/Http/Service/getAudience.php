@@ -45,6 +45,11 @@ class getAudience
         //全件取得
         $aud=UserProf::all(['line_user_id']);
 
+        $res= $this->getuserProf($aud);
+        $json= json_encode($res,true);
+        return $json;
+
+
 $targets=array();
     //array_mergeだと上書きされてしまう
         foreach ($aud as $au) {
@@ -110,12 +115,37 @@ $targets=array();
     }
 
     
-function getuserProf(){
+function getuserProf($aud)
+{
+    foreach ($aud as $au) {
+for ($i=0; $i < count($aud)-1; $i++) { 
+    # code...
+
+
         //UserIdが有効か調べる
+        $header = array(
+            'Authorization: Bearer ' . $this->channelAccessToken,
+        );
 
+        $context = stream_context_create([
+            'http' => [
+                'ignore_errors' => true,
+                'method' => 'POST',
+                'header' => implode("\r\n", $header),
+                'content' => json_encode($rmDetail),
+            ],
+        ]);
 
+        $response = file_get_contents('https://api.line.me/v2/bot/profile/'.$au->lineuser_id, false, $context);
+        if (strpos($http_response_header[0], '200') === false) {
+            next();
+        }else{
+            $true_audience[$i] = ['id'=>$au->lineuser_id];
+        }
+    }
 }
-
+return $true_audience;
+}
 
 
 }
