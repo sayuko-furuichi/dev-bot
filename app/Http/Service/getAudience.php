@@ -61,17 +61,17 @@ $targets=array();
     }
         }
         
-        $res= json_encode($targets,true);
-        return $res;
+        // $res= json_encode($targets,true);
+        // return $res;
 
         // $auds =array('audiences'=>$targets);
 
         //カラムを指定してやらないともってこれない
-        $res= $this->client->crtAud([
+        $res= $this->client->crtAud(function(){[
              'description'=>'liff_users',
                'audiences'=>[
                     $targets
-         ]]);
+         ]];});
 
         if ($res!='request failed') {
             $ress = json_decode($res, true);
