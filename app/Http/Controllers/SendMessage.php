@@ -90,7 +90,12 @@ if ($event['type'] == 'postback') {
 
             //友達登録画面
             if ($event['type'] == 'follow') {
+
                 if ($storeId ==54) {
+
+                    $member = new getMember($channelAccessToken, $channelSecret, $client);
+                    $res=$member->index($us['userId'],$storeId);
+
                     // $imgUrl = secure_asset('img/Commands_logo.png');
                     $client->replyMessage(
                         [
@@ -98,7 +103,7 @@ if ($event['type'] == 'postback') {
 'messages' => [
     [
 'type' => 'text',
-'text' => "友達登録ありがとうございます！"
+'text' => "友達登録ありがとうございます！\n".$res."メニューをご利用いただけます"
     ],
     [
         'type'=> 'template',
