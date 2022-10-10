@@ -63,7 +63,7 @@ class getTransition
                 'messages' => [
                     [
         'type' => 'text',
-        'text' => '入力済みです'
+        'text' => '入力済みです'.$oldTrans
                     ],
                 ]
             ]);
