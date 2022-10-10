@@ -214,7 +214,7 @@ if ($event['type'] == 'postback') {
                     //ユーザID取得のために、event配列からsoureを代入
                     //　$us['userId']　でユーザIDを持ってこれる。
                         header("Location:https://dev-ext-app.herokuapp.com/public/addMember?user=".$us['userId']);
-                        exit();
+                      
 
                     $client->replyMessage([
                             'replyToken' => $event['replyToken'],
