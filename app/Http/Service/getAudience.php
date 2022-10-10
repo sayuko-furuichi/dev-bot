@@ -137,10 +137,12 @@ foreach ($aud as $au) {
         ]);
 
         $response = file_get_contents('https://api.line.me/v2/bot/profile/'.$au->lineuser_id, false, $context);
-        if (strpos($http_response_header[0], '200') != false) {
+        if (strpos($http_response_header[0], '200') === false) {
             $true_audience[$i] = ['id'=>$au->lineuser_id];
             $responce='bad';
-        }
+        // }else{
+           
+         }
   
     }
     return $response;
