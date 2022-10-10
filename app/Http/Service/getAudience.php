@@ -70,7 +70,7 @@ $targets=array();
         $res= $this->client->crtAud([
              'description'=>'liff_users',
                'audiences'=>[
-                    $targets[0]
+                    $targets
          ]]);
 
         if ($res!='request failed') {
