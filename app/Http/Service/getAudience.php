@@ -130,9 +130,9 @@ for ($i=0; $i < count($aud)-1; $i++) {
         $context = stream_context_create([
             'http' => [
                 'ignore_errors' => true,
-                'method' => 'POST',
+                'method' => 'GET',
                 'header' => implode("\r\n", $header),
-                'content' => json_encode($rmDetail),
+                // 'content' => json_encode($rmDetail),
             ],
         ]);
 
