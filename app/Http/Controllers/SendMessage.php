@@ -85,7 +85,7 @@ if ($event['type'] == 'postback') {
                 //すでに入力していた場合は受け付けない
                 if ($storeId ==54) {
                 $tra = new getTransition($channelAccessToken, $channelSecret, $client);
-                $tra->sendTemplate($event,$us['userId']);
+                $tra->sendTemplate($event,$us['userId'],$storeId);
 
                 }
             }

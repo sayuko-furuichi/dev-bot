@@ -62,7 +62,7 @@ class getTransition
 
        }
         
-     function sendTemplate($event,$userId){
+     function sendTemplate($event,$userId,$storeId){
 
         $member = new getMember($channelAccessToken, $channelSecret, $client);
         $res=$member->index($userId,$storeId);
