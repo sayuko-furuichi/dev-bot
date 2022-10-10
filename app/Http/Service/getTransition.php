@@ -41,7 +41,7 @@ class getTransition
         $oldTrans=$this->search($userId);
 
 
-        if(!isset($oldTrans->id)){
+        if(!isset($oldTrans)){
           
             $trans =new Transition;
             $trans->lineuser_id=$userId;
