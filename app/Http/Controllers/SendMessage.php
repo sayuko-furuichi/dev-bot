@@ -73,6 +73,7 @@ if ($event['type'] == 'postback') {
         //経路の入力を受け付ける
     } elseif (preg_match('/transition=/', $pt['data'])) {
          $tra = new getTransition($channelAccessToken, $channelSecret, $client);
+
          $tra->insertData($us['userId'],$pt['data'],$event);
        
     }
@@ -82,87 +83,10 @@ if ($event['type'] == 'postback') {
             //友達登録画面
             if ($event['type'] == 'follow') {
                 //すでに入力していた場合は受け付けない
-
-
                 if ($storeId ==54) {
-                    $member = new getMember($channelAccessToken, $channelSecret, $client);
-                    $res=$member->index($us['userId'],$storeId);
+                $tra = new getTransition($channelAccessToken, $channelSecret, $client);
+                $tra->sendTemplate($event);
 
-                    // $imgUrl = secure_asset('img/Commands_logo.png');
-                    $client->replyMessage(
-                        [
-'replyToken' => $event['replyToken'],
-'messages' => [
-    [
-'type' => 'text',
-'text' => "友達登録ありがとうございます！\n".$res."メニューをご利用いただけます"
-    ],
-    [
-        'type'=> 'template',
-        'altText'=> 'きっかけテンプレート',
-        'template'=> [
-          'type'=> 'buttons',
-          'text'=> '当アカウントを知ったきっかけを教えてください',
-        //   'thumbnailImageUrl'=> $imgUrl,
-          'actions'=> [
-                                [
-                                  'type'=> 'postback',
-                                  'label'=> 'LP',
-                                  'data'=> 'transition=lp',
-                                  'displayText'=>'LP'
-                                ],
-                                [
-                                  'type'=> 'postback',
-                                  'label'=> 'チラシ',
-                                  'data'=> 'transition=paper',
-                                   'displayText'=>'チラシ'
-                                ],
-                                [
-                        'type'=> 'postback',
-                        'label'=> 'セミナー',
-                        'data'=> 'transition=paper',
-                         'displayText'=>'セミナー'
-                                  ],
-                                  [
-                        'type'=> 'postback',
-                        'label'=> '知人からの紹介',
-                        'data'=> 'transition=introduction',
-                         'displayText'=>'知人からの紹介'
-                                  ]
-                                ]]],  [
-                                    'type'=> 'template',
-                                    'altText'=> 'きっかけテンプレート',
-                                    'template'=> [
-                                      'type'=> 'buttons',
-                                      'text'=> '　　　　　',
-                                      'actions'=> [
-                                                [
-                                                  'type'=> 'postback',
-                                                  'label'=> '検索サイト',
-                                                  'data'=> 'transition=search',
-                                                  'displayText'=>'検索サイト'
-                                                ],
-                                                [
-                                                  'type'=> 'postback',
-                                                  'label'=> '公式ホームページ',
-                                                  'data'=> 'transition=HP',
-                                                   'displayText'=>'公式ホームページ'
-                                                ],
-                                                [
-                                        'type'=> 'postback',
-                                        'label'=> '本や雑誌・メディア',
-                                        'data'=> 'transition=media',
-                                         'displayText'=>'本や雑誌・メディア'
-                                                  ],
-                                                  [
-                                        'type'=> 'postback',
-                                        'label'=> 'その他',
-                                        'data'=> 'transition=other',
-                                         'displayText'=>'その他'
-                                                  ]
-                                                ]]],
-                                ]]
-                    );
                 }
             }
             //ブロック時
