@@ -61,6 +61,9 @@ $targets=array();
     }
         }
         
+        $res= json_encode($targets,true);
+        return $res;
+
         // $auds =array('audiences'=>$targets);
 
         //カラムを指定してやらないともってこれない
