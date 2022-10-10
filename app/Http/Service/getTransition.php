@@ -39,7 +39,7 @@ class getTransition
      function insertData($userId,$data,$event){
 
         $trans =new Transition;
-        $trans->lineuser_id=$user;
+        $trans->lineuser_id=$userId;
         $trans->transition=str_replace('transition=','',$data);
         $trans->save();
 
