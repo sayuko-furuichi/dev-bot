@@ -39,6 +39,7 @@ class getTransition
 
      function insertData($userId,$data,$event){
         $oldTrans=$this->search($userId);
+        $re= json_decode($oldTrans,true);
 
         if(empty($oldTrans)){
  
@@ -63,7 +64,7 @@ class getTransition
                 'messages' => [
                     [
         'type' => 'text',
-        'text' => '入力済みです'.$oldTrans
+        'text' => '入力済みです'.$re
                     ],
                 ]
             ]);
