@@ -39,7 +39,7 @@ class getTransition
 
      function insertData($userId,$data,$event){
         $oldTrans=$this->search($userId);
-        $re= json_decode($oldTrans,true);
+        $re= json_encode($oldTrans,true);
 
         if(empty($oldTrans)){
  
