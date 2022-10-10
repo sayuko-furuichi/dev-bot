@@ -50,26 +50,26 @@ class getAudience
         return $res;
 
 
-$targets=array();
-    //array_mergeだと上書きされてしまう
+        $targets=array();
+        //array_mergeだと上書きされてしまう
         foreach ($aud as $au) {
-     for ($i=0; $i < count($aud)-1; $i++) { 
+            for ($i=0; $i < count($aud)-1; $i++) {
                 # code...
-            
-    // if (!isset($targets)) {
+
+                // if (!isset($targets)) {
     //     $targets=[];
-    // }
-    //textでいれてみたらどうかな？
+                // }
+                //textでいれてみたらどうかな？
 
-    // $ar = ['id'=> $au->line_user_id];
+                // $ar = ['id'=> $au->line_user_id];
 
-    $ar = ['id'=> $au->line_user_id];
-  //  $targets[$i] = array_push($targets, $ar);
-  $targets[$i] =$ar;
-    }
+                $ar = ['id'=> $au->line_user_id];
+                //  $targets[$i] = array_push($targets, $ar);
+                $targets[$i] =$ar;
+            }
         }
-        
-         $json= json_encode($targets,true);
+
+        $json= json_encode($targets, true);
         //  return count($targets);
 
         // $auds =array('audiences'=>$targets);
@@ -80,7 +80,7 @@ $targets=array();
                'audiences'=>[
                     $json
          ]]);
-         return $res;
+        return $res;
 
         if ($res!='request failed') {
             $ress = json_decode($res, true);
@@ -114,45 +114,35 @@ $targets=array();
         return $gp;
     }
 
-    
-function getuserProf($aud)
+
+public function getuserProf($aud)
 {
-foreach ($aud as $au) {
-    // for ($i=0; $i < count($aud)-1; $i++) {
-        # code...
+    foreach ($aud as $au) {
+        for ($i=0; $i < count($aud)-1; $i++) {
+            # code...
 
 
-        //UserIdが有効か調べる
-        $header = array(
-            'Authorization: Bearer ' . $this->channelAccessToken,
-        );
+            //UserIdが有効か調べる
+            $header = array(
+                'Authorization: Bearer ' . $this->channelAccessToken,
+            );
 
-        $context = stream_context_create([
-            'http' => [
-                'ignore_errors' => true,
-                'method' => 'GET',
-                'header' => implode("\r\n", $header),
-                // 'content' => json_encode($rmDetail),
-            ],
-        ]);
+            $context = stream_context_create([
+                'http' => [
+                    'ignore_errors' => true,
+                    'method' => 'GET',
+                    'header' => implode("\r\n", $header),
+                    // 'content' => json_encode($rmDetail),
+                ],
+            ]);
 
-        $response = file_get_contents('https://api.line.me/v2/bot/profile/'.$au->lineuser_id, false, $context);
-        if (strpos($http_response_header[0], '200') === false) {
-            
-            $responce='bad';
-        // }else{
-           
-         }else{
-            $true_audience[$i] = ['id'=>$au->lineuser_id];
-         }
-  
+            $response = file_get_contents('https://api.line.me/v2/bot/profile/'.$au->lineuser_id, false, $context);
+            if (strpos($http_response_header[0], '200') !== false) {
+                $true_audience[$i] = ['id'=>$au->lineuser_id];
+                // }else{
+            }
+        }
     }
-    return $http_response_header[0];
+    return $true_audience;
 }
-// return $true_audience;
-
-
-// }
-
-
 }
