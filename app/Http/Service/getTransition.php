@@ -40,7 +40,7 @@ class getTransition
      function insertData($userId,$data,$event){
         $oldTrans=$this->search($userId);
 
-        if(!empty($oldTrans)){
+        if(count($oldTrans) > 0){
  
             $trans =new Transition;
             $trans->lineuser_id=$userId;
