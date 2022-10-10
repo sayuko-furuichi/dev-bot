@@ -56,7 +56,8 @@ $targets=array();
     // }
     $ar = ['id'=> $au->line_user_id];
 
-    $targets = array_push($targets, $ar);
+  //  $targets[$i] = array_push($targets, $ar);
+  $targets[$i] =$ar;
     }
         }
         
