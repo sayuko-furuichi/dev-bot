@@ -76,7 +76,7 @@ class getTransition
       
     
        function search($userId){
-        $trans = Transition::where('lineuser_id',$userId);
+        $trans = Transition::where('lineuser_id',$userId)->first();
         return $trans;
 
        }
