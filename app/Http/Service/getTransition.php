@@ -64,7 +64,7 @@ class getTransition
         
      function sendTemplate($event,$userId,$storeId){
 
-        $member = new getMember($channelAccessToken, $channelSecret, $client);
+        $member = new getMember($this->channelAccessToken, $this->channelSecret, $this->client);
         $res=$member->index($userId,$storeId);
 
         // $imgUrl = secure_asset('img/Commands_logo.png');
