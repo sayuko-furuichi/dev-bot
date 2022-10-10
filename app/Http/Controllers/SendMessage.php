@@ -213,7 +213,7 @@ if ($event['type'] == 'postback') {
                 } elseif ($message['text'] == '申し込み' && $storeId==54) {
                     //ユーザID取得のために、event配列からsoureを代入
                     //　$us['userId']　でユーザIDを持ってこれる。
-                        header("Location:https://dev-ext-app.herokuapp.com/public/addMember?user=".$us['userId']);
+                        // header("Location:https://dev-ext-app.herokuapp.com/public/addMember?user=".$us['userId']);
                       
 
                     $client->replyMessage([
@@ -232,10 +232,14 @@ if ($event['type'] == 'postback') {
                         ]);
                 } elseif ($message['text'] == '完了' && $storeId==54 && $us['type']=='web') {
                     // $us['useId'];
+                    $member = new getMember($channelAccessToken, $channelSecret, $client);
+                    $member->createCMember($us['userId'],$storeId);
                     $store= Store::where('id', 54)->first();
                     $client->linkUser($message['text2'], $store->member_menu);
                     $msg = new SendPushMessage($channelAccessToken, $channelSecret, $client, '登録', 'ありがとうございます！', $message['text2']);
                     $msg->sendPushMessage();
+
+
                 } elseif ($message['text'] == '予約確認') {
                     $store = Store::where('id', $storeId)->first();
 

@@ -134,6 +134,17 @@ if (!isset($mem)) {
 
     }
 
+    function createCMember($user,$storeId){
+        $mem = new Member;
+
+        $mem->line_user_id=$user;
+        $mem->name = '';
+        $mem->attribute = 1;
+        $mem->store_id=$storeId;
+        $mem->save();
+    }
+
+
      function createMember($event,$pt,$storeId){
 
         $name=  str_replace('name=','',$pt['data']);
