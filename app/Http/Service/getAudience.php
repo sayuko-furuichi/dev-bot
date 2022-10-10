@@ -45,14 +45,19 @@ class getAudience
         //全件取得
         $aud=UserProf::all(['line_user_id']);
 
+$targets=array();
     //array_mergeだと上書きされてしまう
         foreach ($aud as $au) {
-            if(!isset($targets)){
-                $targets=[];
-            }
-            $ar = ['id'=> $au->line_user_id];
-           
-            $targets = array_push($targets,$ar);
+     for ($i=0; $i < count($aud); $i++) { 
+                # code...
+            
+    // if (!isset($targets)) {
+    //     $targets=[];
+    // }
+    $ar = ['id'=> $au->line_user_id];
+
+    $targets = array_push($targets, $ar);
+    }
         }
         
         // $auds =array('audiences'=>$targets);
