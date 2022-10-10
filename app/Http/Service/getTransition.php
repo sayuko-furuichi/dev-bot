@@ -40,21 +40,8 @@ class getTransition
      function insertData($userId,$data,$event){
         $oldTrans=$this->search($userId);
 
-        if(!is_null($oldTrans->id)){
-            $this->client->replyMessage([
-                'replyToken' => $event['replyToken'],
-                'messages' => [
-                    [
-        'type' => 'text',
-        'text' => '入力済みです'.$re
-                    ],
-                ]
-            ]);
-
-            
-    
-        }else{
-
+        if(is_null($oldTrans->id)){
+          
             $trans =new Transition;
             $trans->lineuser_id=$userId;
             $trans->transition=str_replace('transition=','',$data);
@@ -69,6 +56,20 @@ class getTransition
                     ],
                 ]
             ]);
+    
+        }else{
+
+            $this->client->replyMessage([
+                'replyToken' => $event['replyToken'],
+                'messages' => [
+                    [
+        'type' => 'text',
+        'text' => '入力済みです'.$re
+                    ],
+                ]
+            ]);
+
+            
         }
         }
       
