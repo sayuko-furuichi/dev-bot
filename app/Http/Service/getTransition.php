@@ -39,9 +39,8 @@ class getTransition
 
      function insertData($userId,$data,$event){
         $oldTrans=$this->search($userId);
-        $re= json_encode($oldTrans,true);
 
-        if(empty($oldTrans)){
+        if(!empty($oldTrans)){
  
             $trans =new Transition;
             $trans->lineuser_id=$userId;
