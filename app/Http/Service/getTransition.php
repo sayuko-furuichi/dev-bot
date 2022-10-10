@@ -68,7 +68,7 @@ class getTransition
         $res=$member->index($us['userId'],$storeId);
 
         // $imgUrl = secure_asset('img/Commands_logo.png');
-        $client->replyMessage(
+        $this->client->replyMessage(
             [
 'replyToken' => $event['replyToken'],
 'messages' => [
