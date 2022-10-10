@@ -19,13 +19,14 @@ use  App\Http\Service\SendPushMessage;
 use  App\Http\Service\getMember;
 use  App\Http\Service\getAudience;
 use App\Http\Service\getCommonsRm;
+use App\Http\Service\getTransition;
 
 
 
 //あとで消す
 use App\Models\RichMenu;
 use App\Models\Store;
-use App\Models\Transition;
+
 
 class SendMessage extends Controller
 {
@@ -68,21 +69,12 @@ if ($event['type'] == 'postback') {
                 ]
             ]);
         }
-    } elseif (preg_match('/transition=/', $pt['data'])) {
-           $trans =new Transition;
-           $trans->lineuser_id=$us['userId'];
-           $trans->transition=str_replace('transition=','',$pt['data']);
-           $trans->save();
 
-        $client->replyMessage([
-            'replyToken' => $event['replyToken'],
-            'messages' => [
-                [
-    'type' => 'text',
-    'text' => "ありがとうございました！"
-                ],
-            ]
-        ]);
+        //経路の入力を受け付ける
+    } elseif (preg_match('/transition=/', $pt['data'])) {
+         $tra = new getTransition($channelAccessToken, $channelSecret, $client);
+         $tra->insertData($us['data'],$pt['data']);
+       
     }
 }
 
@@ -91,8 +83,9 @@ if ($event['type'] == 'postback') {
             //友達登録画面
             if ($event['type'] == 'follow') {
                 //すでに入力していた場合は受け付けない
-                if ($storeId ==54) {
 
+
+                if ($storeId ==54) {
                     $member = new getMember($channelAccessToken, $channelSecret, $client);
                     $res=$member->index($us['userId'],$storeId);
 
