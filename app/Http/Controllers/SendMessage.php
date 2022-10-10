@@ -91,20 +91,8 @@ if ($event['type'] == 'postback') {
             }
             //ブロック時
             if ($event['type'] == 'unfollow') {
-                $client->replyMessage([
-                    'replyToken' => $event['replyToken'],
-                    'messages' => [
-                        [
-'type' => 'text',
-'text' => 'This is ' . $storeId . '号店'
-                        ],
-                        [
-'type' => 'text',
-'text' =>  'あなたのユーザID：'.$us['userId']
-                        ]
-
-                    ]
-                ]);
+                
+                //TODO:ブロック時の記録
             }
 
             if ($event['type'] == 'message') {
