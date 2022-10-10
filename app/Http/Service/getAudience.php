@@ -62,7 +62,7 @@ $targets=array();
         }
         
         // $res= json_encode($targets,true);
-        // return $res;
+         return count($targets);
 
         // $auds =array('audiences'=>$targets);
 
