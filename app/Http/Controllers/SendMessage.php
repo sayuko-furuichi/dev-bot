@@ -213,8 +213,7 @@ if ($event['type'] == 'postback') {
                 } elseif ($message['text'] == '申し込み' && $storeId==54) {
                     //ユーザID取得のために、event配列からsoureを代入
                     //　$us['userId']　でユーザIDを持ってこれる。
-
-                    $use=$us['userId'];
+                        header("Location:https://dev-ext-app.herokuapp.com/public/addMember?user=".$us['userId']);
 
                     $client->replyMessage([
                             'replyToken' => $event['replyToken'],
