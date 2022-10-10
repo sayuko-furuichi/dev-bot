@@ -75,6 +75,7 @@ $targets=array();
                'audiences'=>[
                     $json
          ]]);
+         return $res;
 
         if ($res!='request failed') {
             $ress = json_decode($res, true);
@@ -109,6 +110,11 @@ $targets=array();
     }
 
     
+function getuserProf(){
+        //UserIdが有効か調べる
+
+
+}
 
 
 
