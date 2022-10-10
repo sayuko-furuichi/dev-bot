@@ -38,23 +38,38 @@ class getTransition
     }
 
      function insertData($userId,$data,$event){
+        $oldTrans=$this->search($userId);
 
-        $trans =new Transition;
-        $trans->lineuser_id=$userId;
-        $trans->transition=str_replace('transition=','',$data);
-        $trans->save();
-
-        $this->client->replyMessage([
-            'replyToken' => $event['replyToken'],
-            'messages' => [
-                [
-    'type' => 'text',
-    'text' => "ありがとうございました！"
-                ],
-            ]
-        ]);
-
-    }
+        if($oldTrans !=null ){
+            $this->client->replyMessage([
+                'replyToken' => $event['replyToken'],
+                'messages' => [
+                    [
+        'type' => 'text',
+        'text' => '入力済みです'
+                    ],
+                ]
+            ]);
+    
+        }else{
+            $trans =new Transition;
+            $trans->lineuser_id=$userId;
+            $trans->transition=str_replace('transition=','',$data);
+            $trans->save();
+    
+            $this->client->replyMessage([
+                'replyToken' => $event['replyToken'],
+                'messages' => [
+                    [
+        'type' => 'text',
+        'text' => "ありがとうございました！"
+                    ],
+                ]
+            ]);
+    
+        }
+        }
+      
     
        function search($userId){
         $trans = Transition::where('lineuser_id',$userId);
