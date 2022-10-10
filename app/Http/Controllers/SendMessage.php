@@ -90,7 +90,7 @@ if ($event['type'] == 'postback') {
 
             //友達登録画面
             if ($event['type'] == 'follow') {
-
+                //すでに入力していた場合は受け付けない
                 if ($storeId ==54) {
 
                     $member = new getMember($channelAccessToken, $channelSecret, $client);
