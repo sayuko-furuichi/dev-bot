@@ -118,7 +118,7 @@ $targets=array();
 function getuserProf($aud)
 {
 foreach ($aud as $au) {
-    for ($i=0; $i < count($aud)-1; $i++) {
+    // for ($i=0; $i < count($aud)-1; $i++) {
         # code...
 
 
@@ -147,7 +147,7 @@ foreach ($aud as $au) {
 // return $true_audience;
 
 
-}
+// }
 
 
 }
