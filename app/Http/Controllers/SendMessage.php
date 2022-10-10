@@ -73,11 +73,10 @@ if ($event['type'] == 'postback') {
         //経路の入力を受け付ける
     } elseif (preg_match('/transition=/', $pt['data'])) {
          $tra = new getTransition($channelAccessToken, $channelSecret, $client);
-         $tra->insertData($us['data'],$pt['data']);
+         $tra->insertData($us['userId'],$pt['data']);
        
     }
 }
-
             //eventtypeがmessageで、messagetypeがtextの時起動
 
             //友達登録画面
