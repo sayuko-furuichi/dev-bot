@@ -91,7 +91,7 @@ if ($event['type'] == 'postback') {
             //友達登録画面
             if ($event['type'] == 'follow') {
                 if ($storeId ==54) {
-                    $imgUrl = secure_asset('img/Commands_logo.png');
+                    // $imgUrl = secure_asset('img/Commands_logo.png');
                     $client->replyMessage(
                         [
 'replyToken' => $event['replyToken'],
@@ -106,7 +106,7 @@ if ($event['type'] == 'postback') {
         'template'=> [
           'type'=> 'buttons',
           'text'=> '当アカウントを知ったきっかけを教えてください',
-          'thumbnailImageUrl'=> $imgUrl,
+        //   'thumbnailImageUrl'=> $imgUrl,
           'actions'=> [
                                 [
                                   'type'=> 'postback',
