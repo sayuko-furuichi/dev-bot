@@ -140,11 +140,13 @@ foreach ($aud as $au) {
         if (strpos($http_response_header[0], '200') !== false) {
             $true_audience[$i] = ['id'=>$au->lineuser_id];
         }
+  
     }
+    return $response;
 }
 // return $true_audience;
 
-return $response;
+
 }
 
 
