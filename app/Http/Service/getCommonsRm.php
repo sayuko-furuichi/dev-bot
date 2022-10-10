@@ -70,12 +70,14 @@ class getCommonsRm
         $res= $this->createRmA($rmA,$simg);
         $rs= json_decode($res, true);
         $rmA->richmenu_id=$rs['richMenuId'];
+        //storeテーブルにも同時に設定する
         $simg->member_menu=$rs['richMenuId'];
    
         //create rich menu B
          $res= $this->createRmB($rmB,$simg);
          $rs= json_decode($res, true);
          $rmB->richmenu_id=$rs['richMenuId'];
+         //storeテーブルにも同時に設定する
          $simg->non_member_menu=$rs['richMenuId'];
     
 
