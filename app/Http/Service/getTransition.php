@@ -36,14 +36,14 @@ class getTransition
         $this->client=$client;
     }
 
-     function insertData($userId,$data){
+     function insertData($userId,$data,$event){
 
         $trans =new Transition;
         $trans->lineuser_id=$user;
         $trans->transition=str_replace('transition=','',$data);
         $trans->save();
 
-        $client->replyMessage([
+        $this->client->replyMessage([
             'replyToken' => $event['replyToken'],
             'messages' => [
                 [
@@ -55,7 +55,11 @@ class getTransition
 
     }
     
-       
+       function search($userId){
+
+
+
+       }
         
         
     

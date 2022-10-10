@@ -73,7 +73,7 @@ if ($event['type'] == 'postback') {
         //経路の入力を受け付ける
     } elseif (preg_match('/transition=/', $pt['data'])) {
          $tra = new getTransition($channelAccessToken, $channelSecret, $client);
-         $tra->insertData($us['userId'],$pt['data']);
+         $tra->insertData($us['userId'],$pt['data'],$event);
        
     }
 }
