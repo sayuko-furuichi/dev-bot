@@ -46,8 +46,8 @@ class getAudience
         $aud=UserProf::all(['line_user_id']);
 
         $res= $this->getuserProf($aud);
-         $json= json_encode($res,true);
-        return $json;
+        //  $json= json_encode($res,true);
+        return $res;
 
 
 $targets=array();
@@ -118,7 +118,7 @@ $targets=array();
 function getuserProf($aud)
 {
 foreach ($aud as $au) {
-    for ($i=0; $i < count($aud)-1; $i++) {
+    // for ($i=0; $i < count($aud)-1; $i++) {
         # code...
 
 
@@ -139,15 +139,16 @@ foreach ($aud as $au) {
         $response = file_get_contents('https://api.line.me/v2/bot/profile/'.$au->lineuser_id, false, $context);
         if (strpos($http_response_header[0], '200') !== false) {
             $true_audience[$i] = ['id'=>$au->lineuser_id];
+            $responce='bad';
         }
   
     }
-    // return $response;
+    return $response;
 }
-return $true_audience;
+// return $true_audience;
 
 
-}
+// }
 
 
 }
