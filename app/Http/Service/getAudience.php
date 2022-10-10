@@ -46,8 +46,8 @@ class getAudience
         $aud=UserProf::all(['line_user_id']);
 
         $res= $this->getuserProf($aud);
-        // $json= json_encode($res,true);
-        return $res;
+         $json= json_encode($res,true);
+        return $json;
 
 
 $targets=array();
@@ -118,7 +118,7 @@ $targets=array();
 function getuserProf($aud)
 {
 foreach ($aud as $au) {
-    // for ($i=0; $i < count($aud)-1; $i++) {
+    for ($i=0; $i < count($aud)-1; $i++) {
         # code...
 
 
@@ -142,12 +142,12 @@ foreach ($aud as $au) {
         }
   
     }
-    return $response;
+    // return $response;
 }
-// return $true_audience;
+return $true_audience;
 
 
-// }
+}
 
 
 }
