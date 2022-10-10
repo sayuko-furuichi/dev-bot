@@ -67,11 +67,11 @@ $targets=array();
         // $auds =array('audiences'=>$targets);
 
         //カラムを指定してやらないともってこれない
-        $res= $this->client->crtAud(function(){[
+        $res= $this->client->crtAud([
              'description'=>'liff_users',
                'audiences'=>[
                     $targets
-         ]];});
+         ]]);
 
         if ($res!='request failed') {
             $ress = json_decode($res, true);
