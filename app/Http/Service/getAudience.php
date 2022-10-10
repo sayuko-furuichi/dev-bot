@@ -54,15 +54,18 @@ $targets=array();
     // if (!isset($targets)) {
     //     $targets=[];
     // }
-    $ar = ['id'=> $au->line_user_id];
+    //textでいれてみたらどうかな？
 
+    // $ar = ['id'=> $au->line_user_id];
+
+    $ar = ['id'=> $au->line_user_id];
   //  $targets[$i] = array_push($targets, $ar);
   $targets[$i] =$ar;
     }
         }
         
-        // $res= json_encode($targets,true);
-         return count($targets);
+         $json= json_encode($targets,true);
+        //  return count($targets);
 
         // $auds =array('audiences'=>$targets);
 
@@ -70,7 +73,7 @@ $targets=array();
         $res= $this->client->crtAud([
              'description'=>'liff_users',
                'audiences'=>[
-                    $targets
+                    $json
          ]]);
 
         if ($res!='request failed') {
