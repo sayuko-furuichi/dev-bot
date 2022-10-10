@@ -70,12 +70,13 @@ class getCommonsRm
         $res= $this->createRmA($rmA,$simg);
         $rs= json_decode($res, true);
         $rmA->richmenu_id=$rs['richMenuId'];
+        $simg->member_menu=$rs['richMenuId'];
    
         //create rich menu B
          $res= $this->createRmB($rmB,$simg);
          $rs= json_decode($res, true);
          $rmB->richmenu_id=$rs['richMenuId'];
-
+         $simg->non_member_menu=$rs['richMenuId'];
     
 
         //画像UP
@@ -116,6 +117,7 @@ class getCommonsRm
         $rmA->save();
 
          $rmB->save();
+         $simg->save();
 
 
         return $res;
