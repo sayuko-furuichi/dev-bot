@@ -144,7 +144,7 @@ public function getuserProf($aud)
             }
        
         }
-
+return $response;
     }
 
     return $true_audience;
