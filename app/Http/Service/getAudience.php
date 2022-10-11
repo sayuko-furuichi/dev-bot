@@ -77,7 +77,7 @@ class getAudience
         $res= $this->client->crtAud([
              'description'=>'liff_users',
                'audiences'=>[
-                $true_audiences[0]
+                $true_audiences->all()
          ]]);
         return $res;
 
