@@ -117,9 +117,11 @@ class getAudience
 
 public function getuserProf($aud)
 {
+    $i=0;
     $true_audience=array();
+  
     foreach ($aud as $au) {
-        for ($i=0; $i < count($aud)-1; $i++) {
+       
             # code...
 
 
@@ -136,17 +138,17 @@ public function getuserProf($aud)
                     // 'content' => json_encode($rmDetail),
                 ],
             ]);
-
+           
             $response = file_get_contents('https://api.line.me/v2/bot/profile/'.$au->line_user_id, false, $context);
             if (strpos($http_response_header[0], '200') !== false) {
+              
                 $true_audience[$i] = ['id'=>$au->line_user_id];
                 // }else{
+                    $i++;
+
             }
        
         }
-return $response;
-    }
-
     return $true_audience;
 }
 }
