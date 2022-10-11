@@ -50,27 +50,27 @@ class getAudience
         return $res;
 
 
-        $targets=array();
-        //array_mergeだと上書きされてしまう
-        foreach ($aud as $au) {
-            for ($i=0; $i < count($aud)-1; $i++) {
-                # code...
+    //     $targets=array();
+    //     //array_mergeだと上書きされてしまう
+    //     foreach ($aud as $au) {
+    //         for ($i=0; $i < count($aud)-1; $i++) {
+    //             # code...
 
-                // if (!isset($targets)) {
-    //     $targets=[];
-                // }
-                //textでいれてみたらどうかな？
+    //             // if (!isset($targets)) {
+    // //     $targets=[];
+    //             // }
+    //             //textでいれてみたらどうかな？
 
-                // $ar = ['id'=> $au->line_user_id];
+    //             // $ar = ['id'=> $au->line_user_id];
 
-                $ar = ['id'=> $au->line_user_id];
-                //  $targets[$i] = array_push($targets, $ar);
-                $targets[$i] =$ar;
-            }
-        }
+    //             $ar = ['id'=> $au->line_user_id];
+    //             //  $targets[$i] = array_push($targets, $ar);
+    //             $targets[$i] =$ar;
+    //         }
+    //     }
 
-        $json= json_encode($targets, true);
-        //  return count($targets);
+    //     $json= json_encode($targets, true);
+    //     //  return count($targets);
 
         // $auds =array('audiences'=>$targets);
 
