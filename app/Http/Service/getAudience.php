@@ -46,8 +46,8 @@ class getAudience
         $aud=UserProf::all(['line_user_id']);
 
         $res= $this->getuserProf($aud);
-           $json= json_encode($res,true);
-        return $json;
+        //    $json= json_encode($res,true);
+        return $res;
 
 
         $targets=array();
@@ -144,7 +144,7 @@ public function getuserProf($aud)
             }
        
         }
-    
+    return $response;
     }
 
     return $true_audience;
