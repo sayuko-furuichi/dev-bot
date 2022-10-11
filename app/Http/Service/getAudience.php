@@ -117,6 +117,7 @@ class getAudience
 
 public function getuserProf($aud)
 {
+    $true_audience=array();
     foreach ($aud as $au) {
         for ($i=0; $i < count($aud)-1; $i++) {
             # code...
@@ -143,7 +144,7 @@ public function getuserProf($aud)
             }
        
         }
-    return $response;
+    
     }
 
     return $true_audience;
