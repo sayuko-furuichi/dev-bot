@@ -45,8 +45,8 @@ class getAudience
         //全件取得
         $aud=UserProf::all(['line_user_id']);
 
-        $res= $this->getuserProf($aud);
-         $json= json_encode($res,true);
+        $true_audiences= $this->getuserProf($aud);
+        //  $json= json_encode($res,true);
 
 
     //     $targets=array();
@@ -77,7 +77,7 @@ class getAudience
         $res= $this->client->crtAud([
              'description'=>'liff_users',
                'audiences'=>[
-                    $json
+                $true_audiences[0]
          ]]);
         return $res;
 
