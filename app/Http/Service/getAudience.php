@@ -47,7 +47,6 @@ class getAudience
 
         $res= $this->getuserProf($aud);
          $json= json_encode($res,true);
-        return $json;
 
 
     //     $targets=array();
