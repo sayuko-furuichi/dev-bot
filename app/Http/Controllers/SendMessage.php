@@ -54,6 +54,7 @@ class SendMessage extends Controller
                 } elseif (preg_match('/removeMember&id=/', $pt['data'])) {
                     $member = new getMember($channelAccessToken, $channelSecret, $client);
                     $member->remove($event, $pt, $storeId);
+
                 } elseif (preg_match('/changed=/', $pt['data'])) {
                     $mm = new getMember($channelAccessToken, $channelSecret, $client);
                     $uid=$us['userId'];
@@ -146,35 +147,10 @@ class SendMessage extends Controller
                     $msg->sendPushMessage();
                 } elseif ($message['text'] == '予約確認') {
                     $store = Store::where('id', $storeId)->first();
+                    $msg = new Messages($channelAccessToken, $channelSecret, $client, $event['replyToken']);
+                    $msg->reserveConf($store);
 
-                    $client->replyMessage(
-                        [
-'replyToken' => $event['replyToken'],
-'messages' => [
-    [
-'type' => 'text',
-'text' => "予約店舗：***\n予約日時：***\n予約商品：**コース\n人数：**\nお支払い:**\n"
-    ],
-    [
-        'type'=> 'template',
-        'altText'=> '予約修正テンプレート',
-        'template'=> [
-          'type'=> 'confirm',
-          'text'=> 'ご予約を変更しますか？',
-          'actions'=> [
-                    [
-                      'type'=> 'uri',
-                      'label'=> 'yes',
-                      'uri'=> $store->liff_url .'/reserve?store='. $store->id,
-                    ],
-                    [
-                      'type'=> 'postback',
-                      'label'=> 'No',
-                      'data'=> 'no',
-                       'displayText'=>'しない'
-                    ]
-                    ]]]]]
-                    );
+                 
                 } elseif ($message['text'] == 'オフラインを購入') {
                     if ($storeId ==54) {
                         $msg = new Messages($channelAccessToken, $channelSecret, $client, $event['replyToken']);

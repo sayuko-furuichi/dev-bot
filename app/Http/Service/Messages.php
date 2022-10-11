@@ -20,7 +20,7 @@ class Messages
     private $replyToken;
 
 
-    public function __construct(String $channelAccessToken, String $channelSecret, $client,$replyToken)
+    public function __construct(String $channelAccessToken, String $channelSecret, $client, $replyToken)
     {
         // $this->userId= $userId;
         $this->channelAccessToken= $channelAccessToken;
@@ -53,10 +53,41 @@ class Messages
           'type'=> 'message',
           'label'=> '勉強会',
           'text'=> '勉強会ページへ遷移',
-           
+
         ]
         ]]]]]
         );
+    }
 
+    public function reserveConf($store)
+    {
+        $this->client->replyMessage(
+            [
+'replyToken' => $this->replyToken,
+'messages' => [
+[
+'type' => 'text',
+'text' => "予約店舗：***\n予約日時：***\n予約商品：**コース\n人数：**\nお支払い:**\n"
+],
+[
+'type'=> 'template',
+'altText'=> '予約修正テンプレート',
+'template'=> [
+'type'=> 'confirm',
+'text'=> 'ご予約を変更しますか？',
+'actions'=> [
+    [
+      'type'=> 'uri',
+      'label'=> 'yes',
+      'uri'=> $store->liff_url .'/reserve?store='. $store->id,
+    ],
+    [
+      'type'=> 'postback',
+      'label'=> 'No',
+      'data'=> 'no',
+       'displayText'=>'しない'
+    ]
+    ]]]]]
+        );
     }
 }
