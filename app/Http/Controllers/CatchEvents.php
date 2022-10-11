@@ -81,7 +81,7 @@ class CatchEvents extends Controller
             //友達登録画面
             if ($event['type'] == 'follow') {
                 //すでに入力していた場合は受け付けない
-                if ($storeId ==54) {
+                if ($storeId ==1) {
                     $tra = new getTransition($channelAccessToken, $channelSecret, $client);
                     $tra->sendTemplate($event, $us['userId'], $storeId);
                 }
@@ -115,7 +115,7 @@ class CatchEvents extends Controller
 
                 //             ]
                 //         ]);
-                if ($message['text'] == '申し込み' && $storeId==54) {
+                if ($message['text'] == '申し込み' && $storeId==1) {
                     //ユーザID取得のために、event配列からsoureを代入
                     //　$us['userId']　でユーザIDを持ってこれる。
                     // header("Location:https://dev-ext-app.herokuapp.com/public/addMember?user=".$us['userId']);
@@ -150,7 +150,7 @@ class CatchEvents extends Controller
 
                  
                 } elseif ($message['text'] == 'オフラインを購入') {
-                    if ($storeId ==54) {
+                    if ($storeId ==1) {
                         $msg = new Messages($channelAccessToken, $channelSecret, $client, $event['replyToken']);
                         $msg->sendMessage();
                     }
@@ -161,7 +161,7 @@ class CatchEvents extends Controller
                 } elseif ($message['text'] == 'create Rich Menu') {
                     //__construct　は、newした時に実行されるので、これが正解？
 
-                    if ($storeId ==54) {
+                    if ($storeId ==1) {
                         $rmDetail = new getCommonsRm($channelAccessToken, $channelSecret, $client);
                         $res = $rmDetail->creater($storeId);
                     } else {
