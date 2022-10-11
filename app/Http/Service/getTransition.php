@@ -95,70 +95,70 @@ class getTransition
 'type' => 'text',
 'text' => "友達登録ありがとうございます！\n".$res."メニューをご利用いただけます"
 ],
-[
-'type'=> 'template',
-'altText'=> 'きっかけテンプレート',
-'template'=> [
-'type'=> 'buttons',
-'text'=> '当アカウントを知ったきっかけを教えてください',
-//   'thumbnailImageUrl'=> $imgUrl,
-'actions'=> [
-                    [
-                      'type'=> 'postback',
-                      'label'=> 'LP',
-                      'data'=> 'transition=lp',
-                      'displayText'=>'LP'
-                    ],
-                    [
-                      'type'=> 'postback',
-                      'label'=> 'チラシ',
-                      'data'=> 'transition=paper',
-                       'displayText'=>'チラシ'
-                    ],
-                    [
-            'type'=> 'postback',
-            'label'=> 'セミナー',
-            'data'=> 'transition=paper',
-             'displayText'=>'セミナー'
-                      ],
-                      [
-            'type'=> 'postback',
-            'label'=> '知人からの紹介',
-            'data'=> 'transition=introduction',
-             'displayText'=>'知人からの紹介'
-                      ]
-                    ]]],  [
-                        'type'=> 'template',
-                        'altText'=> 'きっかけテンプレート',
-                        'template'=> [
-                          'type'=> 'buttons',
-                          'text'=> '　　　　　',
-                          'actions'=> [
-                                    [
-                                      'type'=> 'postback',
-                                      'label'=> '検索サイト',
-                                      'data'=> 'transition=search',
-                                      'displayText'=>'検索サイト'
-                                    ],
-                                    [
-                                      'type'=> 'postback',
-                                      'label'=> '公式ホームページ',
-                                      'data'=> 'transition=HP',
-                                       'displayText'=>'公式ホームページ'
-                                    ],
-                                    [
-                            'type'=> 'postback',
-                            'label'=> '本や雑誌・メディア',
-                            'data'=> 'transition=media',
-                             'displayText'=>'本や雑誌・メディア'
-                                      ],
-                                      [
-                            'type'=> 'postback',
-                            'label'=> 'その他',
-                            'data'=> 'transition=other',
-                             'displayText'=>'その他'
-                                      ]
-                                    ]]],
+// [
+// 'type'=> 'template',
+// 'altText'=> 'きっかけテンプレート',
+// 'template'=> [
+// 'type'=> 'buttons',
+// 'text'=> '当アカウントを知ったきっかけを教えてください',
+// //   'thumbnailImageUrl'=> $imgUrl,
+// 'actions'=> [
+//                     [
+//                       'type'=> 'postback',
+//                       'label'=> 'LP',
+//                       'data'=> 'transition=lp',
+//                       'displayText'=>'LP'
+//                     ],
+//                     [
+//                       'type'=> 'postback',
+//                       'label'=> 'チラシ',
+//                       'data'=> 'transition=paper',
+//                        'displayText'=>'チラシ'
+//                     ],
+//                     [
+//             'type'=> 'postback',
+//             'label'=> 'セミナー',
+//             'data'=> 'transition=paper',
+//              'displayText'=>'セミナー'
+//                       ],
+//                       [
+//             'type'=> 'postback',
+//             'label'=> '知人からの紹介',
+//             'data'=> 'transition=introduction',
+//              'displayText'=>'知人からの紹介'
+//                       ]
+//                     ]]],  [
+//                         'type'=> 'template',
+//                         'altText'=> 'きっかけテンプレート',
+//                         'template'=> [
+//                           'type'=> 'buttons',
+//                           'text'=> '　　　　　',
+//                           'actions'=> [
+//                                     [
+//                                       'type'=> 'postback',
+//                                       'label'=> '検索サイト',
+//                                       'data'=> 'transition=search',
+//                                       'displayText'=>'検索サイト'
+//                                     ],
+//                                     [
+//                                       'type'=> 'postback',
+//                                       'label'=> '公式ホームページ',
+//                                       'data'=> 'transition=HP',
+//                                        'displayText'=>'公式ホームページ'
+//                                     ],
+//                                     [
+//                             'type'=> 'postback',
+//                             'label'=> '本や雑誌・メディア',
+//                             'data'=> 'transition=media',
+//                              'displayText'=>'本や雑誌・メディア'
+//                                       ],
+//                                       [
+//                             'type'=> 'postback',
+//                             'label'=> 'その他',
+//                             'data'=> 'transition=other',
+//                              'displayText'=>'その他'
+//                                       ]
+                                    // ]]],
                     ]]
         );
        }
