@@ -20,13 +20,13 @@ use  App\Http\Service\getMember;
 use  App\Http\Service\getAudience;
 use App\Http\Service\getCommonsRm;
 use App\Http\Service\getTransition;
+use App\Http\Service\Messages;
 
 
 
 //あとで消す
 use App\Models\RichMenu;
 use App\Models\Store;
-
 
 class SendMessage extends Controller
 {
@@ -41,57 +41,54 @@ class SendMessage extends Controller
             $us = $event['source'];
 
 
-if ($event['type'] == 'postback') {
-    $pt=$event['postback'];
-    $ptD = $pt['data'];
+            if ($event['type'] == 'postback') {
+                $pt=$event['postback'];
+                $ptD = $pt['data'];
 
-    //会員登録するユーザ
-    if (preg_match('/name=/', $pt['data'])) {
-        $member = new getMember($channelAccessToken, $channelSecret, $client);
-        $member->createMember($event, $pt, $storeId);
+                //会員登録するユーザ
+                if (preg_match('/name=/', $pt['data'])) {
+                    $member = new getMember($channelAccessToken, $channelSecret, $client);
+                    $member->createMember($event, $pt, $storeId);
 
-    //退会するユーザ
-    } elseif (preg_match('/removeMember&id=/', $pt['data'])) {
-        $member = new getMember($channelAccessToken, $channelSecret, $client);
-        $member->remove($event, $pt, $storeId);
-    } elseif (preg_match('/changed=/', $pt['data'])) {
-        $mm = new getMember($channelAccessToken, $channelSecret, $client);
-        $uid=$us['userId'];
-        $res=$mm->changeMenu($uid, $storeId);
-        if ($res !=null || $res !='') {
-            $client->replyMessage([
-                'replyToken' => $event['replyToken'],
-                'messages' => [
-                    [
+                //退会するユーザ
+                } elseif (preg_match('/removeMember&id=/', $pt['data'])) {
+                    $member = new getMember($channelAccessToken, $channelSecret, $client);
+                    $member->remove($event, $pt, $storeId);
+                } elseif (preg_match('/changed=/', $pt['data'])) {
+                    $mm = new getMember($channelAccessToken, $channelSecret, $client);
+                    $uid=$us['userId'];
+                    $res=$mm->changeMenu($uid, $storeId);
+                    if ($res !=null || $res !='') {
+                        $client->replyMessage([
+                            'replyToken' => $event['replyToken'],
+                            'messages' => [
+                                [
         'type' => 'text',
         'text' => "会員登録後にご利用頂けます"
-                    ],
-                ]
-            ]);
-        }
+                                ],
+                            ]
+                        ]);
+                    }
 
-        //経路の入力を受け付ける
-    } elseif (preg_match('/transition=/', $pt['data'])) {
-         $tra = new getTransition($channelAccessToken, $channelSecret, $client);
+                //経路の入力を受け付ける
+                } elseif (preg_match('/transition=/', $pt['data'])) {
+                    $tra = new getTransition($channelAccessToken, $channelSecret, $client);
 
-         $tra->insertData($us['userId'],$pt['data'],$event);
-       
-    }
-}
+                    $tra->insertData($us['userId'], $pt['data'], $event);
+                }
+            }
             //eventtypeがmessageで、messagetypeがtextの時起動
 
             //友達登録画面
             if ($event['type'] == 'follow') {
                 //すでに入力していた場合は受け付けない
                 if ($storeId ==54) {
-                $tra = new getTransition($channelAccessToken, $channelSecret, $client);
-                $tra->sendTemplate($event,$us['userId'],$storeId);
-
+                    $tra = new getTransition($channelAccessToken, $channelSecret, $client);
+                    $tra->sendTemplate($event, $us['userId'], $storeId);
                 }
             }
             //ブロック時
             if ($event['type'] == 'unfollow') {
-                
                 //TODO:ブロック時の記録
             }
 
@@ -99,31 +96,31 @@ if ($event['type'] == 'postback') {
                 $message = $event['message'];
                 //"ID"と入力されたら、ユーザIDを返す
 
-                if ($message['text'] == 'ID') {
+                // if ($message['text'] == 'ID') {
+                //     //ユーザID取得のために、event配列からsoureを代入
+                //     //　$us['userId']　でユーザIDを持ってこれる。
+
+                //     $use=$us['userId'];
+
+                //     $client->replyMessage([
+                //             'replyToken' => $event['replyToken'],
+                //             'messages' => [
+                //                 [
+                //     'type' => 'text',
+                //     'text' => 'This is ' . $storeId . '号店'
+                //                 ],
+                //                 [
+                //     'type' => 'text',
+                //     'text' =>  'あなたのユーザID：'.$us['userId']
+                //                 ]
+
+                //             ]
+                //         ]);
+                if ($message['text'] == '申し込み' && $storeId==54) {
                     //ユーザID取得のために、event配列からsoureを代入
                     //　$us['userId']　でユーザIDを持ってこれる。
+                    // header("Location:https://dev-ext-app.herokuapp.com/public/addMember?user=".$us['userId']);
 
-                    $use=$us['userId'];
-
-                    $client->replyMessage([
-                            'replyToken' => $event['replyToken'],
-                            'messages' => [
-                                [
-                    'type' => 'text',
-                    'text' => 'This is ' . $storeId . '号店'
-                                ],
-                                [
-                    'type' => 'text',
-                    'text' =>  'あなたのユーザID：'.$us['userId']
-                                ]
-
-                            ]
-                        ]);
-                } elseif ($message['text'] == '申し込み' && $storeId==54) {
-                    //ユーザID取得のために、event配列からsoureを代入
-                    //　$us['userId']　でユーザIDを持ってこれる。
-                        // header("Location:https://dev-ext-app.herokuapp.com/public/addMember?user=".$us['userId']);
-                      
 
                     $client->replyMessage([
                             'replyToken' => $event['replyToken'],
@@ -142,13 +139,11 @@ if ($event['type'] == 'postback') {
                 } elseif ($message['text'] == '完了' && $storeId==54 && $us['type']=='web') {
                     // $us['useId'];
                     $member = new getMember($channelAccessToken, $channelSecret, $client);
-                    $member->createCMember($us['userId'],$storeId);
+                    $member->createCMember($us['userId'], $storeId);
                     $store= Store::where('id', 54)->first();
                     $client->linkUser($message['text2'], $store->member_menu);
                     $msg = new SendPushMessage($channelAccessToken, $channelSecret, $client, '登録', 'ありがとうございます！', $message['text2']);
                     $msg->sendPushMessage();
-
-
                 } elseif ($message['text'] == '予約確認') {
                     $store = Store::where('id', $storeId)->first();
 
@@ -180,6 +175,12 @@ if ($event['type'] == 'postback') {
                     ]
                     ]]]]]
                     );
+                } elseif ($message['text'] == 'オフラインを購入') {
+                    if ($storeId ==54) {
+                        $msg = new Messages($channelAccessToken, $channelSecret, $client, $event['replyToken']);
+                        $msg->sendMessage();
+                    }
+
 
 
                 // メニュー　と言われたら、返す　OK！
@@ -335,10 +336,10 @@ if ($event['type'] == 'postback') {
 
 
                 //限定メニューを要求されたとき
-                } elseif ($message['text'] == '限定メニュー') {
-                    $param =new getOrgMenuParam();
-                    $sId =$storeId;
-                    $param ->getParam($sId, $client, $event);
+                // } elseif ($message['text'] == '限定メニュー') {
+                //     $param =new getOrgMenuParam();
+                //     $sId =$storeId;
+                //     $param ->getParam($sId, $client, $event);
 
 
                 //ブロードキャスト送信する。
