@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class LineStoreStatus extends Model
 {
     use HasFactory;
+
+    protected $table='line_store_status';
 }

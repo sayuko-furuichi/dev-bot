@@ -14,6 +14,7 @@ use LINE\LINEBot\MessageBuilder;
 use App\Http\Controllers\CatchEvents;
 use App\Http\Service\getUserProf;
 use App\Models\Store;
+use App\Models\LineStoreStatus;
 
 class Callback extends Controller
 {
@@ -21,12 +22,12 @@ class Callback extends Controller
     {
     //     //本店
 
-       $store =Store::where('id',$request->store_id)->first();
+       $store =LineStoreStatus::where('id',$request->store_id)->first();
        if(isset($store)){
 
        $storeId=$request->store_id;
-       $channelAccessToken=$store->cat;
-       $channelSecret =$store->cs;
+       $channelAccessToken=$store->channel_access_token;
+       $channelSecret =$store->channel_secret;
     }
            //DB共有できたら生き返らせる
         // $pr = UserProf::where('id',$request->store_id)->first();
