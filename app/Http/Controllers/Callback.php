@@ -11,7 +11,7 @@ use LINE\LINEBot\Event\MessageEvent;
 use LINE\LINEBot\MessageBuilder;
 
 
-use App\Http\Controllers\SendMessage;
+use App\Http\Controllers\CatchEvents;
 use App\Http\Service\getUserProf;
 use App\Models\Store;
 
@@ -35,7 +35,7 @@ class Callback extends Controller
         // $channelSecret=$pr->channel_secret;
 
 
-        $send = new SendMessage();
+        $send = new CatchEvents();
         $send->send($channelAccessToken, $channelSecret, $storeId,$request);
     }
 
