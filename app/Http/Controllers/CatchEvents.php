@@ -32,7 +32,7 @@ class CatchEvents extends Controller
     //ユーザが、メッセージを送信せずにデータのみ送信できる機能。
     //botは、if($pt['data']＝action=***)　などで判定したらよい。
 
-    public function send($channelAccessToken, $channelSecret, $storeId, $request)
+    public function send($channelAccessToken, $channelSecret, $storeId)
     {
         $client = new LINEBotTiny($channelAccessToken, $channelSecret);
         foreach ($client->parseEvents() as $event) {
