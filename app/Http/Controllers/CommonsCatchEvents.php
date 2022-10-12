@@ -47,17 +47,9 @@ class CommonsCatchEvents extends Controller
             $us = $event['source'];
 
 
-            if ($event['type'] == 'postback') {
-                $pt=$event['postback'];
-
-
-                //経路の入力を受け付ける
-                } elseif (preg_match('/transition=/', $pt['data'])) {
-                    $tra = new getTransition($this->channelAccessToken, $this->channelSecret, $client);
-
-                    $tra->insertData($us['userId'], $pt['data'], $event);
-                }
-            
+            // if ($event['type'] == 'postback') {
+           
+            // }
             //eventtypeがmessageで、messagetypeがtextの時起動
 
             //友達登録画面
