@@ -50,31 +50,6 @@ class CommonsCatchEvents extends Controller
             if ($event['type'] == 'postback') {
                 $pt=$event['postback'];
 
-                //会員登録するユーザ
-                if (preg_match('/name=/', $pt['data'])) {
-                    $member = new getMember($this->channelAccessToken, $this->channelSecret, $client);
-                    $member->createMember($event, $pt, $this->storeId);
-
-                //退会するユーザ
-                } elseif (preg_match('/removeMember&id=/', $pt['data'])) {
-                    $member = new getMember($this->channelAccessToken, $this->channelSecret, $client);
-                    $member->remove($event, $pt, $this->storeId);
-
-                } elseif (preg_match('/changed=/', $pt['data'])) {
-                    $mm = new getMember($this->channelAccessToken, $this->channelSecret, $client);
-                    $uid=$us['userId'];
-                    $res=$mm->changeMenu($uid, $this->storeId);
-                    if ($res !=null || $res !='') {
-                        $client->replyMessage([
-                            'replyToken' => $event['replyToken'],
-                            'messages' => [
-                                [
-        'type' => 'text',
-        'text' => "会員登録後にご利用頂けます"
-                                ],
-                            ]
-                        ]);
-                    }
 
                 //経路の入力を受け付ける
                 } elseif (preg_match('/transition=/', $pt['data'])) {
@@ -82,7 +57,7 @@ class CommonsCatchEvents extends Controller
 
                     $tra->insertData($us['userId'], $pt['data'], $event);
                 }
-            }
+            
             //eventtypeがmessageで、messagetypeがtextの時起動
 
             //友達登録画面
