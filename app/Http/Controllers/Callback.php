@@ -21,7 +21,7 @@ class Callback extends Controller
     public function callback(Request $request)
     {
     //     //本店
-       $store =LineStoreStatus::where('store_id',$request->store_id)->first();
+         $store =LineStoreStatus::where('store_id',$request->store_id)->first();
        if(isset($store)){
 
        $storeId=$request->store_id;
