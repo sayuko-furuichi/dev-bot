@@ -5,9 +5,8 @@ namespace App\Http\Service;
 use LINE\LINEBot;
 use App\Http\Controllers\LINEBotTiny;
 use Illuminate\Http\Request;
-use LINE\LINEBot\HTTPClient\CurlHTTPClient;
-use LINE\LINEBot\HTTPClient;
 use  App\Http\Service\getMember;
+use App\Models\LineStoreStatus;
 
 
 use App\Models\Client;
