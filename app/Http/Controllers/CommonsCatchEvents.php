@@ -4,18 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use LINE\LINEBot;
-use Illuminate\Support\Facades\Storage;
 
-use App\Http\Service\getOrgMenuParam;
-use App\Http\Service\getRichMenu;
-use App\Http\Service\getEnisRm;
+
 use App\Http\Service\sendNarrow;
 use App\Http\Service\getAnalysisData;
 use  App\Http\Service\SendPushMessage;
-use  App\Http\Service\getMember;
 use  App\Http\Service\getAudience;
 use App\Http\Service\getCommonsRm;
-use App\Http\Service\getTransition;
+
 use App\Http\Service\Messages;
 
 
@@ -33,18 +29,20 @@ class CommonsCatchEvents extends Controller
     private $channelSecret;
 
     //LINEBotTiny client
-    private $client;
+    private $storeId;
     //postbackアクションについて
     //ユーザが、メッセージを送信せずにデータのみ送信できる機能。
     //botは、if($pt['data']＝action=***)　などで判定したらよい。
 
-    function __construct(){
-
+    function __construct($channelAccessToken, $channelSecret, $storeId){
+        $this->channelAccessToken=$channelAccessToken;
+         $this->channelSecret=$channelSecret;
+          $this->storeId=$storeId;
     }
 
-    public function send($channelAccessToken, $channelSecret, $storeId)
+    public function send()
     {
-        $client = new LINEBotTiny($channelAccessToken, $channelSecret);
+        $client = new LINEBotTiny($this->channelAccessToken, $this->channelSecret);
         foreach ($client->parseEvents() as $event) {
             $us = $event['source'];
 
@@ -54,7 +52,7 @@ class CommonsCatchEvents extends Controller
 
                 //会員登録するユーザ
                 if (preg_match('/name=/', $pt['data'])) {
-                    $member = new getMember($channelAccessToken, $channelSecret, $client);
+                    $member = new getMember($this->channelAccessToken, $this->channelSecret, $this->client);
                     $member->createMember($event, $pt, $storeId);
 
                 //退会するユーザ
@@ -102,32 +100,9 @@ class CommonsCatchEvents extends Controller
 
             if ($event['type'] == 'message') {
                 $message = $event['message'];
-                //"ID"と入力されたら、ユーザIDを返す
 
-                // if ($message['text'] == 'ID') {
-                //     //ユーザID取得のために、event配列からsoureを代入
-                //     //　$us['userId']　でユーザIDを持ってこれる。
-
-                //     $use=$us['userId'];
-
-                //     $client->replyMessage([
-                //             'replyToken' => $event['replyToken'],
-                //             'messages' => [
-                //                 [
-                //     'type' => 'text',
-                //     'text' => 'This is ' . $storeId . '号店'
-                //                 ],
-                //                 [
-                //     'type' => 'text',
-                //     'text' =>  'あなたのユーザID：'.$us['userId']
-                //                 ]
-
-                //             ]
-                //         ]);
                 if ($message['text'] == '申し込み' && $storeId==1) {
-                    //ユーザID取得のために、event配列からsoureを代入
-                    //　$us['userId']　でユーザIDを持ってこれる。
-                    // header("Location:https://dev-ext-app.herokuapp.com/public/addMember?user=".$us['userId']);
+
 
 
                     $client->replyMessage([
@@ -179,23 +154,6 @@ class CommonsCatchEvents extends Controller
                     }
 
 
-
-                    // $imres=json_decode($res, true);
-
-                    // if ($res==false || $res== null ||$res== 'undefine' || isset($res['message'])) {
-                    //     $flag='false';
-                    // } elseif (!isset($imres['message'])) {
-                    //     $flag='true';
-                    //     //  $imres['message']='true';
-                    // }
-
-                    //$ss = new getRichMenu($channelAccessToken, $channelSecret);
-
-
-    //    $mId = $ss->createRichMenu();
-
-    //      $imres['richMenuId']
-
                     $client->replyMessage([
 'replyToken' => $event['replyToken'],
 'messages' => [
@@ -210,33 +168,7 @@ class CommonsCatchEvents extends Controller
 ]
 ]
 ]);
-                } elseif ($message['text'] == 'create Enis Menu') {
-                    $rmDetail = new getEnisRm($channelAccessToken, $channelSecret, $client);
-                    $res = $rmDetail->creater($storeId);
 
-                    //   $imres=json_decode($res, true);
-
-                    // if ($res==false || $res== null ||$res== 'undefine' || isset($res['message'])) {
-                    //     $flag='false';
-                    // } elseif (!isset($imres['message'])) {
-                    //     $flag='true';
-                    //     //  $imres['message']='true';
-                    // }
-
-                    $client->replyMessage([
-'replyToken' => $event['replyToken'],
-'messages' => [
-[
-'type' => 'text',
-'text' =>$storeId . '　OK!'
-],
-
-[
-'type' => 'text',
-'text' =>  ' is richmenuID'   . $res
-]
-]
-]);
                 } elseif ($message['text'] == '会員ステータス確認') {
                     //TODO:確認
                     $mm = new getMember($channelAccessToken, $channelSecret, $client);
@@ -266,23 +198,6 @@ class CommonsCatchEvents extends Controller
                     $uid=$us['userId'];
                     $mm->removeMember($uid, $event, $storeId);
 
-
-                //TODO:idで受け渡しする
-                } elseif ($us['type']=='web' && $message['text']=='change_df_rich_menu' && isset($message['text2'])) {
-                    //   $new = RichMenu::where('id',$message['text2'])->where('store_id',$storeId)->get();
-
-                    $new = RichMenu::where('richmenu_id', $message['text2'])->where('store_id', $storeId)->first();
-                    $res= $client->defaultRm($new->richmenu_id);
-                    $old = RichMenu::where('is_default', 1)->where('store_id', $storeId)->first();
-                    if (isset($old)) {
-                        $old->is_default=0;
-                        $old->save();
-                    }
-
-                    $new->is_default=1;
-                    $new->save();
-
-                    return $res;
 
                 //TODO:クーポンの配信など調査
                 } elseif ($us['type']=='web' || $message['text']=='push!') {
@@ -315,14 +230,6 @@ class CommonsCatchEvents extends Controller
 
                                            ]
                                        ]);
-
-
-
-                //限定メニューを要求されたとき
-                // } elseif ($message['text'] == '限定メニュー') {
-                //     $param =new getOrgMenuParam();
-                //     $sId =$storeId;
-                //     $param ->getParam($sId, $client, $event);
 
 
                 //ブロードキャスト送信する。
@@ -363,26 +270,10 @@ class CommonsCatchEvents extends Controller
                     ]);
 
 
-                //  $param =new getOrgMenuParam();
-                // $sId =$storeId;
-                // $param ->getParam($sId, $client, $event);
                 } elseif ($message['text'] == '分析') {
                     $param = new getAnalysisData($client, $event);
                     $param->getData();
 
-                //DB参照
-                } elseif ($message['text'] == 'READ') {
-                    $us = $event['source'];
-                    $use=$us['userId'];
-
-                    $uP= new getUserProf();
-                    $uP->getProf($use, $client, $event);
-
-                //richメニュー画像
-                } elseif ($message['text'] == '画像') {
-                    $param =new getOrgMenuParam();
-                    $sId =$storeId;
-                    $param ->getParam($sId, $client, $event);
 
 
                 //送信したMsgのIDを、ID:　という形で入力してもらい、IDからRequestIdを持ってきて分析に回す
@@ -390,22 +281,6 @@ class CommonsCatchEvents extends Controller
                     $rqMsgId = $message['text'];
                     $param = new getAnalysisData($client, $event);
                     $param->getData($rqMsgId);
-
-
-                // $client->replyMessage([
-                    //     'replyToken' => $event['replyToken'],
-                    //     'messages' => [
-                    //         [
-                    //             'type' => 'text',
-                    //             'text' => 'true'
-                    //         ],
-                    //         [
-                    //             'type' => 'text',
-                    //             'text' => $qr
-                    //         ]
-                    //     ]
-                    //         ]);
-
 
                 //ここから
                 } elseif ($message['type']=='text') {
