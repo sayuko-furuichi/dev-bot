@@ -127,12 +127,7 @@ class CommonsCatchEvents extends Controller
                     $client->linkUser($message['text2'], $richMenu->richmenu_id);
                     $msg = new SendPushMessage($this->channelAccessToken, $this->channelSecret, $client, '登録', 'ありがとうございます！', $message['text2']);
                     $msg->sendPushMessage();
-                } elseif ($message['text'] == '予約確認') {
-                    $store = Store::where('id', $this->storeId)->first();
-                    $msg = new Messages($this->channelAccessToken, $this->channelSecret, $client, $event['replyToken']);
-                    $msg->reserveConf($store);
 
-                 
                 } elseif ($message['text'] == 'オフラインを購入') {
                     if ($this->storeId ==1) {
                         $msg = new Messages($this->channelAccessToken, $this->channelSecret, $client, $event['replyToken']);
@@ -155,10 +150,10 @@ class CommonsCatchEvents extends Controller
 
 
                     $client->replyMessage([
-'replyToken' => $event['replyToken'],
-'messages' => [
-[
-'type' => 'text',
+    'replyToken' => $event['replyToken'],
+    'messages' => [
+        [
+        'type' => 'text',
 'text' =>$this->storeId . '　OK!'
 ],
 
@@ -240,19 +235,13 @@ class CommonsCatchEvents extends Controller
                     ]);
 
 
-                } elseif ($message['text'] == '分析') {
-                    $param = new getAnalysisData($client, $event);
-                    $param->getData();
-
-
-
                 //送信したMsgのIDを、ID:　という形で入力してもらい、IDからRequestIdを持ってきて分析に回す
                 } elseif (preg_match('/ID:/', $message['text'])) {
                     $rqMsgId = $message['text'];
                     $param = new getAnalysisData($client, $event);
                     $param->getData($rqMsgId);
 
-                //ここから
+                //どこの条件にも引っかからないメッセージ
                 } elseif ($message['type']=='text') {
                     $client->replyMessage([
                                     'replyToken' => $event['replyToken'],
