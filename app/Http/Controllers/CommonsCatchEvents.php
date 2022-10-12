@@ -51,7 +51,7 @@ class CommonsCatchEvents extends Controller
 
                 //会員登録するユーザ
                 if (preg_match('/name=/', $pt['data'])) {
-                    $member = new getMember($this->channelAccessToken, $this->channelSecret, $this->client);
+                    $member = new getMember($this->channelAccessToken, $this->channelSecret, $client);
                     $member->createMember($event, $pt, $this->storeId);
 
                 //退会するユーザ

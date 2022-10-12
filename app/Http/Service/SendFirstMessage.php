@@ -43,7 +43,7 @@ class SendFirstMessage
      public function send($replyToken, $userId, $storeId)
      {
          $is_client = $this->search($userId,$storeId);
-         if ($is_client->isEmpty()) {
+         if (!isset($is_client->id)) {
              $flag='非会員';
              $this->client->deleteLinkUser($userId);
 
