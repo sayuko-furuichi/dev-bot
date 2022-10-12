@@ -21,7 +21,7 @@ class Callback extends Controller
     public function callback(Request $request)
     {
     //     //本店
-
+        return 'HTTP/1.1 200 OK';
        $store =LineStoreStatus::where('store_id',$request->store_id)->first();
        if(isset($store)){
 
