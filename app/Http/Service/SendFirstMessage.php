@@ -2,13 +2,9 @@
 
 namespace App\Http\Service;
 
-use LINE\LINEBot;
-use App\Http\Controllers\LINEBotTiny;
 use Illuminate\Http\Request;
-use  App\Http\Service\getMember;
+
 use App\Models\LineStoreStatus;
-
-
 use App\Models\Client;
 use App\Models\RichMenu;
 
