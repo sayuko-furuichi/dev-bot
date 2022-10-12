@@ -122,8 +122,9 @@ class CommonsCatchEvents extends Controller
                         ]);
                 } elseif ($message['text'] == '完了' && $us['type']=='web') {
                     // $us['useId'];
-                    $store= LineStoreStatus::where('store_id', $this->storeId)->first('member_richmenu_id');
-                    $client->linkUser($message['text2'], $store->member_richmenu_id);
+                    $lineStore= LineStoreStatus::where('store_id', $this->storeId)->first('member_richmenu_id');
+                    $richMenu =RichMenu::where('id',$lineStore->member_richmenu_id);
+                    $client->linkUser($message['text2'], $richMenu->richmenu_id);
                     $msg = new SendPushMessage($this->channelAccessToken, $this->channelSecret, $client, '登録', 'ありがとうございます！', $message['text2']);
                     $msg->sendPushMessage();
                 } elseif ($message['text'] == '予約確認') {
