@@ -53,7 +53,8 @@ class SendFirstMessage
          } else {
              $flag='会員';
              $storerm=LineStoreStatus::where('store_id',$storeId)->first('member_richmenu_id');
-             $this->client->linkUser($userId,$storerm->member_richmenu_id);
+             $rm=Richmenu::where('id',$storerm->member_richmenu_id)->first('richmenu_id');
+             $this->client->linkUser($userId,$rm->richmenu_id);
          }
 
          // $imgUrl = secure_asset('img/Commands_logo.png');
