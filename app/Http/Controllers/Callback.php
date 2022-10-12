@@ -22,26 +22,25 @@ class Callback extends Controller
     public function callback(Request $request)
     {
     //     //本店
-         $store =LineStoreStatus::where('store_id',$request->store_id)->first();
-       if(isset($store)){
-
-       $storeId=$request->store_id;
-       $channelAccessToken=$store->channel_access_token;
-       $channelSecret =$store->channel_secret;
+    $store =LineStoreStatus::where('store_id', $request->store_id)->first();
+    if (isset($store)) {
+        $storeId=$request->store_id;
+        $channelAccessToken=$store->channel_access_token;
+        $channelSecret =$store->channel_secret;
     }
-           //DB共有できたら生き返らせる
-        // $pr = UserProf::where('id',$request->store_id)->first();
-            
-        // $channelAccessToken= $pr->channel_access_token;
-        // $channelSecret=$pr->channel_secret;
+    //DB共有できたら生き返らせる
+    // $pr = UserProf::where('id',$request->store_id)->first();
 
-        if($request->store_id=1){
-            $send = new CommonsCatchEvents($channelAccessToken, $channelSecret, $storeId);
-            $send->send();
-        }
+    // $channelAccessToken= $pr->channel_access_token;
+    // $channelSecret=$pr->channel_secret;
 
+    if ($request->store_id=1) {
+        $send = new CommonsCatchEvents($channelAccessToken, $channelSecret, $storeId);
+        $send->send();
+    } else {
         $send = new CatchEvents();
         $send->send($channelAccessToken, $channelSecret, $storeId);
     }
+}
 
 }
