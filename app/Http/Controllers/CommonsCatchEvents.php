@@ -53,17 +53,17 @@ class CommonsCatchEvents extends Controller
                 //会員登録するユーザ
                 if (preg_match('/name=/', $pt['data'])) {
                     $member = new getMember($this->channelAccessToken, $this->channelSecret, $this->client);
-                    $member->createMember($event, $pt, $storeId);
+                    $member->createMember($event, $pt, $this->storeId);
 
                 //退会するユーザ
                 } elseif (preg_match('/removeMember&id=/', $pt['data'])) {
-                    $member = new getMember($channelAccessToken, $channelSecret, $client);
-                    $member->remove($event, $pt, $storeId);
+                    $member = new getMember($this->channelAccessToken, $this->channelSecret, $client);
+                    $member->remove($event, $pt, $this->storeId);
 
                 } elseif (preg_match('/changed=/', $pt['data'])) {
-                    $mm = new getMember($channelAccessToken, $channelSecret, $client);
+                    $mm = new getMember($this->channelAccessToken, $this->channelSecret, $client);
                     $uid=$us['userId'];
-                    $res=$mm->changeMenu($uid, $storeId);
+                    $res=$mm->changeMenu($uid, $this->storeId);
                     if ($res !=null || $res !='') {
                         $client->replyMessage([
                             'replyToken' => $event['replyToken'],
@@ -78,7 +78,7 @@ class CommonsCatchEvents extends Controller
 
                 //経路の入力を受け付ける
                 } elseif (preg_match('/transition=/', $pt['data'])) {
-                    $tra = new getTransition($channelAccessToken, $channelSecret, $client);
+                    $tra = new getTransition($this->channelAccessToken, $this->channelSecret, $client);
 
                     $tra->insertData($us['userId'], $pt['data'], $event);
                 }
@@ -88,9 +88,9 @@ class CommonsCatchEvents extends Controller
             //友達登録画面
             if ($event['type'] == 'follow') {
                 //すでに入力していた場合は受け付けない
-                if ($storeId ==1) {
-                    $tra = new getTransition($channelAccessToken, $channelSecret, $client);
-                    $tra->sendTemplate($event, $us['userId'], $storeId);
+                if ($this->storeId ==1) {
+                    $tra = new getTransition($this->channelAccessToken, $this->channelSecret, $client);
+                    $tra->sendTemplate($event, $us['userId'], $this->storeId);
                 }
             }
             //ブロック時
@@ -101,7 +101,7 @@ class CommonsCatchEvents extends Controller
             if ($event['type'] == 'message') {
                 $message = $event['message'];
 
-                if ($message['text'] == '申し込み' && $storeId==1) {
+                if ($message['text'] == '申し込み' && $this->storeId==1) {
 
 
 
@@ -119,23 +119,23 @@ class CommonsCatchEvents extends Controller
 
                             ]
                         ]);
-                } elseif ($message['text'] == '完了' && $storeId==54 && $us['type']=='web') {
+                } elseif ($message['text'] == '完了' && $this->storeId==54 && $us['type']=='web') {
                     // $us['useId'];
-                    $member = new getMember($channelAccessToken, $channelSecret, $client);
-                    $member->createCMember($us['userId'], $storeId);
+                    $member = new getMember($this->channelAccessToken, $this->channelSecret, $client);
+                    $member->createCMember($us['userId'], $this->storeId);
                     $store= Store::where('id', 54)->first();
                     $client->linkUser($message['text2'], $store->member_menu);
-                    $msg = new SendPushMessage($channelAccessToken, $channelSecret, $client, '登録', 'ありがとうございます！', $message['text2']);
+                    $msg = new SendPushMessage($this->channelAccessToken, $this->channelSecret, $client, '登録', 'ありがとうございます！', $message['text2']);
                     $msg->sendPushMessage();
                 } elseif ($message['text'] == '予約確認') {
-                    $store = Store::where('id', $storeId)->first();
-                    $msg = new Messages($channelAccessToken, $channelSecret, $client, $event['replyToken']);
+                    $store = Store::where('id', $this->storeId)->first();
+                    $msg = new Messages($this->channelAccessToken, $this->channelSecret, $client, $event['replyToken']);
                     $msg->reserveConf($store);
 
                  
                 } elseif ($message['text'] == 'オフラインを購入') {
-                    if ($storeId ==1) {
-                        $msg = new Messages($channelAccessToken, $channelSecret, $client, $event['replyToken']);
+                    if ($this->storeId ==1) {
+                        $msg = new Messages($this->channelAccessToken, $this->channelSecret, $client, $event['replyToken']);
                         $msg->sendMessage();
                     }
 
@@ -145,12 +145,12 @@ class CommonsCatchEvents extends Controller
                 } elseif ($message['text'] == 'create Rich Menu') {
                     //__construct　は、newした時に実行されるので、これが正解？
 
-                    if ($storeId ==1) {
-                        $rmDetail = new getCommonsRm($channelAccessToken, $channelSecret, $client);
-                        $res = $rmDetail->creater($storeId);
+                    if ($this->storeId ==1) {
+                        $rmDetail = new getCommonsRm($this->channelAccessToken, $this->channelSecret, $client);
+                        $res = $rmDetail->creater($this->storeId);
                     } else {
-                        $rmDetail = new getRichMenu($channelAccessToken, $channelSecret, $client);
-                        $res = $rmDetail->creater($storeId);
+                        $rmDetail = new getRichMenu($this->channelAccessToken, $this->channelSecret, $client);
+                        $res = $rmDetail->creater($this->storeId);
                     }
 
 
@@ -159,7 +159,7 @@ class CommonsCatchEvents extends Controller
 'messages' => [
 [
 'type' => 'text',
-'text' =>$storeId . '　OK!'
+'text' =>$this->storeId . '　OK!'
 ],
 
 [
@@ -171,9 +171,9 @@ class CommonsCatchEvents extends Controller
 
                 } elseif ($message['text'] == '会員ステータス確認') {
                     //TODO:確認
-                    $mm = new getMember($channelAccessToken, $channelSecret, $client);
+                    $mm = new getMember($this->channelAccessToken, $this->channelSecret, $client);
                     $uid=$us['userId'];
-                    $res=$mm->index($uid, $storeId);
+                    $res=$mm->index($uid, $this->storeId);
 
                     $client->replyMessage([
                         'replyToken' => $event['replyToken'],
@@ -190,13 +190,13 @@ class CommonsCatchEvents extends Controller
                         ]
                     ]);
                 } elseif ($message['text'] == '会員登録する') {
-                    $mm = new getMember($channelAccessToken, $channelSecret, $client);
+                    $mm = new getMember($this->channelAccessToken, $this->channelSecret, $client);
                     $uid=$us['userId'];
-                    $mm->addMember($uid, $event, $storeId);
+                    $mm->addMember($uid, $event, $this->storeId);
                 } elseif ($message['text'] == '退会する') {
-                    $mm = new getMember($channelAccessToken, $channelSecret, $client);
+                    $mm = new getMember($this->channelAccessToken, $this->channelSecret, $client);
                     $uid=$us['userId'];
-                    $mm->removeMember($uid, $event, $storeId);
+                    $mm->removeMember($uid, $event, $this->storeId);
 
 
                 //TODO:クーポンの配信など調査
@@ -209,11 +209,11 @@ class CommonsCatchEvents extends Controller
                     }
 
                     $uid=$us['userId'];
-                    $msg = new SendPushMessage($channelAccessToken, $channelSecret, $client, $webMsg, $webMsg2, $uid);
+                    $msg = new SendPushMessage($this->channelAccessToken, $this->channelSecret, $client, $webMsg, $webMsg2, $uid);
                     $msg->sendPushMessage();
                 } elseif ($message['text'] == 'audience') {
-                    $us = new getAudience($channelAccessToken, $channelSecret, $client);
-                    $res= $us->createAud($storeId);
+                    $us = new getAudience($this->channelAccessToken, $this->channelSecret, $client);
+                    $res= $us->createAud($this->storeId);
 
                     $client->replyMessage([
                                            'replyToken' => $event['replyToken'],
@@ -235,7 +235,7 @@ class CommonsCatchEvents extends Controller
                 //ブロードキャスト送信する。
                 //送信したMsgのRequestIdをDBに格納し、IDを返却する
                 } elseif ($message['text'] == 'ブロキャス') {
-                    $param = new sendNarrow($channelAccessToken, $channelSecret, $client);
+                    $param = new sendNarrow($this->channelAccessToken, $this->channelSecret, $client);
                     $msgId = $param->sendMessage();
                 //     $params = new getAnalysisData($client,$event);
                 // $params->getData($requestId);
