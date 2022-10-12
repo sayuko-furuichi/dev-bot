@@ -140,14 +140,8 @@ class CommonsCatchEvents extends Controller
                 } elseif ($message['text'] == 'create Rich Menu') {
                     //__construct　は、newした時に実行されるので、これが正解？
 
-                    if ($this->storeId ==1) {
                         $rmDetail = new getCommonsRm($this->channelAccessToken, $this->channelSecret, $client);
                         $res = $rmDetail->creater($this->storeId);
-                    } else {
-                        $rmDetail = new getRichMenu($this->channelAccessToken, $this->channelSecret, $client);
-                        $res = $rmDetail->creater($this->storeId);
-                    }
-
 
                     $client->replyMessage([
     'replyToken' => $event['replyToken'],
@@ -195,45 +189,6 @@ class CommonsCatchEvents extends Controller
 
                                            ]
                                        ]);
-
-
-                //ブロードキャスト送信する。
-                //送信したMsgのRequestIdをDBに格納し、IDを返却する
-                } elseif ($message['text'] == 'ブロキャス') {
-                    $param = new sendNarrow($this->channelAccessToken, $this->channelSecret, $client);
-                    $msgId = $param->sendMessage();
-                //     $params = new getAnalysisData($client,$event);
-                // $params->getData($requestId);
-
-                //    $rs=json_decode($res,true);
-                } elseif ($message['text'] == '利用状況') {
-                    $resq= $client->getQuota();
-                    $resq=json_decode($resq, true);
-
-                    $ress= $client->getSent();
-                    $ress=json_decode($ress, true);
-
-
-                    $client->replyMessage([
-                        'replyToken' => $event['replyToken'],
-                        'messages' => [
-                            [
-                                'type' => 'text',
-                                'text' => "　当月の送信数：".$ress['totalUsage']
-                            ],
-
-                            [
-                                'type' => 'text',
-                                'text' => '当月の送信上限目安：'.$resq['value']
-                            ],
-                            [
-                                'type' => 'text',
-                                'text' => '当月の送信可能数： 約'. $resq['value'] - $ress['totalUsage']
-                            ]
-
-                        ]
-                    ]);
-
 
                 //送信したMsgのIDを、ID:　という形で入力してもらい、IDからRequestIdを持ってきて分析に回す
                 } elseif (preg_match('/ID:/', $message['text'])) {
