@@ -10,6 +10,7 @@ use App\Models\LineStoreStatus;
 
 
 use App\Models\Client;
+use App\Models\RichMenu;
 
 class SendFirstMessage
 {
@@ -37,7 +38,7 @@ class SendFirstMessage
     }
 
 
-       public function search($userId)
+       public function search($userId,$storeId)
        {
            $is_client = Client::where('line_user_id', $userId)->where('store_id',$storeId)->first();
            return $is_client;
@@ -53,7 +54,7 @@ class SendFirstMessage
          } else {
              $flag='会員';
              $storerm=LineStoreStatus::where('store_id',$storeId)->first('member_richmenu_id');
-             $rm=Richmenu::where('id',$storerm->member_richmenu_id)->first('richmenu_id');
+             $rm=RichMenu::where('id',$storerm->member_richmenu_id)->first('richmenu_id');
              $this->client->linkUser($userId,$rm->richmenu_id);
          }
 

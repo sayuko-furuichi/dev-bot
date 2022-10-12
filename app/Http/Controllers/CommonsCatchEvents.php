@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use LINE\LINEBot;
-
 
 use App\Http\Service\sendNarrow;
 use App\Http\Service\getAnalysisData;
@@ -88,11 +86,12 @@ class CommonsCatchEvents extends Controller
 
             //友達登録画面
             if ($event['type'] == 'follow') {
+
                 //すでに入力していた場合は受け付けない
-                if ($this->storeId ==1) {
+              
                     $first = new SendFirstMessage($this->channelAccessToken, $this->channelSecret, $client);
                     $first->send($event['replyToken'], $us['userId'], $this->storeId);
-                }
+                
             }
             //ブロック時
             if ($event['type'] == 'unfollow') {
