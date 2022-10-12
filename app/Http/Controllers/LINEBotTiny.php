@@ -488,25 +488,6 @@ public function analys($requestId)
 
 public function linkUser($uid, $rm)
 {
-    // $header = array(
-    //     'Authorization: Bearer ' . $this->channelAccessToken,
-    // );
-
-    // $context = stream_context_create([
-    //     'http' => [
-    //         'ignore_errors' => true,
-    //         'method' => 'POST',
-    //         'header' => implode("\r\n", $header),
-    //       // 'content' => json_encode($param)
-    //     ],
-    // ]);
-    // $url=urlencode('https://api.line.me/v2/bot/user/'. $uid . '/richmenu/' . $rm);
-
-    // $response = file_get_contents($url, false, $context);
-    // if (strpos($http_response_header[0], '200') === false) {
-    //     $response= 'Request failed';
-    // }
-
 
     $api_url ='https://api.line.me/v2/bot/user/'. $uid . '/richmenu/' . $rm;
 
@@ -528,6 +509,32 @@ public function linkUser($uid, $rm)
 
     return $res;
 }
+
+//リッチメニューとユーザのリンクを切る（非会員メニューに切り替える）
+function deleteLinkUser($userId){
+
+
+    $header = array(
+        'Authorization: Bearer ' . $this->channelAccessToken,
+);
+
+    $context = stream_context_create([
+        'http' => [
+            'ignore_errors' => true,
+            'method' => 'DELETE',
+           'header' => implode("\r\n", $header),
+        ],
+    ]);
+
+    $response = file_get_contents('https://api.line.me/v2/bot/user/'. $userId . '/richmenu/', false, $context);
+    if (strpos($http_response_header[0], '200') === false) {
+        $response='request failed';
+    }
+
+    return $response;
+
+}
+
 
 public function userProf($uid)
 {
