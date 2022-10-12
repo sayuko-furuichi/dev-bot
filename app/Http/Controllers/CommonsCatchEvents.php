@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\LINEBotTiny;
-
 use LINE\LINEBot;
 use Illuminate\Support\Facades\Storage;
 
@@ -26,13 +24,25 @@ use App\Http\Service\Messages;
 use App\Models\RichMenu;
 use App\Models\Store;
 
-class CatchEvents extends Controller
+
+class CommonsCatchEvents extends Controller
 {
+
+    private $channelAccessToken;
+    //chanell_secret
+    private $channelSecret;
+
+    //LINEBotTiny client
+    private $client;
     //postbackアクションについて
     //ユーザが、メッセージを送信せずにデータのみ送信できる機能。
     //botは、if($pt['data']＝action=***)　などで判定したらよい。
 
-    public function send($channelAccessToken, $channelSecret, $storeId, $request)
+    function __construct(){
+
+    }
+
+    public function send($channelAccessToken, $channelSecret, $storeId)
     {
         $client = new LINEBotTiny($channelAccessToken, $channelSecret);
         foreach ($client->parseEvents() as $event) {

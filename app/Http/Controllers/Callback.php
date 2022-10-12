@@ -12,6 +12,7 @@ use LINE\LINEBot\MessageBuilder;
 
 
 use App\Http\Controllers\CatchEvents;
+use App\Http\Controllers\CommonsCatchEvents;
 use App\Http\Service\getUserProf;
 use App\Models\Store;
 use App\Models\LineStoreStatus;
@@ -34,9 +35,13 @@ class Callback extends Controller
         // $channelAccessToken= $pr->channel_access_token;
         // $channelSecret=$pr->channel_secret;
 
+        if($request->store_id=1 || $request->store_id=2){
+            $send = new CommonsCatchEvents($channelAccessToken, $channelSecret, $storeId);
+            $send->send();
+        }
 
         $send = new CatchEvents();
-        $send->send($channelAccessToken, $channelSecret, $storeId,$request);
+        $send->send($channelAccessToken, $channelSecret, $storeId);
     }
 
 }
