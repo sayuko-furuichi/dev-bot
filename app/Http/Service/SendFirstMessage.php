@@ -44,7 +44,7 @@ class SendFirstMessage
            return $is_client;
        }
 
-     public function send($event, $userId, $storeId)
+     public function send($replyToken, $userId, $storeId)
      {
          $is_client = $this->search($userId,$storeId);
          if ($is_client->isEmpty()) {
@@ -60,7 +60,7 @@ class SendFirstMessage
          // $imgUrl = secure_asset('img/Commands_logo.png');
          $this->client->replyMessage(
              [
-'replyToken' => $event['replyToken'],
+'replyToken' => $replyToken,
 'messages' => [
 [
 'type' => 'text',

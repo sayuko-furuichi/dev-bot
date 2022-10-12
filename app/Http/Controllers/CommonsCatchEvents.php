@@ -13,6 +13,7 @@ use  App\Http\Service\getAudience;
 use App\Http\Service\getCommonsRm;
 
 use App\Http\Service\Messages;
+use App\Http\Service\SendFirstMessage;
 
 
 
@@ -89,8 +90,8 @@ class CommonsCatchEvents extends Controller
             if ($event['type'] == 'follow') {
                 //すでに入力していた場合は受け付けない
                 if ($this->storeId ==1) {
-                    $tra = new getTransition($this->channelAccessToken, $this->channelSecret, $client);
-                    $tra->sendTemplate($event, $us['userId'], $this->storeId);
+                    $first = new SendFirstMessage($this->channelAccessToken, $this->channelSecret, $client);
+                    $first->send($event['replyToken'], $us['userId'], $this->storeId);
                 }
             }
             //ブロック時
