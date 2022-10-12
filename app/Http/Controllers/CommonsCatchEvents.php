@@ -18,6 +18,7 @@ use App\Http\Service\SendFirstMessage;
 //あとで消す
 use App\Models\RichMenu;
 use App\Models\Store;
+use App\Models\LineStoreStatus;
 
 
 class CommonsCatchEvents extends Controller
@@ -119,12 +120,10 @@ class CommonsCatchEvents extends Controller
 
                             ]
                         ]);
-                } elseif ($message['text'] == '完了' && $this->storeId==54 && $us['type']=='web') {
+                } elseif ($message['text'] == '完了' && $us['type']=='web') {
                     // $us['useId'];
-                    $member = new getMember($this->channelAccessToken, $this->channelSecret, $client);
-                    $member->createCMember($us['userId'], $this->storeId);
-                    $store= Store::where('id', 54)->first();
-                    $client->linkUser($message['text2'], $store->member_menu);
+                    $store= LineStoreStatus::where('store_id', $this->storeId)->first('member_richmenu_id');
+                    $client->linkUser($message['text2'], $store->member_richmenu_id);
                     $msg = new SendPushMessage($this->channelAccessToken, $this->channelSecret, $client, '登録', 'ありがとうございます！', $message['text2']);
                     $msg->sendPushMessage();
                 } elseif ($message['text'] == '予約確認') {
@@ -168,36 +167,6 @@ class CommonsCatchEvents extends Controller
 ]
 ]
 ]);
-
-                } elseif ($message['text'] == '会員ステータス確認') {
-                    //TODO:確認
-                    $mm = new getMember($this->channelAccessToken, $this->channelSecret, $client);
-                    $uid=$us['userId'];
-                    $res=$mm->index($uid, $this->storeId);
-
-                    $client->replyMessage([
-                        'replyToken' => $event['replyToken'],
-                        'messages' => [
-                            [
-'type' => 'text',
-'text' => '　OK!'
-                            ],
-
-                            [
-'type' => 'text',
-'text' =>  $res . '　です！'
-                            ]
-                        ]
-                    ]);
-                } elseif ($message['text'] == '会員登録する') {
-                    $mm = new getMember($this->channelAccessToken, $this->channelSecret, $client);
-                    $uid=$us['userId'];
-                    $mm->addMember($uid, $event, $this->storeId);
-                } elseif ($message['text'] == '退会する') {
-                    $mm = new getMember($this->channelAccessToken, $this->channelSecret, $client);
-                    $uid=$us['userId'];
-                    $mm->removeMember($uid, $event, $this->storeId);
-
 
                 //TODO:クーポンの配信など調査
                 } elseif ($us['type']=='web' || $message['text']=='push!') {
