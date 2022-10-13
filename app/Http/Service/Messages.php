@@ -93,7 +93,7 @@ class Messages
 
     public function result($res)
     {
-      $client->replyMessage([
+      $this->client->replyMessage([
         'replyToken' => $this->replyToken,
         'messages' => [
             [
