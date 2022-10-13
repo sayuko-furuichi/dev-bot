@@ -9,7 +9,7 @@ use LINE\LINEBot\HTTPClient\CurlHTTPClient;
 use LINE\LINEBot\HTTPClient;
 use App\Models\RichMenu;
 use Illuminate\Support\Facades\DB;
-use App\Models\Store;
+use App\Models\LineStoreStatus;
 
 class getCommonsRm
 {
@@ -63,30 +63,31 @@ class getCommonsRm
         $rmA->chat_bar='メニュー/ON/OFF';
          $rmB->chat_bar="メニュー/ON/OFF";
     
-       $simg =Store::where('id',$storeId)->first();
+       $lineStore =LineStoreStatus::where('id',$storeId)->first();
 
       
         //create rich menu A
-        $res= $this->createRmA($rmA,$simg);
+        $res= $this->createRmA($rmA,$lineStore);
         $rs= json_decode($res, true);
         $rmA->richmenu_id=$rs['richMenuId'];
         //storeテーブルにも同時に設定する
-        $simg->member_menu=$rs['richMenuId'];
+        // $lineStore->member_menu=$rs['richMenuId'];
    
         //create rich menu B
-         $res= $this->createRmB($rmB,$simg);
+         $res= $this->createRmB($rmB,$lineStore);
          $rs= json_decode($res, true);
          $rmB->richmenu_id=$rs['richMenuId'];
+      
          //storeテーブルにも同時に設定する
-         $simg->non_member_menu=$rs['richMenuId'];
+        //  $lineStore->non_member_menu=$rs['richMenuId'];
     
 
         //画像UP
         $res= $this->client->upRmImgA($rmA->richmenu_id);
-        $rmA->img='img/cm_rm_y.png';
+        $rmA->img='img/richmenu/cm_rm_y.png';
 
          $res= $this->client->upRmImgB($rmB->richmenu_id);
-         $rmB->img='img/cm_rm_n.png';
+         $rmB->img='img/richmenu/cm_rm_n.png';
 
          //非会員メニューをデフォルトに設定
          $res= $this->client->defaultRm($rmB->richmenu_id);
@@ -119,9 +120,10 @@ class getCommonsRm
         $rmA->save();
 
          $rmB->save();
-         $simg->save();
-
-
+      
+         //リッチメニューの登録が完了してから、IDを登録する
+         $lineStore->member_richmenu_id=$rmA->id;
+         $lineStore->save();
         return $res;
 
     }
@@ -131,7 +133,7 @@ class getCommonsRm
 //2枚一気に作成する
 
 
-    public function createRmA($rmA, $simg)
+    public function createRmA($rmA, $lineStore)
     {
         //作成
 
@@ -235,7 +237,7 @@ class getCommonsRm
         return $res;
     }
 
-    public function createRmB($rmB,$simg)
+    public function createRmB($rmB,$lineStore)
     {
         $res=$this->client->rtRichMenu([
 
