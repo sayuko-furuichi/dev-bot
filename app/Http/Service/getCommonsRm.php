@@ -52,12 +52,12 @@ class getCommonsRm
         //   $str=date('Y-m-d-s');
        // $str=uniqid('');
        $str='Commons';
-        $rmA->name = $str . '_big';
-         $rmB->name=$str . '_small';
+        $rmA->richmenu_name = $str . '_big';
+         $rmB->richmenu_name=$str . '_small';
     
 
-        $rmA->chat_bar='メニュー/ON/OFF';
-         $rmB->chat_bar="メニュー/ON/OFF";
+        $rmA->menu_bar_title='メニュー/ON/OFF';
+         $rmB->menu_bar_title="メニュー/ON/OFF";
     
        $lineStore =LineStoreStatus::where('id',$storeId)->first();
 
@@ -81,10 +81,10 @@ class getCommonsRm
         $imgUrlB=secure_asset('img/richmenu/cm_rm_n.png');
         //画像UP
         $res= $this->client->upRmImgA($rmA->richmenu_id,$imgUrlA);
-        $rmA->img='img/richmenu/cm_rm_y.png';
+        $rmA->image='img/richmenu/cm_rm_y.png';
 
          $res= $this->client->upRmImgA($rmB->richmenu_id,$imgUrlB);
-         $rmB->img='img/richmenu/cm_rm_n.png';
+         $rmB->image='img/richmenu/cm_rm_n.png';
 
          //非会員メニューをデフォルトに設定
          $res= $this->client->defaultRm($rmB->richmenu_id);
