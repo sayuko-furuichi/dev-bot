@@ -54,7 +54,7 @@ class getCommonsRm
        $str='Commons';
         $rmA->richmenu_name = $str . '_big';
          $rmB->richmenu_name=$str . '_small';
-    
+    return $rmA->richmenu_name;
 
         $rmA->menu_bar_title='メニュー/ON/OFF';
          $rmB->menu_bar_title="メニュー/ON/OFF";
