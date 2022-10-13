@@ -94,27 +94,27 @@ class CatchEvents extends Controller
                 $message = $event['message'];
                 //"ID"と入力されたら、ユーザIDを返す
 
-                // if ($message['text'] == 'ID') {
-                //     //ユーザID取得のために、event配列からsoureを代入
-                //     //　$us['userId']　でユーザIDを持ってこれる。
+if ($message['text'] == 'ID') {
+    //ユーザID取得のために、event配列からsoureを代入
+    //　$us['userId']　でユーザIDを持ってこれる。
 
-                //     $use=$us['userId'];
+    $use=$us['userId'];
 
-                //     $client->replyMessage([
-                //             'replyToken' => $event['replyToken'],
-                //             'messages' => [
-                //                 [
-                //     'type' => 'text',
-                //     'text' => 'This is ' . $storeId . '号店'
-                //                 ],
-                //                 [
-                //     'type' => 'text',
-                //     'text' =>  'あなたのユーザID：'.$us['userId']
-                //                 ]
+    $client->replyMessage([
+            'replyToken' => $event['replyToken'],
+            'messages' => [
+                [
+    'type' => 'text',
+    'text' => 'This is ' . $storeId . '号店'
+                ],
+                [
+    'type' => 'text',
+    'text' =>  'あなたのユーザID：'.$us['userId']
+                ]
 
-                //             ]
-                //         ]);
-                if ($message['text'] == '申し込み' && $storeId==1) {
+            ]
+        ]);
+} elseif ($message['text'] == '申し込み' && $storeId==1) {
                     //ユーザID取得のために、event配列からsoureを代入
                     //　$us['userId']　でユーザIDを持ってこれる。
                     // header("Location:https://dev-ext-app.herokuapp.com/public/addMember?user=".$us['userId']);
