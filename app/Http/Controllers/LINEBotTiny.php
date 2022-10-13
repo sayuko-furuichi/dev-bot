@@ -203,15 +203,15 @@ class LINEBotTiny
 
     //TODO:ファイル名変数にしたら１つで行けそう
     //リッチメニューに画像添付
-    public function upRmImgA($rmId)
+    public function upRmImgA($rmId,$imgUrl)
     {
         // $richmenuId="richmenu-b56771c2cf5b359b8c182d7de6f9e2c8";
 
         //画像URL
         //TODO:会員メニューに変更すること
        // $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/memberdemo/base_n1.png';
-        $imgurl='https://dev-bot0722.herokuapp.com/public/img/cm_rm_y.png';
-        $img = file_get_contents($imgurl);
+        // $imgurl='https://dev-bot0722.herokuapp.com/public/img/cm_rm_y.png';
+        $img = file_get_contents($imgUrl);
         $imgheader = array(
             'Content-Type: image/png',
             'Authorization: Bearer ' . $this->channelAccessToken,

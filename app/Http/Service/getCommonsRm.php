@@ -2,13 +2,9 @@
 
 namespace App\Http\Service;
 
-use LINE\LINEBot;
 use App\Http\Controllers\LINEBotTiny;
 use Illuminate\Http\Request;
-use LINE\LINEBot\HTTPClient\CurlHTTPClient;
-use LINE\LINEBot\HTTPClient;
 use App\Models\RichMenu;
-use Illuminate\Support\Facades\DB;
 use App\Models\LineStoreStatus;
 
 class getCommonsRm
@@ -81,12 +77,13 @@ class getCommonsRm
          //storeテーブルにも同時に設定する
         //  $lineStore->non_member_menu=$rs['richMenuId'];
     
-
+        $imgUrlA=secure_asset('img/richmenu/cm_rm_y.png');
+        $imgUrlB=secure_asset('img/richmenu/cm_rm_n.png');
         //画像UP
-        $res= $this->client->upRmImgA($rmA->richmenu_id);
+        $res= $this->client->upRmImgA($rmA->richmenu_id,$imgUrlA);
         $rmA->img='img/richmenu/cm_rm_y.png';
 
-         $res= $this->client->upRmImgB($rmB->richmenu_id);
+         $res= $this->client->upRmImgA($rmB->richmenu_id,$imgUrlB);
          $rmB->img='img/richmenu/cm_rm_n.png';
 
          //非会員メニューをデフォルトに設定
