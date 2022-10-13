@@ -4,7 +4,6 @@ namespace App\Http\Service;
 
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\LINEBotTiny;
-use App\Models\SentMessage;
 use Illuminate\Support\Facades\DB;
 use App\Models\LineStoreStatus;
 use App\Models\Client;
@@ -145,5 +144,28 @@ class Messages
                      ]]
          );
      }
+
+     public function sendPushMessage($userId,$webMsg)
+     {
+        
+ 
+         //$resに、requestidが入る
+         $res = $this->client->sendPush([
+             'to' => $userId,
+ 
+         'messages' => [
+                 [
+     'type' => 'text',
+     'text' =>$webMsg
+                 ],
+
+ 
+             ]
+               ]);
+ 
+ 
+     }
+
+
 
 }

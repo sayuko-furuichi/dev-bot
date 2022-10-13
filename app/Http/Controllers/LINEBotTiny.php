@@ -61,7 +61,6 @@ if (!function_exists('hash_equals')) {
         return $diff === 0;
     }
 }
-
 class LINEBotTiny
 {
     /** @var string */
@@ -83,7 +82,7 @@ class LINEBotTiny
      * @return mixed
      */
 
-     //署名の検証・POSTされたデータから、events抽出
+    //  署名の検証・POSTされたデータから、events抽出
     public function parseEvents()
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -92,9 +91,10 @@ class LINEBotTiny
             exit();
         }
 
-        //requestBodyの中身が存在するか
+        //requestBodyを格納
         $entityBody = file_get_contents('php://input');
 
+        //requestBodyの中身が入っているか
         if ($entityBody === false || strlen($entityBody) === 0) {
             http_response_code(400);
             error_log('Missing request body');
@@ -106,7 +106,8 @@ class LINEBotTiny
             http_response_code(400);
             error_log('Invalid signature value');
             exit();
-        } elseif (isset($_SERVER['x_demo_signature']) && !$_SERVER['x_demo_signature'] == 'demo') {
+        //lineの署名が無い場合、独自の署名が一致するか
+        } elseif (isset($_SERVER['x_demo_signature']) && !hash_equals($this->sign($entityBody), $_SERVER['x_demo_signature'])) {
             http_response_code(400);
             error_log('Invalid signature value');
 
@@ -123,6 +124,7 @@ class LINEBotTiny
         }
         return $data['events'];
     }
+
 
     /**
      * @param array<string, mixed> $message
@@ -171,7 +173,7 @@ class LINEBotTiny
 
         $rmresponse = file_get_contents('https://api.line.me/v2/bot/richmenu', false, $rmcontext);
         if (strpos($http_response_header[0], '200') === false) {
-          //  $rmresponse = 'false';
+            //  $rmresponse = 'false';
         }
         return $rmresponse;
     }
@@ -203,14 +205,12 @@ class LINEBotTiny
 
     //TODO:ファイル名変数にしたら１つで行けそう
     //リッチメニューに画像添付
-    public function upRmImgA($rmId,$imgUrl)
+    public function upRmImgA($rmId, $imgUrl)
     {
         // $richmenuId="richmenu-b56771c2cf5b359b8c182d7de6f9e2c8";
 
         //画像URL
         //TODO:会員メニューに変更すること
-       // $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/memberdemo/base_n1.png';
-        // $imgurl='https://dev-bot0722.herokuapp.com/public/img/cm_rm_y.png';
         $img = file_get_contents($imgUrl);
         $imgheader = array(
             'Content-Type: image/png',
@@ -238,76 +238,9 @@ class LINEBotTiny
         return $imgresponse;
     }
 
-     //リッチメニューに画像添付
-     public function upRmImgB($rmId)
-     {
-         // $richmenuId="richmenu-b56771c2cf5b359b8c182d7de6f9e2c8";
-
-         //画像URL
-     //    $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/memberdemo/base_n2.png';
-     $imgurl='https://dev-bot0722.herokuapp.com/public/img/cm_rm_n.png';   
-     $img = file_get_contents($imgurl);
-         $imgheader = array(
-             'Content-Type: image/png',
-             'Authorization: Bearer ' . $this->channelAccessToken,
-         //    "Content-Length: ".strlen($img),
-         );
 
 
-         $imgcontext = stream_context_create([
-             'http' => [
-                 'ignore_errors' => true,
-                 'method' => 'POST',
-                 'header' => implode("\r\n", $imgheader),
-                'content' => $img
-             ],
-         ]);
-
-         $imgresponse = file_get_contents('https://api-data.line.me/v2/bot/richmenu/'. $rmId. '/content', false, $imgcontext);
-         if (strpos($http_response_header[0], '200') === false) {
-             $imgresponse= 'Request failed: ';
-         } else {
-             $imgresponse= 'OK';
-         }
-
-         return $imgresponse;
-     }
-
-      //リッチメニューに画像添付
-      public function upRmImgC($rmId)
-      {
-          // $richmenuId="richmenu-b56771c2cf5b359b8c182d7de6f9e2c8";
-
-          //画像URL
-          $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/demo_c.png';
-          $img = file_get_contents($imgurl);
-          $imgheader = array(
-              'Content-Type: image/png',
-              'Authorization: Bearer ' . $this->channelAccessToken,
-          //    "Content-Length: ".strlen($img),
-          );
-
-
-          $imgcontext = stream_context_create([
-              'http' => [
-                  'ignore_errors' => true,
-                  'method' => 'POST',
-                  'header' => implode("\r\n", $imgheader),
-                 'content' => $img
-              ],
-          ]);
-
-          $imgresponse = file_get_contents('https://api-data.line.me/v2/bot/richmenu/'. $rmId. '/content', false, $imgcontext);
-          if (strpos($http_response_header[0], '200') === false) {
-              $imgresponse= 'Request failed: ';
-          } else {
-              $imgresponse= 'OK';
-          }
-
-          return $imgresponse;
-      }
-
-//リッチメニューAをデフォルトで表示
+//非会員メニューをデフォルトで表示
     public function defaultRm($rmId)
     {
         //デフォルト解除しておく
@@ -405,90 +338,8 @@ class LINEBotTiny
         return $alresponse;
     }
 
-    //ブロードキャスト responceヘッダーの
-
-    public function sendBroad($param)
-    {
-        //
-
-        $header = array(
-            'Authorization: Bearer ' . $this->channelAccessToken,
-            'Content-Type: application/json',
-        );
-
-        $context = stream_context_create([
-            'http' => [
-                'ignore_errors' => true,
-                'method' => 'POST',
-                'header' => implode("\r\n", $header),
-               'content' => json_encode($param),
-            ],
-        ]);
-
-        $response = file_get_contents('https://api.line.me/v2/bot/message/broadcast', false, $context);
-        if (strpos($http_response_header[0], '200') === false) {
-            $response='request failed';
-        } else {
-            $head= $this->parseHeaders($http_response_header);
-            //$response= $hds['X-Line-Request-Id'];
-
-            //小文字で指定しないと出なかった！
-            $response= $head['x-line-request-id'];
-
-            //$response= $http_response_header[5];
-        }
-
-        return $response;
-    }
-//メッセージのリクエストID取得のために
-//$http_response_headerを連想配列にする
-public function parseHeaders($headers)
-{
-    $head = array();
-    foreach ($headers as $k=>$v) {
-        $t = explode(':', $v, 2);
-        if (isset($t[1])) {
-            $head[ trim($t[0]) ] = trim($t[1]);
-        } else {
-            $head[] = $v;
-            if (preg_match("#HTTP/[0-9\.]+\s+([0-9]+)#", $v, $out)) {
-                $head['reponse_code'] = intval($out[1]);
-            }
-        }
-    }
-    return $head;
-}
-
-//分析結果
-
-public function analys($requestId)
-{
-    $header = array(
-        'Authorization: Bearer ' . $this->channelAccessToken,
-);
-
-    $context = stream_context_create([
-        'http' => [
-            'ignore_errors' => true,
-            'method' => 'GET',
-           'header' => implode("\r\n", $header),
-        ],
-    ]);
-
-    $response = file_get_contents('https://api.line.me/v2/bot/insight/message/event?requestId='. $requestId, false, $context);
-    if (strpos($http_response_header[0], '200') === false) {
-        $response='request failed';
-    }
-
-    return $response;
-}
-
-//非会員　richmenu-abb034aefaca6179f59627b52a6e0f43
-//会員　richmenu-17e16582cd159c844fa3d85d6f71967a
-
 public function linkUser($uid, $rm)
 {
-
     $api_url ='https://api.line.me/v2/bot/user/'. $uid . '/richmenu/' . $rm;
 
     //エンコードされたURLでPOST通信する
@@ -511,9 +362,8 @@ public function linkUser($uid, $rm)
 }
 
 //リッチメニューとユーザのリンクを切る（非会員メニューに切り替える）
-function deleteLinkUser($userId){
-
-
+public function deleteLinkUser($userId)
+{
     $header = array(
         'Authorization: Bearer ' . $this->channelAccessToken,
 );
@@ -532,53 +382,9 @@ function deleteLinkUser($userId){
     }
 
     return $response;
-
 }
 
 
-public function userProf($uid)
-{
-    //TODO:ユーザーのプロフィールを取得
-//     $api_url ='https://api.line.me/v2/bot/profile/'. $uid;
-
-//     //エンコードされたURLでPOST通信する
-//     $headers = [ 'Authorization: Bearer ' . $this->channelAccessToken,];
-
-//     $curl_handle = curl_init();
-
-//     curl_setopt($curl, CURLOPT_HTTPGET, true);
-    //  //   curl_setopt($curl_handle, CURLOPT_POST, true);
-//     curl_setopt($curl_handle, CURLOPT_URL, $api_url);
-//     curl_setopt($curl_handle, CURLOPT_HTTPHEADER, $headers);
-//             // curl_exec()の結果を文字列にする
-//     curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, true);
-//     //実行
-//     $res = curl_exec($curl_handle);
-
-//     //close
-//     curl_close($curl_handle);
-
-
-
-    $header = array(
-        'Authorization: Bearer ' . $this->channelAccessToken,
-    );
-    $context = stream_context_create([
-        'http' => [
-            'ignore_errors' => true,
-            'method' => 'GET',
-            'header' => $header,
-            // JSON_UNESCAPED_UNICODE？
-        ],
-    ]);
-
-    $res=file_get_contents('https://api.line.me/v2/bot/profile/'. $uid, false, $context);
-    if (strpos($http_response_header[0], '200') === false) {
-        $res='request failed';
-    }
-
-    return $res;
-}
 
 
 public function sendPush($param)
@@ -593,7 +399,7 @@ public function sendPush($param)
             'method' => 'POST',
             'header' => $header,
             // JSON_UNESCAPED_UNICODE？
-           'content' => json_encode($param ),
+           'content' => json_encode($param),
         ],
     ]);
 
@@ -605,99 +411,9 @@ public function sendPush($param)
     return $res;
 }
 
-//オーディエンス管理
-
-//作成
-public function crtAud($param){
-    $header = array(
-        'Content-Type: application/json',
-        'Authorization: Bearer ' . $this->channelAccessToken,
-    );
-    $context = stream_context_create([
-        'http' => [
-            'ignore_errors' => true,
-            'method' => 'POST',
-            'header' => $header,
-            // JSON_UNESCAPED_UNICODE？
-           'content' => json_encode($param),
-        ],
-    ]);
-
-    $res=file_get_contents('https://api.line.me/v2/bot/audienceGroup/upload', false, $context);
-    if (strpos($http_response_header[0], '200') === false) {
-      //     $res='request failed';
-    }
-
-    return $res;
-}
-
-//情報取得
-public function detAud($gId){
-    $header = array(
-        'Authorization: Bearer ' . $this->channelAccessToken,
-    );
-    $context = stream_context_create([
-        'http' => [
-            'ignore_errors' => true,
-            'method' => 'GET',
-            'header' => $header,
-            // JSON_UNESCAPED_UNICODE？
-         //  'content' => '',
-        ],
-    ]);
-
-    $res=file_get_contents('https://api.line.me/v2/bot/audienceGroup/'.$gId, false, $context);
-    if (strpos($http_response_header[0], '200') === false) {
-      //     $res='request failed';
-    }
-
-    return $res;
-}
-
-//利用状況確認
-public function getSent(){
-    $header = array(
-        'Authorization: Bearer ' . $this->channelAccessToken,
-    );
-    $context = stream_context_create([
-        'http' => [
-            'ignore_errors' => true,
-            'method' => 'GET',
-            'header' => $header,
-        ],
-    ]);
-
-    $res=file_get_contents('https://api.line.me/v2/bot/message/quota/consumption', false, $context);
-    if (strpos($http_response_header[0], '200') === false) {
-      //     $res='request failed';
-    }
-
-    return $res;
-}
-
-public function getQuota(){
-    $header = array(
-        'Authorization: Bearer ' . $this->channelAccessToken,
-    );
-    $context = stream_context_create([
-        'http' => [
-            'ignore_errors' => true,
-            'method' => 'GET',
-            'header' => $header,
-        ],
-    ]);
-
-    $res=file_get_contents('https://api.line.me/v2/bot/message/quota', false, $context);
-    if (strpos($http_response_header[0], '200') === false) {
-      //     $res='request failed';
-    }
-
-    return $res;
-}
 
 
-
-    //署名をハッシュ化
+        //署名をハッシュ化
     /**
      * @param string $body
      * @return string

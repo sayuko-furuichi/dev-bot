@@ -26,7 +26,7 @@ class getAudience
      *
      * @param String $channelAccessToken
      * @param String $channelSecret
-     * @param LINEBotTiny $client
+     * @param C_LINEBotTiny $client
      */
     public function __construct(String $channelAccessToken, String $channelSecret, $client)
     {

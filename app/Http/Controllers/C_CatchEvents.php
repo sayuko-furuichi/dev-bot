@@ -13,7 +13,7 @@ use App\Models\RichMenu;
 use App\Models\Store;
 use App\Models\LineStoreStatus;
 
-class CommonsCatchEvents extends Controller
+class C_CatchEvents extends Controller
 {
     private $channelAccessToken;
     //chanell_secret
@@ -51,10 +51,7 @@ class CommonsCatchEvents extends Controller
                 $first = new Messages($this->channelAccessToken, $this->channelSecret, $client,$event['replyToken']);
                 $first->sendFirstMessage($us['userId'], $this->storeId);
             }
-            //ブロック時
-            if ($event['type'] == 'unfollow') {
-                //TODO:ブロック時の記録
-            }
+
 
             if ($event['type'] == 'message') {
                 $message = $event['message'];

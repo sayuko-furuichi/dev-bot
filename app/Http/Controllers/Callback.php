@@ -5,23 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-use Illuminate\Foundation\helpers;
-use LINE\LINEBot\Event\Parser;
-use LINE\LINEBot\Event\MessageEvent;
-use LINE\LINEBot\MessageBuilder;
-
-
-use App\Http\Controllers\CatchEvents;
 use App\Http\Controllers\CommonsCatchEvents;
-use App\Http\Service\getUserProf;
-use App\Models\Store;
 use App\Models\LineStoreStatus;
 
 class Callback extends Controller
 {
     public function callback(Request $request)
     {
-    //     //本店
     $store =LineStoreStatus::where('store_id', $request->store_id)->first();
     if (isset($store)) {
         $storeId=$request->store_id;
@@ -34,13 +24,13 @@ class Callback extends Controller
     // $channelAccessToken= $pr->channel_access_token;
     // $channelSecret=$pr->channel_secret;
 
-    ///厳密な比較でフラグと間違われないようにする
+    //厳密な比較でフラグと間違われないようにする
     if ($storeId===1) {
-        $send = new CommonsCatchEvents($channelAccessToken, $channelSecret, $storeId);
-        $send->send();
-    } else {
-        $sends = new CatchEvents();
-        $sends->send($channelAccessToken, $channelSecret, $storeId);
+        $catch = new CommonsCatchEvents($channelAccessToken, $channelSecret, $storeId);
+        $catch->send();
+    // } else {
+    //     $sends = new CatchEvents();
+    //     $sends->send($channelAccessToken, $channelSecret, $storeId);
     }
 }
 

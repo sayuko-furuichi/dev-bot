@@ -21,7 +21,7 @@ class getCommonsRm
      *
      * @param String $channelAccessToken
      * @param String $channelSecret
-     * @param C_LINEBotTiny $client
+     * @param LINEBotTiny $client
      */
     public function __construct(String $channelAccessToken, String $channelSecret, $client)
     {
