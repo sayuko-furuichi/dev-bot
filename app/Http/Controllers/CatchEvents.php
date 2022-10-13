@@ -51,7 +51,6 @@ class CatchEvents extends Controller
                 } elseif (preg_match('/removeMember&id=/', $pt['data'])) {
                     $member = new getMember($channelAccessToken, $channelSecret, $client);
                     $member->remove($event, $pt, $storeId);
-
                 } elseif (preg_match('/changed=/', $pt['data'])) {
                     $mm = new getMember($channelAccessToken, $channelSecret, $client);
                     $uid=$us['userId'];
@@ -94,27 +93,27 @@ class CatchEvents extends Controller
                 $message = $event['message'];
                 //"ID"と入力されたら、ユーザIDを返す
 
-if ($message['text'] == 'ID') {
-    //ユーザID取得のために、event配列からsoureを代入
-    //　$us['userId']　でユーザIDを持ってこれる。
+                if ($message['text'] == 'ID') {
+                    //ユーザID取得のために、event配列からsoureを代入
+                    //　$us['userId']　でユーザIDを持ってこれる。
 
-    $use=$us['userId'];
+                    $use=$us['userId'];
 
-    $client->replyMessage([
-            'replyToken' => $event['replyToken'],
-            'messages' => [
-                [
+                    $client->replyMessage([
+                    'replyToken' => $event['replyToken'],
+                    'messages' => [
+                    [
     'type' => 'text',
     'text' => 'This is ' . $storeId . '号店'
-                ],
-                [
+                    ],
+                    [
     'type' => 'text',
     'text' =>  'あなたのユーザID：'.$us['userId']
-                ]
+                    ]
 
             ]
         ]);
-} elseif ($message['text'] == '申し込み' && $storeId==1) {
+                } elseif ($message['text'] == '申し込み' && $storeId==1) {
                     //ユーザID取得のために、event配列からsoureを代入
                     //　$us['userId']　でユーザIDを持ってこれる。
                     // header("Location:https://dev-ext-app.herokuapp.com/public/addMember?user=".$us['userId']);
@@ -146,8 +145,6 @@ if ($message['text'] == 'ID') {
                     $store = Store::where('id', $storeId)->first();
                     $msg = new Messages($channelAccessToken, $channelSecret, $client, $event['replyToken']);
                     $msg->reserveConf($store);
-
-                 
                 } elseif ($message['text'] == 'オフラインを購入') {
                     if ($storeId ==1) {
                         $msg = new Messages($channelAccessToken, $channelSecret, $client, $event['replyToken']);

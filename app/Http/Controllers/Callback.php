@@ -38,8 +38,8 @@ class Callback extends Controller
         $send = new CommonsCatchEvents($channelAccessToken, $channelSecret, $storeId);
         $send->send();
     } else {
-        $send = new CatchEvents();
-        $send->send($channelAccessToken, $channelSecret, $storeId);
+        $sends = new CatchEvents();
+        $sends->send($channelAccessToken, $channelSecret, $storeId);
     }
 }
 
