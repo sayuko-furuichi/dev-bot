@@ -30,7 +30,7 @@ class getCommonsRm
         $this->channelSecret= $channelSecret;
         $this->client=$client;
     }
-
+    
     public function creater($storeId)
     {
         //TODO:各フィードバッグ後の、trueなら続行、falseなら中断の分岐(trycatchでもいいかも？)
@@ -97,7 +97,7 @@ class getCommonsRm
 
           $res= $this->createAliasRmA($rmA);
 
-         $res= $this->createAliasRmB($rmB);
+         $res= $this->createAliasRmA($rmB);
 
     
         //store_idを入れる
@@ -292,29 +292,29 @@ class getCommonsRm
 
 
 
-    public function createAliasRmA($rmA)
+    public function createAliasRmA($rm)
     {
         //エイリアス作成
 
         $res= $this->client->createAlias([
-    'richMenuAliasId'=>$rmA ->richmenu_alias_id,
-   'richMenuId'=>$rmA->richmenu_id,
+    'richMenuAliasId'=>$rm ->richmenu_alias_id,
+   'richMenuId'=>$rm->richmenu_id,
   ]);
 
         return $res;
     }
 
-    public function createAliasRmB($rmB)
-    {
-        //エイリアス作成
+//     public function createAliasRmB($rmB)
+//     {
+//         //エイリアス作成
 
-        $res= $this->client->createAlias([
-    'richMenuAliasId'=> $rmB ->richmenu_alias_id,
-   'richMenuId'=>$rmB->richmenu_id,
-  ]);
+//         $res= $this->client->createAlias([
+//     'richMenuAliasId'=> $rmB ->richmenu_alias_id,
+//    'richMenuId'=>$rmB->richmenu_id,
+//   ]);
 
-        return $res;
-    }
+//         return $res;
+//     }
 
 
 
