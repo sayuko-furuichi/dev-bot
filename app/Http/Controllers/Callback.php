@@ -34,7 +34,7 @@ class Callback extends Controller
     // $channelAccessToken= $pr->channel_access_token;
     // $channelSecret=$pr->channel_secret;
 
-    if ($request->store_id=1) {
+    if ($storeId===1) {
         $send = new CommonsCatchEvents($channelAccessToken, $channelSecret, $storeId);
         $send->send();
     } else {
