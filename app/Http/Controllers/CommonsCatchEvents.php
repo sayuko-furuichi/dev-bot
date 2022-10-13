@@ -53,7 +53,7 @@ class CommonsCatchEvents extends Controller
             if ($event['type'] == 'follow') {
                 //すでに入力していた場合は受け付けない
 
-                $first = new Message($this->channelAccessToken, $this->channelSecret, $client,$event['replyToken']);
+                $first = new Messages($this->channelAccessToken, $this->channelSecret, $client,$event['replyToken']);
                 $first->sendFirstMessage($us['userId'], $this->storeId);
             }
             //ブロック時
