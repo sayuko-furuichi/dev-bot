@@ -9,6 +9,7 @@ use App\Http\Service\getCommonsRm;
 
 use App\Http\Service\Messages;
 use App\Http\Service\SendFirstMessage;
+use App\Http\Controllers\C_LINEBotTiny;
 
 
 
@@ -38,7 +39,7 @@ class CommonsCatchEvents extends Controller
 
     public function send()
     {
-        $client = new LINEBotTiny($this->channelAccessToken, $this->channelSecret);
+        $client = new C_LINEBotTiny($this->channelAccessToken, $this->channelSecret);
         foreach ($client->parseEvents() as $event) {
             $us = $event['source'];
 
