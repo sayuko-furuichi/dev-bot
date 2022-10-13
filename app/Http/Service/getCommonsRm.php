@@ -2,7 +2,6 @@
 
 namespace App\Http\Service;
 
-use App\Http\Controllers\LINEBotTiny;
 use Illuminate\Http\Request;
 use App\Models\RichMenu;
 use App\Models\LineStoreStatus;
@@ -22,7 +21,7 @@ class getCommonsRm
      *
      * @param String $channelAccessToken
      * @param String $channelSecret
-     * @param LINEBotTiny $client
+     * @param C_LINEBotTiny $client
      */
     public function __construct(String $channelAccessToken, String $channelSecret, $client)
     {
@@ -35,7 +34,7 @@ class getCommonsRm
     public function creater($storeId)
     {
         //TODO:各フィードバッグ後の、trueなら続行、falseなら中断の分岐(trycatchでもいいかも？)
-
+        return $res='ぶうｇ';
         $rmA= new RichMenu;
          $rmB= new RichMenu;
       //  $rmC= new RichMenu;
@@ -45,21 +44,17 @@ class getCommonsRm
         $strs=uniqid('');
         $rmA ->richmenu_alias_id =  $strs . '_a';
         $rmB ->richmenu_alias_id=  $strs . '_b';
-       
+        return $rmA->richmenu_name;
 
-        // $this->rmAlIdA='Al_'. $strAl . '_a';
-        // $this->rmAlIdB='Al_'. $strAl . '_b';
-        //   $str=date('Y-m-d-s');
-       // $str=uniqid('');
        $str='Commons';
         $rmA->richmenu_name = $str . '_big';
          $rmB->richmenu_name=$str . '_small';
-    return $rmA->richmenu_name;
+ 
 
         $rmA->menu_bar_title='メニュー/ON/OFF';
          $rmB->menu_bar_title="メニュー/ON/OFF";
     
-       $lineStore =LineStoreStatus::where('id',$storeId)->first();
+       $lineStore =LineStoreStatus::where('store_id',$storeId)->first();
 
       
         //create rich menu A

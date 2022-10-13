@@ -62,7 +62,7 @@ if (!function_exists('hash_equals')) {
     }
 }
 
-class LINEBotTiny
+class C_LINEBotTiny
 {
     /** @var string */
     private $channelAccessToken;
