@@ -34,7 +34,6 @@ class getCommonsRm
     public function creater($storeId)
     {
         //TODO:各フィードバッグ後の、trueなら続行、falseなら中断の分岐(trycatchでもいいかも？)
-        return $res='ぶうｇ';
         $rmA= new RichMenu;
          $rmB= new RichMenu;
       //  $rmC= new RichMenu;
