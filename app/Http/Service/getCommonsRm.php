@@ -43,12 +43,12 @@ class getCommonsRm
         $strs=uniqid('');
         $rmA ->richmenu_alias_id =  $strs . '_a';
         $rmB ->richmenu_alias_id=  $strs . '_b';
-        return $rmA->richmenu_name;
+       
 
        $str='Commons';
-        $rmA->richmenu_name = $str . '_big';
-         $rmB->richmenu_name=$str . '_small';
- 
+        $rmA->richmenu_name = $str . '_member';
+         $rmB->richmenu_name=$str . '_non_member';
+
 
         $rmA->menu_bar_title='メニュー/ON/OFF';
          $rmB->menu_bar_title="メニュー/ON/OFF";
@@ -57,14 +57,14 @@ class getCommonsRm
 
       
         //create rich menu A
-        $res= $this->createRmA($rmA,$lineStore);
+        $res= $this->createRmA($rmA);
         $rs= json_decode($res, true);
         $rmA->richmenu_id=$rs['richMenuId'];
         //storeテーブルにも同時に設定する
         // $lineStore->member_menu=$rs['richMenuId'];
    
         //create rich menu B
-         $res= $this->createRmB($rmB,$lineStore);
+         $res= $this->createRmB($rmB);
          $rs= json_decode($res, true);
          $rmB->richmenu_id=$rs['richMenuId'];
       
@@ -124,7 +124,7 @@ class getCommonsRm
 //2枚一気に作成する
 
 
-    public function createRmA($rmA, $lineStore)
+    public function createRmA($rmA)
     {
         //作成
 
@@ -135,8 +135,8 @@ class getCommonsRm
     'height'=>1686
     ],
     'selected'=> false,
-    'name'=> $rmA->name,
-    'chatBarText'=> $rmA->chat_bar,
+    'name'=> $rmA->richmenu_name,
+    'chatBarText'=> $rmA->menu_bar_title,
     //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
     'areas'=> [[
 
@@ -228,7 +228,7 @@ class getCommonsRm
         return $res;
     }
 
-    public function createRmB($rmB,$lineStore)
+    public function createRmB($rmB)
     {
         $res=$this->client->rtRichMenu([
 
@@ -237,8 +237,8 @@ class getCommonsRm
             'height'=>843
             ],
             'selected'=> false,
-            'name'=> $rmB->name,
-            'chatBarText'=> $rmB->chat_bar,
+            'name'=> $rmB->richmenu_name,
+            'chatBarText'=> $rmB->menu_bar_title,
             //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
             'areas'=> [[
 
@@ -317,35 +317,6 @@ class getCommonsRm
     }
 
 
-
-    public function getList($storeId){
-
-        //DBから持ってきて、POSTする
-        //TODO:Jsonで送る？
-        $list=RichMenu::where('store_id',$storeId)->get();
-
-        $header = array(
-            'Content-Type: application/json',
-        );
-
-       
-         $context = stream_context_create([
-             'http' => [
-                 'ignore_errors' => true,
-                 'method' => 'POST',
-                 'header' => implode("\r\n", $header),
-                 'content' =>json_encode($list)
-             ],
-         ]);
-         //   var_dump($detail);
-    
-     return  file_get_contents('https://dev-ext-app.herokuapp.com/public/rich', false, $context);
-
-         if (strpos($http_response_header[0], '200') === false) {
-             $res = 'false';
-         }
-
-    }
 
     }
 

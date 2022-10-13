@@ -92,9 +92,10 @@ class C_LINEBotTiny
             exit();
         }
 
-        //requestBodyの中身が存在するか
+        //requestBodyを格納
         $entityBody = file_get_contents('php://input');
 
+        //requestBodyの中身が入っているか
         if ($entityBody === false || strlen($entityBody) === 0) {
             http_response_code(400);
             error_log('Missing request body');
@@ -106,7 +107,8 @@ class C_LINEBotTiny
             http_response_code(400);
             error_log('Invalid signature value');
             exit();
-        } elseif (isset($_SERVER['x_demo_signature']) && !$_SERVER['x_demo_signature'] == 'demo') {
+            //lineの署名が無い場合、独自の署名が一致するか
+        } elseif (isset($_SERVER['x_demo_signature']) && !hash_equals($this->sign($entityBody), $_SERVER['x_demo_signature'])) {
             http_response_code(400);
             error_log('Invalid signature value');
 
@@ -123,6 +125,19 @@ class C_LINEBotTiny
         }
         return $data['events'];
     }
+
+        //署名をハッシュ化
+    /**
+     * @param string $body
+     * @return string
+     */
+    private function sign($body)
+    {
+        $hash = hash_hmac('sha256', $body, $this->channelSecret, true);
+        $signature = base64_encode($hash);
+        return $signature;
+    }
+
 
     /**
      * @param array<string, mixed> $message
@@ -209,8 +224,6 @@ class C_LINEBotTiny
 
         //画像URL
         //TODO:会員メニューに変更すること
-       // $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/memberdemo/base_n1.png';
-        // $imgurl='https://dev-bot0722.herokuapp.com/public/img/cm_rm_y.png';
         $img = file_get_contents($imgUrl);
         $imgheader = array(
             'Content-Type: image/png',
@@ -434,25 +447,6 @@ function deleteLinkUser($userId){
 public function userProf($uid)
 {
     //TODO:ユーザーのプロフィールを取得
-//     $api_url ='https://api.line.me/v2/bot/profile/'. $uid;
-
-//     //エンコードされたURLでPOST通信する
-//     $headers = [ 'Authorization: Bearer ' . $this->channelAccessToken,];
-
-//     $curl_handle = curl_init();
-
-//     curl_setopt($curl, CURLOPT_HTTPGET, true);
-    //  //   curl_setopt($curl_handle, CURLOPT_POST, true);
-//     curl_setopt($curl_handle, CURLOPT_URL, $api_url);
-//     curl_setopt($curl_handle, CURLOPT_HTTPHEADER, $headers);
-//             // curl_exec()の結果を文字列にする
-//     curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, true);
-//     //実行
-//     $res = curl_exec($curl_handle);
-
-//     //close
-//     curl_close($curl_handle);
-
 
 
     $header = array(
@@ -592,15 +586,5 @@ public function getQuota(){
 
 
 
-    //署名をハッシュ化
-    /**
-     * @param string $body
-     * @return string
-     */
-    private function sign($body)
-    {
-        $hash = hash_hmac('sha256', $body, $this->channelSecret, true);
-        $signature = base64_encode($hash);
-        return $signature;
-    }
+
 }
