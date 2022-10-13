@@ -94,40 +94,38 @@ class Messages
 
     public function result($res)
     {
-      $this->client->replyMessage([
-        'replyToken' => $this->replyToken,
-        'messages' => [
-            [
-            'type' => 'text',
+        $this->client->replyMessage([
+          'replyToken' => $this->replyToken,
+          'messages' => [
+              [
+              'type' => 'text',
     'text' => 'OK!'
     ],
-    
+
     [
     'type' => 'text',
     'text' => $res
     ]
     ]
     ]);
-
     }
-       public function search($userId,$storeId)
+       public function search($userId, $storeId)
        {
-           $is_client = Client::where('line_user_id', $userId)->where('store_id',$storeId)->first();
+           $is_client = Client::where('line_user_id', $userId)->where('store_id', $storeId)->first();
            return $is_client;
        }
 
      public function sendFirstMessage($userId, $storeId)
      {
-         $is_client = $this->search($userId,$storeId);
+         $is_client = $this->search($userId, $storeId);
          if (!isset($is_client->id)) {
              $flag='非会員';
              $this->client->deleteLinkUser($userId);
-
          } else {
              $flag='会員';
-             $storerm=LineStoreStatus::where('store_id',$storeId)->first('member_richmenu_id');
-             $rm=RichMenu::where('id',$storerm->member_richmenu_id)->first('richmenu_id');
-             $this->client->linkUser($userId,$rm->richmenu_id);
+             $storerm=LineStoreStatus::where('store_id', $storeId)->first('member_richmenu_id');
+             $rm=RichMenu::where('id', $storerm->member_richmenu_id)->first('richmenu_id');
+             $this->client->linkUser($userId, $rm->richmenu_id);
          }
 
          // $imgUrl = secure_asset('img/Commands_logo.png');
@@ -144,27 +142,23 @@ class Messages
          );
      }
 
-     public function sendPushMessage($userId,$webMsg)
+    function sendPushMessage($userId, $webMsg)
      {
-        
- 
-         //$resに、requestidが入る
-         $res = $this->client->sendPush([
-             'to' => $userId,
- 
-         'messages' => [
-                 [
-     'type' => 'text',
-     'text' =>$webMsg
-                 ],
+      $res = $this->client->sendPush([
+        'to' => $userId,
 
- 
+    'messages' => [
+            [
+'type' => 'text',
+'text' =>$webMsg
+            ],
+             [
+ 'type' => 'text',
+ 'text' =>$webMsg
              ]
-               ]);
- 
- 
+
+        ]
+          ]);
+
      }
-
-
-
 }

@@ -71,6 +71,7 @@ class C_CatchEvents extends Controller
 
                             ]
                         ]);
+                        
 
                         //登録完了時にリッチメニューを切り替える
                 } elseif ($message['text'] == '完了' && $us['type']=='web') {
@@ -79,8 +80,10 @@ class C_CatchEvents extends Controller
                     $richMenu =RichMenu::where('id', $lineStore->member_richmenu_id)->first('richmenu_id');
                     $client->linkUser($message['text2'], $richMenu->richmenu_id);
 
-                    $msg = new Messages($this->channelAccessToken, $this->channelSecret, $client);
+                    $msg = new Messages($this->channelAccessToken, $this->channelSecret, $client,$event['replyToken']);
                     $msg->sendPushMessage($message['text2'],'登録が完了しました！');
+
+                    
 
                 } elseif ($message['text'] == 'オフラインを購入') {
                     if ($this->storeId ==1) {
