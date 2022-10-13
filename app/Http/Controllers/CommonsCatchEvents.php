@@ -100,21 +100,11 @@ class CommonsCatchEvents extends Controller
 
                     $rmDetail = new getCommonsRm($this->channelAccessToken, $this->channelSecret, $client);
                     $res = $rmDetail->creater($this->storeId);
+                    
+                    $msg = new Messages($this->channelAccessToken, $this->channelSecret, $client, $event['replyToken']);
+                    $msg->result($res);
 
-                    $client->replyMessage([
-    'replyToken' => $event['replyToken'],
-    'messages' => [
-        [
-        'type' => 'text',
-'text' =>$this->storeId . '　OK!'
-],
 
-[
-'type' => 'text',
-'text' =>  ' is richmenuID'   . $res
-]
-]
-]);
 
 
                 //どこの条件にも引っかからないメッセージ

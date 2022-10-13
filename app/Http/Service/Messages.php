@@ -90,4 +90,23 @@ class Messages
     ]]]]]
         );
     }
+
+    public function result($res)
+    {
+      $client->replyMessage([
+        'replyToken' => $this->replyToken,
+        'messages' => [
+            [
+            'type' => 'text',
+    'text' => 'OK!'
+    ],
+    
+    [
+    'type' => 'text',
+    'text' => $res
+    ]
+    ]
+    ]);
+
+    }
 }
