@@ -45,7 +45,7 @@ class Messages
 'altText'=> '分岐テンプレート',
 'template'=> [
 'type'=> 'confirm',
-'text'=> 'どちらの催しに参加しますか？',
+'text'=> 'どちらを購入しますか？',
 'actions'=> [
         [
           'type'=> 'message',
