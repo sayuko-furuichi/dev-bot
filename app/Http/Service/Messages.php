@@ -3,7 +3,6 @@
 namespace App\Http\Service;
 
 use Illuminate\Support\Facades\Storage;
-use App\Http\Controllers\LINEBotTiny;
 use Illuminate\Support\Facades\DB;
 use App\Models\LineStoreStatus;
 use App\Models\Client;

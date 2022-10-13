@@ -53,7 +53,7 @@ class C_CatchEvents extends Controller
             }
 
 
-            if ($event['type'] == 'message') {
+           elseif ($event['type'] == 'message') {
                 $message = $event['message'];
 
                 if ($message['text'] == '申し込み' && $this->storeId==1) {
@@ -80,7 +80,7 @@ class C_CatchEvents extends Controller
                     $client->linkUser($message['text2'], $richMenu->richmenu_id);
 
                     $msg = new Messages($this->channelAccessToken, $this->channelSecret, $client);
-                    $msg->sendPushMessage(  $message['text2'],'登録が完了しました！');
+                    $msg->sendPushMessage($message['text2'],'登録が完了しました！');
 
                 } elseif ($message['text'] == 'オフラインを購入') {
                     if ($this->storeId ==1) {

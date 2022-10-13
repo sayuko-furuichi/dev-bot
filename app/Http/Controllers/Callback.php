@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 use App\Http\Controllers\CommonsCatchEvents;
+use App\Http\Controllers\C_CatchEvents;
 use App\Models\LineStoreStatus;
 
 class Callback extends Controller
@@ -25,12 +26,9 @@ class Callback extends Controller
     // $channelSecret=$pr->channel_secret;
 
     //厳密な比較でフラグと間違われないようにする
-    if ($storeId===1) {
-        $catch = new CommonsCatchEvents($channelAccessToken, $channelSecret, $storeId);
+    if ($storeId == 1) {
+        $catch = new C_CatchEvents($channelAccessToken, $channelSecret, $storeId);
         $catch->send();
-    // } else {
-    //     $sends = new CatchEvents();
-    //     $sends->send($channelAccessToken, $channelSecret, $storeId);
     }
 }
 
