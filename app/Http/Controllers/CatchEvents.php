@@ -92,10 +92,9 @@ class CatchEvents extends Controller
                     $res= $msg->sendPushMessage($message['text2'], $message='登録が完了しました！');
 
                 } elseif ($message['text'] == '予約確認') {
-                    $store = Store::where('id', $this->storeId)->first();
                     $lineStore = LineStoreStatus::where('store_id',$this->storeId)->first('liff_url');
                     $msg = new Messages($this->lineBot, $event['replyToken']);
-                    $msg->reserveConf($store,$lineStore);
+                    $msg->reserveConf($this->storeId,$lineStore);
 
 
                 // メニュー　と言われたら、返す　OK！

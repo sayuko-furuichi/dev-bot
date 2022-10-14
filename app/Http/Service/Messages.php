@@ -55,7 +55,7 @@ class Messages
         );
     }
 
-    public function reserveConf($store,$lineStore)
+    public function reserveConf($storeId,$lineStore)
     {
         $this->lineBot->replyMessage(
             [
@@ -75,7 +75,7 @@ class Messages
     [
       'type'=> 'uri',
       'label'=> 'yes',
-      'uri'=> $lineStore->liff_url .'/reserve?store='. $store->id,
+      'uri'=> $lineStore->liff_url .'/reserve?store='. $storeId
     ],
     [
       'type'=> 'postback',
