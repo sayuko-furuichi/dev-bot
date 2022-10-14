@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Http\Controllers\CatchEvents;
+
+use App\Http\Controllers\CommonsCatchEvents;
+use App\Http\Controllers\C_CatchEvents;
 use App\Models\LineStoreStatus;
-use App\Models\SLINEBotTiny;
 
 class Callback extends Controller
 {
@@ -25,11 +26,10 @@ class Callback extends Controller
     // $channelSecret=$pr->channel_secret;
 
     //厳密な比較でフラグと間違われないようにする
-        $catch = new CatchEvents($storeId,$lineBot);
-        $lineBot = new SLINEBotTiny($channelAccessToken, $channelSecret);
+    if ($storeId == 1) {
+        $catch = new C_CatchEvents($channelAccessToken, $channelSecret, $storeId);
         $catch->send();
-    
-
+    }
 }
 
 }

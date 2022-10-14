@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Service\GetCommonsRm;
 
-use App\Http\Service\Messages;
+use App\Http\Service\C_Messages;
 use App\Http\Controllers\LINEBotTiny;
 
 //あとで消す
@@ -48,7 +48,7 @@ class C_CatchEvents extends Controller
             if ($event['type'] == 'follow') {
                 //すでに入力していた場合は受け付けない
 
-                $first = new Messages($client,$event['replyToken']);
+                $first = new C_Messages($client,$event['replyToken']);
                 $first->sendFirstMessage($us['userId'], $this->storeId);
             }
 
@@ -81,14 +81,14 @@ class C_CatchEvents extends Controller
                     $richMenu =RichMenu::where('id', $lineStore->member_richmenu_id)->first('richmenu_id');
                     $client->linkUser($message['text2'], $richMenu->richmenu_id);
 
-                    $msg = new Messages($client,'');
+                    $msg = new C_Messages($client,'');
                    $res= $msg->sendPushMessage($message['text2'],$message='登録が完了しました！');
 
                     
 
                 } elseif ($message['text'] == 'オフラインを購入') {
 
-                        $msg = new Messages($client, $event['replyToken']);
+                        $msg = new C_Messages($client, $event['replyToken']);
                         $msg->sendMessage();
                     
 
@@ -104,7 +104,7 @@ class C_CatchEvents extends Controller
                         $result = $rmDetail->creater($this->storeId);
                     }
                    
-                    $msg = new Messages($client, $event['replyToken']);
+                    $msg = new C_Messages($client, $event['replyToken']);
                     $msg->result($result);
 
 
