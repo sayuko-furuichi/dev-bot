@@ -53,6 +53,10 @@ class CatchEvents extends Controller
                         $this->lineBot->linkUser($us['userId'], $nonmemberMenu->richmenu_id);
                         $msg = new Messages($this->lineBot, $event['replyToken']);
                         $msg->result($result='会員登録後にご利用いただけます');
+                    }else{
+                        $storerm=LineStoreStatus::where('store_id', $this->storeId)->first('member_richmenu_id');
+                        $rm=RichMenu::where('id', $storerm->member_richmenu_id)->first('richmenu_id');
+                        $this->lineBot->linkUser($us['userId'], $rm->richmenu_id);
                     }
                 }
             }
@@ -76,9 +80,7 @@ class CatchEvents extends Controller
                 if ($message['text'] == 'ID') {
                     //ユーザID取得のために、event配列からsoureを代入
                     //　$us['userId']　でユーザIDを持ってこれる。
-                    $storerm=LineStoreStatus::where('store_id', $this->storeId)->first('member_richmenu_id');
-                    $rm=RichMenu::where('id', $storerm->member_richmenu_id)->first('richmenu_id');
-                    $this->lineBot->linkUser($us['userId'], $rm->richmenu_id);
+                  
 
                     $this->lineBot->replyMessage([
                     'replyToken' => $event['replyToken'],
