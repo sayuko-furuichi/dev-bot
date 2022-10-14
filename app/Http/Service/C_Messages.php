@@ -8,20 +8,25 @@ use App\Models\LineStoreStatus;
 use App\Models\Client;
 use App\Models\RichMenu;
 
-class Messages
+class C_Messages
 {
+    //chanell_access_token
+    // private $channelAccessToken;
+    // //chanell_secret
+    // private $channelSecret;
 
-    private $lineBot;
+    //LINEBotTiny client
+    private $client;
 
     private $replyToken;
 
 
-    public function __construct($linebot, $replyToken)
+    public function __construct($client, $replyToken)
     {
         // $this->userId= $userId;
         // $this->channelAccessToken= $channelAccessToken;
         // $this->channelSecret= $channelSecret;
-        $this->lineBot=$lineBot;
+        $this->client=$client;
         $this->replyToken=$replyToken;
     }
 
@@ -29,7 +34,7 @@ class Messages
     //送信後、ヘッダーからrequestIDを貰う
     public function sendMessage()
     {
-        $this->lineBot->replyMessage(
+        $this->client->replyMessage(
             [
 'replyToken' => $this->replyToken,
 'messages' => [
@@ -55,9 +60,9 @@ class Messages
         );
     }
 
-    public function reserveConf($store,$lineStore)
+    public function reserveConf($store)
     {
-        $this->lineBot->replyMessage(
+        $this->client->replyMessage(
             [
 'replyToken' => $this->replyToken,
 'messages' => [
@@ -75,7 +80,7 @@ class Messages
     [
       'type'=> 'uri',
       'label'=> 'yes',
-      'uri'=> $lineStore->liff_url .'/reserve?store='. $store->id,
+      'uri'=> $store->liff_url .'/reserve?store='. $store->id,
     ],
     [
       'type'=> 'postback',
@@ -89,7 +94,7 @@ class Messages
 
     public function result($res)
     {
-        $this->lineBot->replyMessage([
+        $this->client->replyMessage([
           'replyToken' => $this->replyToken,
           'messages' => [
               [
@@ -111,16 +116,16 @@ class Messages
          $is_client = $this->search($userId, $storeId);
          if (!isset($is_client->id)) {
              $flag='非会員';
-             $this->lineBot->deleteLinkUser($userId);
+             $this->client->deleteLinkUser($userId);
          } else {
              $flag='会員';
              $storerm=LineStoreStatus::where('store_id', $storeId)->first('member_richmenu_id');
              $rm=RichMenu::where('id', $storerm->member_richmenu_id)->first('richmenu_id');
-             $this->lineBot->linkUser($userId, $rm->richmenu_id);
+             $this->client->linkUser($userId, $rm->richmenu_id);
          }
 
          // $imgUrl = secure_asset('img/Commands_logo.png');
-         $this->lineBot->replyMessage(
+         $this->client->replyMessage(
              [
 'replyToken' => $this->replyToken,
 'messages' => [
@@ -135,7 +140,7 @@ class Messages
 
     public function sendPushMessage($userId, $webMsg)
     {
-        $res = $this->lineBot->sendPush([
+        $res = $this->client->sendPush([
           'to' => $userId,
 
     'messages' => [

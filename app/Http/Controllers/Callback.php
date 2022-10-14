@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\CatchEvents;
 use App\Models\LineStoreStatus;
-use App\Models\SLINEBotTiny;
+use App\Http\Controllers\SLINEBotTiny;
 
 class Callback extends Controller
 {
@@ -18,15 +18,10 @@ class Callback extends Controller
         $channelAccessToken=$store->channel_access_token;
         $channelSecret =$store->channel_secret;
     }
-    //DB共有できたら生き返らせる
-    // $pr = UserProf::where('id',$request->store_id)->first();
 
-    // $channelAccessToken= $pr->channel_access_token;
-    // $channelSecret=$pr->channel_secret;
-
-    //厳密な比較でフラグと間違われないようにする
+    $lineBot = new SLINEBotTiny($channelAccessToken, $channelSecret);
         $catch = new CatchEvents($storeId,$lineBot);
-        $lineBot = new SLINEBotTiny($channelAccessToken, $channelSecret);
+      
         $catch->send();
     
 
