@@ -57,9 +57,6 @@ class Messages
     public function reserveConf($storeId, $lineStore)
     {
 
-
-
-
         $this->lineBot->replyMessage(
             [
 'replyToken' => $this->replyToken,
