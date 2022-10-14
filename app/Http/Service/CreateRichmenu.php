@@ -3,7 +3,7 @@
 namespace App\Http\Service;
 
 use LINE\LINEBot;
-use App\Http\Controllers\LINEBotTiny;
+
 use Illuminate\Http\Request;
 use LINE\LINEBot\HTTPClient\CurlHTTPClient;
 use LINE\LINEBot\HTTPClient;
@@ -11,29 +11,23 @@ use App\Models\RichMenu;
 use Illuminate\Support\Facades\DB;
 use App\Models\Store;
 
-class getEnisRm
+class CreateRichmenu
 {
-    //chanell_access_token
-    private $channelAccessToken;
-    //chanell_secret
-    private $channelSecret;
 
-    //LINEBotTiny client
-    private $client;
+    //LINEBotTiny lineBot
+    private $lineBot;
 
     /**
      * Undocumented __construct
      *
      * @param String $channelAccessToken
      * @param String $channelSecret
-     * @param LINEBotTiny $client
+     * @param SLINEBotTiny $client
      */
-    public function __construct(String $channelAccessToken, String $channelSecret, $client)
+    public function __construct($lineBot)
     {
-        // $this->userId= $userId;
-        $this->channelAccessToken= $channelAccessToken;
-        $this->channelSecret= $channelSecret;
-        $this->client=$client;
+
+        $this->lineBot=$lineBot;
     }
 
     public function creater($storeId)
@@ -55,7 +49,7 @@ class getEnisRm
         // $this->rmAlIdB='Al_'. $strAl . '_b';
         //   $str=date('Y-m-d-s');
        // $str=uniqid('');
-       $str='まる_会員';
+       $str='まる_menu';
         $rmA->name = $str . '_a';
         $rmB->name=$str . '_b';
     
