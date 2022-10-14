@@ -99,13 +99,9 @@ class Messages
           'messages' => [
               [
               'type' => 'text',
-    'text' => 'OK!'
-    ],
-
-    [
-    'type' => 'text',
     'text' => $res
     ]
+
     ]
     ]);
     }
@@ -142,19 +138,18 @@ class Messages
          );
      }
 
-    function sendPushMessage($userId, $webMsg)
-     {
-      $res = $this->client->sendPush([
-        'to' => $userId,
+    public function sendPushMessage($userId, $webMsg)
+    {
+        $res = $this->client->sendPush([
+          'to' => $userId,
 
     'messages' => [
-            [
+              [
 'type' => 'text',
 'text' =>$webMsg
-            ],
+              ],
 
-        ]
-          ]);
-
-     }
+          ]
+            ]);
+    }
 }

@@ -5,8 +5,9 @@ namespace App\Http\Service;
 use Illuminate\Http\Request;
 use App\Models\RichMenu;
 use App\Models\LineStoreStatus;
+use App\Service\Messages;
 
-class getCommonsRm
+class GetCommonsRm
 {
     //chanell_access_token
     private $channelAccessToken;
@@ -29,6 +30,11 @@ class getCommonsRm
         $this->channelAccessToken= $channelAccessToken;
         $this->channelSecret= $channelSecret;
         $this->client=$client;
+    }
+
+    function  is_set($storeId){
+        $old = RichMenu::where('store_id',$storeId,)->where('is_default',1)->first();
+        return $old;
     }
     
     public function creater($storeId)

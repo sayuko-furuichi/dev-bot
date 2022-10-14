@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Service\getCommonsRm;
+use App\Http\Service\GetCommonsRm;
 
 use App\Http\Service\Messages;
 use App\Http\Controllers\LINEBotTiny;
@@ -94,15 +94,18 @@ class C_CatchEvents extends Controller
 
                 // メニュー　と言われたら、返す　OK！
                 } elseif ($message['text'] == 'create Rich Menu') {
-                    //__construct　は、newした時に実行されるので、これが正解？
-
-                    $rmDetail = new getCommonsRm($this->channelAccessToken, $this->channelSecret, $client);
-                    $res = $rmDetail->creater($this->storeId);
-                    
+                    //すでに有効なリッチメニューが存在している場合は、作成しない
+                    $rmDetail = new GetCommonsRm($this->channelAccessToken, $this->channelSecret, $client);
+                    $old=$rmDetail->is_set($this->storeId);
+                   
+                    if(isset($old->id)){
+                        $result="メッセージありがとうございます\n大変申し訳ありませんが、こちらのアカウントでは個別に返信を行うことができません。";
+                    }else{
+                        $result = $rmDetail->creater($this->storeId);
+                    }
+                   
                     $msg = new Messages($this->channelAccessToken, $this->channelSecret, $client, $event['replyToken']);
-                    $msg->result($res);
-
-
+                    $msg->result($result);
 
 
                 //どこの条件にも引っかからないメッセージ
