@@ -9,10 +9,7 @@ use App\Service\Messages;
 
 class GetCommonsRm
 {
-    //chanell_access_token
-    private $channelAccessToken;
-    //chanell_secret
-    private $channelSecret;
+
 
     //LINEBotTiny client
     private $client;
@@ -20,15 +17,12 @@ class GetCommonsRm
     /**
      * Undocumented __construct
      *
-     * @param String $channelAccessToken
-     * @param String $channelSecret
      * @param LINEBotTiny $client
      */
-    public function __construct(String $channelAccessToken, String $channelSecret, $client)
+    public function __construct($client)
     {
         // $this->userId= $userId;
-        $this->channelAccessToken= $channelAccessToken;
-        $this->channelSecret= $channelSecret;
+
         $this->client=$client;
     }
 

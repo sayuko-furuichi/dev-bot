@@ -48,7 +48,7 @@ class C_CatchEvents extends Controller
             if ($event['type'] == 'follow') {
                 //すでに入力していた場合は受け付けない
 
-                $first = new Messages($this->channelAccessToken, $this->channelSecret, $client,$event['replyToken']);
+                $first = new Messages($client,$event['replyToken']);
                 $first->sendFirstMessage($us['userId'], $this->storeId);
             }
 
@@ -81,21 +81,21 @@ class C_CatchEvents extends Controller
                     $richMenu =RichMenu::where('id', $lineStore->member_richmenu_id)->first('richmenu_id');
                     $client->linkUser($message['text2'], $richMenu->richmenu_id);
 
-                    $msg = new Messages($this->channelAccessToken, $this->channelSecret, $client,'');
+                    $msg = new Messages($client,'');
                    $res= $msg->sendPushMessage($message['text2'],$message='登録が完了しました！');
 
                     
 
                 } elseif ($message['text'] == 'オフラインを購入') {
 
-                        $msg = new Messages($this->channelAccessToken, $this->channelSecret, $client, $event['replyToken']);
+                        $msg = new Messages($client, $event['replyToken']);
                         $msg->sendMessage();
                     
 
                 // メニュー　と言われたら、返す　OK！
                 } elseif ($message['text'] == 'create Rich Menu') {
                     //すでに有効なリッチメニューが存在している場合は、作成しない
-                    $rmDetail = new GetCommonsRm($this->channelAccessToken, $this->channelSecret, $client);
+                    $rmDetail = new GetCommonsRm($client);
                     $old=$rmDetail->is_set($this->storeId);
                    
                     if(isset($old->id)){
@@ -104,7 +104,7 @@ class C_CatchEvents extends Controller
                         $result = $rmDetail->creater($this->storeId);
                     }
                    
-                    $msg = new Messages($this->channelAccessToken, $this->channelSecret, $client, $event['replyToken']);
+                    $msg = new Messages($client, $event['replyToken']);
                     $msg->result($result);
 
 

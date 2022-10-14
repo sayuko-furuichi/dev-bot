@@ -11,9 +11,9 @@ use App\Models\RichMenu;
 class Messages
 {
     //chanell_access_token
-    private $channelAccessToken;
-    //chanell_secret
-    private $channelSecret;
+    // private $channelAccessToken;
+    // //chanell_secret
+    // private $channelSecret;
 
     //LINEBotTiny client
     private $client;
@@ -21,11 +21,11 @@ class Messages
     private $replyToken;
 
 
-    public function __construct(String $channelAccessToken, String $channelSecret, $client, $replyToken)
+    public function __construct($client, $replyToken)
     {
         // $this->userId= $userId;
-        $this->channelAccessToken= $channelAccessToken;
-        $this->channelSecret= $channelSecret;
+        // $this->channelAccessToken= $channelAccessToken;
+        // $this->channelSecret= $channelSecret;
         $this->client=$client;
         $this->replyToken=$replyToken;
     }
