@@ -10,13 +10,12 @@ use App\Models\RichMenu;
 
 class Messages
 {
-
     private $lineBot;
 
     private $replyToken;
 
 
-    public function __construct($linebot, $replyToken)
+    public function __construct($lineBot, $replyToken)
     {
         // $this->userId= $userId;
         // $this->channelAccessToken= $channelAccessToken;
@@ -55,8 +54,12 @@ class Messages
         );
     }
 
-    public function reserveConf($storeId,$lineStore)
+    public function reserveConf($storeId, $lineStore)
     {
+
+
+
+
         $this->lineBot->replyMessage(
             [
 'replyToken' => $this->replyToken,
@@ -65,6 +68,7 @@ class Messages
 'type' => 'text',
 'text' => "予約店舗：***\n予約日時：***\n予約商品：**コース\n人数：**\nお支払い:**\n"
 ],
+
 [
 'type'=> 'template',
 'altText'=> '予約修正テンプレート',
@@ -75,7 +79,7 @@ class Messages
     [
       'type'=> 'uri',
       'label'=> 'yes',
-      'uri'=> $lineStore->liff_url .'/reserve?store='. $storeId
+      'uri'=> $lineStore->liff_url .'/reserve?store='. $storeId,
     ],
     [
       'type'=> 'postback',
@@ -85,6 +89,10 @@ class Messages
     ]
     ]]]]]
         );
+
+
+
+
     }
 
     public function result($res)
