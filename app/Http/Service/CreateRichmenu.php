@@ -15,7 +15,7 @@ class CreateRichmenu
     /**
      * Undocumented __construct
      *
-     * @param SLINEBotTiny $client
+     * @param SLINEBotTiny $lineBot
      */
     public function __construct($lineBot)
     {

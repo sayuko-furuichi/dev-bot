@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use App\Http\Service\CreateRichMenu;
+use App\Http\Service\CreateRichmenu;
 use App\Http\Service\getAnalysisData;
 use  App\Http\Service\getMember;
 use  App\Http\Service\getAudience;
@@ -100,10 +100,11 @@ class CatchEvents extends Controller
                 // メニュー　と言われたら、返す　OK！
                 } elseif ($message['text'] == 'create Rich Menu') {
                     //__construct　は、newした時に実行されるので、これが正解？
-
+       
                     $rmDetail = new CreateRichmenu($this->lineBot);
+ 
                     $old=$rmDetail->is_set($this->storeId);
-
+         
                     if (isset($old->id)) {
                         $result="メッセージありがとうございます\n大変申し訳ありませんが、こちらのアカウントでは個別に返信を行うことができません。";
                     } else {
