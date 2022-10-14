@@ -272,7 +272,7 @@ class CreateRichmenu
     'action'=> [
         'type'=> 'uri',
         //LIFF
-        'uri'=> $lineStore->liff_url . '/Member?store='.$storeId
+        'uri'=> $lineStore->liff_url . '/addMember?store='.$storeId
         ]
     ],
 
@@ -366,7 +366,7 @@ class CreateRichmenu
  'action'=> [
      'type'=> 'uri',
      //LIFF
-     'uri'=> $lineStore->liff_url . '/Member?store='.$storeId
+     'uri'=> $lineStore->liff_url . '/addMember?store='.$storeId
      ]
  ],
 

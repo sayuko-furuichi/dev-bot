@@ -67,7 +67,7 @@ class C_CatchEvents extends Controller
                                 ],
                                 [
                     'type' => 'text',
-                    'text' =>  'https://dev-ext-app.herokuapp.com/public/addMember?user='.$us['userId']
+                    'text' =>  'https://dev1.softnext.co.jp/commons/registration/public?user='.$us['userId']
                                 ]
 
                             ]
