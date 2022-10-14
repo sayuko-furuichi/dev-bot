@@ -2,104 +2,102 @@
 
 namespace App\Http\Service;
 
-use LINE\LINEBot;
-
 use Illuminate\Http\Request;
-use LINE\LINEBot\HTTPClient\CurlHTTPClient;
-use LINE\LINEBot\HTTPClient;
 use App\Models\RichMenu;
-use Illuminate\Support\Facades\DB;
 use App\Models\Store;
+use App\Models\LineStoreStatus;
 
 class CreateRichmenu
 {
-
     //LINEBotTiny lineBot
     private $lineBot;
 
     /**
      * Undocumented __construct
      *
-     * @param String $channelAccessToken
-     * @param String $channelSecret
      * @param SLINEBotTiny $client
      */
     public function __construct($lineBot)
     {
-
         $this->lineBot=$lineBot;
     }
 
+    function  is_set($storeId){
+        $old = RichMenu::where('store_id',$storeId,)->where('is_default',1)->first();
+        return $old;
+    }
+
+
     public function creater($storeId)
     {
-        //TODO:各フィードバッグ後の、trueなら続行、falseなら中断の分岐(trycatchでもいいかも？)
-
-        $rmA= new RichMenu;
-        $rmB= new RichMenu;
-      //  $rmC= new RichMenu;
+        $rmA= new RichMenu();
+        $rmB= new RichMenu();
+        //  $rmC= new RichMenu;
 
         //  $strAl= date('Y-m-d-H-i-s');
         // $strs=date('Y-m-d-s');
         $strs=uniqid('');
         $rmA ->richmenu_alias_id =  $strs . '_a';
         $rmB ->richmenu_alias_id=  $strs . '_b';
-       
+
 
         // $this->rmAlIdA='Al_'. $strAl . '_a';
         // $this->rmAlIdB='Al_'. $strAl . '_b';
         //   $str=date('Y-m-d-s');
-       // $str=uniqid('');
-       $str='まる_menu';
-        $rmA->name = $str . '_a';
-        $rmB->name=$str . '_b';
-    
+        // $str=uniqid('');
+        $str='まる';
+        $rmA->richmenu_name = $str . '_member';
+        $rmB->richmenu_name=$str . '_nonmember';
 
-        $rmA->chat_bar='メニュー/ON/OFF';
-        $rmB->chat_bar="メニュー/ON/OFF";
-    
-       $simg =Store::where('id',$storeId)->first();
 
-      
+        $rmA->menu_bar_title='メニュー/ON/OFF';
+        $rmB->menu_bar_title="メニュー/ON/OFF";
+
+        $lineStore =LineStoreStatus::where('store_id', $storeId)->first();
+
+
         //create rich menu A
-        $res= $this->createRmA($rmA, $rmB,$simg);
+        $res= $this->createRmA($rmA, $rmB, $lineStore, $storeId);
         $rs= json_decode($res, true);
         $rmA->richmenu_id=$rs['richMenuId'];
-   
+
         //create rich menu B
-        $res= $this->createRmB($rmA,$rmB,$simg);
+        $res= $this->createRmB($rmA, $rmB, $lineStore, $storeId);
         $rs= json_decode($res, true);
         $rmB->richmenu_id=$rs['richMenuId'];
 
-    
+
+        //画像のURLを設定する
+        $imgUrlA=secure_asset('img/richmenu/mr_member.png');
+        $imgUrlB=secure_asset('img/richmenu/mr_nonmember.png');
 
         //画像UP
-        $res= $this->client->upRmImgA($rmA->richmenu_id);
-        $rmA->img='img/1.png';
+        $res= $this->lineBot->upRmImgA($rmA->richmenu_id, $imgUrlA);
+        $rmA->image='img/richmenu/mr_member.png';
 
-        $res= $this->client->upRmImgB($rmB->richmenu_id);
-        $rmB->img='img/y2.png';
+        $res= $this->lineBot->upRmImgA($rmB->richmenu_id, $imgUrlB);
+        $rmB->image='img/richmenu/mr_nonmember.png';
 
-        $res= $this->client->defaultRm($rmA->richmenu_id);
+        $res= $this->lineBot->defaultRm($rmB->richmenu_id);
 
-         
+
         //前のデフォルトをDBで更新
-        //TODO:もっと効率よく参照したい
-        $old = RichMenu::where('is_default',1)->where('store_id',$storeId)->first();
-        if(isset($old)){
+        $old = RichMenu::where('is_default', 1)->where('store_id', $storeId)->first();
+        if (isset($old)) {
             $old->is_default=0;
             $old->save();
         }
-      
-        $rmA->is_default=1;
-        $rmB->is_default=0;
+
+        $rmA->is_default=0;
+        $rmB->is_default=1;
 
         $res= $this->createAliasRmA($rmA);
 
-        $res= $this->createAliasRmB($rmB);
+        $res= $this->createAliasRmA($rmB);
 
-    
+
         //store_idを入れる
-       
+
         $rmA->store_id= $storeId;
         $rmB->store_id= $storeId;
 
@@ -109,7 +107,8 @@ class CreateRichmenu
         $rmA->save();
 
         $rmB->save();
-
+        $lineStore->member_richmenu_id=$rmA->id;
+        $lineStore->save();
 
         return $res;
 
@@ -120,73 +119,73 @@ class CreateRichmenu
     }
 
 
-//３枚作成する
+//2枚作成する
 
-
-    public function createRmA($rmA, $rmB,$simg)
+//会員
+    public function createRmA($rmA, $rmB, $lineStore, $storeId)
     {
         //作成
 
-        $res=$this->client->rtRichMenu([
+        $res=$this->lineBot->rtRichMenu([
 
     'size'=>[
     'width'=>2500,
     'height'=>1686
     ],
     'selected'=> false,
-    'name'=> $rmA->name,
-    'chatBarText'=> $rmA->chat_bar,
+    'name'=> $rmA->richmenu_name,
+    'chatBarText'=> $rmA->menu_bar_title,
     //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
     'areas'=> [[
 
     //A shop_card
     'bounds'=> [
-        'x'=> 85,
-        'y'=> 370,
-        'width'=> 1140,
-        'height'=> 530
+        'x'=> 30,
+        'y'=> 320,
+        'width'=> 1180,
+        'height'=> 600
     ],
     'action'=> [
         'type'=> 'uri',
         //ext_app
-        'uri'=> $simg->liff_url .'/stamps?store='.$simg->id
+        'uri'=> $lineStore->liff_url .'/stamps?store='.$storeId
     ]
     ],
     // B LIFF マイページ
     [
         'bounds'=> [
-            'x'=> 1300,
-            'y'=> 370,
-            'width'=> 1140,
-            'height'=> 530
+            'x'=> 1290,
+            'y'=> 320,
+            'width'=> 1180,
+            'height'=> 600
         ],
     'action'=> [
         'type'=> 'uri',
         //LIFF
-        'uri'=> $simg->liff_url . '/Member?store='.$simg->id
+        'uri'=> $lineStore->liff_url . '/Member?store='.$storeId
         ]
     ],
 
     [
        //  C 注文する
        'bounds'=> [
-        'x'=> 85,
-        'y'=> 1020,
-        'width'=> 1140,
-        'height'=> 530
+        'x'=> 30,
+        'y'=> 990,
+        'width'=> 1180,
+        'height'=> 600
     ],
     'action'=> [
         'type'=> 'uri',
-        'uri'=> $simg->liff_url .'/reserve?store='. $simg->id,
+        'uri'=> $lineStore->liff_url .'/reserve?store='. $storeId,
     ]
     ],
     [
         //   D 予約確認
         'bounds'=> [
-            'x'=> 1300,
-            'y'=> 1020,
-            'width'=> 1140,
-            'height'=> 530
+            'x'=> 1290,
+            'y'=> 990,
+            'width'=> 1180,
+            'height'=> 600
         ],
         //postbackで店舗ID投げる
          'action'=> [
@@ -198,10 +197,10 @@ class CreateRichmenu
          [
             //   E 2へ切り替え
                'bounds'=> [
-                 'x'=>1305,
-                 'y'=> 80,
-                 'width'=> 1175,
-                 'height'=>175
+                 'x'=>10,
+                 'y'=> 20,
+                 'width'=> 1210,
+                 'height'=>220
              ],
              'action'=> [
                 'type'=> 'richmenuswitch',
@@ -217,95 +216,85 @@ class CreateRichmenu
         return $res;
     }
 
-    public function createRmB($rmA,$rmB,$simg)
+    //非会員
+    public function createRmB($rmA, $rmB, $lineStore, $storeId)
     {
-        $res=$this->client->rtRichMenu([
+        $res=$this->lineBot->rtRichMenu([
 
             'size'=>[
             'width'=>2500,
             'height'=>1686
             ],
             'selected'=> false,
-            'name'=> $rmB->name,
-            'chatBarText'=> $rmB->chat_bar,
+            'name'=> $rmB->richmenu_name,
+            'chatBarText'=> $rmB->menu_bar_title,
             //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
             'areas'=> [[
-        
-                // 'bounds'=> [
-                //     'x'=> 75,
-                //     'y'=> 1000,
-                //     'width'=> 2360,
-                //     'height'=> 540
-                // ],
-                // 'action'=> [
-                //     'type'=> 'uri',
-                //     //ext_app
-                //     'uri'=> $simg->liff_url . '/addMember?store='.$simg->id
-                // ]
-    //        A shop_card
-            'bounds'=> [
-                'x'=> 85,
-                'y'=> 370,
-                'width'=> 1140,
-                'height'=> 530
-            ],
-            'action'=> [
-                'type'=> 'uri',
-                //ext_app
-                'uri'=>$simg->liff_url .'/stamps?store='.$simg->id
-            ]
-           ],
-       //     B LIFF マイページ
-            [
-                'bounds'=> [
-                    'x'=> 1300,
-                    'y'=> 370,
-                    'width'=> 1140,
-                    'height'=> 530
-                ],
-            'action'=> [
-                'type'=> 'uri',
-                //LIFF
-                'uri'=> $simg->liff_url .'/Member?store='.$simg->id
-                ]
-            ],
-        
-            [
-               //  C 注文する
-               'bounds'=> [
-                'x'=> 85,
-                'y'=> 1020,
-                'width'=> 1140,
-                'height'=> 530
-            ],
-            'action'=> [
-                'type'=> 'uri',
-               // 切り替え先設定
-               'uri'=>$simg->liff_url .'/reserve?store='.$simg->id
-            ]
-            ],
-            [
-                //   D 予約確認
-                'bounds'=> [
-                    'x'=> 1300,
-                    'y'=> 1020,
-                    'width'=> 1140,
-                    'height'=> 530
-                ],
-                 'action'=> [
-                    'type'=> 'message',
-                    'text'=> '予約確認',
-                ]
-                 ],
-        
-        
+
+    //
+    //A shop_card
+    'bounds'=> [
+        'x'=> 30,
+        'y'=> 320,
+        'width'=> 1180,
+        'height'=> 600
+    ],
+    'action'=> [
+        'type'=> 'uri',
+        //ext_app
+        'uri'=> $lineStore->liff_url .'/stamps?store='.$storeId
+    ]
+    ],
+    // B LIFF マイページ
+    [
+        'bounds'=> [
+            'x'=> 1290,
+            'y'=> 320,
+            'width'=> 1180,
+            'height'=> 600
+        ],
+    'action'=> [
+        'type'=> 'uri',
+        //LIFF
+        'uri'=> $lineStore->liff_url . '/Member?store='.$storeId
+        ]
+    ],
+
+    [
+       //  C 注文する
+       'bounds'=> [
+        'x'=> 30,
+        'y'=> 990,
+        'width'=> 1180,
+        'height'=> 600
+    ],
+    'action'=> [
+        'type'=> 'uri',
+        'uri'=> $lineStore->liff_url .'/reserve?store='. $storeId,
+    ]
+    ],
+    [
+        //   D 予約確認
+        'bounds'=> [
+            'x'=> 1290,
+            'y'=> 990,
+            'width'=> 1180,
+            'height'=> 600
+        ],
+        //postbackで店舗ID投げる
+         'action'=> [
+            'type'=> 'message',
+            'text'=> '予約確認',
+        ]
+         ],
+
                  [
                     //   F 1へ切り替え
                        'bounds'=> [
-                         'x'=>55,
-                         'y'=> 80,
-                         'width'=> 1175,
-                         'height'=>175
+                         'x'=>1275,
+                         'y'=> 20,
+                         'width'=> 1210,
+                         'height'=>220
                      ],
                      'action'=> [
                         'type'=> 'richmenuswitch',
@@ -314,35 +303,23 @@ class CreateRichmenu
                         'data'=> 'richmenu-changed-to-a'
                     ]
                      ],
-        
-            
-            
-                    ],] );
+
+
+
+                    ],]);
         return $res;
     }
 
 
 
 
-    public function createAliasRmA($rmA)
+    public function createAliasRmA($rm)
     {
         //エイリアス作成
 
-        $res= $this->client->createAlias([
-    'richMenuAliasId'=>$rmA ->richmenu_alias_id,
-   'richMenuId'=>$rmA->richmenu_id,
-  ]);
-
-        return $res;
-    }
-
-    public function createAliasRmB($rmB)
-    {
-        //エイリアス作成
-
-        $res= $this->client->createAlias([
-    'richMenuAliasId'=> $rmB ->richmenu_alias_id,
-   'richMenuId'=>$rmB->richmenu_id,
+        $res= $this->lineBot->createAlias([
+    'richMenuAliasId'=>$rm ->richmenu_alias_id,
+   'richMenuId'=>$rm->richmenu_id,
   ]);
 
         return $res;
@@ -350,40 +327,31 @@ class CreateRichmenu
 
 
 
-    public function getList($storeId){
-
+    public function getList($storeId)
+    {
         //DBから持ってきて、POSTする
         //TODO:Jsonで送る？
-        $list=RichMenu::where('store_id',$storeId)->get();
+        $list=RichMenu::where('store_id', $storeId)->get();
 
         $header = array(
             'Content-Type: application/json',
         );
 
-       
-         $context = stream_context_create([
-             'http' => [
-                 'ignore_errors' => true,
-                 'method' => 'POST',
-                 'header' => implode("\r\n", $header),
-                 'content' =>json_encode($list)
-             ],
-         ]);
-         //   var_dump($detail);
-    
-     return  file_get_contents('https://dev-ext-app.herokuapp.com/public/rich', false, $context);
 
-         if (strpos($http_response_header[0], '200') === false) {
-             $res = 'false';
-         }
+        $context = stream_context_create([
+            'http' => [
+                'ignore_errors' => true,
+                'method' => 'POST',
+                'header' => implode("\r\n", $header),
+                'content' =>json_encode($list)
+            ],
+        ]);
+        //   var_dump($detail);
 
+        return  file_get_contents('https://dev-ext-app.herokuapp.com/public/rich', false, $context);
+
+        if (strpos($http_response_header[0], '200') === false) {
+            $res = 'false';
+        }
     }
-
-    }
-
-
-
-
-
-
-    
+}

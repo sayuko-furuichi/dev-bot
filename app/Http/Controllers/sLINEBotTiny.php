@@ -201,16 +201,13 @@ class SLINEBotTiny
     }
 
 
-    //TODO:ファイル名変数にしたら１つで行けそう
     //リッチメニューに画像添付
-    public function upRmImgA($rmId,$imgUrl)
+    public function upRmImgA($rmId, $imgUrl)
     {
         // $richmenuId="richmenu-b56771c2cf5b359b8c182d7de6f9e2c8";
 
         //画像URL
         //TODO:会員メニューに変更すること
-       // $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/memberdemo/base_n1.png';
-        // $imgurl='https://dev-bot0722.herokuapp.com/public/img/cm_rm_y.png';
         $img = file_get_contents($imgUrl);
         $imgheader = array(
             'Content-Type: image/png',
@@ -238,74 +235,7 @@ class SLINEBotTiny
         return $imgresponse;
     }
 
-     //リッチメニューに画像添付
-     public function upRmImgB($rmId)
-     {
-         // $richmenuId="richmenu-b56771c2cf5b359b8c182d7de6f9e2c8";
 
-         //画像URL
-     //    $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/memberdemo/base_n2.png';
-     $imgurl='https://dev-bot0722.herokuapp.com/public/img/cm_rm_n.png';   
-     $img = file_get_contents($imgurl);
-         $imgheader = array(
-             'Content-Type: image/png',
-             'Authorization: Bearer ' . $this->channelAccessToken,
-         //    "Content-Length: ".strlen($img),
-         );
-
-
-         $imgcontext = stream_context_create([
-             'http' => [
-                 'ignore_errors' => true,
-                 'method' => 'POST',
-                 'header' => implode("\r\n", $imgheader),
-                'content' => $img
-             ],
-         ]);
-
-         $imgresponse = file_get_contents('https://api-data.line.me/v2/bot/richmenu/'. $rmId. '/content', false, $imgcontext);
-         if (strpos($http_response_header[0], '200') === false) {
-             $imgresponse= 'Request failed: ';
-         } else {
-             $imgresponse= 'OK';
-         }
-
-         return $imgresponse;
-     }
-
-      //リッチメニューに画像添付
-      public function upRmImgC($rmId)
-      {
-          // $richmenuId="richmenu-b56771c2cf5b359b8c182d7de6f9e2c8";
-
-          //画像URL
-          $imgurl='https://dev-bot0722.herokuapp.com/storage/app/public/img/richmenu/demo_c.png';
-          $img = file_get_contents($imgurl);
-          $imgheader = array(
-              'Content-Type: image/png',
-              'Authorization: Bearer ' . $this->channelAccessToken,
-          //    "Content-Length: ".strlen($img),
-          );
-
-
-          $imgcontext = stream_context_create([
-              'http' => [
-                  'ignore_errors' => true,
-                  'method' => 'POST',
-                  'header' => implode("\r\n", $imgheader),
-                 'content' => $img
-              ],
-          ]);
-
-          $imgresponse = file_get_contents('https://api-data.line.me/v2/bot/richmenu/'. $rmId. '/content', false, $imgcontext);
-          if (strpos($http_response_header[0], '200') === false) {
-              $imgresponse= 'Request failed: ';
-          } else {
-              $imgresponse= 'OK';
-          }
-
-          return $imgresponse;
-      }
 
 //リッチメニューAをデフォルトで表示
     public function defaultRm($rmId)
