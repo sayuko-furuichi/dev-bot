@@ -152,10 +152,6 @@ class Messages
 'type' => 'text',
 'text' =>$webMsg
             ],
-             [
- 'type' => 'text',
- 'text' =>$webMsg
-             ]
 
         ]
           ]);

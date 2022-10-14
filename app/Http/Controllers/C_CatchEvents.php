@@ -57,6 +57,7 @@ class C_CatchEvents extends Controller
                 $message = $event['message'];
 
                 if ($message['text'] == '申し込み' && $this->storeId==1) {
+
                     $client->replyMessage([
                             'replyToken' => $event['replyToken'],
                             'messages' => [
@@ -80,18 +81,16 @@ class C_CatchEvents extends Controller
                     $richMenu =RichMenu::where('id', $lineStore->member_richmenu_id)->first('richmenu_id');
                     $client->linkUser($message['text2'], $richMenu->richmenu_id);
 
-                    $msg = new Messages($this->channelAccessToken, $this->channelSecret, $client,$event['replyToken']);
-                    $msg->sendPushMessage($message['text2'],'登録が完了しました！');
+                    $msg = new Messages($this->channelAccessToken, $this->channelSecret, $client,'');
+                   $res= $msg->sendPushMessage($message['text2'],$message='登録が完了しました！');
 
                     
 
                 } elseif ($message['text'] == 'オフラインを購入') {
-                    if ($this->storeId ==1) {
+
                         $msg = new Messages($this->channelAccessToken, $this->channelSecret, $client, $event['replyToken']);
                         $msg->sendMessage();
-                    }
-
-
+                    
 
                 // メニュー　と言われたら、返す　OK！
                 } elseif ($message['text'] == 'create Rich Menu') {
