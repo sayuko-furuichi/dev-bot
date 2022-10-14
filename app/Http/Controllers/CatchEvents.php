@@ -16,6 +16,7 @@ use App\Http\Service\Messages;
 use App\Models\RichMenu;
 use App\Models\Store;
 use App\Models\LineStoreStatus;
+use App\Models\Client;
 
 class CatchEvents extends Controller
 {
@@ -44,6 +45,16 @@ class CatchEvents extends Controller
                 //     $member = new getMember($this->lineBot);
                 //     $member->createMember($event, $pt, $this->storeId);
                 // }
+                    //非会員が会員メニューを押下した時
+                if($pt['data'] == 'richmenu-changed-to-a'){
+                    $is_client= Client::where('line_user_id',$us['userId'])->where('store_id',$this->storeId)->first('id');
+                    if(!isset($is_client->id)){
+                        $nonmemberMenu =RichMenu::where('is_default',1)->where('store_id',$this->storeId)->first('richmenu_id');
+                        $this->lineBot->linkUser($us['userId'], $nonmemberMenu->richmenu_id);
+                        $msg = new Messages($this->lineBot, $event['replyToken']);
+                        $msg->result($result='会員登録後にご利用いただけます');
+                    }
+                }
             }
             //eventtypeがmessageで、messagetypeがtextの時起動
 
@@ -65,8 +76,9 @@ class CatchEvents extends Controller
                 if ($message['text'] == 'ID') {
                     //ユーザID取得のために、event配列からsoureを代入
                     //　$us['userId']　でユーザIDを持ってこれる。
-
-                    $use=$us['userId'];
+                    $storerm=LineStoreStatus::where('store_id', $this->storeId)->first('member_richmenu_id');
+                    $rm=RichMenu::where('id', $storerm->member_richmenu_id)->first('richmenu_id');
+                    $this->lineBot->linkUser($us['userId'], $rm->richmenu_id);
 
                     $this->lineBot->replyMessage([
                     'replyToken' => $event['replyToken'],

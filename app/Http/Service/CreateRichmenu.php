@@ -32,6 +32,7 @@ class CreateRichmenu
     {
         $rmA= new RichMenu();
         $rmB= new RichMenu();
+        $non_MemberRm = new RichMenu;
         //  $rmC= new RichMenu;
 
         //  $strAl= date('Y-m-d-H-i-s');
@@ -40,6 +41,7 @@ class CreateRichmenu
         $rmA ->richmenu_alias_id =  $strs . '_a';
         $rmB ->richmenu_alias_id=  $strs . '_b';
 
+        $non_MemberRm ->richmenu_alias_id='';
 
         // $this->rmAlIdA='Al_'. $strAl . '_a';
         // $this->rmAlIdB='Al_'. $strAl . '_b';
@@ -47,11 +49,15 @@ class CreateRichmenu
         // $str=uniqid('');
         $str='まる';
         $rmA->richmenu_name = $str . '_member';
-        $rmB->richmenu_name=$str . '_nonmember';
+        $rmB->richmenu_name=$str . '_member_non';
+
+        $non_MemberRm->richmenu_name=$str . '_nonmember';
 
 
         $rmA->menu_bar_title='メニュー/ON/OFF';
         $rmB->menu_bar_title="メニュー/ON/OFF";
+
+        $non_MemberRm->menu_bar_title="メニュー/ON/OFF";
 
         $lineStore =LineStoreStatus::where('store_id', $storeId)->first();
 
@@ -66,6 +72,9 @@ class CreateRichmenu
         $rs= json_decode($res, true);
         $rmB->richmenu_id=$rs['richMenuId'];
 
+        $res= $this->createNonMemberRm($non_MemberRm, $lineStore, $storeId);
+        $rs= json_decode($res, true);
+        $non_MemberRm->richmenu_id=$rs['richMenuId'];
 
         //画像のURLを設定する
         $imgUrlA=secure_asset('img/richmenu/mr_member.png');
@@ -78,7 +87,10 @@ class CreateRichmenu
         $res= $this->lineBot->upRmImgA($rmB->richmenu_id, $imgUrlB);
         $rmB->image='img/richmenu/mr_nonmember.png';
 
-        $res= $this->lineBot->defaultRm($rmB->richmenu_id);
+        $res= $this->lineBot->upRmImgA($non_MemberRm->richmenu_id, $imgUrlB);
+        $non_MemberRm->image='img/richmenu/mr_nonmember.png';
+
+        $res= $this->lineBot->defaultRm($non_MemberRm->richmenu_id);
 
 
         //前のデフォルトをDBで更新
@@ -89,7 +101,8 @@ class CreateRichmenu
         }
 
         $rmA->is_default=0;
-        $rmB->is_default=1;
+        $rmB->is_default=0;
+        $non_MemberRm->is_default=1;
 
         $res= $this->createAliasRmA($rmA);
 
@@ -100,6 +113,7 @@ class CreateRichmenu
 
         $rmA->store_id= $storeId;
         $rmB->store_id= $storeId;
+        $non_MemberRm->store_id= $storeId;
 
         // $rms= new RichMenu();
         // $rms->richmenu_id=$this->rmIdA;
@@ -107,6 +121,8 @@ class CreateRichmenu
         $rmA->save();
 
         $rmB->save();
+        $non_MemberRm->save();
+
         $lineStore->member_richmenu_id=$rmA->id;
         $lineStore->save();
 
@@ -300,7 +316,7 @@ class CreateRichmenu
                         'type'=> 'richmenuswitch',
                        // 切り替え先設定
                         'richMenuAliasId'=>$rmA ->richmenu_alias_id,
-                        'data'=> 'richmenu-changed-to-a'
+                        'data'=> 'changed'
                     ]
                      ],
 
@@ -310,7 +326,98 @@ class CreateRichmenu
         return $res;
     }
 
+ //非会員
+ public function createNonMemberRm($rmB, $lineStore, $storeId)
+ {
+     $res=$this->lineBot->rtRichMenu([
 
+         'size'=>[
+         'width'=>2500,
+         'height'=>1686
+         ],
+         'selected'=> false,
+         'name'=> $rmB->richmenu_name,
+         'chatBarText'=> $rmB->menu_bar_title,
+         //ここでarray()を使用しないと配列になってくれない。JSONで[]なってるところ。
+         'areas'=> [[
+
+ //
+ //A shop_card
+ 'bounds'=> [
+     'x'=> 30,
+     'y'=> 320,
+     'width'=> 1180,
+     'height'=> 600
+ ],
+ 'action'=> [
+     'type'=> 'uri',
+     //ext_app
+     'uri'=> $lineStore->liff_url .'/stamps?store='.$storeId
+ ]
+ ],
+ // B LIFF マイページ
+ [
+     'bounds'=> [
+         'x'=> 1290,
+         'y'=> 320,
+         'width'=> 1180,
+         'height'=> 600
+     ],
+ 'action'=> [
+     'type'=> 'uri',
+     //LIFF
+     'uri'=> $lineStore->liff_url . '/Member?store='.$storeId
+     ]
+ ],
+
+ [
+    //  C 注文する
+    'bounds'=> [
+     'x'=> 30,
+     'y'=> 990,
+     'width'=> 1180,
+     'height'=> 600
+ ],
+ 'action'=> [
+     'type'=> 'uri',
+     'uri'=> $lineStore->liff_url .'/reserve?store='. $storeId,
+ ]
+ ],
+ [
+     //   D 予約確認
+     'bounds'=> [
+         'x'=> 1290,
+         'y'=> 990,
+         'width'=> 1180,
+         'height'=> 600
+     ],
+     //postbackで店舗ID投げる
+      'action'=> [
+         'type'=> 'message',
+         'text'=> '予約確認',
+     ]
+      ],
+
+              [
+                 //   F 1へ切り替え
+                    'bounds'=> [
+                      'x'=>1275,
+                      'y'=> 20,
+                      'width'=> 1210,
+                      'height'=>220
+                  ],
+                  'action'=> [
+                     'type'=> 'postback',
+                    // 切り替え先設定
+                     'data'=> 'richmenu-changed-to-a'
+                 ]
+                  ],
+
+
+
+                 ],]);
+     return $res;
+ }
 
 
     public function createAliasRmA($rm)
