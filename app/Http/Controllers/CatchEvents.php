@@ -100,10 +100,10 @@ class CatchEvents extends Controller
                     // $us['useId'];
                     $lineStore= LineStoreStatus::where('store_id', $this->storeId)->first('member_richmenu_id');
                     $richMenu =RichMenu::where('id', $lineStore->member_richmenu_id)->first('richmenu_id');
-                    $this->lineBot->linkUser($message['text2'], $richMenu->richmenu_id);
-
+                    $this->lineBot->linkUser($message['userId'], $richMenu->richmenu_id);
+                    
                     $msg = new Messages($this->lineBot, '');
-                    $res= $msg->sendPushMessage($message['text2'], $message='登録が完了しました！');
+                    $res= $msg->sendPushMessage($message['userId'], $message='登録が完了しました！');
 
                 } elseif ($message['text'] == '予約確認') {
                     $lineStore = LineStoreStatus::where('store_id',$this->storeId)->first('liff_url');

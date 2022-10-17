@@ -56,7 +56,7 @@ class C_CatchEvents extends Controller
            elseif ($event['type'] == 'message') {
                 $message = $event['message'];
 
-                if ($message['text'] == '申し込み' && $this->storeId==1) {
+                if ($message['text'] == '申し込み') {
 
                     $client->replyMessage([
                             'replyToken' => $event['replyToken'],
@@ -67,7 +67,7 @@ class C_CatchEvents extends Controller
                                 ],
                                 [
                     'type' => 'text',
-                    'text' =>  'https://dev1.softnext.co.jp/commons/registration/public?user='.$us['userId']
+                    'text' =>  'https://dev1.softnext.co.jp/commons/registration/public?lineUserId='.$us['userId']
                                 ]
 
                             ]

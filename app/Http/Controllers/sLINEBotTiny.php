@@ -106,7 +106,7 @@ class SLINEBotTiny
             http_response_code(400);
             error_log('Invalid signature value');
             exit();
-        } elseif (isset($_SERVER['x_demo_signature']) && !$_SERVER['x_demo_signature'] == 'demo') {
+        } elseif (isset($_SERVER['x_demo_signature']) && !hash_equals($this->sign($entityBody), $_SERVER['x_demo_signature'])) {
             http_response_code(400);
             error_log('Invalid signature value');
 
