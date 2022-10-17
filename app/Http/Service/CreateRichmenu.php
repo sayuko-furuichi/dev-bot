@@ -178,7 +178,7 @@ class CreateRichmenu
     'action'=> [
         'type'=> 'uri',
         //LIFF
-        'uri'=> $lineStore->liff_url . '/Member?store='.$storeId
+        'uri'=> 'https://liff.line.me/1657487333-wakMRydO'. '/Member?store='.$storeId
         ]
     ],
 
@@ -272,7 +272,7 @@ class CreateRichmenu
     'action'=> [
         'type'=> 'uri',
         //LIFF
-        'uri'=> $lineStore->liff_url . '/addMember?store='.$storeId
+        'uri'=> 'https://liff.line.me/1657487333-wakMRydO' . '/addMember?store='.$storeId
         ]
     ],
 
@@ -366,7 +366,7 @@ class CreateRichmenu
  'action'=> [
      'type'=> 'uri',
      //LIFF
-     'uri'=> $lineStore->liff_url . '/addMember?store='.$storeId
+     'uri'=> 'https://liff.line.me/1657487333-wakMRydO' . '/addMember?store='.$storeId
      ]
  ],
 
