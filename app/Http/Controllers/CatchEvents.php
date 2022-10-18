@@ -47,7 +47,8 @@ class CatchEvents extends Controller
                 // }
                     //非会員が会員メニューを押下した時
                 if($pt['data'] == 'richmenu-changed-to-a'){
-                    $is_client= Client::where('line_user_id',$us['userId'])->where('store_id',$this->storeId)->first('id');
+                    //1が退会
+        $is_client = Client::where('line_user_id', $us['userId'])->where('store_id', $this->storeId)->where('member_attribute_id','!=',1)->first('id');
                     if(!isset($is_client->id)){
                         $nonmemberMenu =RichMenu::where('is_default',1)->where('store_id',$this->storeId)->first('richmenu_id');
                         $this->lineBot->linkUser($us['userId'], $nonmemberMenu->richmenu_id);
