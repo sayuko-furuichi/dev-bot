@@ -107,7 +107,7 @@ class Messages
     }
        public function search($userId, $storeId)
        {
-           $is_client = Client::where('line_user_id', $userId)->where('store_id', $storeId)->first();
+        $is_client = Client::where('line_user_id', $userId)->where('store_id', $storeId)->where('member_attribute_id','!=',0)->first('id');
            return $is_client;
        }
 
